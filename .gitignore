@@ -1,0 +1,21 @@
+storage/
+www-built/
+data/
+cdbkey.txt
+ghkey.txt
+*.pyc
+*.sublime-*
+*.*~
+deploy.sh
+node_modules
+# IDE
+*.sublime-*
+*.DS_Store
+
+bulkloader-*
+bulk.log
+deploy.sh
+
+context.txt
+store
+auth.txt
