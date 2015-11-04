@@ -84,12 +84,13 @@ function onLanguageSelect()
 	
 	//BUGBUG with a global var for language is the passing of a var for language even needed?
 	//setVariables( g_properties.preferredlanguage );
-	setVariables( g_properties.preferredlanguage );
-	
-	uiSetLabel( "LabelStepZero", "label.step0" );
-	uiSetLabel( "ChoiceCalcType", "calctype" );
-	uiClearAndFillSelect( "ChoiceCalcType", "g_calctype" );
+//	setVariables( g_properties.preferredlanguage );
+	newLanguageChosen()
 
+	//	setVariables( );
+	//uiSetLabel( "LabelStepZero", "label.step0" );
+	//uiSetLabel( "ChoiceCalcType", "calctype" );
+	//uiClearAndFillSelect( "ChoiceCalcType", "g_calctype" );
 }
 
 
@@ -98,6 +99,7 @@ function uiSetLabel( name,source )
 {
 	var language = g_properties.getProperty("preferredlanguage")
 	var sel = document.getElementById( name );
+	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = eval( "g_properties." + source + "." + language );
 	if( sel.childNodes.length > 0 )
 	{
@@ -378,14 +380,15 @@ function setVariables( )
 	void ChoiceLanguage_itemStateChanged(int value )throws ParseException{
 		newLanguageChosen(value);
 	}
-
-	private void newLanguageChosen(int value) throws ParseException{
-		double m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
-		double offset, offsetew, heading;
-		int latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
-		int datumindex, latprecindex, loctypeindex, calctypeindex;
-		int coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
-		int distprecindex, coordsourceindex, directionindex;
+*/
+//	function newLanguageChosen( value ) was this signature but "value" is not used  //throws ParseException{
+	function newLanguageChosen( ) 
+		var m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
+		var offset, offsetew, heading;
+		var latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
+		var datumindex, latprecindex, loctypeindex, calctypeindex;
+		var coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
+		var distprecindex, coordsourceindex, directionindex;
 		latdirindex=ChoiceLatDirDMS.getSelectedIndex();
 		longdirindex=ChoiceLongDirDMS.getSelectedIndex();
 		latdirmmindex=ChoiceLatDirMM.getSelectedIndex();
@@ -402,8 +405,8 @@ function setVariables( )
 		distprecindex=ChoiceDistancePrecision.getSelectedIndex();
 		directionindex=ChoiceDirection.getSelectedIndex();
 
-		Number num = null;
-		String s = txtT7Lat_MinMM.getText();
+		var num = null;
+		var s = txtT7Lat_MinMM.getText();
 		if( s == null || s.length() == 0 ){
 			m = 0;
 		} else {
@@ -490,8 +493,8 @@ function setVariables( )
 			m = num.doubleValue();
 		}
 		heading=m;
-
-		language = new String(g_properties.getProperty("language.code."+value));
+		
+		var language = g_language;
 		clearResults();
 		setVariables(language);
 		setLabels();		
@@ -558,6 +561,8 @@ function setVariables( )
 		if(distprecindex >= 0) ChoiceDistancePrecision.select(distprecindex);
 		if(directionindex >= 0) ChoiceDirection.select(directionindex);
 	}
+*/
+/*
 	void ChoiceModel_itemStateChanged(String value ){
 		newModelChosen(value);
 	}
@@ -1909,7 +1914,7 @@ function setVariables( )
 		ChoiceDistancePrecision.addItem(g_properties.getProperty("coordprec.dd.exact."+language));
 		ChoiceDistancePrecision.select("1 "+units);
 	}
-
+*/
 	private void populateStableControls(){
 		ChoiceCalcType.removeAll();
 		ChoiceCalcType.addItem("");
@@ -2261,7 +2266,7 @@ function setVariables( )
 //		ChoiceOffsetEWDir.addItem("W");
 //		ChoiceOffsetEWDir.addItem("E");
 	}
-*/
+
 
 /*
 	function showCoordinatePrecision( boolean b ){
