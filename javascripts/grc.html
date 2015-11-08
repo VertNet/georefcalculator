@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<LINK href="grc2.css" rel="stylesheet" type="text/css">
+
+<!-- BUGBUG  gc.ui.js should load all the js, not load them one at a time -->
+
+<script src="Datumerror.js"></script>
+<script src="georefcalculator.js"></script>
+<script src="factories.js"></script>
+<script src="gc.ui.js"></script>
+
+<button type="button" onclick="document.getElementById('demo').innerHTML = GC_init()">Do Cooler Stuff</button>
+
+<DIV id="topFiller" class="divBreak" >
+</DIV>
+
+<DIV id="divLanguage" class="divStandard">
+	<SPAN class="spanStandard">
+		<SELECT id="ChoiceLanguage" onChange="onLanguageSelect()" >
+			<Option>inglais BUGBUG</option>
+			<Option>francois BUGBUG</option>
+			<Option>espaneol BUGBUG</option>
+			<Option>ferengi BUGBUG</option>
+			<Option>Klingon BUGBUG</option>
+		</SELECT>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
+	</SPAN>
+	<SPAN class="spanLabelStep">
+		<LABEL id="LabelStepZero" class="LABELSTEP">BUGBUG Step 1</LABEL>
+		<LABEL id="LabelTitle" class="LABELSTEP">BUGBUG Georef Calc</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
+	</SPAN>
+</DIV>
+
+<DIV id="divStep1">
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
+	</SPAN>
+	<SPAN class="spanLabelStep2">
+		<LABEL id="LabelStepOne" class="LABELSTEP">BUGBUG Step 2</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
+	</SPAN>
+</DIV>
+
+<DIV id="divChoiceCalcType">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcType" >Calculation Type BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+	<SELECT id="ChoiceCalcType" onChange="onCalcTypeSelect()">
+		<OPTION>CalcType1 BUGBUG</OPTION>
+		<OPTION>CalcType2 BUGBUG</OPTION>
+		<OPTION>CalcType3 BUGBUG</OPTION>
+	</SELECT>
+	</SPAN>
+</DIV>
+
+<DIV id="divStep2">
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
+	</SPAN>
+	<SPAN class="spanLabelStep2">
+		<LABEL id="LabelStepOne" class="LABELSTEP">BUGBUG Step 3</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
+	</SPAN>
+</DIV>
+
+
+<DIV id="divChoiceModel">
+	<SPAN id="BUGBUG">
+	<LABEL id="LabelModel" >Locality Type BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+	<SELECT id="ChoiceModel" onChange="onModelSelect()">
+		<OPTION>Loc Type1 BUGBUG</OPTION>
+		<OPTION>Loc Type2 BUGBUG</OPTION>
+	</SELECT>
+	</SPAN>
+</DIV>
+
+<DIV id="divLocality1">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCoordSource" >Coordinate Source BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceCoordSource" onChange="onCoordSourceSelect()">
+			<OPTION>CordSource 1 BUGBUG</OPTION>
+			<OPTION>CordSource 2 BUGBUG</OPTION>
+			<OPTION>CordSource 3 BUGBUG</OPTION>
+			<OPTION>CordSource 4 BUGBUG</OPTION>
+			<OPTION>CordSource 5 BUGBUG</OPTION>
+			<OPTION>CordSource 6 BUGBUG</OPTION>
+			<OPTION>CordSource 7 BUGBUG</OPTION>
+			<OPTION>CordSource 8 BUGBUG</OPTION>
+			<OPTION>CordSource 9 BUGBUG</OPTION>
+			<OPTION>CordSource 10 BUGBUG</OPTION>
+			<OPTION>CordSource 11 BUGBUG</OPTION>
+			<OPTION>CordSource 12 BUGBUG</OPTION>
+			<OPTION>CordSource 13 BUGBUG</OPTION>
+			<OPTION>CordSource 14 BUGBUG</OPTION>
+			<OPTION>CordSource 15 BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;space plz&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelOffset">North or South BUGBUG</LABEL>&nbsp;
+		<INPUT TYPE="text" id="TextFieldOffset" value="NS BUGBUG"/>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceOffsetNSDir" onChange="onOffsetNSDirSelect()">
+			<OPTION>N BUGBUG</OPTION>
+			<OPTION>S BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+</DIV>
+
+
+<DIV id="divLocality2">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCoordSystem" >Coordinate Source BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceCoordSystem" onChange="onCoordSystemSelect()">
+			<OPTION>Deg 1 BUGBUG</OPTION>
+			<OPTION>Deg 2 BUGBUG</OPTION>
+			<OPTION>Deg 3 BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;space plz&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelOffsetEW">East or West BUGBUG</LABEL>&nbsp;
+		<INPUT TYPE="text" id="TextFieldOffsetEW" value="EW BUGBUG"/>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetNSDirSelect()">
+			<OPTION>E BUGBUG</OPTION>
+			<OPTION>W BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+</DIV>
+
+
+
+<DIV id="divLocality3">
+	<SPAN id="BUGBUG">
+		<LABEL id="lblT2Dec_Lat" >Latitude BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<INPUT TYPE="text" id="txtT2Dec_Lat" value="argh BUGBUG"/>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;put some pace in here, left and right justify things&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelExtent">Extent of BUGBUG</LABEL>&nbsp;
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<INPUT TYPE="text" id="TextFieldExtent" value="geez BUGBUG"/>
+	</SPAN>
+</DIV>
+
+
+<DIV id="divLocality4">
+	<SPAN id="BUGBUG">
+		<LABEL id="lblT2Dec_Long" >Latitude BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<INPUT TYPE="text" id="txtT2Dec_Long" value="argh BUGBUG"/>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;put some pace in here things&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelMeasurementError">Measurement Error BUGBUG</LABEL>&nbsp;
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<INPUT TYPE="text" id="TextFieldMeasurementError" value="geez BUGBUG"/>
+	</SPAN>
+</DIV>
+
+
+
+
+<DIV id="divLocality5">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelDatum" >Datum BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceDatum" onChange="onDatumSelect()">
+			<OPTION>D 1 BUGBUG</OPTION>
+			<OPTION>D 2 BUGBUG</OPTION>
+			<OPTION>D 3 BUGBUG</OPTION>
+			<OPTION>D ... BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;space pleeeeeeeeeeeeeeeeeeeeeeeez&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelDistUnits">Distance Units BUGBUG</LABEL>&nbsp;
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceDistUnits" onChange="onDistUnitsSelect()">
+			<OPTION>km BUGBUG</OPTION>
+			<OPTION>m BUGBUG</OPTION>
+			<OPTION>mi BUGBUG</OPTION>
+			<OPTION>... BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+</DIV>
+
+
+
+
+<DIV id="divLocality6">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelLatPrecision" >Coordinate Precision BUGBUG</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceLatPrecision" onChange="onDatumSelect()">
+			<OPTION>0 deg BUGBUG</OPTION>
+			<OPTION>0.1 deg BUGBUG</OPTION>
+			<OPTION>... deg BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;space pleeeeeeeeeeeeeeeez&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelDistancePrecision">Distance Precision BUGBUG</LABEL>&nbsp;
+	</SPAN>
+	<SPAN id="BUGBUG">
+		<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()">
+			<OPTION>1 km BUGBUG</OPTION>
+			<OPTION>1/10 km BUGBUG</OPTION>
+			<OPTION>1/100 km BUGBUG</OPTION>
+			<OPTION>... BUGBUG</OPTION>
+		</SELECT>
+	</SPAN>
+</DIV>
+
+
+<DIV id="topFiller" class="divBreak" >
+</DIV>
+
+<DIV id="ReadOnlyLabels">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLat">Decimal Latitude BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLong">Decimal Longitude BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcMaxError">Maximum Error Distance BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+</DIV>
+
+<DIV id="ReadOnlyFields1">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLat" class="readOnlyInput">90 BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLat" class="readOnlyInput">0 BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLat" class="readOnlyInput">1.2345 BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLat" class="readOnlyInput">yds BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<BUTTON id="LabelCalcDecLat" >CalcBUGBUG</BUTTON>&nbsp;
+	</SPAN> 
+	<SPAN id="BUGBUG">
+		<BUTTON id="LabelCalcDecLat" >PromoteBUGBUG</BUTTON>&nbsp;
+	</SPAN> 
+</DIV>
+<DIV id="ReadOnlyFields2">
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelCalcDecLat" class="readOnlyInput">00BUGBUG</LABEL>&nbsp;
+	</SPAN> 
+</DIV>
+
+
+
+
+
+
+<DIV id="topFiller" class="divBreak" >
+</DIV>
+
+
+
+
+
+<DIV id="divInfo" >
+	<SPAN id="BUGBUG">
+		<LABEL id="LabelVersion" class="LABELINFO">BUGBUG version 1234 Klingon</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG" >
+		<LABEL id="BUGBUG" class="LABELBUGBUG">&nbsp;&nbsp;&nbsp;&nbsp;to my left should be left justified, to my right, right justified&nbsp;&nbsp;&nbsp;&nbsp;</LABEL>
+	</SPAN>
+	<SPAN id="BUGBUG" >
+		<LABEL id="LabelCopyRight" class="LABELINFO">BUGBUG Copyright(c)</LABEL>
+	</SPAN>
+</DIV>
+
+
+</body>
+</html>

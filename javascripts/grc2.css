@@ -1,0 +1,203 @@
+SELECT{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1.25em;
+	text-color: black;
+	background-color: white;
+	width:auto;
+}
+
+LABEL{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+.LABELSTEP{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1.25em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+
+.LABELBUGBUG{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: red;
+	background-color: #C0C0C0;
+}
+
+.LABELINFO{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 0.65em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+
+INPUT{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1.25em;
+	color: black;
+	background-color: white;
+}
+
+.readOnlyInput{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: blue;
+	background-color: #C0C0C0;
+	display:inline-block;
+	border-style: inset;
+	border-width: 2px;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-left:1px;
+	padding-right:1px;
+}
+
+BUTTON{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 1.25em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+DIV{
+	padding: 3px;
+	background-color: #C0C0C0;
+}
+
+
+
+.divBreak
+{
+	padding: 3px;
+	background-color: #C0C0C0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fontStandard {
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+.fontStandard {
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+.fontFaceStandard {
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+}
+
+.fontSizeStandard {
+	font-size: 1em;
+}
+
+.fontColorStandard {
+	color: black;
+	background-color: #C0C0C0;
+}
+
+
+.fontSizeLarge {
+	font-size: 1.25em;
+}
+
+
+
+.labelStepHelp fontLarge {
+
+}
+
+
+.labelStepTitle {
+
+}
+
+
+.labelStandard
+{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1.25em;
+	text-align: center;
+	color: black;
+	background-color: #C0C0C0;
+	width: auto;
+}
+
+
+.labelNotices
+{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+	width: auto;
+}
+
+.spanLabelStep
+{
+	align: center;
+	background-color: #C0C0C0;
+}
+
+
+.divStandard
+{
+	padding: 5px;
+	background-color: #C0C0C0;
+}
+
+.spanLeftIndent
+{
+	width: 40px;
+	float:left
+	color: #CC0000;
+}
+
+.spanStandard
+{
+	width: auto;
+	background-color: #C0C0C0;
+}
+
+
+
+.selectStandard{
+	color: black;
+	background-color: white;
+	width:auto;
+}

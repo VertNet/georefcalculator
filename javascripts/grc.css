@@ -1,0 +1,102 @@
+.fontStandard {
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+.fontStandard {
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+}
+
+.fontFaceStandard {
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+}
+
+.fontSizeStandard {
+	font-size: 1em;
+}
+
+.fontColorStandard {
+	color: black;
+	background-color: #C0C0C0;
+}
+
+
+.fontSizeLarge {
+	font-size: 1.25em;
+}
+
+
+
+.labelStepHelp fontLarge {
+
+}
+
+
+.labelStepTitle {
+
+}
+
+
+.labelStandard
+{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1.25em;
+	text-align: center;
+	color: black;
+	background-color: #C0C0C0;
+	width: auto;
+}
+
+
+.labelNotices
+{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: 1em;
+	color: black;
+	background-color: #C0C0C0;
+	width: auto;
+}
+
+.spanLabelStep
+{
+	align: center;
+	background-color: #C0C0C0;
+}
+
+
+.divStandard
+{
+	padding: 5px;
+	background-color: #C0C0C0;
+}
+
+.spanLeftIndent
+{
+	width: 40px;
+	float:left
+	color: #CC0000;
+}
+
+.spanStandard
+{
+	width: auto;
+	background-color: #C0C0C0;
+}
+
+
+
+.selectStandard{
+	color: black;
+	background-color: white;
+	width:auto;
+}
