@@ -248,8 +248,8 @@ function uiSelectAddItem( name, source )
 	if( sel !== undefined && c !== undefined  )
 	{
 		var option = document.createElement("option");
-		option.text = c.name;
-		option.value= c.value;
+		option.text = c;
+		option.value= c;
 		sel.add( option );
 	}
 }
@@ -2157,6 +2157,7 @@ function setVariables( )
 
 		// Coordinate System controls
 		uiClearSelect( "ChoiceCoordSystem");
+		uiSelectAddEmptyItem("ChoiceCoordSystem");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dms");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dd");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.ddm");

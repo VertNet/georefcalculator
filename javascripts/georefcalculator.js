@@ -1218,10 +1218,14 @@ headings.nearestdegree = "nearest degree";
 
 // Coordinate Systems
 // Canonical (don't change these!)
+/*
+BUGBUG I think these are old and deprecated.
+I dont see them used in java, always used with +language.
+I have to comment them out or it breaks things in java script
 coordsys.dd = "decimal degrees";
 coordsys.dms = "degrees minutes seconds";
 coordsys.ddm = "degrees decimal minutes";
-
+*/
 //tie the above object arrays into a single global properties object
 g_properties.language = language;
 g_properties.version = version;
