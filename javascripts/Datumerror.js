@@ -12,7 +12,7 @@
 	
     var datumerror = [];// [][] datumerror;
     
-    function create() {
+    function createDatum() {
 	init();
 	init00();
 	init01();

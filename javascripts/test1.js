@@ -61,7 +61,7 @@ import java.util.Properties;*/
 			i++;
 		}
 	} */
-
+/*
 	function convertDistance(){
 		var fromdist;
 		var todist;
@@ -87,7 +87,8 @@ import java.util.Properties;*/
 			}
 		}
 	}
-
+*/
+/*
 	private void convertScale(){
 		double fromdist;
 		double todist;
@@ -201,6 +202,7 @@ import java.util.Properties;*/
 			The CoordinatePrecision here is the precision of the input coordinates, not of the final output. So this does
 			not match the meaning of the Darwin Core term coordinatePrecision.
 		***/
+/*
 		String resultstr = new String( 
 			formatCalcDec.format(newdecimallatitude) + '\u0009' + 
 			formatCalcDec.format(newdecimallongitude) + '\u0009' + 
@@ -214,7 +216,7 @@ import java.util.Properties;*/
 			coordprecisionstr );
 		TextFieldFullResult.setText(resultstr);//EDIT
 	}
-
+*/
 	/*void ChoiceCalcType_itemStateChanged(String value){
 		cleanCalcTypeSlate();
 
@@ -251,9 +253,10 @@ import java.util.Properties;*/
 
 	/*void ChoiceCoordSource_itemStateChanged(String value){
 		newModelChosen( (String)ChoiceModel.getSelectedItem() );
-		clearResults();*/
-	}
+		clearResults();
+	}*/
 
+	/*
 	void ChoiceCoordSystem_itemStateChanged(String value) throws ParseException{
 		clearResults();//EDIT
 		showRelevantCoordinates();
@@ -261,7 +264,7 @@ import java.util.Properties;*/
 		testLatLongLimits();
 		translateCoords();
 	}
-
+*/
 	/*void ChoiceDatum_itemStateChanged(String value){
 		clearResults();
 	}*/
@@ -1850,26 +1853,26 @@ import java.util.Properties;*/
 	}
 
 	function getDirectionError( offset, disterr ){
-		double alpha = 1.0; // direction precision, in degrees.
-		String dir = (String)ChoiceDirection.getSelectedItem();
+		var alpha = 1.0; // direction precision, in degrees.
+		var dir = ChoiceDirection.getSelectedItem();
 
-		int index = canonicalheadings.indexOf(dir);
+		var index = canonicalheadings.indexOf(dir);
 		if( index<4 )alpha=45.0;
 		else if( index<8 ) alpha=22.5;
 		else if( index<16 ) alpha=11.25;
 		else if( index<32 ) alpha=5.625;
 
-		double x = offset*Math.cos(alpha*Math.PI/180.0);
-		double y = offset*Math.sin(alpha*Math.PI/180.0);
-		double xp = offset+disterr;
-		double error = Math.sqrt( Math.pow(xp-x,2) + Math.pow(y,2) );
+		var x = offset*Math.cos(alpha*Math.PI/180.0);
+		var y = offset*Math.sin(alpha*Math.PI/180.0);
+		var xp = offset+disterr;
+		var error = Math.sqrt( Math.pow(xp-x,2) + Math.pow(y,2) );
 		return error; // error is in whatever units are selected.
 	}
 
 	function getDistancePrecisionError(){
-		double error = 0.0;
-		String precstr = (String)ChoiceDistancePrecision.getSelectedItem();
-		String units = (String)ChoiceDistUnits.getSelectedItem();
+		var error = 0.0;
+		var precstr = ChoiceDistancePrecision.getSelectedItem();
+		var units = ChoiceDistUnits.getSelectedItem();
 
 		if( precstr.equals("100 "+units) ){
 			error = 50.0;
@@ -1893,19 +1896,19 @@ import java.util.Properties;*/
 		return error;
 	}
 
-	function getDMSFromDecDegrees( double dval ) { // 40.17, -67.1
+	function getDMSFromDecDegrees( dval ) { // 40.17, -67.1
 		lastdecimaldegrees=dval;
 		if ( dval < 0 ) sign = -1; // 1, -1
 		else sign = 1;
 		seconds = sign*dval*3600.0; // 14461.2,  24156
-		Double degs = new Double(sign*dval); // 40.17, 67.1
-		degrees = degs.intValue(); // 40, 67
+		var degs = sign*dval; // 40.17, 67.1
+		degrees = degs; // 40, 67  //BUGBUG toInt?
 		seconds -= degrees*3600.0; // 61.2, 36.0
-		Double mins = new Double(seconds/60.0); // 1.02, 0.6
-		decminutes = mins.doubleValue();
-		minutes = mins.intValue(); // 1, 0
+		var mins = seconds/60.0; // 1.02, 0.6
+		decminutes = mins;
+		minutes = mins; // 1, 0
 		seconds -= minutes*60.0; // 1.2, 36.0
-		int secsAsInt = getNearestInt( seconds*1000.0 );
+		var secsAsInt = getNearestInt( seconds*1000.0 );
 		seconds=secsAsInt/1000.0;
 		while ( seconds >= 60.0 ){
 			seconds -= 60.0;
@@ -1921,7 +1924,7 @@ import java.util.Properties;*/
 		}
 	}
 
-	function getEllipsoidCode( String datumstr ){
+	function getEllipsoidCode( datumstr ){
 		if( datumstr.equals("(WGS84) World Geodetic System 1984") ) return "WE";
 		if( datumstr.equals("(NAD83) North American 1983") )        return "RF";
 		if( datumstr.equals("(NAD27) North American 1927") )        return "CC";
@@ -2083,7 +2086,7 @@ import java.util.Properties;*/
 		return "WE";
 	}
 
-	function getFlattening( String ellipsoidIDCode ){
+	function getFlattening( ellipsoidIDCode ){
 		// Data from NIMA TR8350.2
 		if( ellipsoidIDCode.equals("WE") ) return 1/298.257223563; // WGS84
 		if( ellipsoidIDCode.equals("RF") ) return 1/298.257222101; // GRS80 (NAD83)
@@ -2113,7 +2116,7 @@ import java.util.Properties;*/
 		return 1/298.257223563;
 	}
 
-	function getSemiMajorAxis( String ellipsoidIDCode ){
+	function getSemiMajorAxis( ellipsoidIDCode ){
 		// Data from NIMA TR8350.2
 		if( ellipsoidIDCode.equals("WE") ) return 6378137.0;   // WGS84
 		if( ellipsoidIDCode.equals("RF") ) return 6378137.0;   // GRS80 (NAD83)
@@ -2151,11 +2154,12 @@ import java.util.Properties;*/
 		return 0;
 	}
 */
-	function getExtentsError() throws ParseException{
-		double exerr = 0;
-		String s = TextFieldExtent.getText();
-		double e = 0;
-		Number num = null;
+
+	function getExtentsError(){
+		var exerr = 0;
+		var s = TextFieldExtent.getText();
+		var e = 0;
+		var num = null;
 
 		if( s != null && s.length() != 0 ){
 			num = numberFormatter.parse(s.trim()); 
@@ -2165,11 +2169,12 @@ import java.util.Properties;*/
 		return exerr;
 	}
 
-	function getMeasurementError() throws ParseException{
-		double measurementerr = 0;
-		String s = TextFieldMeasurementError.getText();
-		double e = 0;
-		Number num = null;
+	function getMeasurementError()
+	{
+		var measurementerr = 0;
+		var s = TextFieldMeasurementError.getText();
+		var e = 0;
+		var num = null;
 
 		if( s != null && s.length() != 0 ){
 			num = numberFormatter.parse(s.trim()); 
@@ -2181,9 +2186,9 @@ import java.util.Properties;*/
 	}
 
 	function getMapScaleError(){
-		double error = 0.0; // in feet
-		String sourcestr = (String)ChoiceCoordSource.getSelectedItem();
-		int index = canonicalsources.indexOf(sourcestr);
+		var error = 0.0; // in feet
+		var sourcestr = ChoiceCoordSource.getSelectedItem();
+		var index = canonicalsources.indexOf(sourcestr);
 
 		if( index==0 /*sourcestr.equals("gazetteer")*/ ){
 			error = 0.0;
@@ -2264,18 +2269,18 @@ import java.util.Properties;*/
 		} else if( index==38 /*sourcestr.equals("non-USGS map: 1:10,000")*/ ){
 			error = 10.0*3.28084; // 1mm error default when map quality not known
 		}
-		String distunitsstr = (String)ChoiceDistUnits.getSelectedItem();
+		var distunitsstr = ChoiceDistUnits.getSelectedItem();
 		error = convertFromFeetTo( error, distunitsstr );
 		return error;
 	}
 
-	function getMSFromDecMinutes( double dval ) {
+	function getMSFromDecMinutes( dval ) {
 		lastdecimalminutes=dval;
 		seconds = dval*60.0;
-		Double mins = new Double(dval);
+		var mins = dval;
 		minutes = mins.intValue();
 		seconds -= minutes*60.0;
-		int secsAsInt = getNearestInt( seconds*1000.0 );
+		var secsAsInt = getNearestInt( seconds*1000.0 );
 		seconds=secsAsInt/1000.0;
 		while( seconds >= 60.0 ){
 			seconds -= 60.0;
@@ -2291,33 +2296,33 @@ import java.util.Properties;*/
 		}
 	}
 
-	function getNearestInt( double dval ) {
-		Double dValue = new Double(dval);
-		int ival = dValue.intValue();
-		if( dval-(double)ival <= 0.5 ) return ival;
+	function getNearestInt( dval ) {
+		var dValue = dval;
+		var ival = dValue.intValue();
+		if( dval-ival <= 0.5 ) return ival;
 		else return( ival+1 );
 	}
-
-	function getNewCoordinates() throws ParseException{ 
+/*
+	function getNewCoordinates(){ 
 		// this method should be called only to calculate new coordinates
 		newdecimallatitude=decimallatitude;
 		newdecimallongitude=decimallongitude;
 
-		String SCalcType = (String)ChoiceCalcType.getSelectedItem();
-		int cindex = canonicalcalctypes.indexOf(SCalcType);
+		String SCalcType = ChoiceCalcType.getSelectedItem();
+		var cindex = canonicalcalctypes.indexOf(SCalcType);
 		if( cindex==0 ){ // Error only
 //			if( SCalcType.equals("Error only - enter Lat/Long for the actual locality") ){
 			return;
 		}
-		String s = null;
-		double d = 0;
-		double meterseast = 0;
-		double metersnorth = 0;
-		double metersoffset = 0;
-		Number num = null;
+		var s = null;
+		var d = 0;
+		var meterseast = 0;
+		var metersnorth = 0;
+		var metersoffset = 0;
+		var num = null;
 
 		calculateLatLongMetersPerDegree();
-		String SBoxModel = (String)ChoiceModel.getSelectedItem();
+		var SBoxModel = ChoiceModel.getSelectedItem();
 		if( SBoxModel.equals(props.getProperty("loctype.orthodist."+language)) ){
 //			if( SBoxModel.equals("Distance along orthogonal directions (e.g., 2 mi E and 3 mi N of Bakersfield)") ){
 			s = TextFieldOffset.getText();
@@ -2463,6 +2468,9 @@ import java.util.Properties;*/
 		return d;
 	}
 
+	
+	*/
+	
 	/*
 	//initialize the applet
 	public void init() {
@@ -2958,10 +2966,10 @@ import java.util.Properties;*/
 	}
 */
 	function readDatumError(){
-		int error = 1000; // 1 km error if file can't be read properly
-		long col = Math.round( 5*(decimallongitude+179.48) );
-		long row = Math.round( 5*(84.69-decimallatitude) );
-		error = (int)datumErrorInst.datumerror[(int)col][(int)row];
+		var error = 1000; // 1 km error if file can't be read properly
+		var col = Math.round( 5*(decimallongitude+179.48) );
+		var row = Math.round( 5*(84.69-decimallatitude) );
+		error = datumErrorInst.datumerror[col][row];
 		return error;
 	}
 /*
@@ -4021,8 +4029,9 @@ import java.util.Properties;*/
 	DecimalFormat formatCalcError = new DecimalFormat("##0.000");
 	DecimalFormat formatCalcDec = new DecimalFormat("##0.00000");
 	 */
-*/
-//	Declarations for instance variables used in the form
+
+	 //	Declarations for instance variables used in the form
+	 /*
 	private Datumerror datumErrorInst = null;
 	private int lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	private int sign = 1;
@@ -4052,6 +4061,7 @@ import java.util.Properties;*/
 	private double lastdecimaldegrees = 0;
 
 	boolean datumbytesread = false;
+	*/
 /*
 	public void setDecimalFormat(){
 		if(ChoiceLanguage.getSelectedIndex()==0) currentLocale = Locale.getDefault();
@@ -4321,6 +4331,7 @@ import java.util.Properties;*/
 		}
 	}
 */
+/*
 	private void calculateMaxErrorDistance() throws ParseException {
 		maxerrordistance=0.0;
 		String model = (String)ChoiceModel.getSelectedItem();
@@ -4383,16 +4394,16 @@ import java.util.Properties;*/
 			// already account for the two dimansions. Only Distance Precision error needs
 			// to be multiplied by the square root of 2.
 			
-			// Method prior to version 20130205:
-/*
-			maxerrordistance += getDatumError();
-			maxerrordistance += getExtentsError();
-			maxerrordistance += getMeasurementError();
-			maxerrordistance += getMapScaleError();
-			maxerrordistance += getDistancePrecisionError();
-			maxerrordistance *= Math.sqrt(2.0);
-			maxerrordistance += getCoordPrecisionError();
-*/
+// Method prior to version 20130205:
+//
+			//maxerrordistance += getDatumError();
+			//maxerrordistance += getExtentsError();
+			//maxerrordistance += getMeasurementError();
+			//maxerrordistance += getMapScaleError();
+			//maxerrordistance += getDistancePrecisionError();
+			//maxerrordistance *= Math.sqrt(2.0);
+			//maxerrordistance += getCoordPrecisionError();
+//
 			// Alternate Method resulting in smaller radii:
 			maxerrordistance += getDistancePrecisionError()*Math.sqrt(2.0);
 			maxerrordistance += getDatumError();
@@ -4447,6 +4458,9 @@ import java.util.Properties;*/
 		latmetersperdegree = Math.PI*M/180.0; // M is a function of latitude.
 		longmetersperdegree = Math.PI*X/180.0; // X is the orthogonal distance to the polar axis.
 	}
+	
+*/
+
 //Moved to gc.ui.js
 /*
 	private void setVariables(String languagecode){

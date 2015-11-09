@@ -1,10 +1,25 @@
 SELECT{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: 1.25em;
-	text-color: black;
+	font-size: 1em;
+	color: black;
 	background-color: white;
-	width:auto;
+
+	min-width: 100%;
+	max-width: 100%;
+	width: 100%;
+
+	/*width:auto;*/
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-left:1px;
+	padding-right:1px;
+	text-overflow: ellipsis;
+	/*BUGBUG overflow: for adding a scroll bar doesnt work?? do we have to Size on the HTML itself? NO to Size in HTML*/
+    /*overflow: scroll;	*/
 }
 
 LABEL{
@@ -19,7 +34,10 @@ LABEL{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
 	font-size: 1.25em;
+	display: inline-block;
 	color: black;
+	width: 100%;
+	text-align: center;
 	background-color: #C0C0C0;
 }
 
@@ -44,9 +62,11 @@ LABEL{
 INPUT{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: 1.25em;
+	font-size: 1em;
 	color: black;
 	background-color: white;
+	border: 2px solid grey;
+	border-style: inset;
 }
 
 .readOnlyInput{
@@ -54,6 +74,12 @@ INPUT{
 	font-style: normal;
 	font-size: 1em;
 	color: blue;
+	display: inline-block;
+	
+	min-width: 98%;
+	max-width: 98%;
+	width: 98%;
+	
 	background-color: #C0C0C0;
 	display:inline-block;
 	border-style: inset;
@@ -68,7 +94,7 @@ BUTTON{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 1.25em;
+	font-size: 1em;
 	color: black;
 	background-color: #C0C0C0;
 }
@@ -78,6 +104,75 @@ DIV{
 	background-color: #C0C0C0;
 }
 
+SPAN{
+	display: inline-block;
+	width: 19%;
+}
+
+.span100{
+	display: inline-block;
+	min-width: 99%;
+	max-width: 99%;
+	width: 99%;
+	text-align: center;
+}
+
+.span75{
+	display: inline-block;
+	min-width: 73%;
+	max-width: 73%;
+	width: 73%;
+}
+
+.span66{
+	display: inline-block;
+	min-width: 64%;
+	max-width: 64%;
+	width: 64%;
+}
+
+.span50{
+	display: inline-block;
+	min-width: 48%;
+	max-width: 48%;
+	width: 48%;
+}
+
+.span25{
+	display: inline-block;
+	min-width: 23%;
+	max-width: 23%;
+	width: 23%;
+}
+
+.span33{
+	display: inline-block;
+	min-width: 31%;
+	max-width: 31%;
+	width: 31%;
+}
+
+
+.span22{
+	display: inline-block;
+	min-width: 22%;
+	max-width: 22%;
+	width: 22%;
+}
+
+.span17{
+	display: inline-block;
+	min-width: 17%;
+	max-width: 17%;
+	width: 17%;
+}
+
+.span10{
+	display: inline-block;
+	min-width: 10%;
+	max-width: 10%;
+	width: 10%;
+}
 
 
 .divBreak
@@ -86,7 +181,7 @@ DIV{
 	background-color: #C0C0C0;
 }
 
-
+/*
 
 
 
@@ -201,3 +296,4 @@ DIV{
 	background-color: white;
 	width:auto;
 }
+*/

@@ -13,7 +13,10 @@ import java.util.Properties;*/
 
 //public class GC extends Applet implements ActionListener, ItemListener, FocusListener, KeyListener{ 
 //var GC = {
-	var uiStep = 0;
+
+//}
+
+/*
 	var g_embeddedCopyright = "copyright (c) 2001-2013 Regents of the University of California";
 	var g_appletHeight = 480;  //BUGBUG not needed anymore?
 	var g_appletWidth = 620;   //BUGBUG not needed anymore?
@@ -36,16 +39,47 @@ import java.util.Properties;*/
 	var g_languagelist = g_factory.makeArrayList();
 	
 	//Locale currentLocale = Locale.getDefault();
-	var g_currentLocale = "en" //BUGBUG FIXME TODO getDefaultLocal();
+	var g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
 	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
 	//BUGBUG this wont work exactly
-	var g_numberFormatter = "en" //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
-	var g_language = "en";
-//}
+	var g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
+	var g_language = "en";	
+*/
+
 	
 function GC_init()
 {
-		var language = g_properties.getProperty( "preferredlanguage" );
+	g_embeddedCopyright = "copyright (c) 2001-2013 Regents of the University of California";
+	g_appletHeight = 480;  //BUGBUG not needed anymore?
+	g_appletWidth = 620;   //BUGBUG not needed anymore?
+	g_versionNumber = "20151101";
+
+	//protected HashMap propertyMap = new HashMap();
+	g_propertyMap = {};
+	//private static Properties props = new Properties();
+	//var g_properties = {};    //Defined in geprefcalulator.js
+	
+	//final ArrayList canonicalheadings = new ArrayList();
+	g_canonicalheadings = g_factory.makeArrayList();
+	g_canonicalcoordsystems = g_factory.makeArrayList();
+	g_canonicalloctypes = g_factory.makeArrayList();
+	g_canonicalcalctypes = g_factory.makeArrayList();
+	g_canonicalddprec = g_factory.makeArrayList();
+	g_canonicaldmsprec = g_factory.makeArrayList();
+	g_canonicalddmprec = g_factory.makeArrayList();
+	g_canonicalsources = g_factory.makeArrayList();
+	g_languagelist = g_factory.makeArrayList();
+	
+	//Locale currentLocale = Locale.getDefault();
+	g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
+	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
+	//BUGBUG this wont work exactly
+	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
+	g_language = "en";	
+
+	createDatum();
+
+		var language = g_language; //g_properties.getProperty( "preferredlanguage" );
 		setVariables( language );
 		g_languagelist.clear();
 		
@@ -63,18 +97,16 @@ function GC_init()
 			nObj = { 'name' : lang, 'value' : code };
 		}
 
-	uiFillSelect( "ChoiceLanguage", "g_languagelist" );
+	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
+	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", true );
 	uiSetLabel( "LabelStepZero", "label.step0" );
+	uiHideElement( "LabelTitle" );
 } 
 
 function onLanguageSelect()
 {
 	var sel = document.getElementById( 'ChoiceLanguage' );
 
-	if( uiStep == 0 )
-	{
-		uiStep = 1;
-	}
 	//BUGBUG is setting g_properties.preferredlanguage safe?
 	//we want to NOT use g_properties and stay with otehr globals as a matter of form.
 	//other globals retain a specific order where was g_properties contains all languages, with its bits not necessarily in order.
@@ -85,19 +117,47 @@ function onLanguageSelect()
 	//BUGBUG with a global var for language is the passing of a var for language even needed?
 	//setVariables( g_properties.preferredlanguage );
 //	setVariables( g_properties.preferredlanguage );
+	setVariables( );
 	newLanguageChosen()
 
-	//	setVariables( );
 	//uiSetLabel( "LabelStepZero", "label.step0" );
 	//uiSetLabel( "ChoiceCalcType", "calctype" );
 	//uiClearAndFillSelect( "ChoiceCalcType", "g_calctype" );
 }
 
-
-
-function uiSetLabel( name,source )
+function uiHideElement( name )
 {
-	var language = g_properties.getProperty("preferredlanguage")
+	var item = document.getElementById( name );
+	if( item ) //BUGBUG is this safe enough?
+	{
+		item.style.display="none";
+	}
+}
+
+function uiShowElement( name )
+{
+	var item = document.getElementById( name );
+	if( item ) //BUGBUG is this safe enough?
+	{
+		item.style.display="inline-block";
+	}
+}
+
+//BUGBUG unfinished, possibly uneeded fuynction
+/*
+function uiSwitchvisibility( name, visibility )
+{
+	var item = document.getElementById( name );
+	if( item ) //BUGBUG is this safe enough?
+	{
+		item.style.display="inline-block";
+	}
+}
+*/
+
+function uiSetLabel( name, source )
+{
+	var language = g_language; //g_properties.getProperty("preferredlanguage")
 	var sel = document.getElementById( name );
 	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = eval( "g_properties." + source + "." + language );
@@ -109,6 +169,57 @@ function uiSetLabel( name,source )
 	sel.appendChild(textnode);
 	//sel.setText(c)
 }
+
+function uiSetLabelExplicit( name, value )
+{
+	var sel = document.getElementById( name );
+	if( sel.childNodes.length > 0 )
+	{
+		sel.removeChild(sel.childNodes[0]);
+	}
+	var textnode = document.createTextNode(value);
+	sel.appendChild(textnode);
+}
+
+
+function uiEmptyLabel( name )
+{
+	var sel = document.getElementById( name );
+	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
+	var c = "";
+	if( sel.childNodes.length > 0 )
+	{
+		sel.removeChild(sel.childNodes[0]);
+	}
+	var textnode = document.createTextNode(c);
+	sel.appendChild(textnode);
+	//sel.setText(c)
+}
+
+function uiEmptyTextElement( name )
+{
+	return uiSetElementValue( name, "" );
+	/*var sel = document.getElementById( name );
+	//BUGBUG we should throw an error if we cant find name.
+	if( sel )
+	{
+		sel.value = "";
+	}*/
+}
+
+function uiSetElementValue( name, value )
+{
+	var returnValue = false;
+	var sel = document.getElementById( name );
+	//BUGBUG we should throw an error if we cant find name.
+	if( sel )
+	{
+		sel.value = value;
+		returnValue = true;
+	}
+	return returnValue;
+}
+
 
 function uiClearSelect( name )
 {
@@ -123,22 +234,62 @@ function uiClearSelect( name )
 }
 	
 
-function uiClearAndFillSelect( name, source )
+function uiClearAndFillSelect( name, source, initialEmpty )
 {
 		uiClearSelect( name );
-		uiFillSelect( name, source )
+		uiFillSelect( name, source, initialEmpty )
 }
 
-function uiFillSelect( name, source )
+function uiSelectAddItem( name, source )
+{
+	var sel = document.getElementById( name );
+	var c = eval( "g_properties." + source + "." + g_language );
+	
+	if( sel !== undefined && c !== undefined  )
+	{
+		var option = document.createElement("option");
+		option.text = c.name;
+		option.value= c.value;
+		sel.add( option );
+	}
+}
+
+function uiSelectAddEmptyItem( name )
+{
+	var sel = document.getElementById( name );
+	if( sel !== undefined )
+	{
+		var	option = document.createElement("option");
+		option.text = " ";
+		option.value= " ";
+		sel.add( option );
+	}
+
+}
+
+
+
+function uiFillLanguageSelect( name, source, initialEmpty )
 {
 	var sel = document.getElementById( name );
 	var c = eval( source + ".contents" );
+	
 	if( sel !== undefined )
 	{
+		var option;
+		if( initialEmpty )
+		{
+			option = document.createElement("option");
+			option.text = " ";
+			option.value= " ";
+			sel.add( option );
+
+		}
+	
 		var l = 0
 		while( l < c.length )
 		{
-			var option = document.createElement("option");
+			option = document.createElement("option");
 			option.text = c[l].name;
 			option.value= c[l].value;
 			sel.add( option );
@@ -148,10 +299,55 @@ function uiFillSelect( name, source )
 }
 
 
+function uiFillSelect( name, source, initialEmpty )
+{
+	var sel = document.getElementById( name );
+	var c = eval( "g_properties." + source + "." +g_language );
+
+	
+	if( sel !== undefined )
+	{
+		var option;
+		if( initialEmpty )
+		{
+			option = document.createElement("option");
+			option.text = " ";
+			option.value= " ";
+			sel.add( option );
+		}
+	
+		var l = 0
+		while( l < c.length )
+		{
+			option = document.createElement("option");
+			option.text = c[l].name;
+			option.value= c[l].value;
+			sel.add( option );
+			l++;
+		}
+	}
+}
+
+function uiGetTextValue( name )
+{
+	//BUGBUG maybe put toInt and such in here
+	//Check format on input or use, if use then here.
+
+	var ti = document.getElementById( name );
+	var val = null;
+	//BUGBUG if NOT ti we should force an error as we have sent in a bad name
+	if( ti )
+	{
+		val = ti.value;
+	}
+	return val;
+}
+
+
 //function setVariables( languagecode )
 function setVariables( )
 {
-		var language = g_language.
+		var language = g_language;
 		// Do not change the following, the order is important
 		g_canonicalheadings.clear();
 		g_canonicalheadings.add(g_properties.getProperty("headings.n."+language));
@@ -382,13 +578,17 @@ function setVariables( )
 	}
 */
 //	function newLanguageChosen( value ) was this signature but "value" is not used  //throws ParseException{
-	function newLanguageChosen( ) 
+	function newLanguageChosen( ){
 		var m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
 		var offset, offsetew, heading;
 		var latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
 		var datumindex, latprecindex, loctypeindex, calctypeindex;
 		var coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
 		var distprecindex, coordsourceindex, directionindex;
+
+		var s;
+		var m;
+/*BUGBUG it is CRITICAL to add these back but not all elments exist yet
 		latdirindex=ChoiceLatDirDMS.getSelectedIndex();
 		longdirindex=ChoiceLongDirDMS.getSelectedIndex();
 		latdirmmindex=ChoiceLatDirMM.getSelectedIndex();
@@ -404,7 +604,11 @@ function setVariables( )
 		distunitsindex=ChoiceDistUnits.getSelectedIndex();
 		distprecindex=ChoiceDistancePrecision.getSelectedIndex();
 		directionindex=ChoiceDirection.getSelectedIndex();
+*/
 
+
+/*BUGBUG it is CRITICAL to add these back but not all elments exist yet
+		
 		var num = null;
 		var s = txtT7Lat_MinMM.getText();
 		if( s == null || s.length() == 0 ){
@@ -463,8 +667,13 @@ function setVariables( )
 			m = num.doubleValue();
 		}
 		measurementerror=m;
+*/
 
-		s = TextFieldOffset.getText();
+
+
+/*BUGBUG it is CRITICAL to add these back but not all elments exist yet
+//		s = TextFieldOffset.getText();
+		s = uiGetTextValue( "TextFieldOffset" );
 		m = 0;
 		if( s == null || s.length() == 0 ){
 			m = 0;
@@ -493,14 +702,16 @@ function setVariables( )
 			m = num.doubleValue();
 		}
 		heading=m;
-		
+*/		
 		var language = g_language;
 		clearResults();
 		setVariables(language);
-		setLabels();		
-		setDecimalFormat();
+		setLabels(  );		
+		//BUGBUG add me back in when we start doing formaters
+		//setDecimalFormat();
 		populateStableControls();
-
+/*
+//BUGBUG it is CRITICAL to add these back but not all elments exist y
 		ChoiceModel.removeAll();
 		ChoiceModel.addItem("");
 		if( calctypeindex>0 ){
@@ -560,8 +771,9 @@ function setVariables( )
 		if(distunitsindex >= 0) ChoiceDistUnits.select(distunitsindex);
 		if(distprecindex >= 0) ChoiceDistancePrecision.select(distprecindex);
 		if(directionindex >= 0) ChoiceDirection.select(directionindex);
+		*/
 	}
-*/
+
 /*
 	void ChoiceModel_itemStateChanged(String value ){
 		newModelChosen(value);
@@ -735,46 +947,63 @@ function setVariables( )
 		LabelStepTwo.setVisible(false);
 		LabelStepOne.setVisible(true);
 	}
-
-	private void clearResults(){
-		TextFieldCalcDecLat.setText("");
-		TextFieldCalcDecLong.setText("");
-		TextFieldCalcErrorDist.setText("");
-		TextFieldCalcErrorUnits.setText("");
-		TextFieldFullResult.setText("");
-	}
 */
-
-/*
-	public void setLabels(){
-		LabelVersion.setText(g_properties.getProperty("version."+language)+" "+versionNumber+language);
-		LabelCalcType.setText(g_properties.getProperty("label.calctype."+language));
-		LabelStepZero.setText(g_properties.getProperty("label.step0."+language));
-		LabelTitle.setText(g_properties.getProperty("label.title."+language));
-		LabelModel.setText(g_properties.getProperty("label.loctype."+language));
-		LabelStepOne.setText(g_properties.getProperty("label.step1."+language));
-		LabelStepTwo.setText(g_properties.getProperty("label.step2."+language));
-		LabelCoordSource.setText(g_properties.getProperty("label.coordsource."+language));
-		LabelCoordSystem.setText(g_properties.getProperty("label.coordsys."+language));
-		lblT2Dec_Lat.setText(g_properties.getProperty("label.lat."+language));
-		lblT2Dec_Long.setText(g_properties.getProperty("label.lon."+language));
-		LabelDatum.setText(g_properties.getProperty("label.datum."+language));
-		LabelLatPrecision.setText(g_properties.getProperty("label.coordprec."+language));
-		LabelOffsetEW.setText(g_properties.getProperty("label.distew."+language));
-		LabelOffset.setText(g_properties.getProperty("label.offset."+language));
-		LabelExtent.setText(g_properties.getProperty("label.extent."+language));
-		LabelMeasurementError.setText(g_properties.getProperty("label.measurementerror."+language));
-		LabelDistUnits.setText(g_properties.getProperty("label.distunits."+language));
-		LabelDistancePrecision.setText(g_properties.getProperty("label.distprec."+language));
-		LabelDirection.setText(g_properties.getProperty("label.direction."+language));
-		LabelCalcDecLat.setText(g_properties.getProperty("label.declat."+language));
-		LabelCalcDecLong.setText(g_properties.getProperty("label.declon."+language));
-		LabelCalcMaxError.setText(g_properties.getProperty("label.maxerrdist."+language));
-		ButtonCalculate.setLabel(g_properties.getProperty("label.calculate."+language));
-		ButtonPromote.setLabel(g_properties.getProperty("label.promote."+language));
-		LabelDistanceConverter.setText(g_properties.getProperty("label.distanceconverter."+language));
-		LabelScaleConverter.setText(g_properties.getProperty("label.scaleconverter."+language));
+	function clearResults()
+	{
+		//TextFieldCalcDecLat.setText("");
+		//TextFieldCalcDecLong.setText("");
+		//TextFieldCalcErrorDist.setText("");
+		//TextFieldCalcErrorUnits.setText("");
+		//TextFieldFullResult.setText("");
+		uiEmptyTextElement( "TextFieldCalcDecLat" );
+		uiEmptyTextElement( "TextFieldCalcDecLong" );
+		uiEmptyTextElement( "TextFieldCalcErrorDist" );
+		uiEmptyTextElement( "TextFieldCalcErrorUnits" );
+		uiEmptyTextElement( "TextFieldFullResult" );
 	}
+
+
+
+	function setLabels( ){
+		var language = g_language;
+		var version = g_versionNumber;
+		var v = g_properties.getProperty("version."+language)+" " + version + language;
+		uiSetLabelExplicit("LabelVersion", v);
+		
+		uiSetLabel("LabelCalcType", "label.calctype");
+		uiSetLabel("LabelStepZero","label.step0");
+		uiSetLabel("LabelTitle","label.title");
+		uiSetLabel("LabelModel","label.loctype");
+		uiSetLabel("LabelStepOne","label.step1");
+		uiSetLabel("LabelStepTwo","label.step2");
+		uiSetLabel("LabelCoordSource","label.coordsource");
+		uiSetLabel("LabelCoordSystem","label.coordsys");
+		uiSetLabel("lblT2Dec_Lat","label.lat");
+		uiSetLabel("lblT2Dec_Long","label.lon");
+		uiSetLabel("LabelDatum","label.datum");
+		uiSetLabel("LabelLatPrecision","label.coordprec");
+		uiSetLabel("LabelOffsetEW","label.distew");
+		uiSetLabel("LabelOffset","label.offset");
+		uiSetLabel("LabelExtent","label.extent");
+		uiSetLabel("LabelMeasurementError","label.measurementerror");
+		uiSetLabel("LabelDistUnits","label.distunits");
+		uiSetLabel("LabelDistancePrecision","label.distprec");
+		//BUGBUG FIXME when this UI element gets added
+		//uiSetLabel("LabelDirection","label.direction");
+		uiSetLabel("LabelCalcDecLat","label.declat");
+		uiSetLabel("LabelCalcDecLong","label.declon");
+		uiSetLabel("LabelCalcMaxError","label.maxerrdist");
+
+		uiSetElementValue("ButtonCalculate","label.calculate");
+		uiSetElementValue("ButtonPromote","label.promote");
+		
+		//BUGBUG FIXME when this UI element gets added
+		//uiSetLabel("LabelDistanceConverter","label.distanceconverter");
+		//uiSetLabel("LabelScaleConverter","label.scaleconverter");
+	
+	}
+	
+/*
 	public Component createComponents() {
 		pane = new Panel();
 		if(pane==null) return null;
@@ -1915,25 +2144,29 @@ function setVariables( )
 		ChoiceDistancePrecision.select("1 "+units);
 	}
 */
-	private void populateStableControls(){
-		ChoiceCalcType.removeAll();
-		ChoiceCalcType.addItem("");
-		ChoiceCalcType.addItem(g_properties.getProperty("calctype.coordsanderror."+language));
-		ChoiceCalcType.addItem(g_properties.getProperty("calctype.erroronly."+language));
-		ChoiceCalcType.addItem(g_properties.getProperty("calctype.coordsonly."+language));
-		ChoiceCalcType.select("");
+
+	function populateStableControls()
+	{
+		//uiClearSelect("ChoiceCalcType");
+		uiClearSelect( "ChoiceCalcType" );
+		uiSelectAddEmptyItem("ChoiceCalcType");
+		uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
+		uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
+		uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
+		//ChoiceCalcType.select("");
 
 		// Coordinate System controls
-		ChoiceCoordSystem.removeAll();
-		ChoiceCoordSystem.addItem(g_properties.getProperty("coordsys.dms."+language));
-		ChoiceCoordSystem.addItem(g_properties.getProperty("coordsys.dd."+language));
-		ChoiceCoordSystem.addItem(g_properties.getProperty("coordsys.ddm."+language));
+		uiClearSelect( "ChoiceCoordSystem");
+		uiSelectAddItem("ChoiceCoordSystem","coordsys.dms");
+		uiSelectAddItem("ChoiceCoordSystem","coordsys.dd");
+		uiSelectAddItem("ChoiceCoordSystem","coordsys.ddm");
+/*
 		ChoiceCoordSystem.select(g_properties.getProperty("coordsys.dd."+language));
 
 		// Coordinate Source controls
 		ChoiceCoordSource.removeAll();
-		for(int i=0; i<g_canonicalsources.size(); i++){
-			ChoiceCoordSource.addItem((String)g_canonicalsources.get(i));
+		for( i=0; i<g_canonicalsources.size(); i++){
+			ChoiceCoordSource.addItem(g_canonicalsources.get(i));
 		}
 		ChoiceCoordSource.select("gazetteer");
 
@@ -2265,6 +2498,8 @@ function setVariables( )
 //		ChoiceOffsetNSDir.addItem("S");
 //		ChoiceOffsetEWDir.addItem("W");
 //		ChoiceOffsetEWDir.addItem("E");
+
+*/
 	}
 
 
@@ -3328,8 +3563,8 @@ function setVariables( )
 
 //	Declarations for instance variables used in the form
 
-/*
-	public void setDecimalFormat(){
+
+	/*public void setDecimalFormat(){
 		if(ChoiceLanguage.getSelectedIndex()==0) currentLocale = Locale.getDefault();
 		else if(ChoiceLanguage.getSelectedItem().equalsIgnoreCase("english")){
 			currentLocale = Locale.US;
@@ -3387,6 +3622,8 @@ function setVariables( )
 			((DecimalFormat) formatCalcDec).setMaximumFractionDigits(7);
 		}
 	}
+	*/
+	/*
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == ChoiceLanguage ){
 			try {
