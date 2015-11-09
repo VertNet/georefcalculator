@@ -254,6 +254,19 @@ function uiSelectAddItem( name, source )
 	}
 }
 
+function uiSelectAddExplicitItem( name, value )
+{
+	var sel = document.getElementById( name );
+	
+	if( sel !== undefined )
+	{
+		var option = document.createElement("option");
+		option.text = value;
+		option.value= value;
+		sel.add( option );
+	}
+}
+
 function uiSelectAddEmptyItem( name )
 {
 	var sel = document.getElementById( name );
@@ -2161,15 +2174,16 @@ function setVariables( )
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dms");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dd");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.ddm");
-/*
-		ChoiceCoordSystem.select(g_properties.getProperty("coordsys.dd."+language));
+
+		//BUGBUG add me back ChoiceCoordSystem.select(g_properties.getProperty("coordsys.dd."+language));
 
 		// Coordinate Source controls
-		ChoiceCoordSource.removeAll();
-		for( i=0; i<g_canonicalsources.size(); i++){
-			ChoiceCoordSource.addItem(g_canonicalsources.get(i));
+		uiClearSelect("ChoiceCoordSource");
+		for( i=0; i< g_canonicalsources.contents.length; i++){
+			uiSelectAddExplicitItem("ChoiceCoordSource", g_canonicalsources.contents[i] )
 		}
-		ChoiceCoordSource.select("gazetteer");
+		//BUGBUG add me back ChoiceCoordSource.select("gazetteer");
+/*
 
 		// Datum controls
 		ChoiceDatum.removeAll();
