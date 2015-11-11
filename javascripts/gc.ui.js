@@ -2601,10 +2601,124 @@ function setVariables( )
 		
 	}
 	
+/* BUGBUG Java	 UI Layout, I am using it for hidden atribute as it does not rtansalte well from pane to div/span
+	pane
+		ChoiceLanguage
+		LabelVersion
+		LabelCopyright
+		LabelCalcType
+		ChoiceCalcType
+		LabelStepZero
+		LabelTitle
+		LabelModel
+		ChoiceModel
+		LabelStepOne
+		LabelStepTwo
+		LabelCoordSource
+		ChoiceCoordSource
+		LabelCoordSystem
+		ChoiceCoordSystem
+		+	PanelCoords
+		+	PanelCoordPrecision
+		LabelDirection
+		ChoiceDirection
+		TextFieldHeading
+		TextFieldOffset
+		ChoiceOffsetNSDir
+		LabelOffsetEW
+		TextFieldOffsetEW
+		ChoiceOffsetEWDir
+		LabelOffset
+		LabelExtent
+		TextFieldExtent
+		LabelMeasurementError
+		TextFieldMeasurementError
+		LabelDistUnits
+		ChoiceDistUnits
+		LabelDistancePrecision
+		ChoiceDistancePrecision
+		ButtonCalculate
+		ButtonPromote
+		+	PanelResults
+		LabelDistanceConverter
+		TextFieldFromDistance
+		ChoiceFromDistUnits
+		LabelEquals
+		TextFieldToDistance
+		ChoiceToDistUnits
+		LabelScaleConverter
+		TextFieldScaleFromDistance
+		ChoiceScaleFromDistUnits
+		ChoiceScale
+		LabelScaleEquals
+		TextFieldScaleToDistance
+		ChoiceScaleToDistUnits
+	
+	PanelCoords
+		lblT2Dec_Lat
+		lblT2Dec_Long
+		+	PanelDecLatLong
+		+	PanelDDMMSS
+		+	PanelDecMin
+		LabelDatum
+		ChoiceDatum
+	
+	PanelCoordPrecision
+		LabelLatPrecision
+		ChoiceLatPrecision
+	
+	PanelDecLatLong
+		txtT2Dec_Lat
+		txtT2Dec_Long
+		
+	PanelDDMMSS
+		txtT7Lat_DegDMS
+		txtT7Lat_MinDMS
+		txtT7Lat_Sec
+		ChoiceLatDirDMS
+		
+		txtT7Long_DegDMS
+		txtT7Long_MinDMS
+		txtT7Long_Sec
+		ChoiceLongDirDMS
+		
+		Label211111
+		Label2211
+		Label21121
+		Label222
+		Label2123
+		Label23
+		
+		
+	PanelDecMin
+		txtT7Lat_DegMM
+		txtT7Lat_MinMM
+		ChoiceLatDirMM
+		
+		txtT7Long_DegMM
+		txtT7Long_MinMM
+		ChoiceLongDirMM
+		
+		Label2111111
+		Label22111
+		Label21212
+		Label231
+		
+	PanelResults
+		LabelCalcDecLat
+		TextFieldCalcDecLat
+		LabelCalcDecLong
+		TextFieldCalcDecLong
+		LabelCalcMaxError
+		TextFieldCalcErrorDist
+		TextFieldCalcErrorUnits
+		TextFieldFullResult
+	*/
+	
 	function showCoordinates( b )
 	{
-		setVisibility( "divChoiceModel", b );
-		setVisibility( "divLocality1", b );
+		//setVisibility( "divChoiceModel", b );
+		setVisibility( "divPanelCoords", b );
 		//PanelCoords.setVisible(b);
 	}
 /*
