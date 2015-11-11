@@ -2601,7 +2601,148 @@ function setVariables( )
 		
 	}
 	
-/* BUGBUG Java	 UI Layout, I am using it for hidden atribute as it does not rtansalte well from pane to div/span
+	function PanelCoords_SetVisibile( v )
+	{
+		setVisibility( "lblT2Dec_Lat", v);
+		setVisibility( "lblT2Dec_Long", v);
+			PanelDecLatLong_SetVisibile( v );
+			PanelDDMMSS_SetVisibile( v );
+			PanelDecMin_SetVisibile( v );
+		setVisibility( "LabelDatum", v);
+		setVisibility( "ChoiceDatum", v);
+	}
+
+	function PanelCoordPrecision_SetVisibile( v )
+	{
+		setVisibility( "LabelLatPrecision", v );
+		setVisibility( "ChoiceLatPrecision", v );
+	}
+	
+
+	function PanelDecLatLong_SetVisibile( v )
+	{
+		setVisibility( "txtT2Dec_Lat", v );
+		setVisibility( "txtT2Dec_Long", v );
+	}
+
+
+	function PanelDDMMSS_SetVisibile( v )
+	{
+		setVisibility( "txtT7Lat_DegDMS", v );
+		setVisibility( "txtT7Lat_MinDMS", v );
+		setVisibility( "txtT7Lat_Sec", v );
+		setVisibility( "ChoiceLatDirDMS", v );
+		
+		setVisibility( "txtT7Long_DegDMS", v );
+		setVisibility( "txtT7Long_MinDMS", v );
+		setVisibility( "txtT7Long_Sec", v );
+		setVisibility( "ChoiceLongDirDMS", v );
+		
+		setVisibility( "Label211111", v );
+		setVisibility( "Label2211", v );
+		setVisibility( "Label21121", v );
+		setVisibility( "Label222", v );
+		setVisibility( "Label2123", v );
+		setVisibility( "Label23", v );
+	}
+
+	function PanelDecMin_SetVisibile( v )
+	{
+		setVisibility( "txtT7Lat_DegMM", v);
+		setVisibility( "txtT7Lat_MinMM", v);
+		setVisibility( "ChoiceLatDirMM", v);
+		
+		setVisibility( "txtT7Long_DegMM", v);
+		setVisibility( "txtT7Long_MinMM", v);
+		setVisibility( "ChoiceLongDirMM", v);
+		
+		setVisibility( "Label2111111", v);
+		setVisibility( "Label22111", v);
+		setVisibility( "Label21212", v);
+		setVisibility( "Label231", v);
+	
+	}
+
+	function Step1_Visibility( v )
+	{
+
+	}
+
+	function Step2_Visibility( v )
+	{
+	
+	}
+
+	function Step3Controls_SetVisibile( v )
+	{
+		ChoiceLanguage
+		LabelVersion
+		LabelCopyright
+		LabelCalcType
+		ChoiceCalcType
+		LabelStepZero
+		LabelTitle
+		
+		LabelModel
+		ChoiceModel
+		LabelStepOne
+		
+
+		LabelStepTwo
+		LabelCoordSource
+		ChoiceCoordSource
+		LabelCoordSystem
+		ChoiceCoordSystem
+		+	PanelCoords
+		+	PanelCoordPrecision
+		LabelDirection
+		ChoiceDirection
+		TextFieldHeading
+		TextFieldOffset
+		ChoiceOffsetNSDir
+		LabelOffsetEW
+		TextFieldOffsetEW
+		ChoiceOffsetEWDir
+		LabelOffset
+		LabelExtent
+		TextFieldExtent
+		LabelMeasurementError
+		TextFieldMeasurementError
+		LabelDistUnits
+		ChoiceDistUnits
+		LabelDistancePrecision
+		ChoiceDistancePrecision
+		ButtonCalculate
+		ButtonPromote
+		+	PanelResults
+		LabelDistanceConverter
+		TextFieldFromDistance
+		ChoiceFromDistUnits
+		LabelEquals
+		TextFieldToDistance
+		ChoiceToDistUnits
+		LabelScaleConverter
+		TextFieldScaleFromDistance
+		ChoiceScaleFromDistUnits
+		ChoiceScale
+		LabelScaleEquals
+		TextFieldScaleToDistance
+		ChoiceScaleToDistUnits
+	}
+
+	function PanelResults_SetVisibile( v )
+	{
+		setVisibility( "LabelCalcDecLat", v);
+		setVisibility( "TextFieldCalcDecLat", v);
+		setVisibility( "LabelCalcDecLong", v);
+		setVisibility( "TextFieldCalcDecLong", v);
+		setVisibility( "LabelCalcMaxError", v);
+		setVisibility( "TextFieldCalcErrorDist", v);
+		setVisibility( "TextFieldCalcErrorUnits", v);
+		setVisibility( "TextFieldFullResult", v);
+	}
+	
+/* BUGBUG Java	 UI Layout, I am using it for hidden attribute setting as it does not translate well from Java pane to HTML div/span
 	pane
 		ChoiceLanguage
 		LabelVersion
