@@ -500,39 +500,87 @@ function setVariables( )
 	}	
 	
 	
-	/*void ChoiceCalcType_itemStateChanged(String value){
+	function uiGetSelectedText( name )
+	{
+		var el = document.getElementById( name );
+		var retunVal = null;
+		if( el )
+		{
+			returnVal = el.options[el.selectedIndex].text;
+		}
+		
+		return returnVal;
+	}
+
+	function uiGetSelectedValue( name )
+	{
+		var el = document.getElementById( name );
+		var retunVal = null;
+		if( el )
+		{
+			returnVal = el.options[el.selectedIndex].value;
+		}
+		
+		return returnVal;
+	}
+
+	function uiGetSelectedIndex( name )
+	{
+		var el = document.getElementById( name );
+		var retunVal = null;
+		if( el )
+		{
+			returnVal = el.selectedIndex;
+		}
+		return returnVal;
+	}
+
+	function uiSetSelectedIndex( name, index )
+	{
+		var el = document.getElementById( name );
+		if( el )
+		{
+			el.selectedIndex = index;
+		}
+	}
+	
+	
+	
+	//void ChoiceCalcType_itemStateChanged(String value){
+	function onCalcTypeSelect()
+	{
 		cleanCalcTypeSlate();
 
-		if( value.equals("") ){
-			LabelStepZero.setVisible(true);
+		var value = uiGetSelectedValue( "ChoiceCalcType" )
+		if( value === " " ){
+			setVisibility( "LabelStepZero", true );
 			return;
 		} else {
-			LabelStepZero.setVisible(false);
-			LabelTitle.setVisible(true);
-			ChoiceModel.setVisible(true);
-			LabelModel.setVisible(true);
-			LabelStepOne.setVisible(true);
+			setVisibility( "LabelStepZero", false );
+			setVisibility( "LabelTitle", true );
+			setVisibility( "ChoiceModel", true );
+			setVisibility( "LabelModel", true );
+			setVisibility( "LabelStepOne", true );
 		}
 
-		ChoiceModel.removeAll();
+		uiClearSelect( "ChoiceModel" );
+		uiSelectAddEmptyItem("ChoiceModel");
+		uiSelectAddItem("ChoiceModel", "calctype.coordsanderror");
 
-		ChoiceModel.addItem("");
-		int index=g_canonicalcalctypes.indexOf(value);
+		
+		var index = g_canonicalcalctypes[ value ];
 		if( index==0 ){
-//			if( value.equals("Error only - enter Lat/Long for the actual locality") ){
-			ChoiceModel.addItem(g_properties.getProperty("loctype.coordonly."+language));
-			ChoiceModel.addItem(g_properties.getProperty("loctype.namedplaceonly."+language));
-			ChoiceModel.addItem(g_properties.getProperty("loctype.distanceonly."+language));
-			ChoiceModel.addItem(g_properties.getProperty("loctype.distalongpath."+language));
-			lblT2Dec_Lat.setText(g_properties.getProperty("label.lat."+language));
-			lblT2Dec_Long.setText(g_properties.getProperty("label.lon."+language));
-//			lblT2Dec_Lat.setText("Latitude");
-//			lblT2Dec_Long.setText("Longitude");
+			uiSelectAddItem("ChoiceModel", "loctype.coordonly");
+			uiSelectAddItem("ChoiceModel", "loctype.namedplaceonly");
+			uiSelectAddItem("ChoiceModel", "loctype.distanceonly");
+			uiSelectAddItem("ChoiceModel", "loctype.distalongpath");
+			//BUGBUG ADD ME BACK lblT2Dec_Lat.setText(g_properties.getProperty("label.lat."+language));
+			//BUGBUG ADD ME BACK lblT2Dec_Long.setText(g_properties.getProperty("label.lon."+language));
 		}
-		ChoiceModel.addItem(g_properties.getProperty("loctype.orthodist."+language));
-		ChoiceModel.addItem(g_properties.getProperty("loctype.distatheading."+language));
-		ChoiceModel.select(0);
-	}*/
+		uiSelectAddItem("ChoiceModel", "loctype.orthodist" );
+		uiSelectAddItem("ChoiceModel", "loctype.distatheading" );
+		uiSetSelectedIndex("ChoiceModel", 0 );
+	}
 
 	/*void ChoiceCoordSource_itemStateChanged(String value){
 		newModelChosen( (String)ChoiceModel.getSelectedItem() );
@@ -686,7 +734,7 @@ function setVariables( )
 
 
 
-/*BUGBUG it is CRITICAL to add these back but not all elments exist yet
+/*BUGBUG it is CRITICAL to add these back but not all elements exist yet
 //		s = TextFieldOffset.getText();
 		s = uiGetTextValue( "TextFieldOffset" );
 		m = 0;
@@ -923,20 +971,31 @@ function setVariables( )
 	void ChoiceOffsetNSDir_itemStateChanged(String value ){
 		clearResults();
 	}
-
-	private void cleanCalcTypeSlate(){
+*/
+//	private void cleanCalcTypeSlate(){
+	function cleanCalcTypeSlate(){
 		cleanSlate();
-		ChoiceModel.setVisible(false);
-		LabelModel.setVisible(false);
+		setVisibility("ChoiceModel", false );
+		setVisibility("LabelModel", false );
+		setVisibility("LabelTitle", false );
+		setVisibility("LabelStepOne", false );
+		setVisibility("LabelStepTwo", false );
+		setVisibility("LabelStepZero", false );
+		
+		/*LabelModel.setVisible(false);
 		LabelTitle.setVisible(false);
 		LabelStepOne.setVisible(false);
 		LabelStepTwo.setVisible(false);
-		LabelStepZero.setVisible(true);
+		LabelStepZero.setVisible(true);*/
 	}
 
-	private void cleanSlate(){
+//	private void cleanSlate(){
+	function cleanSlate(){
 		// Coordinates Panel
 		showCoordinates(false);
+		setVisibility( "step3", false );
+
+		/*BUGBUG CRITICAL to put these back
 		showCoordinateSource(false);
 		showCoordinateSystem(false);
 		showCoordinatePrecision(false);
@@ -961,8 +1020,9 @@ function setVariables( )
 		LabelTitle.setVisible(false);
 		LabelStepTwo.setVisible(false);
 		LabelStepOne.setVisible(true);
+		*/
 	}
-*/
+
 	function clearResults()
 	{
 		//TextFieldCalcDecLat.setText("");
@@ -2524,11 +2584,30 @@ function setVariables( )
 	function showCoordinatePrecision( boolean b ){
 		PanelCoordPrecision.setVisible(b);
 	}
-
-	function showCoordinates( boolean b ){
-		PanelCoords.setVisible(b);
+*/
+	function setVisibility( name, v )
+	{
+		var el = document.getElementById( name );
+		if( v === true )
+		{
+			//el.visibility = "visible";
+			el.hidden = "false";
+		}
+		else
+		{
+			el.visibility = "hidden";
+			el.hidden = "true";
+		}
+		
 	}
-
+	
+	function showCoordinates( b )
+	{
+		setVisibility( "divChoiceModel", b );
+		setVisibility( "divLocality1", b );
+		//PanelCoords.setVisible(b);
+	}
+/*
 	function showCoordinateSource( boolean b ){
 		ChoiceCoordSource.setVisible(b);
 		LabelCoordSource.setVisible(b);
