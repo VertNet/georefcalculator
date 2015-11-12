@@ -1,5 +1,5 @@
 /*
-TEST ONLY 2
+TEST ONLY 3
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -992,8 +992,11 @@ function setVariables( )
 //	private void cleanSlate(){
 	function cleanSlate(){
 		// Coordinates Panel
-		showCoordinates(false);
-		setVisibility( "step3", false );
+		//PanelCoords_SetVisibile
+		//Step0Controls_SetVisibile( false );
+		Step1Controls_SetVisibile( false );
+		Step2Controls_SetVisibile( false );
+//		showCoordinates(false);
 
 		/*BUGBUG CRITICAL to put these back
 		showCoordinateSource(false);
@@ -1025,11 +1028,6 @@ function setVariables( )
 
 	function clearResults()
 	{
-		//TextFieldCalcDecLat.setText("");
-		//TextFieldCalcDecLong.setText("");
-		//TextFieldCalcErrorDist.setText("");
-		//TextFieldCalcErrorUnits.setText("");
-		//TextFieldFullResult.setText("");
 		uiEmptyTextElement( "TextFieldCalcDecLat" );
 		uiEmptyTextElement( "TextFieldCalcDecLong" );
 		uiEmptyTextElement( "TextFieldCalcErrorDist" );
@@ -2656,25 +2654,53 @@ function setVariables( )
 		setVisibility( "txtT7Long_MinMM", v);
 		setVisibility( "ChoiceLongDirMM", v);
 		
-		setVisibility( "Label2111111", v);
-		setVisibility( "Label22111", v);
-		setVisibility( "Label21212", v);
-		setVisibility( "Label231", v);
+		setVisibility( "Label2111111", v );
+		setVisibility( "Label22111", v );
+		setVisibility( "Label21212", v );
+		setVisibility( "Label231", v );
 	
 	}
 
-	function Step1_Visibility( v )
+	//STEP 1 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
+	function Step0_Visibility_Init( v )
 	{
-
+		setVisibility( "ChoiceLanguage", true );
+//ALWAYS VISIBLE		LabelVersion
+//ALWAYS VISIBLE		LabelCopyright
+		setVisibility( "LabelCalcType", true );
+		setVisibility( "ChoiceCalcType", true );
+		setVisibility( "LabelStepZero", true );
+		setVisibility( "LabelTitle", false );
+		Step1Controls_SetVisibile( false );
+		Step2Controls_SetVisibile( false );
 	}
 
-	function Step2_Visibility( v )
+	function Step0_Visibility_ChoiceMade( v )
 	{
+		setVisibility( "ChoiceLanguage", true );
+//ALWAYS VISIBLE		LabelVersion
+//ALWAYS VISIBLE		LabelCopyright
+		setVisibility( "LabelCalcType", true );
+		setVisibility( "ChoiceCalcType", true );
+		setVisibility( "LabelStepZero", false );
+		setVisibility( "LabelTitle", true );
+
+		Step1Controls_SetVisibile( true );
+		Step2Controls_SetVisibile( false );
+	}
 	
+	//STEP 2 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
+	function Step1Controls_SetVisibile( v )
+	{		
+		setVisibility( "LabelModel", v );
+		setVisibility( "ChoiceModel", v );
+		setVisibility( "LabelStepOne", v );
 	}
 
-	function Step3Controls_SetVisibile( v )
+	//STEP 3 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
+	function Step2Controls_SetVisibile( v )
 	{
+		/*step cero
 		ChoiceLanguage
 		LabelVersion
 		LabelCopyright
@@ -2682,52 +2708,55 @@ function setVariables( )
 		ChoiceCalcType
 		LabelStepZero
 		LabelTitle
+		*/
+		/*step one
 		
 		LabelModel
 		ChoiceModel
 		LabelStepOne
+		*/
 		
-
-		LabelStepTwo
-		LabelCoordSource
-		ChoiceCoordSource
-		LabelCoordSystem
-		ChoiceCoordSystem
-		+	PanelCoords
-		+	PanelCoordPrecision
-		LabelDirection
-		ChoiceDirection
-		TextFieldHeading
-		TextFieldOffset
-		ChoiceOffsetNSDir
-		LabelOffsetEW
-		TextFieldOffsetEW
-		ChoiceOffsetEWDir
-		LabelOffset
-		LabelExtent
-		TextFieldExtent
-		LabelMeasurementError
-		TextFieldMeasurementError
-		LabelDistUnits
-		ChoiceDistUnits
-		LabelDistancePrecision
-		ChoiceDistancePrecision
-		ButtonCalculate
-		ButtonPromote
-		+	PanelResults
-		LabelDistanceConverter
-		TextFieldFromDistance
-		ChoiceFromDistUnits
-		LabelEquals
-		TextFieldToDistance
-		ChoiceToDistUnits
-		LabelScaleConverter
-		TextFieldScaleFromDistance
-		ChoiceScaleFromDistUnits
-		ChoiceScale
-		LabelScaleEquals
-		TextFieldScaleToDistance
-		ChoiceScaleToDistUnits
+		/*step two*/
+		setVisibility( "LabelStepTwo", v );
+		setVisibility( "LabelCoordSource", v );
+		setVisibility( "ChoiceCoordSource", v );
+		setVisibility( "LabelCoordSystem", v );
+		setVisibility( "ChoiceCoordSystem", v );
+		PanelCoords_SetVisbility( v );
+		PanelCoordPrecision_SetVisbility( v );
+		setVisibility( "LabelDirection", v );
+		setVisibility( "ChoiceDirection", v );
+		setVisibility( "TextFieldHeading", v );
+		setVisibility( "TextFieldOffset", v );
+		setVisibility( "ChoiceOffsetNSDir", v );
+		setVisibility( "LabelOffsetEW", v );
+		setVisibility( "TextFieldOffsetEW", v );
+		setVisibility( "ChoiceOffsetEWDir", v );
+		setVisibility( "LabelOffset", v );
+		setVisibility( "LabelExtent", v );
+		setVisibility( "TextFieldExtent", v );
+		setVisibility( "LabelMeasurementError", v );
+		setVisibility( "TextFieldMeasurementError", v );
+		setVisibility( "LabelDistUnits", v );
+		setVisibility( "ChoiceDistUnits", v );
+		setVisibility( "LabelDistancePrecision", v );
+		setVisibility( "ChoiceDistancePrecision", v );
+		setVisibility( "ButtonCalculate", v );
+		setVisibility( "ButtonPromote", v );
+		PanelResults_SetVisbility( v );
+		setVisibility( "LabelDistanceConverter", v );
+		setVisibility( "TextFieldFromDistance", v );
+		setVisibility( "ChoiceFromDistUnits", v );
+		setVisibility( "LabelEquals", v );
+		setVisibility( "TextFieldToDistance", v );
+		setVisibility( "ChoiceToDistUnits", v );
+		setVisibility( "LabelScaleConverter", v );
+		setVisibility( "TextFieldScaleFromDistance", v );
+		setVisibility( "ChoiceScaleFromDistUnits", v );
+		setVisibility( "ChoiceScale", v );
+		setVisibility( "LabelScaleEquals", v );
+		setVisibility( "TextFieldScaleToDistance", v );
+		setVisibility( "ChoiceScaleToDistUnits", v );
 	}
 
 	function PanelResults_SetVisibile( v )
@@ -2858,9 +2887,7 @@ function setVariables( )
 	
 	function showCoordinates( b )
 	{
-		//setVisibility( "divChoiceModel", b );
-		setVisibility( "divPanelCoords", b );
-		//PanelCoords.setVisible(b);
+		PanelCoords_SetVisibile(b)
 	}
 /*
 	function showCoordinateSource( boolean b ){
