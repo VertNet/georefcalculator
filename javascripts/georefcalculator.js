@@ -1252,20 +1252,24 @@ coordsource = null;
 version = null;
 language = null;  
 
-//BUGBUG rename to the more proper getPropertyByName
-g_properties.getProperty = function( name )
+g_properties.getPropertyLang = function( name )
 {
-	//BUGBUG remove debug var foo, prop when possible
-	var foo = name;
-	var prop = eval( "g_properties." + name );
-	return eval( "g_properties." + name );
+	var language = g_language;
+	var prop = eval( "g_properties." + name + "." + language );
+	return prop;
 }
 
-//BUGBUG rename to the more proper getPropertyByIndex... maybe
+
+//BUGBUG rename to the more proper getPropertyByName???
+g_properties.getProperty = function( name )
+{
+	var prop = eval( "g_properties." + name );
+	return prop;
+}
+
+//BUGBUG rename to the more proper getPropertyByIndex... maybe???
 g_properties.getIndexedProperty = function( name, index )
 {
-	//BUGBUG remove debug var foo, prop, prop2 when possible
-	var foo = name;
 	var prop = eval( "g_properties." + name );
 	var prop2 = prop[index];
 	return prop2;

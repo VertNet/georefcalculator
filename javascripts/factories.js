@@ -12,6 +12,12 @@ g_factory.makeArrayList = function()
 		{
 			this.contents = [];
 		};
+
+		/*al.indexOf = function( value )
+		{
+			return this.indexOf( value );
+		};*/
+
 		
 		return al;
 };

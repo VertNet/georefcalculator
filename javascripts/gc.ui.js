@@ -1,4 +1,5 @@
 /*
+/*
 TEST ONLY 3
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -79,6 +80,25 @@ function GC_init()
 	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
 	g_language = "en";	
 
+	
+	var formatDec = null;
+	var  formatDeg = null; 
+	var  formatMin = null;
+	var  formatMinMM = null;
+	var  formatSec = null;
+	var  formatCalcError = null;
+	var  formatDistance = null;
+	var  formatCalcDec = null;
+
+	/*
+ 	DecimalFormat formatDec = new DecimalFormat("0.0000000"); 
+	DecimalFormat formatDeg = new DecimalFormat("##0"); 
+	DecimalFormat formatMin = new DecimalFormat("#0");
+	DecimalFormat formatMinMM = new DecimalFormat("#0.000000");
+	DecimalFormat formatSec = new DecimalFormat("#0.00");
+	DecimalFormat formatCalcError = new DecimalFormat("##0.000");
+	DecimalFormat formatCalcDec = new DecimalFormat("##0.00000");	
+	*/
 	createDatum();
 
 		var language = g_language; //g_properties.getProperty( "preferredlanguage" );
@@ -134,6 +154,10 @@ function uiHideElement( name )
 	{
 		item.style.display="none";
 	}
+	else
+	(
+		console.log("ERROR uiHideElement null element name:" + name )
+	)
 }
 
 function uiShowElement( name )
@@ -143,6 +167,11 @@ function uiShowElement( name )
 	{
 		item.style.display="inline-block";
 	}
+	else
+	(
+		console.log("ERROR uiShowElement null element name:" + name )
+	)
+
 }
 
 //BUGBUG unfinished, possibly uneeded fuynction
@@ -154,6 +183,11 @@ function uiSwitchvisibility( name, visibility )
 	{
 		item.style.display="inline-block";
 	}
+	else
+	(
+		console.log("ERROR uiSwitchvisibility null element name:" + name );
+	)
+
 }
 */
 
@@ -163,24 +197,37 @@ function uiSetLabel( name, source )
 	var sel = document.getElementById( name );
 	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = eval( "g_properties." + source + "." + language );
-	if( sel.childNodes.length > 0 )
+	if(sel )
 	{
-		sel.removeChild(sel.childNodes[0]);
+		if( sel.childNodes.length > 0 )
+		{
+			sel.removeChild(sel.childNodes[0]);
+		}
+		var textnode = document.createTextNode(c);
+		sel.appendChild(textnode);
 	}
-	var textnode = document.createTextNode(c);
-	sel.appendChild(textnode);
-	//sel.setText(c)
+	else
+	(
+		console.log("ERROR uiSetLabel null element name: " + name +" source: " + source)
+	)
 }
 
 function uiSetLabelExplicit( name, value )
 {
 	var sel = document.getElementById( name );
-	if( sel.childNodes.length > 0 )
+	if( sel )
 	{
-		sel.removeChild(sel.childNodes[0]);
+		if( sel.childNodes.length > 0 )
+		{
+			sel.removeChild(sel.childNodes[0]);
+		}
+		var textnode = document.createTextNode(value);
+		sel.appendChild(textnode);
 	}
-	var textnode = document.createTextNode(value);
-	sel.appendChild(textnode);
+	else
+	(
+		console.log("ERROR uiSetLabelExplicit null element name: " + name +" source: " + value)
+	)
 }
 
 
@@ -189,13 +236,20 @@ function uiEmptyLabel( name )
 	var sel = document.getElementById( name );
 	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = "";
-	if( sel.childNodes.length > 0 )
+	if( sel )
 	{
-		sel.removeChild(sel.childNodes[0]);
+		if( sel.childNodes.length > 0 )
+		{
+			sel.removeChild(sel.childNodes[0]);
+		}
+		var textnode = document.createTextNode(c);
+		sel.appendChild(textnode);
 	}
-	var textnode = document.createTextNode(c);
-	sel.appendChild(textnode);
-	//sel.setText(c)
+	else
+	(
+		console.log("ERROR uiEmptyLabel null element name: " + name)
+	)
+	
 }
 
 function uiEmptyTextElement( name )
@@ -219,6 +273,11 @@ function uiSetElementValue( name, value )
 		sel.value = value;
 		returnValue = true;
 	}
+	else
+	(
+		console.log("ERROR uiSetElementValue null element name: " + name +" source: " + value )
+	)
+	
 	return returnValue;
 }
 
@@ -233,6 +292,10 @@ function uiClearSelect( name )
 			sel.remove(sel.length-1);
 		}
 	}
+	else
+	(
+		console.log("ERROR uiClearSelect null element name: " + name)
+	)
 }
 	
 
@@ -249,11 +312,16 @@ function uiSelectAddItem( name, source )
 	
 	if( sel !== undefined && c !== undefined  )
 	{
+		var itemCount = sel.length;
 		var option = document.createElement("option");
 		option.text = c;
-		option.value= c;
+		option.value= itemCount;
 		sel.add( option );
 	}
+	else
+	(
+		console.log("ERROR uiSelectAddItem null element name: " + name +" source: "+ source + " c: " + c)
+	)	
 }
 
 function uiSelectAddExplicitItem( name, value )
@@ -267,6 +335,11 @@ function uiSelectAddExplicitItem( name, value )
 		option.value= value;
 		sel.add( option );
 	}
+	else
+	(
+		console.log("ERROR uiSelectAddExplicitItem null element name: " + name +" source: "+ value )
+	)
+
 }
 
 function uiSelectAddEmptyItem( name )
@@ -279,7 +352,10 @@ function uiSelectAddEmptyItem( name )
 		option.value= " ";
 		sel.add( option );
 	}
-
+	else
+	(
+		console.log("ERROR uiSelectAddEmptyItem null element name: " + name )
+	)
 }
 
 
@@ -311,9 +387,14 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 			l++;
 		}
 	}
+	else
+	(
+		console.log("ERROR uiFillLanguageSelect null element name: " + name )
+	)
+	
 }
 
-
+//BUBUG unused?
 function uiFillSelect( name, source, initialEmpty )
 {
 	var sel = document.getElementById( name );
@@ -341,6 +422,10 @@ function uiFillSelect( name, source, initialEmpty )
 			l++;
 		}
 	}
+	else
+	(
+		console.log("ERROR uiFillSelect null element name: " + name + " source: " + source )
+	)
 }
 
 function uiGetTextValue( name )
@@ -355,6 +440,10 @@ function uiGetTextValue( name )
 	{
 		val = ti.value;
 	}
+	else
+	(
+		console.log("ERROR uiGetTextValue null element name:" + name )
+	)
 	return val;
 }
 
@@ -503,11 +592,15 @@ function setVariables( )
 	function uiGetSelectedText( name )
 	{
 		var el = document.getElementById( name );
-		var retunVal = null;
+		var returnVal = null;
 		if( el )
 		{
 			returnVal = el.options[el.selectedIndex].text;
 		}
+		else
+		(
+			console.log("ERROR uiGetSelectedText null element name: " + name  )
+		)
 		
 		return returnVal;
 	}
@@ -515,11 +608,15 @@ function setVariables( )
 	function uiGetSelectedValue( name )
 	{
 		var el = document.getElementById( name );
-		var retunVal = null;
+		var returnVal = null;
 		if( el )
 		{
 			returnVal = el.options[el.selectedIndex].value;
 		}
+		else
+		(
+			console.log("ERROR uiGetSelectedValue null element name: " + name  )
+		)
 		
 		return returnVal;
 	}
@@ -527,11 +624,15 @@ function setVariables( )
 	function uiGetSelectedIndex( name )
 	{
 		var el = document.getElementById( name );
-		var retunVal = null;
+		var returnVal = null;
 		if( el )
 		{
 			returnVal = el.selectedIndex;
 		}
+		else
+		(
+			console.log("ERROR uiGetSelectedIndex null element name: " + name  )
+		)
 		return returnVal;
 	}
 
@@ -542,6 +643,10 @@ function setVariables( )
 		{
 			el.selectedIndex = index;
 		}
+		else
+		(
+			console.log("ERROR uiSetSelectedIndex null element name: " + name  )
+		)
 	}
 	
 	
@@ -551,7 +656,7 @@ function setVariables( )
 	{
 		cleanCalcTypeSlate();
 
-		var value = uiGetSelectedValue( "ChoiceCalcType" )
+		var value = uiGetSelectedText( "ChoiceCalcType" )
 		if( value === " " ){
 			setVisibility( "LabelStepZero", true );
 			return;
@@ -567,7 +672,6 @@ function setVariables( )
 		uiSelectAddEmptyItem("ChoiceModel");
 		uiSelectAddItem("ChoiceModel", "calctype.coordsanderror");
 
-		
 		var index = g_canonicalcalctypes[ value ];
 		if( index==0 ){
 			uiSelectAddItem("ChoiceModel", "loctype.coordonly");
@@ -642,39 +746,47 @@ function setVariables( )
 */
 //	function newLanguageChosen( value ) was this signature but "value" is not used  //throws ParseException{
 	function newLanguageChosen( ){
+
+		//NOTE: original Java data types, for reference and ugging
+		//double m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
+		//double offset, offsetew, heading;
+		//int latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
+		//int datumindex, latprecindex, loctypeindex, calctypeindex;
+		//int coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
+		//int distprecindex, coordsourceindex, directionindex;		
 		var m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
 		var offset, offsetew, heading;
 		var latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
 		var datumindex, latprecindex, loctypeindex, calctypeindex;
 		var coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
 		var distprecindex, coordsourceindex, directionindex;
-
-		var s;
-		var m;
-/*BUGBUG it is CRITICAL to add these back but not all elments exist yet
-		latdirindex=ChoiceLatDirDMS.getSelectedIndex();
-		longdirindex=ChoiceLongDirDMS.getSelectedIndex();
-		latdirmmindex=ChoiceLatDirMM.getSelectedIndex();
-		longdirmmindex=ChoiceLongDirMM.getSelectedIndex();
-		offsetdirnsindex=ChoiceOffsetNSDir.getSelectedIndex();
-		offsetdirewindex=ChoiceOffsetEWDir.getSelectedIndex();
-		latprecindex=ChoiceLatPrecision.getSelectedIndex();
-		datumindex=ChoiceDatum.getSelectedIndex();
-		calctypeindex=ChoiceCalcType.getSelectedIndex();
-		loctypeindex=ChoiceModel.getSelectedIndex();
-		coordsourceindex=ChoiceCoordSource.getSelectedIndex();
-		coordsystemindex=ChoiceCoordSystem.getSelectedIndex();
-		distunitsindex=ChoiceDistUnits.getSelectedIndex();
-		distprecindex=ChoiceDistancePrecision.getSelectedIndex();
-		directionindex=ChoiceDirection.getSelectedIndex();
-*/
-
-
-/*BUGBUG it is CRITICAL to add these back but not all elments exist yet
 		
+
+		latdirindex=uiGetSelectedIndex( "ChoiceLatDirDMS" );
+		longdirindex=uiGetSelectedIndex( "ChoiceLongDirDMS" );
+		latdirmmindex=uiGetSelectedIndex( "ChoiceLatDirMM" );
+		longdirmmindex=uiGetSelectedIndex( "ChoiceLongDirMM" );
+		offsetdirnsindex=uiGetSelectedIndex( "ChoiceOffsetNSDir" );
+		offsetdirewindex=uiGetSelectedIndex( "ChoiceOffsetEWDir" );
+		latprecindex=uiGetSelectedIndex( "ChoiceLatPrecision" );
+		datumindex=uiGetSelectedIndex( "ChoiceDatum" );
+		calctypeindex=uiGetSelectedIndex( "ChoiceCalcType" );
+		loctypeindex=uiGetSelectedIndex( "ChoiceModel" );
+		coordsourceindex=uiGetSelectedIndex( "ChoiceCoordSource" );
+		coordsystemindex=uiGetSelectedIndex( "ChoiceCoordSystem" );
+		distunitsindex=uiGetSelectedIndex( "ChoiceDistUnits" );
+		distprecindex=uiGetSelectedIndex( "ChoiceDistancePrecision" );
+		directionindex=uiGetSelectedIndex( "ChoiceDirection" );
+
+
+		//Number num = null;
 		var num = null;
-		var s = txtT7Lat_MinMM.getText();
-		if( s == null || s.length() == 0 ){
+		
+		//String s = txtT7Lat_MinMM.getText();
+		var s = uiGetTextValue("txtT7Lat_MinMM");
+		
+/*		
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
 			num = formatMinMM.parse(s.trim());
@@ -766,6 +878,7 @@ function setVariables( )
 		}
 		heading=m;
 */		
+
 		var language = g_language;
 		clearResults();
 		setVariables(language);
@@ -773,24 +886,27 @@ function setVariables( )
 		//BUGBUG add me back in when we start doing formaters
 		//setDecimalFormat();
 		populateStableControls();
-/*
-//BUGBUG it is CRITICAL to add these back but not all elments exist y
-		ChoiceModel.removeAll();
-		ChoiceModel.addItem("");
-		if( calctypeindex>0 ){
+
+		uiClearSelect("ChoiceModel");
+		uiSelectAddEmptyItem("ChoiceModel");
+	
+		if( calctypeindex>0 )
+		{
 			if( calctypeindex==2 ){
-				ChoiceModel.addItem(g_properties.getProperty("loctype.coordonly."+language));
-				ChoiceModel.addItem(g_properties.getProperty("loctype.namedplaceonly."+language));
-				ChoiceModel.addItem(g_properties.getProperty("loctype.distanceonly."+language));
-				ChoiceModel.addItem(g_properties.getProperty("loctype.distalongpath."+language));
-				lblT2Dec_Lat.setText(g_properties.getProperty("label.lat."+language));
-				lblT2Dec_Long.setText(g_properties.getProperty("label.lon."+language));
+				uiSelectAddItem("ChoiceModel","loctype.coordonly");
+				uiSelectAddItem("ChoiceModel","loctype.namedplaceonly");
+				uiSelectAddItem("ChoiceModel","loctype.distanceonly");
+				uiSelectAddItem("ChoiceModel","loctype.distalongpath");
+				
+				uiSetLabel( "lblT2Dec_Lat","label.lat.");
+				uiSetLabel( "lblT2Dec_Long","label.lon.");
+				
 			}
-			ChoiceModel.addItem(g_properties.getProperty("loctype.orthodist."+language));
-			ChoiceModel.addItem(g_properties.getProperty("loctype.distatheading."+language));
+			uiSelectAddItem("ChoiceModel","loctype.orthodist");
+			uiSelectAddItem("ChoiceModel","loctype.distatheading");
 		}
 
-
+		/*BUBUG ADD ME BACK
 		if(coordsystemindex==0){
 			populateCoordinatePrecision(g_properties.getProperty("coordsys.dms."+language));
 		} else if(coordsystemindex==1){
@@ -798,43 +914,103 @@ function setVariables( )
 		} else {
 			populateCoordinatePrecision(g_properties.getProperty("coordsys.ddm."+language));
 		}
+		
 		populateDistancePrecision(ChoiceDistUnits.getItem(distunitsindex));
 
-		txtT2Dec_Lat.setText( formatDec.format(decimallatitude) );
-		txtT2Dec_Long.setText( formatDec.format(decimallongitude) );
-		txtT7Lat_MinMM.setText( formatMinMM.format(latminmm) );		
-		txtT7Long_MinMM.setText( formatMinMM.format(longminmm) );
-		txtT7Lat_Sec.setText( formatSec.format(latsec) );
-		txtT7Long_Sec.setText( formatSec.format(longsec) );
-		TextFieldExtent.setText( formatCalcError.format(extent) );
-		TextFieldMeasurementError.setText( formatCalcError.format(measurementerror) );
-		TextFieldFromDistance.setText( formatDistance.format(fromdistance) );
-		TextFieldToDistance.setText( formatDistance.format(todistance) );
-		TextFieldScaleFromDistance.setText( formatDistance.format(scalefromdistance) );
-		TextFieldScaleToDistance.setText( formatDistance.format(scaletodistance) );
-		TextFieldOffset.setText( formatCalcError.format(offset) );
-		TextFieldOffsetEW.setText( formatCalcError.format(offsetew) );
-		TextFieldHeading.setText( formatCalcError.format(heading) );
 
-		if(calctypeindex >= 0) ChoiceCalcType.select(calctypeindex);
-		if(loctypeindex >= 0) ChoiceModel.select(loctypeindex);
-		if(ChoiceModel.getSelectedIndex()!=-1 && ChoiceModel.getSelectedItem().equals(g_properties.getProperty("loctype.orthodist."+language))){
-			LabelOffset.setText(g_properties.getProperty("label.distns."+language));
+		uiSetText( "txtT2Dec_Lat.setText( formatDec.format(decimallatitude) );
+		uiSetText( "txtT2Dec_Long.setText( formatDec.format(decimallongitude) );
+		uiSetText( "txtT7Lat_MinMM.setText( formatMinMM.format(latminmm) );		
+		uiSetText( "txtT7Long_MinMM.setText( formatMinMM.format(longminmm) );
+		uiSetText( "txtT7Lat_Sec.setText( formatSec.format(latsec) );
+		uiSetText( "txtT7Long_Sec.setText( formatSec.format(longsec) );
+		uiSetText( "TextFieldExtent.setText( formatCalcError.format(extent) );
+		uiSetText( "TextFieldMeasurementError.setText( formatCalcError.format(measurementerror) );
+		uiSetText( "TextFieldFromDistance.setText( formatDistance.format(fromdistance) );
+		uiSetText( "TextFieldToDistance.setText( formatDistance.format(todistance) );
+		uiSetText( "TextFieldScaleFromDistance.setText( formatDistance.format(scalefromdistance) );
+		uiSetText( "TextFieldScaleToDistance.setText( formatDistance.format(scaletodistance) );
+		uiSetText( "TextFieldOffset.setText( formatCalcError.format(offset) );
+		uiSetText( "TextFieldOffsetEW.setText( formatCalcError.format(offsetew) );
+		uiSetText( "TextFieldHeading.setText( formatCalcError.format(heading) );
+*/
+		if(calctypeindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceCalcType", calctypeindex );
 		}
-		if(coordsourceindex >= 0) ChoiceCoordSource.select(coordsourceindex);
-		if(coordsystemindex >= 0) ChoiceCoordSystem.select(coordsystemindex);
-		if(latdirindex >= 0) ChoiceLatDirDMS.select(latdirindex);
-		if(longdirindex >= 0) ChoiceLongDirDMS.select(longdirindex);
-		if(latdirmmindex >= 0) ChoiceLatDirMM.select(latdirmmindex);
-		if(longdirmmindex >= 0) ChoiceLongDirMM.select(longdirmmindex);
-		if(datumindex >= 0) ChoiceDatum.select(datumindex);
-		if(latprecindex >= 0) ChoiceLatPrecision.select(latprecindex);
-		if(offsetdirnsindex >= 0) ChoiceOffsetNSDir.select(offsetdirnsindex);
-		if(offsetdirewindex >= 0) ChoiceOffsetEWDir.select(offsetdirewindex);
-		if(distunitsindex >= 0) ChoiceDistUnits.select(distunitsindex);
-		if(distprecindex >= 0) ChoiceDistancePrecision.select(distprecindex);
-		if(directionindex >= 0) ChoiceDirection.select(directionindex);
-		*/
+		if(loctypeindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceModel",loctypeindex);
+		}
+		
+//		if( ChoiceModel.getSelectedIndex()!=-1 &&
+//			ChoiceModel.getSelectedItem().equals(props.getProperty("loctype.orthodist."+language)))
+//		{
+//		LabelOffset.setText(props.getProperty("label.distns."+language));
+		
+		
+		if( 
+//BUGBUG UNSURE OF THIS LINE, WAS		uiSetSelectedIndex("ChoiceModel".getSelectedIndex()!=-1 && 
+		uiSetSelectedIndex("ChoiceModel") != 0 && 
+		uiGetSelectedValue( "ChoiceModel") === g_properties.getPropertyLang("loctype.orthodist")
+		)
+		{
+			uiSetLabel("LabelOffset", g_properties.getPropertyLang("label.distns"));
+		}
+		
+		if(coordsourceindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceCoordSource",coordsourceindex);
+		}
+		if(coordsystemindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceCoordSystem",coordsystemindex);
+		}
+		if(latdirindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceLatDirDMS",latdirindex);
+		}
+		if(longdirindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceLongDirDMS",longdirindex);
+		}
+		if(latdirmmindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceLatDirMM",latdirmmindex);
+		}
+		if(longdirmmindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceLongDirMM",longdirmmindex);
+		}
+		if(datumindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceDatum",datumindex);
+		}
+		if(latprecindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceLatPrecision",latprecindex);
+		}
+		if(offsetdirnsindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceOffsetNSDir",offsetdirnsindex);
+		}
+		if(offsetdirewindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceOffsetEWDir",offsetdirewindex);
+		}
+		if(distunitsindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceDistUnits",distunitsindex);
+		}
+		if(distprecindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceDistancePrecision",distprecindex);
+		}
+		if(directionindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceDirection",directionindex);
+		}
+		
 	}
 
 /*
@@ -990,15 +1166,9 @@ function setVariables( )
 	}
 
 //	private void cleanSlate(){
-	function cleanSlate(){
-		// Coordinates Panel
-		//PanelCoords_SetVisibile
-		//Step0Controls_SetVisibile( false );
-		Step1Controls_SetVisibile( false );
-		Step2Controls_SetVisibile( false );
-//		showCoordinates(false);
-
-		/*BUGBUG CRITICAL to put these back
+	function cleanSlate()
+	{
+		showCoordinates(false);
 		showCoordinateSource(false);
 		showCoordinateSystem(false);
 		showCoordinatePrecision(false);
@@ -1013,17 +1183,17 @@ function setVariables( )
 		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
-		TextFieldOffsetEW.setVisible(false);
-		ChoiceOffsetEWDir.setVisible(false);
-		ChoiceOffsetNSDir.setVisible(false);
-		TextFieldHeading.setVisible(false);
-		LabelOffsetEW.setVisible(false);
-		ButtonCalculate.setVisible(false);
-		ButtonPromote.setVisible(false);
-		LabelTitle.setVisible(false);
-		LabelStepTwo.setVisible(false);
-		LabelStepOne.setVisible(true);
-		*/
+		setVisibility("TextFieldOffsetEW", false);
+		setVisibility("ChoiceOffsetEWDir", false);
+		setVisibility("ChoiceOffsetNSDir", false);
+		setVisibility("TextFieldHeading", false);
+		setVisibility("LabelOffsetEW", false);
+		setVisibility("ButtonCalculate", false);
+		setVisibility("ButtonPromote", false);
+		setVisibility("LabelTitle", false);
+		setVisibility("LabelStepTwo", false);
+		setVisibility("LabelStepOne", true);
+		
 	}
 
 	function clearResults()
@@ -1040,7 +1210,7 @@ function setVariables( )
 	function setLabels( ){
 		var language = g_language;
 		var version = g_versionNumber;
-		var v = g_properties.getProperty("version."+language)+" " + version + language;
+		var v = g_properties.getPropertyLang("version")+" " + version + language;
 		uiSetLabelExplicit("LabelVersion", v);
 		
 		uiSetLabel("LabelCalcType", "label.calctype");
@@ -2578,53 +2748,58 @@ function setVariables( )
 	}
 
 
-/*
-	function showCoordinatePrecision( boolean b ){
-		PanelCoordPrecision.setVisible(b);
+
+	function showCoordinatePrecision( b )
+	{
+		PanelCoordPrecision_SetVisible(b);
 	}
-*/
+
 	function setVisibility( name, v )
 	{
 		var el = document.getElementById( name );
-		if( v === true )
+		if( el && v === true )
 		{
 			//el.visibility = "visible";
 			el.hidden = "false";
 		}
-		else
+		else if( el )
 		{
 			el.visibility = "hidden";
 			el.hidden = "true";
 		}
+		else
+		{
+			console.log( "ERROR setVisibility el is null, name is" + name + " value is " + v );
+		}
 		
 	}
 	
-	function PanelCoords_SetVisibile( v )
+	function PanelCoords_SetVisible( v )
 	{
 		setVisibility( "lblT2Dec_Lat", v);
 		setVisibility( "lblT2Dec_Long", v);
-			PanelDecLatLong_SetVisibile( v );
-			PanelDDMMSS_SetVisibile( v );
-			PanelDecMin_SetVisibile( v );
+			PanelDecLatLong_SetVisible( v );
+			PanelDDMMSS_SetVisible( v );
+			PanelDecMin_SetVisible( v );
 		setVisibility( "LabelDatum", v);
 		setVisibility( "ChoiceDatum", v);
 	}
 
-	function PanelCoordPrecision_SetVisibile( v )
+	function PanelCoordPrecision_SetVisible( v )
 	{
 		setVisibility( "LabelLatPrecision", v );
 		setVisibility( "ChoiceLatPrecision", v );
 	}
 	
 
-	function PanelDecLatLong_SetVisibile( v )
+	function PanelDecLatLong_SetVisible( v )
 	{
 		setVisibility( "txtT2Dec_Lat", v );
 		setVisibility( "txtT2Dec_Long", v );
 	}
 
 
-	function PanelDDMMSS_SetVisibile( v )
+	function PanelDDMMSS_SetVisible( v )
 	{
 		setVisibility( "txtT7Lat_DegDMS", v );
 		setVisibility( "txtT7Lat_MinDMS", v );
@@ -2644,7 +2819,7 @@ function setVariables( )
 		setVisibility( "Label23", v );
 	}
 
-	function PanelDecMin_SetVisibile( v )
+	function PanelDecMin_SetVisible( v )
 	{
 		setVisibility( "txtT7Lat_DegMM", v);
 		setVisibility( "txtT7Lat_MinMM", v);
@@ -2671,8 +2846,8 @@ function setVariables( )
 		setVisibility( "ChoiceCalcType", true );
 		setVisibility( "LabelStepZero", true );
 		setVisibility( "LabelTitle", false );
-		Step1Controls_SetVisibile( false );
-		Step2Controls_SetVisibile( false );
+		Step1Controls_SetVisible( false );
+		Step2Controls_SetVisible( false );
 	}
 
 	function Step0_Visibility_ChoiceMade( v )
@@ -2685,12 +2860,12 @@ function setVariables( )
 		setVisibility( "LabelStepZero", false );
 		setVisibility( "LabelTitle", true );
 
-		Step1Controls_SetVisibile( true );
-		Step2Controls_SetVisibile( false );
+		Step1Controls_SetVisible( true );
+		Step2Controls_SetVisible( false );
 	}
 	
 	//STEP 2 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step1Controls_SetVisibile( v )
+	function Step1Controls_SetVisible( v )
 	{		
 		setVisibility( "LabelModel", v );
 		setVisibility( "ChoiceModel", v );
@@ -2698,7 +2873,7 @@ function setVariables( )
 	}
 
 	//STEP 3 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step2Controls_SetVisibile( v )
+	function Step2Controls_SetVisible( v )
 	{
 		/*step cero
 		ChoiceLanguage
@@ -2722,8 +2897,8 @@ function setVariables( )
 		setVisibility( "ChoiceCoordSource", v );
 		setVisibility( "LabelCoordSystem", v );
 		setVisibility( "ChoiceCoordSystem", v );
-		PanelCoords_SetVisbility( v );
-		PanelCoordPrecision_SetVisbility( v );
+		PanelCoords_SetVisible( v );
+		PanelCoordPrecision_SetVisible( v );
 		setVisibility( "LabelDirection", v );
 		setVisibility( "ChoiceDirection", v );
 		setVisibility( "TextFieldHeading", v );
@@ -2759,7 +2934,7 @@ function setVariables( )
 		setVisibility( "ChoiceScaleToDistUnits", v );
 	}
 
-	function PanelResults_SetVisibile( v )
+	function PanelResults_SetVisible( v )
 	{
 		setVisibility( "LabelCalcDecLat", v);
 		setVisibility( "TextFieldCalcDecLat", v);
@@ -2887,148 +3062,179 @@ function setVariables( )
 	
 	function showCoordinates( b )
 	{
-		PanelCoords_SetVisibile(b)
-	}
-/*
-	function showCoordinateSource( boolean b ){
-		ChoiceCoordSource.setVisible(b);
-		LabelCoordSource.setVisible(b);
+		PanelCoords_SetVisible( b )
 	}
 
-	function showCoordinateSystem( boolean b ){
-		ChoiceCoordSystem.setVisible(b);
-		LabelCoordSystem.setVisible(b);
+	function showCoordinateSource( b )
+	{
+		setVisibility( "ChoiceCoordSource", b );
+		setVisibility( "LabelCoordSource", b );
 	}
 
-	function showDecimalDegrees( boolean b ){
-		PanelDecLatLong.setVisible(b);
+	function showCoordinateSystem( b )
+	{
+		setVisibility( "ChoiceCoordSystem", b );
+		setVisibility( "LabelCoordSystem", b );
 	}
 
-	function showDegreesDecimalMinutes( boolean b ){
-		PanelDecMin.setVisible(b);
+	function showDecimalDegrees( b )
+	{
+		PanelDecLatLong_SetVisible( b );
 	}
 
-	private void showDirection( boolean b ){
-		String value = (String)ChoiceDirection.getSelectedItem();
-		ChoiceDirection.setVisible(b);
-		LabelDirection.setVisible(b);
-		if( b && value.equals(g_properties.getProperty("headings.nearestdegree."+language)) ){
+	function showDegreesDecimalMinutes( b )
+	{
+		PanelDecMin_SetVisible( b );
+	}
+
+	function showDirection( b )
+	{
+		//(String)ChoiceDirection.getSelectedItem();
+		var value = uiGetSelectedText( "ChoiceDirection" );
+		
+		setVisibility( "ChoiceDirection", b );
+		setVisibility( "LabelDirection", b );
+		
+//		if( b && value.equals(g_properties.getProperty("headings.nearestdegree."+language)) ){
+		if( b && value == g_properties.getPropertyLang("headings.nearestdegree." ) )
+		{
 //			if( b && value.equals("nearest degree") ){
-			TextFieldHeading.setVisible(true);
+			setVisibility( "TextFieldHeading", true );
 		} else {
-			TextFieldHeading.setVisible(false);
+			setVisibility( "TextFieldHeading", false );
 		}
 	}
 
-	private void showDirectionPrecision( boolean b ){
-		ChoiceDirection.setVisible(b);
-		LabelDirection.setVisible(b);
-		TextFieldHeading.setVisible(false);
+	function showDirectionPrecision( b )
+	{
+		setVisibility( "ChoiceDirection", b );
+		setVisibility( "LabelDirection", b );
+		setVisibility( "TextFieldHeading", false );
 	}
 
-	private void showDistancePrecision( boolean b ){
-		ChoiceDistancePrecision.setVisible(b);
-		LabelDistancePrecision.setVisible(b);
+	function showDistancePrecision( b )
+	{
+		setVisibility( "ChoiceDistancePrecision", b );
+		setVisibility( "LabelDistancePrecision", b );
 	}
 
-	private void showDistanceUnits( boolean b ){
-		ChoiceDistUnits.setVisible(b);
-		LabelDistUnits.setVisible(b);
+	function showDistanceUnits( b )
+	{
+		setVisibility( "ChoiceDistUnits", b );
+		setVisibility( "LabelDistUnits", b );
 	}
 
-	private void showDistanceConverter( boolean b ){
-		ChoiceFromDistUnits.setVisible(b);
-		ChoiceToDistUnits.setVisible(b);
-//		LabelFromDistUnits.setVisible(b);
-//		LabelToDistUnits.setVisible(b);
-		LabelEquals.setVisible(b);
-		LabelDistanceConverter.setVisible(b);
-		TextFieldFromDistance.setVisible(b);
-		TextFieldToDistance.setVisible(b);
+	function showDistanceConverter( b )
+	{
+		setVisibility( "ChoiceFromDistUnits", b );
+		setVisibility( "ChoiceToDistUnits", b );
+
+		//		LabelFromDistUnits", b );
+//		LabelToDistUnits", b );
+
+		setVisibility( "LabelEquals", b );
+		setVisibility( "LabelDistanceConverter", b );
+		setVisibility( "TextFieldFromDistance", b );
+		setVisibility( "TextFieldToDistance", b );
 	}
 
-	private void showScaleConverter( boolean b ){
-		ChoiceScaleFromDistUnits.setVisible(b);
-		ChoiceScaleToDistUnits.setVisible(b);
-		ChoiceScale.setVisible(b);
-		LabelScaleEquals.setVisible(b);
-		LabelScaleConverter.setVisible(b);
-		TextFieldScaleFromDistance.setVisible(b);
-		TextFieldScaleToDistance.setVisible(b);
+	function showScaleConverter( b )
+	{
+		setVisibility( "ChoiceScaleFromDistUnits", b );
+		setVisibility( "ChoiceScaleToDistUnits", b );
+		setVisibility( "ChoiceScale", b );
+		setVisibility( "LabelScaleEquals", b );
+		setVisibility( "LabelScaleConverter", b );
+		setVisibility( "TextFieldScaleFromDistance", b );
+		setVisibility( "TextFieldScaleToDistance", b );
 	}
 
-	private void showDMS( boolean b ){
-		PanelDDMMSS.setVisible(b);
+	function showDMS( b )
+	{
+		PanelDDMMSS_SetVisible( b );
 	}
 
-	private void showEWOffset( boolean b ){
-		TextFieldOffsetEW.setVisible(b);
-		LabelOffsetEW.setText(g_properties.getProperty("label.distew."+language));
-//		LabelOffsetEW.setText("East or West Offset Distance");
-		LabelOffsetEW.setVisible(b);
-		ChoiceOffsetEWDir.setVisible(b);
+	function showEWOffset( b )
+	{
+		setVisibility( "TextFieldOffsetEW", b );
+		uiSetLabel( "LabelOffsetEW", "label.distew" );
+		setVisibility( "LabelOffsetEW", b );
+		setVisibility( "ChoiceOffsetEWDir", b );
 	}
 
-	private void showExtents( boolean b ){
-		LabelExtent.setVisible(b);
-		TextFieldExtent.setVisible(b);
+	function showExtents( b )
+	{
+		setVisibility( "LabelExtent", b );
+		setVisibility( "TextFieldExtent", b );
 	}
 
-	private void showMeasurementError( boolean b ){
-		LabelMeasurementError.setVisible(b);
-		TextFieldMeasurementError.setVisible(b);
+	function showMeasurementError( b )
+	{
+		setVisibility( "LabelMeasurementError", b );
+		setVisibility( "TextFieldMeasurementError", b );
 	}
 
-	private void showErrors( boolean b ){
-		LabelCalcMaxError.setVisible(b);
-// TODO: check this commented out.		TextFieldExtent.setVisible(b);
-		TextFieldCalcErrorDist.setVisible(b);
-		TextFieldCalcErrorUnits.setVisible(b);
-		TextFieldFullResult.setVisible(b);
+	function showErrors( b )
+	{
+		setVisibility( "LabelCalcMaxError", b );
+		setVisibility( "TextFieldCalcErrorDist", b );
+		setVisibility( "TextFieldCalcErrorUnits", b );
+		setVisibility( "TextFieldFullResult", b );
 	}
 
-	private void showNSOffset( boolean b ){
-		TextFieldOffset.setVisible(b);
-		LabelOffset.setText(g_properties.getProperty("label.distns."+language));
-//		LabelOffset.setText("North or South Offset Distance");
-		LabelOffset.setVisible(b);
-		ChoiceOffsetNSDir.setVisible(b);
+	function showNSOffset( b )
+	{
+		setVisibility( "TextFieldOffset", b );
+
+//		***LabelOffset.setText(g_properties.getProperty("."+language));
+		uiSetLabel( "LabelOffset", "label.distns" );
+
+		setVisibility( "LabelOffset", b );
+		setVisibility( "ChoiceOffsetNSDir", b );
 	}
 
-	private void showOffset( boolean b ){
-		TextFieldOffsetEW.setVisible(b);
-		LabelOffsetEW.setText(g_properties.getProperty("label.offset."+language));
-//		LabelOffsetEW.setText("Offset Distance");
-		LabelOffsetEW.setVisible(b);
+	function showOffset( b )
+	{
+		setVisibility( "TextFieldOffsetEW", b );
+//		***LabelOffsetEW.setText(g_properties.getProperty("label.offset."+language));
+		uiSetLabel( "LabelOffsetEW", "label.offset" );
+		setVisibility( "LabelOffsetEW", b );
 	}
 
-	private void showRelevantCoordinates(){
-		String value = (String)ChoiceCoordSystem.getSelectedItem();
-		int index = g_canonicalcoordsystems.indexOf(value);
+	
+	function showRelevantCoordinates( )
+	{
+
+		//NOTE: we cant just grab index from the SELECT,
+		//g_canonical* properties have an *exact* order, whereas
+		//SELECT and g_properties ordering are not guaranteed
+		var value = uiGetSelectedText( "ChoiceCoordSystem");  
+		var index = g_canonicalcoordsystems.indexOf( value );
 
 		if ( index==0 ){
 //			if ( value.equals("decimal degrees") ){
-			showDMS(false);
-			showDegreesDecimalMinutes(false);
-			showDecimalDegrees(true);
+			showDMS( false );
+			showDegreesDecimalMinutes( false );
+			showDecimalDegrees( true );
 		} else if ( index==1 ){
 //			} else if ( value.equals("degrees minutes seconds") ){
-			showDecimalDegrees(false);
-			showDegreesDecimalMinutes(false);
-			showDMS(true);
+			showDecimalDegrees( false );
+			showDegreesDecimalMinutes( false );
+			showDMS( true );
 		} else if ( index==2 ){
 //			} else if ( value.equals("degrees decimal minutes") ){
-			showDecimalDegrees(false);
-			showDMS(false);
-			showDegreesDecimalMinutes(true);
+			showDecimalDegrees( false );
+			showDMS( false );
+			showDegreesDecimalMinutes( true );
 		}
-		showCoordinates(true);
+		showCoordinates( true );
 	}
 
-	private void showResults( boolean b ){
-		PanelResults.setVisible(b);
+	function showResults( b )
+	{
+		PanelResults_SetVisible( b );
 	}
-*/
+
 
 
 
