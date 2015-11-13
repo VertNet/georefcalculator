@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body onLoad="GC_init()">
 
 <LINK href="grc2.css" rel="stylesheet" type="text/css">
 
@@ -12,10 +12,11 @@
 <script src="gc.ui.js"></script>
 <!--<script src="test1.js"></script>-->
 
-
+<DIV id="divFiller"  class="divBreak">
+</DIV>
 <DIV id="divLanguage" class="divStandard">
 	<SPAN class="spanStandard" class="span10">
-<button type="button" onclick="GC_init()">Initialize JS</button>
+<!--<button type="button" onclick="GC_init()">Initialize JS</button>-->
 		<SELECT id="ChoiceLanguage" onChange="onLanguageSelect()" select="none">
 			<Option>inglais BUGBUG</option>
 			<Option>inglais BUGBUG</option>
@@ -28,11 +29,6 @@
 	<SPAN class="span75">
 		<LABEL id="LabelStepZero" class="LABELSTEP">BUGBUG Step 1</LABEL>
 		<LABEL id="LabelTitle" class="LABELSTEP" hidden="true">BUGBUG Georef Calculator</LABEL>
-	</SPAN>
-</DIV>
-
-<DIV id="calcFiller">
-	<SPAN>
 	</SPAN>
 </DIV>
 
@@ -60,8 +56,6 @@
 		<LABEL id="BUGBUG" class="LABELBUGBUG">CENTER ME!!</LABEL>
 	</SPAN> -->
 </DIV>
-
-
 
 <DIV id="divChoiceModel">
 	<SPAN id="BUGBUG" class="span25">
@@ -182,12 +176,13 @@
 		<INPUT TYPE="text" id="TextFieldExtent" value="geez BUGBUG"/>
 	</SPAN>
 	</SPAN>
-
+</div>
 	<!--</DIV id="divLocality3">-->
 
 
 
 <!--<DIV id="divLocality4">-->
+<div>
 		<SPAN id="BUGBUG" class="span50">
 
 	<SPAN id="BUGBUG" class="span50">
@@ -208,11 +203,12 @@
 		<INPUT TYPE="text" id="TextFieldMeasurementError" value="geez BUGBUG"/>
 	</SPAN>
 		</SPAN>
-<!--</DIV id="divLocality4">-->
+</div>
+		<!--</DIV id="divLocality4">-->
 
 
 
-<DIV id="divLocality5">-->
+<DIV id="divLocality5">
 	<SPAN id="BUGBUG">
 		<LABEL id="LabelDatum" >Datum BUGBUG</LABEL>
 	</SPAN>
@@ -268,15 +264,6 @@
 </DIV>
 
 
-<DIV id="resultsFiller" class="divBreak" >
-	<SPAN>
-	</SPAN>
-</DIV>
-<DIV id="calcFiller" class="divBreak">
-	<SPAN>
-	</SPAN>
-</DIV>
-
 <DIV id="ReadOnlyLabels">
 	<!-- BUGBUG It would be ?better? to make these TEXT intput instead of LABEL, but css hasd an issue with read only-->
 	<SPAN id="BUGBUG">
@@ -294,31 +281,31 @@
 <DIV id="ReadOnlyFields1">
 	<SPAN class="span66">
 	<SPAN id="BUGBUG" class="span33">
-		<LABEL id="LabelCalcDecLat" class="readOnlyInput">90 BUGBUG</LABEL>
+		<LABEL id="TextFieldCalcDecLat" class="readOnlyInput">90 BUGBUG</LABEL>
 	</SPAN> 
 	<SPAN id="BUGBUG" class="span33">
-		<LABEL id="LabelCalcDecLat" class="readOnlyInput">0 BUGBUG</LABEL>
+		<LABEL id="TextFieldCalcDecLong" class="readOnlyInput">0 BUGBUG</LABEL>
 	</SPAN> 
 	<SPAN id="BUGBUG" class="span33">
-		<LABEL id="LabelCalcDecLat" class="readOnlyInput">1.2345 BUGBUG</LABEL>
+		<LABEL id="TextFieldCalcErrorDist" class="readOnlyInput">1.2345 BUGBUG</LABEL>
 	</SPAN> 
 	</SPAN>
 
 	<SPAN class="span22">
 	<SPAN id="BUGBUG" class="span17">
-		<LABEL id="LabelCalcDecLat" class="readOnlyInput">ydsBUGBUG</LABEL>
+		<LABEL id="TextFieldCalcErrorUnits" class="readOnlyInput">ydsBUGBUG</LABEL>
 	</SPAN> 
 	<SPAN id="BUGBUG" class="span33">
-		<BUTTON id="LabelCalcDecLat" >CalculateBUGBUG</Button>
+		<BUTTON id="ButtonCalculate" >CalculateBUGBUG</Button>
 	</SPAN> 
 	<SPAN id="BUGBUG" class="span33">
-		<BUTTON id="LabelCalcDecLat" >PromoteBUGBUG</BUTTON>
+		<BUTTON id="ButtonPromote" >PromoteBUGBUG</BUTTON>
 	</SPAN> 
 	</SPAN>
 </DIV>
 
 <DIV id="ReadOnlyFields2">
-	<SPAN id="BUGBUG" class="span100"><LABEL id="LabelCalcDecLat" class="readOnlyInput">00 BUGBUG</LABEL></SPAN> 
+	<SPAN id="BUGBUG" class="span100"><LABEL id="TextFieldFullResult" class="readOnlyInput">00 BUGBUG</LABEL></SPAN> 
 </DIV>
 <!-- END BUGBUG about Elelemtns not being tied top proepr names yet-->
 
@@ -327,12 +314,8 @@
 	<SPAN class="span100">
 		<LABEL class="LABELBUGBUG" >BUGBUG Distance conversion elements belong here BUBGUB</LABEL>
 	</SPAN>
-<DIV>
-
-<DIV id="infoFiller" class="divBreak" >
-<SPAN>
-</SPAN>
 </DIV>
+
 
 <DIV id="divInfo" >
 	<SPAN id="BUGBUG">

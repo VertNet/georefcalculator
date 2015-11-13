@@ -63,15 +63,15 @@ function GC_init()
 	//var g_properties = {};    //Defined in geprefcalulator.js
 	
 	//final ArrayList canonicalheadings = new ArrayList();
-	g_canonicalheadings = g_factory.makeArrayList();
-	g_canonicalcoordsystems = g_factory.makeArrayList();
-	g_canonicalloctypes = g_factory.makeArrayList();
-	g_canonicalcalctypes = g_factory.makeArrayList();
-	g_canonicalddprec = g_factory.makeArrayList();
-	g_canonicaldmsprec = g_factory.makeArrayList();
-	g_canonicalddmprec = g_factory.makeArrayList();
-	g_canonicalsources = g_factory.makeArrayList();
-	g_languagelist = g_factory.makeArrayList();
+	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
+	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
+	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
+	g_canonicalcalctypes = g_factory.makeArrayList("g_canonicalcalctypes","calctypes...");
+	g_canonicalddprec = g_factory.makeArrayList("g_canonicalddprec","ddprec");
+	g_canonicaldmsprec = g_factory.makeArrayList("g_canonicaldmsprec","dmsprec");
+	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
+	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
+	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
 	
 	//Locale currentLocale = Locale.getDefault();
 	g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
@@ -80,6 +80,63 @@ function GC_init()
 	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
 	g_language = "en";	
 
+/*
+	private Datumerror datumErrorInst = null;
+	private int lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
+	private int sign = 1;
+	private int degrees = 0;
+	private int minutes = 0;
+	private double seconds = 0;
+	private double decminutes = 0;
+
+	private double decimallatitude = 0; // holds the decimal latitude of the starting point
+	private double decimallongitude = 0; // holds the decimal longitude of the starting point
+
+	private double latmetersperdegree = 0; // holds number of meters per degree of latitude for the current coordinate and error calculation
+	private double longmetersperdegree = 0; // holds number of meters per degree of longitude for the current coordinate and error calculation
+
+	private double newdecimallatitude = 0; // holds the decimal latitude of the end point
+	private double newdecimallongitude = 0; // holds the decimal longitude of the end point
+
+	private double maxerrordistance = 0; // calculated max error distance
+
+	private double fromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
+	private double todistance = 0;    // holds the value of the right-hand side of the distance conversion equation
+	private double scalefromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
+	private double scaletodistance = 0;    // holds the value of the right-hand side of the distance conversion equation
+	private double scalefactor = 1; // holds the decimal latitude of the end point
+
+	private double lastdecimalminutes = 0;
+	private double lastdecimaldegrees = 0;
+*/
+	createDatum();
+	var datumErrorInst = datumerror; 
+	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
+	var sign = 1;
+	var degrees = 0;
+	var minutes = 0;
+	var seconds = 0;
+	var decminutes = 0;
+
+	var decimallatitude = 0; // holds the decimal latitude of the starting point
+	var decimallongitude = 0; // holds the decimal longitude of the starting point
+
+	var latmetersperdegree = 0; // holds number of meters per degree of latitude for the current coordinate and error calculation
+	var longmetersperdegree = 0; // holds number of meters per degree of longitude for the current coordinate and error calculation
+
+	var newdecimallatitude = 0; // holds the decimal latitude of the end point
+	var newdecimallongitude = 0; // holds the decimal longitude of the end point
+
+	var maxerrordistance = 0; // calculated max error distance
+
+	var fromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
+	var todistance = 0;    // holds the value of the right-hand side of the distance conversion equation
+	var scalefromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
+	var scaletodistance = 0;    // holds the value of the right-hand side of the distance conversion equation
+	var scalefactor = 1; // holds the decimal latitude of the end point
+
+	var lastdecimalminutes = 0;
+	var lastdecimaldegrees = 0;
 	
 	var formatDec = null;
 	var  formatDeg = null; 
@@ -99,30 +156,35 @@ function GC_init()
 	DecimalFormat formatCalcError = new DecimalFormat("##0.000");
 	DecimalFormat formatCalcDec = new DecimalFormat("##0.00000");	
 	*/
-	createDatum();
+	
 
-		var language = g_language; //g_properties.getProperty( "preferredlanguage" );
-		setVariables( language );
-		g_languagelist.clear();
+	var language = g_language; //g_properties.getProperty( "preferredlanguage" );
+	setVariables( language );
+	g_languagelist.clear();
 		
-		//BUGBUG the initialization of g_langualist should be its own function
-		var i = 0;
-		var lang = g_properties.getIndexedProperty( "language.name", i )
-		var code = g_properties.getIndexedProperty( "language.code", i )
-		var nObj = { 'name' : lang, 'value' : code };
-		while( lang !== undefined )
-		{
-			g_languagelist.add( nObj );
-			i++;
-			lang = g_properties.getIndexedProperty( "language.name", i );
-			code = g_properties.getIndexedProperty( "language.code", i );
-			nObj = { 'name' : lang, 'value' : code };
-		}
-
+	//BUGBUG the initialization of g_langualist should be its own function
+	var i = 0;
+	var lang = g_properties.getIndexedProperty( "language.name", i )
+	var code = g_properties.getIndexedProperty( "language.code", i )
+	var nObj = { 'name' : lang, 'value' : code };
+	while( lang !== undefined )
+	{
+		g_languagelist.add( nObj );
+		i++;
+		lang = g_properties.getIndexedProperty( "language.name", i );
+		code = g_properties.getIndexedProperty( "language.code", i );
+		nObj = { 'name' : lang, 'value' : code };
+	}
 	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
-	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", true );
-	uiSetLabel( "LabelStepZero", "label.step0" );
+	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
+//	uiSetLabel( "LabelStepZero", "label.step0" );
+	uiShowElement( "LabelStepZero" );
 	uiHideElement( "LabelTitle" );
+	cleanSlate();
+	uiSetSelectedIndex("ChoiceLanguage", 0 )
+	onLanguageSelect();
+		
+	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
 } 
 
 function onLanguageSelect()
@@ -136,15 +198,12 @@ function onLanguageSelect()
 	//g_properties.preferredlanguage =  sel.options[sel.selectedIndex].value;
 	g_language = sel.options[sel.selectedIndex].value;
 	
-	//BUGBUG with a global var for language is the passing of a var for language even needed?
-	//setVariables( g_properties.preferredlanguage );
-//	setVariables( g_properties.preferredlanguage );
 	setVariables( );
-	newLanguageChosen()
+	newLanguageChosen();
 
-	//uiSetLabel( "LabelStepZero", "label.step0" );
-	//uiSetLabel( "ChoiceCalcType", "calctype" );
-	//uiClearAndFillSelect( "ChoiceCalcType", "g_calctype" );
+	uiSetLabel( "LabelStepZero", "label.step0" );
+	uiSetLabel( "ChoiceCalcType", "calctype" );
+	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
 }
 
 function uiHideElement( name )
@@ -299,10 +358,10 @@ function uiClearSelect( name )
 }
 	
 
-function uiClearAndFillSelect( name, source, initialEmpty )
+function uiClearAndFillSelectCanonical( name, source, initialEmpty )
 {
 		uiClearSelect( name );
-		uiFillSelect( name, source, initialEmpty )
+		uiFillSelectCanonical( name, source, initialEmpty )
 }
 
 function uiSelectAddItem( name, source )
@@ -427,6 +486,40 @@ function uiFillSelect( name, source, initialEmpty )
 		console.log("ERROR uiFillSelect null element name: " + name + " source: " + source )
 	)
 }
+
+function uiFillSelectCanonical( name, source, initialEmpty )
+{
+	var sel = document.getElementById( name );
+	var c = eval( source + ".contents");  //array
+
+	
+	if( sel !== undefined )
+	{
+		var option;
+		if( initialEmpty )
+		{
+			option = document.createElement("option");
+			option.text = "";
+			option.value= "";
+			sel.add( option );
+		}
+	
+		var l = 0;
+		while( l < c.length )
+		{
+			option = document.createElement("option");
+			option.text = c[l];
+			option.value= l;
+			sel.add( option );
+			l++;
+		}
+	}
+	else
+	(
+		console.log("ERROR uiFillSelectCanonical null element name: " + name + " source: " + source )
+	)
+}
+
 
 function uiGetTextValue( name )
 {
@@ -655,31 +748,46 @@ function setVariables( )
 	function onCalcTypeSelect()
 	{
 		cleanCalcTypeSlate();
-
 		var value = uiGetSelectedText( "ChoiceCalcType" )
-		if( value === " " ){
-			setVisibility( "LabelStepZero", true );
+		if( value == "" ){
+			//setVisibility( "LabelStepZero", true );
+			uiShowElement( "LabelStepZero" );
+			uiHideElement( "LabelStepTitle" );
+			setVisibility( "ChoiceModel", false );
+			setVisibility( "LabelModel", false );
+			
+			//BUGBUG WE SHOULD NOT HAVE TO SHOW/HIDE BUT USE setVisibility(
+			//not sure why its not working for LabelStepOne LabelStepTwo
+			//			setVisibility( "LabelStepOne", false );
+			uiHideElement( "LabelStepOne" );
 			return;
 		} else {
-			setVisibility( "LabelStepZero", false );
-			setVisibility( "LabelTitle", true );
+			uiHideElement( "LabelStepZero" );
+			uiShowElement( "LabelTitle" );
+			//BUGBUG WE SHOULD NOT HAVE TO SHOW/HIDE BUT USE setVisibility(
+			//not sure why its not working for LabelStepOne LabelStepTwo
+			//setVisibility( "LabelStepOne", true );
+			uiShowElement( "LabelStepOne" );
+			
 			setVisibility( "ChoiceModel", true );
 			setVisibility( "LabelModel", true );
-			setVisibility( "LabelStepOne", true );
+			
 		}
 
 		uiClearSelect( "ChoiceModel" );
 		uiSelectAddEmptyItem("ChoiceModel");
 		uiSelectAddItem("ChoiceModel", "calctype.coordsanderror");
 
-		var index = g_canonicalcalctypes[ value ];
-		if( index==0 ){
+		var index = g_canonicalcalctypes.indexOf( value );
+		//BUGBUG WE CAN Use uiClearAndFillSelectCanonical here instead?
+		if( index==0 )
+		{
 			uiSelectAddItem("ChoiceModel", "loctype.coordonly");
 			uiSelectAddItem("ChoiceModel", "loctype.namedplaceonly");
 			uiSelectAddItem("ChoiceModel", "loctype.distanceonly");
 			uiSelectAddItem("ChoiceModel", "loctype.distalongpath");
-			//BUGBUG ADD ME BACK lblT2Dec_Lat.setText(g_properties.getProperty("label.lat."+language));
-			//BUGBUG ADD ME BACK lblT2Dec_Long.setText(g_properties.getProperty("label.lon."+language));
+			uiSetLabel("lblT2Dec_Lat","label.lat");
+			uiSetLabel("lblT2Dec_Long","label.lon");
 		}
 		uiSelectAddItem("ChoiceModel", "loctype.orthodist" );
 		uiSelectAddItem("ChoiceModel", "loctype.distatheading" );
@@ -898,8 +1006,8 @@ function setVariables( )
 				uiSelectAddItem("ChoiceModel","loctype.distanceonly");
 				uiSelectAddItem("ChoiceModel","loctype.distalongpath");
 				
-				uiSetLabel( "lblT2Dec_Lat","label.lat.");
-				uiSetLabel( "lblT2Dec_Long","label.lon.");
+				uiSetLabel( "lblT2Dec_Lat","label.lat");
+				uiSetLabel( "lblT2Dec_Long","label.lon");
 				
 			}
 			uiSelectAddItem("ChoiceModel","loctype.orthodist");
@@ -952,7 +1060,7 @@ function setVariables( )
 		if( 
 //BUGBUG UNSURE OF THIS LINE, WAS		uiSetSelectedIndex("ChoiceModel".getSelectedIndex()!=-1 && 
 		uiSetSelectedIndex("ChoiceModel") != 0 && 
-		uiGetSelectedValue( "ChoiceModel") === g_properties.getPropertyLang("loctype.orthodist")
+		uiGetSelectedValue( "ChoiceModel") == g_properties.getPropertyLang("loctype.orthodist")
 		)
 		{
 			uiSetLabel("LabelOffset", g_properties.getPropertyLang("label.distns"));
@@ -1013,11 +1121,13 @@ function setVariables( )
 		
 	}
 
-/*
-	void ChoiceModel_itemStateChanged(String value ){
+
+	function onModelSelect( )
+	{
+		var value = uiGetSelectedText("ChoiceModel");
 		newModelChosen(value);
 	}
-
+/*
 	void ChoiceFromDistUnits_itemStateChanged(String value){
 		convertDistance();
 	}
@@ -1034,30 +1144,34 @@ function setVariables( )
 	void ChoiceScale_itemStateChanged(String value){
 		convertScale();
 	}
-
-	private void newModelChosen(String value){
-		try{
-			if( value.equals("") ){
-				cleanSlate();
-				LabelTitle.setVisible(true);
-				return;
-			}
-		}catch (NullPointerException e){
+*/
+	function newModelChosen( value )
+	{	
+		if( value == "" )
+		{
+			cleanSlate();
+			uiShowElement("LabelTitle");
+			uiHideElement("LabelStepZero");
 			return;
 		}
 
 		showResults(false);
 		clearResults();
 		showOffset(false);
-		LabelStepOne.setVisible(false);
-		LabelStepTwo.setVisible(true);
+		
+		uiHideElement("LabelStepOne");
+		uiShowElement("LabelStepTwo");
+		
 		showDistancePrecision(false);
 		showDirectionPrecision(false);
-		ButtonCalculate.setVisible(false);
-		ButtonPromote.setVisible(false);
+		setVisibility("ButtonCalculate",false);
+		setVisibility("ButtonPromote",false);
+		
 		showNSOffset(false);
 		showEWOffset(false);
-		TextFieldHeading.setVisible(false);
+		
+		setVisibility("TextFieldHeading",false);
+		
 		showCoordinateSystem(true);
 		showCoordinateSource(true);
 		showDistanceUnits(true);
@@ -1068,43 +1182,33 @@ function setVariables( )
 		showDistanceConverter(true);
 		showScaleConverter(true);
 		showRelevantCoordinates();
-		LabelOffset.setText(g_properties.getProperty("label.offset."+language));
-		LabelExtent.setText(g_properties.getProperty("label.extent."+language));
-		LabelMeasurementError.setText(g_properties.getProperty("label.measurementerror."+language));
-		int index = g_canonicalloctypes.indexOf(value);
-		String csource = new String(ChoiceCoordSource.getSelectedItem());
-		int cindex = g_canonicalsources.indexOf(csource);
+		
+		uiSetLabel("LabelOffset","label.offset");
+		uiSetLabel("LabelExtent","label.extent");
+		uiSetLabel("LabelMeasurementError","label.measurementerror");
+		var index = g_canonicalloctypes.indexOf(value);
+		var csource = uiGetSelectedValue("ChoiceCoordSource");
+		var cindex = g_canonicalsources.indexOf(csource);
 		if( cindex==1 ){ // GPS
-//			if( ((String)ChoiceCoordSource.getSelectedItem()).equals("GPS") ){
-			LabelMeasurementError.setText(g_properties.getProperty("label.extent.gps."+language));
-//			LabelMeasurementError.setText("GPS accuracy");
-//			showExtents(false);
-//			showMeasurementError(true);
+			uiSetLabel("LabelMeasurementError","label.extent.gps");
 		} else {
-			LabelMeasurementError.setText(g_properties.getProperty("label.measurementerror."+language));
+			uiSetLabel("LabelMeasurementError","label.measurementerror");
 		}
 		if( index==0 ){ // Coordinates only
-//			if( value.equals("Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)")){
 			showExtents(false);
-//			showMeasurementError(true);
 		} else if( index==2 ){ // Distance only
-//			} else if( value.equals("Distance only (e.g., 5 mi from Bakersfield)") ){
 			showOffset(true);
 			showDistancePrecision(true);
 		} else if( index==3 ){ // Distance along path
-//			} else if( value.equals("Distance along path (e.g., 13 mi E (by road) Bakersfield)") ){
 			showDistancePrecision(true);
 		} else if( index==4 ){ // Distance along orthogonal directions
-//			} else if( value.equals("Distance along orthogonal directions (e.g., 2 mi E and 3 mi N of Bakersfield)") ){
-			String SCalcType = (String)ChoiceCalcType.getSelectedItem();
-			int calcindex = g_canonicalcalctypes.indexOf(SCalcType);
+			var SCalcType = uiGetSelectedValue("ChoiceCalcType");
+			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
 			if( calcindex==0 ){ // Error only
-//				if( SCalcType.equals("Error only - enter Lat/Long for the actual locality") ){
 				showNSOffset(true);
 				showEWOffset(true);
 				showDistancePrecision(true);
 			}else if( calcindex==1 ){ // Coordinates and error
-//				}else if( SCalcType.equals("Coordinates and error - enter the Lat/Long for the named place or starting point") ){
 				showNSOffset(true);
 				showEWOffset(true);
 				showDistancePrecision(true);
@@ -1119,27 +1223,25 @@ function setVariables( )
 				showErrors(false);
 			}
 		} else if( index==5 ){ // Distance at a heading
-//			} else if( value.equals("Distance at a heading (e.g., 10 mi E (by air) Bakersfield)") ){
 			showOffset(true);
-			String SCalcType = (String)ChoiceCalcType.getSelectedItem();
-			int calcindex = g_canonicalcalctypes.indexOf(SCalcType);
+			var SCalcType = uiGetSelectedValue("ChoiceCalcType");
+			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
 			if( calcindex==1 ){ // Coordinates and error
-//				if( SCalcType.equals("Coordinates and error - enter the Lat/Long for the named place or starting point") ){
 				showDistancePrecision(true);
 				showDirection(true);
 			} else if( calcindex==0 ){ // Error only
-//				} else if( SCalcType.equals("Error only - enter Lat/Long for the actual locality") ){
 				showDistancePrecision(true);
 				showDirectionPrecision(true);
 			} else if ( calcindex == 2){ // Coordinates only
 				showDirection(true);
 			}
 		}
-		ButtonCalculate.setVisible(true);
-		ButtonPromote.setVisible(true);
+		
+		setVisibility("ButtonCalculate",true);
+		setVisibility("ButtonPromote",true);
 		showResults(true);
 	}
-
+/*
 	void ChoiceOffsetEWDir_itemStateChanged(String value ){
 		clearResults();
 	}
@@ -1190,10 +1292,16 @@ function setVariables( )
 		setVisibility("LabelOffsetEW", false);
 		setVisibility("ButtonCalculate", false);
 		setVisibility("ButtonPromote", false);
-		setVisibility("LabelTitle", false);
-		setVisibility("LabelStepTwo", false);
-		setVisibility("LabelStepOne", true);
+		uiHideElement("LabelTitle" );
+		uiShowElement("LabelStepZero" );
+	
+//		setVisibility("LabelStepTwo", false);
+//		setVisibility("LabelStepOne", false);
+		uiHideElement("LabelStepTwo");
+		uiHideElement("LabelStepOne");
 		
+		setVisibility("LabelModel", false);
+		setVisibility("ChoiceModel", false);		
 	}
 
 	function clearResults()
@@ -1231,8 +1339,8 @@ function setVariables( )
 		uiSetLabel("LabelMeasurementError","label.measurementerror");
 		uiSetLabel("LabelDistUnits","label.distunits");
 		uiSetLabel("LabelDistancePrecision","label.distprec");
-		//BUGBUG FIXME when this UI element gets added
-		//uiSetLabel("LabelDirection","label.direction");
+		
+		uiSetLabel("LabelDirection","label.direction");
 		uiSetLabel("LabelCalcDecLat","label.declat");
 		uiSetLabel("LabelCalcDecLong","label.declon");
 		uiSetLabel("LabelCalcMaxError","label.maxerrdist");
@@ -1240,9 +1348,9 @@ function setVariables( )
 		uiSetElementValue("ButtonCalculate","label.calculate");
 		uiSetElementValue("ButtonPromote","label.promote");
 		
-		//BUGBUG FIXME when this UI element gets added
-		//uiSetLabel("LabelDistanceConverter","label.distanceconverter");
-		//uiSetLabel("LabelScaleConverter","label.scaleconverter");
+		
+		uiSetLabel("LabelDistanceConverter","label.distanceconverter");
+		uiSetLabel("LabelScaleConverter","label.scaleconverter");
 	
 	}
 	
@@ -2759,17 +2867,17 @@ function setVariables( )
 		var el = document.getElementById( name );
 		if( el && v === true )
 		{
-			//el.visibility = "visible";
-			el.hidden = "false";
+			el.visibility = "visible";
+			el.hidden = false;
 		}
 		else if( el )
 		{
 			el.visibility = "hidden";
-			el.hidden = "true";
+			el.hidden = true;
 		}
 		else
 		{
-			console.log( "ERROR setVisibility el is null, name is" + name + " value is " + v );
+			console.log( "ERROR setVisibility el is null, name  " + name + " value is X" + v +"X");
 		}
 		
 	}
