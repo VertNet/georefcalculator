@@ -256,15 +256,19 @@ import java.util.Properties;*/
 		clearResults();
 	}*/
 
-	/*
-	void ChoiceCoordSystem_itemStateChanged(String value) throws ParseException{
-		clearResults();//EDIT
+			 
+	function onCoordSystemSelect( )
+	{
+		var value = uiGetSelectedText("ChoiceCoordSystem");
+		clearResults();
 		showRelevantCoordinates();
 		populateCoordinatePrecision(value);
-		testLatLongLimits();
-		translateCoords();
+		
+		//BUGBUG CRITICAL to add these back in
+		//testLatLongLimits();
+		//translateCoords();
 	}
-*/
+
 	/*void ChoiceDatum_itemStateChanged(String value){
 		clearResults();
 	}*/

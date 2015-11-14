@@ -1181,6 +1181,9 @@ units.kilometer = "km";
 
 // Heading Abbreviations:
 // Canonical (don't change these!)
+//BUGBUG I think these are old and deprecated.
+//I have to comment them out or it breaks things in java script
+/*
 var heading = {};
 headings.n = "N";
 headings.e = "E";
@@ -1215,6 +1218,7 @@ headings.nwbw = "NWbW";
 headings.nwbn = "NWbN";
 headings.nbw  = "NbW";
 headings.nearestdegree = "nearest degree";
+*/
 
 // Coordinate Systems
 // Canonical (don't change these!)

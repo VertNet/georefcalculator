@@ -1,116 +1,3 @@
-/*
-/*
-TEST ONLY 3
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.applet.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.text.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Properties;*/
-
-//public class GC extends Applet implements ActionListener, ItemListener, FocusListener, KeyListener{ 
-//var GC = {
-
-//}
-
-/*
-	var g_embeddedCopyright = "copyright (c) 2001-2013 Regents of the University of California";
-	var g_appletHeight = 480;  //BUGBUG not needed anymore?
-	var g_appletWidth = 620;   //BUGBUG not needed anymore?
-	var g_versionNumber = "20151101";
-
-	//protected HashMap propertyMap = new HashMap();
-	var g_propertyMap = {};
-	//private static Properties props = new Properties();
-	//var g_properties = {};    //Defined in geprefcalulator.js
-	
-	//final ArrayList canonicalheadings = new ArrayList();
-	var g_canonicalheadings = g_factory.makeArrayList();
-	var g_canonicalcoordsystems = g_factory.makeArrayList();
-	var g_canonicalloctypes = g_factory.makeArrayList();
-	var g_canonicalcalctypes = g_factory.makeArrayList();
-	var g_canonicalddprec = g_factory.makeArrayList();
-	var g_canonicaldmsprec = g_factory.makeArrayList();
-	var g_canonicalddmprec = g_factory.makeArrayList();
-	var g_canonicalsources = g_factory.makeArrayList();
-	var g_languagelist = g_factory.makeArrayList();
-	
-	//Locale currentLocale = Locale.getDefault();
-	var g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
-	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
-	//BUGBUG this wont work exactly
-	var g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
-	var g_language = "en";	
-*/
-
-	
-function GC_init()
-{
-	g_embeddedCopyright = "copyright (c) 2001-2013 Regents of the University of California";
-	g_appletHeight = 480;  //BUGBUG not needed anymore?
-	g_appletWidth = 620;   //BUGBUG not needed anymore?
-	g_versionNumber = "20151101";
-
-	//protected HashMap propertyMap = new HashMap();
-	g_propertyMap = {};
-	//private static Properties props = new Properties();
-	//var g_properties = {};    //Defined in geprefcalulator.js
-	
-	//final ArrayList canonicalheadings = new ArrayList();
-	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
-	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
-	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
-	g_canonicalcalctypes = g_factory.makeArrayList("g_canonicalcalctypes","calctypes...");
-	g_canonicalddprec = g_factory.makeArrayList("g_canonicalddprec","ddprec");
-	g_canonicaldmsprec = g_factory.makeArrayList("g_canonicaldmsprec","dmsprec");
-	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
-	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
-	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
-	
-	//Locale currentLocale = Locale.getDefault();
-	g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
-	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
-	//BUGBUG this wont work exactly
-	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
-	g_language = "en";	
-
-/*
-	private Datumerror datumErrorInst = null;
-	private int lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
-	private int sign = 1;
-	private int degrees = 0;
-	private int minutes = 0;
-	private double seconds = 0;
-	private double decminutes = 0;
-
-	private double decimallatitude = 0; // holds the decimal latitude of the starting point
-	private double decimallongitude = 0; // holds the decimal longitude of the starting point
-
-	private double latmetersperdegree = 0; // holds number of meters per degree of latitude for the current coordinate and error calculation
-	private double longmetersperdegree = 0; // holds number of meters per degree of longitude for the current coordinate and error calculation
-
-	private double newdecimallatitude = 0; // holds the decimal latitude of the end point
-	private double newdecimallongitude = 0; // holds the decimal longitude of the end point
-
-	private double maxerrordistance = 0; // calculated max error distance
-
-	private double fromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
-	private double todistance = 0;    // holds the value of the right-hand side of the distance conversion equation
-	private double scalefromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
-	private double scaletodistance = 0;    // holds the value of the right-hand side of the distance conversion equation
-	private double scalefactor = 1; // holds the decimal latitude of the end point
-
-	private double lastdecimalminutes = 0;
-	private double lastdecimaldegrees = 0;
-*/
-	createDatum();
-	var datumErrorInst = datumerror; 
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	var sign = 1;
 	var degrees = 0;
@@ -137,6 +24,42 @@ function GC_init()
 
 	var lastdecimalminutes = 0;
 	var lastdecimaldegrees = 0;
+
+	
+function GC_init()
+{
+	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
+	g_appletHeight = 480;  //BUGBUG not needed anymore?
+	g_appletWidth = 620;   //BUGBUG not needed anymore?
+	g_versionNumber = "20151101";
+
+	//protected HashMap propertyMap = new HashMap();
+	g_propertyMap = {};
+	//private static Properties props = new Properties();
+	//var g_properties = {};    //Defined in geprefcalulator.js
+	
+	//final ArrayList canonicalheadings = new ArrayList();
+	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
+	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
+	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
+	g_canonicalcalctypes = g_factory.makeArrayList("g_canonicalcalctypes","calctypes...");
+	g_canonicalddprec = g_factory.makeArrayList("g_canonicalddprec","ddprec");
+	g_canonicaldmsprec = g_factory.makeArrayList("g_canonicaldmsprec","dmsprec");
+	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
+	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
+	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
+	
+	//Locale currentLocale = Locale.getDefault();
+	g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
+
+	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
+	//BUGBUG this wont work exactly
+	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
+
+	g_language = "en";	
+
+	createDatum();
+	var datumErrorInst = datumerror; 
 	
 	var formatDec = null;
 	var  formatDeg = null; 
@@ -167,7 +90,7 @@ function GC_init()
 	var lang = g_properties.getIndexedProperty( "language.name", i )
 	var code = g_properties.getIndexedProperty( "language.code", i )
 	var nObj = { 'name' : lang, 'value' : code };
-	while( lang !== undefined )
+	while( lang )
 	{
 		g_languagelist.add( nObj );
 		i++;
@@ -189,14 +112,14 @@ function GC_init()
 
 function onLanguageSelect()
 {
-	var sel = document.getElementById( 'ChoiceLanguage' );
+	var el = document.getElementById( 'ChoiceLanguage' );
 
 	//BUGBUG is setting g_properties.preferredlanguage safe?
 	//we want to NOT use g_properties and stay with otehr globals as a matter of form.
 	//other globals retain a specific order where was g_properties contains all languages, with its bits not necessarily in order.
 	//we should propably set g_language.
 	//g_properties.preferredlanguage =  sel.options[sel.selectedIndex].value;
-	g_language = sel.options[sel.selectedIndex].value;
+	g_language = el.options[el.selectedIndex].value;
 	
 	setVariables( );
 	newLanguageChosen();
@@ -253,17 +176,17 @@ function uiSwitchvisibility( name, visibility )
 function uiSetLabel( name, source )
 {
 	var language = g_language; //g_properties.getProperty("preferredlanguage")
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = eval( "g_properties." + source + "." + language );
-	if(sel )
+	if(el )
 	{
-		if( sel.childNodes.length > 0 )
+		if( el.childNodes.length > 0 )
 		{
-			sel.removeChild(sel.childNodes[0]);
+			el.removeChild( el.childNodes[0] );
 		}
 		var textnode = document.createTextNode(c);
-		sel.appendChild(textnode);
+		el.appendChild(textnode);
 	}
 	else
 	(
@@ -271,17 +194,34 @@ function uiSetLabel( name, source )
 	)
 }
 
+function uiSetTextExplicit( name, value )
+{
+	//var language = g_language; //g_properties.getProperty("preferredlanguage")
+	var el = document.getElementById( name );
+	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
+	//var c = eval( "g_properties." + source + "." + language );
+	if( el )
+	{
+		el.text = value;
+	}
+	else
+	(
+		console.log("ERROR uiSetTextExplicit null element name: " + name +" source: " + value)
+	)
+}
+
+
 function uiSetLabelExplicit( name, value )
 {
-	var sel = document.getElementById( name );
-	if( sel )
+	var el = document.getElementById( name );
+	if( el )
 	{
-		if( sel.childNodes.length > 0 )
+		if( el.childNodes.length > 0 )
 		{
-			sel.removeChild(sel.childNodes[0]);
+			el.removeChild(el.childNodes[0]);
 		}
 		var textnode = document.createTextNode(value);
-		sel.appendChild(textnode);
+		el.appendChild(textnode);
 	}
 	else
 	(
@@ -292,17 +232,17 @@ function uiSetLabelExplicit( name, value )
 
 function uiEmptyLabel( name )
 {
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = "";
-	if( sel )
+	if( el )
 	{
-		if( sel.childNodes.length > 0 )
+		if( el.childNodes.length > 0 )
 		{
-			sel.removeChild(sel.childNodes[0]);
+			el.removeChild(el.childNodes[0]);
 		}
 		var textnode = document.createTextNode(c);
-		sel.appendChild(textnode);
+		el.appendChild(textnode);
 	}
 	else
 	(
@@ -325,11 +265,11 @@ function uiEmptyTextElement( name )
 function uiSetElementValue( name, value )
 {
 	var returnValue = false;
-	var sel = document.getElementById( name );
-	//BUGBUG we should throw an error if we cant find name.
-	if( sel )
+	var el = document.getElementById( name );
+
+	if( el )
 	{
-		sel.value = value;
+		el.value = value;
 		returnValue = true;
 	}
 	else
@@ -343,12 +283,12 @@ function uiSetElementValue( name, value )
 
 function uiClearSelect( name )
 {
-	var sel = document.getElementById( name );
-	if( sel !== undefined )
+	var el = document.getElementById( name );
+	if( el )
 	{
-		while( sel.length > 0)
+		while( el.length > 0)
 		{
-			sel.remove(sel.length-1);
+			el.remove(el.length-1);
 		}
 	}
 	else
@@ -366,33 +306,33 @@ function uiClearAndFillSelectCanonical( name, source, initialEmpty )
 
 function uiSelectAddItem( name, source )
 {
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	var c = eval( "g_properties." + source + "." + g_language );
 	
-	if( sel !== undefined && c !== undefined  )
+	if( el && c  )
 	{
-		var itemCount = sel.length;
+		var itemCount = el.length;
 		var option = document.createElement("option");
 		option.text = c;
 		option.value= itemCount;
-		sel.add( option );
+		el.add( option );
 	}
 	else
 	(
-		console.log("ERROR uiSelectAddItem null element name: " + name +" source: "+ source + " c: " + c)
+		console.log("ERROR uiSelectAddItem null element name: " + name +" or source: "+ source + " c: " + c )
 	)	
 }
 
 function uiSelectAddExplicitItem( name, value )
 {
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	
-	if( sel !== undefined )
+	if( el )
 	{
 		var option = document.createElement("option");
 		option.text = value;
 		option.value= value;
-		sel.add( option );
+		el.add( option );
 	}
 	else
 	(
@@ -403,13 +343,13 @@ function uiSelectAddExplicitItem( name, value )
 
 function uiSelectAddEmptyItem( name )
 {
-	var sel = document.getElementById( name );
-	if( sel !== undefined )
+	var el = document.getElementById( name );
+	if( el )
 	{
 		var	option = document.createElement("option");
 		option.text = " ";
 		option.value= " ";
-		sel.add( option );
+		el.add( option );
 	}
 	else
 	(
@@ -421,10 +361,10 @@ function uiSelectAddEmptyItem( name )
 
 function uiFillLanguageSelect( name, source, initialEmpty )
 {
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	var c = eval( source + ".contents" );
 	
-	if( sel !== undefined )
+	if( el )
 	{
 		var option;
 		if( initialEmpty )
@@ -432,8 +372,7 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 			option = document.createElement("option");
 			option.text = " ";
 			option.value= " ";
-			sel.add( option );
-
+			el.add( option );
 		}
 	
 		var l = 0
@@ -442,7 +381,7 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 			option = document.createElement("option");
 			option.text = c[l].name;
 			option.value= c[l].value;
-			sel.add( option );
+			el.add( option );
 			l++;
 		}
 	}
@@ -456,11 +395,11 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 //BUBUG unused?
 function uiFillSelect( name, source, initialEmpty )
 {
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	var c = eval( "g_properties." + source + "." +g_language );
 
 	
-	if( sel !== undefined )
+	if( el )
 	{
 		var option;
 		if( initialEmpty )
@@ -468,7 +407,7 @@ function uiFillSelect( name, source, initialEmpty )
 			option = document.createElement("option");
 			option.text = " ";
 			option.value= " ";
-			sel.add( option );
+			el.add( option );
 		}
 	
 		var l = 0
@@ -477,7 +416,7 @@ function uiFillSelect( name, source, initialEmpty )
 			option = document.createElement("option");
 			option.text = c[l].name;
 			option.value= c[l].value;
-			sel.add( option );
+			el.add( option );
 			l++;
 		}
 	}
@@ -489,11 +428,11 @@ function uiFillSelect( name, source, initialEmpty )
 
 function uiFillSelectCanonical( name, source, initialEmpty )
 {
-	var sel = document.getElementById( name );
+	var el = document.getElementById( name );
 	var c = eval( source + ".contents");  //array
 
 	
-	if( sel !== undefined )
+	if( el )
 	{
 		var option;
 		if( initialEmpty )
@@ -501,7 +440,7 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 			option = document.createElement("option");
 			option.text = "";
 			option.value= "";
-			sel.add( option );
+			el.add( option );
 		}
 	
 		var l = 0;
@@ -510,7 +449,7 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 			option = document.createElement("option");
 			option.text = c[l];
 			option.value= l;
-			sel.add( option );
+			el.add( option );
 			l++;
 		}
 	}
@@ -713,7 +652,25 @@ function setVariables( )
 		
 		return returnVal;
 	}
-
+	
+	function uiGetSelectIndexValue( name, index )
+	{
+		var el = document.getElementById( name );
+		var returnVal = null;
+		if( el && null != index )
+		{
+			returnVal = el.options[index].text;
+		}
+		
+		if( el == null|| returnVal == null )
+		(
+			console.log("ERROR uiGetSelectIndexValue null element or index name: " + name + " index: " + index )
+		)
+		
+		return returnVal;
+	
+	}
+	
 	function uiGetSelectedIndex( name )
 	{
 		var el = document.getElementById( name );
@@ -729,6 +686,37 @@ function setVariables( )
 		return returnVal;
 	}
 
+	function uiSetSelectedValue( name, value )
+	{
+		var el = document.getElementById( name );
+		var returnVal = -1;
+		if( el )
+		{
+			//BUGBUG we may need to use option.length to be 100% safe??
+			for( i = 0; i < el.length; i ++ )
+			{
+				if( el.options[ i ].text == value )
+				{
+					returnVal = i;
+					el.selectedIndex = i;
+					
+					i = el.length;
+				}
+			}
+		}
+		else
+		(
+			console.log("ERROR uiSetSelectedValue null element name: " + name  + " value: " + value )
+		)
+
+		if( returnVal == -1 )
+		(
+			console.log("ERROR uiSetSelectedValue value not found in options: " + name  + " value: " + value )
+		)
+
+		return returnVal;
+	}
+	
 	function uiSetSelectedIndex( name, index )
 	{
 		var el = document.getElementById( name );
@@ -776,7 +764,6 @@ function setVariables( )
 
 		uiClearSelect( "ChoiceModel" );
 		uiSelectAddEmptyItem("ChoiceModel");
-		uiSelectAddItem("ChoiceModel", "calctype.coordsanderror");
 
 		var index = g_canonicalcalctypes.indexOf( value );
 		//BUGBUG WE CAN Use uiClearAndFillSelectCanonical here instead?
@@ -893,105 +880,101 @@ function setVariables( )
 		//String s = txtT7Lat_MinMM.getText();
 		var s = uiGetTextValue("txtT7Lat_MinMM");
 		
-/*		
+
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatMinMM.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatMinMM
+			m = num; //.doubleValue();
 		}
 		latminmm=m;
 
-		s = txtT7Long_MinMM.getText();
-		if( s == null || s.length() == 0 ){
+		s = uiGetTextValue("txtT7Long_MinMM");
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatMinMM.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatMinMM
+			m = num; //.doubleValue();
 		}
 		longminmm=m;
 
-		s = txtT7Lat_Sec.getText();
+		s = uiGetTextValue("txtT7Lat_Sec");
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatSec.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatSec
+			m = num; //.doubleValue();
 		}
 		latsec=m;
 
-		s = txtT7Long_Sec.getText();
+		s = uiGetTextValue("txtT7Long_Sec");
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatSec.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatSec
+			m = num; //.doubleValue();
 		}
 		longsec=m;
 
-		s = TextFieldExtent.getText();
+		s = uiGetTextValue("TextFieldExtent");
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			m = num; //.doubleValue();
 		}
 		extent=m;
 
-		s = TextFieldMeasurementError.getText();
+		s = uiGetTextValue("TextFieldMeasurementError");
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			m = num; //.doubleValue();
 		}
 		measurementerror=m;
-*/
 
 
-
-/*BUGBUG it is CRITICAL to add these back but not all elements exist yet
-//		s = TextFieldOffset.getText();
-		s = uiGetTextValue( "TextFieldOffset" );
+		s = uiGetTextValue("TextFieldOffset");
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			m = num; //.doubleValue();
 		}
 		offset=m;
 
-		s = TextFieldOffsetEW.getText();
+		s = uiGetTextValue("TextFieldOffsetEW");;
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			m = num; //.doubleValue();
 		}
 		offsetew=m;
 
-		s = TextFieldHeading.getText();
+		s = uiGetTextValue("TextFieldHeading");;
 		m = 0;
-		if( s == null || s.length() == 0 ){
+		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.parse(s.trim());
-			m = num.doubleValue();
+			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			m = num; //.doubleValue();
 		}
 		heading=m;
-*/		
+
 
 		var language = g_language;
 		clearResults();
 		setVariables(language);
 		setLabels(  );		
-		//BUGBUG add me back in when we start doing formaters
+		//BUGBUG add me back in when we start doing formatters
 		//setDecimalFormat();
 		populateStableControls();
 
@@ -1014,34 +997,34 @@ function setVariables( )
 			uiSelectAddItem("ChoiceModel","loctype.distatheading");
 		}
 
-		/*BUBUG ADD ME BACK
+		
 		if(coordsystemindex==0){
-			populateCoordinatePrecision(g_properties.getProperty("coordsys.dms."+language));
+			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.dms"));
 		} else if(coordsystemindex==1){
-			populateCoordinatePrecision(g_properties.getProperty("coordsys.dd."+language));			
+			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.dd"));			
 		} else {
-			populateCoordinatePrecision(g_properties.getProperty("coordsys.ddm."+language));
+			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.ddm"));
 		}
 		
-		populateDistancePrecision(ChoiceDistUnits.getItem(distunitsindex));
+		populateDistancePrecision(uiGetSelectIndexValue("ChoiceDistUnits",distunitsindex));
 
 
-		uiSetText( "txtT2Dec_Lat.setText( formatDec.format(decimallatitude) );
-		uiSetText( "txtT2Dec_Long.setText( formatDec.format(decimallongitude) );
-		uiSetText( "txtT7Lat_MinMM.setText( formatMinMM.format(latminmm) );		
-		uiSetText( "txtT7Long_MinMM.setText( formatMinMM.format(longminmm) );
-		uiSetText( "txtT7Lat_Sec.setText( formatSec.format(latsec) );
-		uiSetText( "txtT7Long_Sec.setText( formatSec.format(longsec) );
-		uiSetText( "TextFieldExtent.setText( formatCalcError.format(extent) );
-		uiSetText( "TextFieldMeasurementError.setText( formatCalcError.format(measurementerror) );
-		uiSetText( "TextFieldFromDistance.setText( formatDistance.format(fromdistance) );
-		uiSetText( "TextFieldToDistance.setText( formatDistance.format(todistance) );
-		uiSetText( "TextFieldScaleFromDistance.setText( formatDistance.format(scalefromdistance) );
-		uiSetText( "TextFieldScaleToDistance.setText( formatDistance.format(scaletodistance) );
-		uiSetText( "TextFieldOffset.setText( formatCalcError.format(offset) );
-		uiSetText( "TextFieldOffsetEW.setText( formatCalcError.format(offsetew) );
-		uiSetText( "TextFieldHeading.setText( formatCalcError.format(heading) );
-*/
+		uiSetTextExplicit("txtT2Dec_Lat",decimallatitude );  					//BUGBUG NEEDS formatDec
+		uiSetTextExplicit("txtT2Dec_Long",decimallongitude );					//BUGBUG NEEDS formatDec
+		uiSetTextExplicit("txtT7Lat_MinMM",latminmm );							//BUGBUG NEEDS formatMinMM
+		uiSetTextExplicit("txtT7Long_MinMM",longminmm );						//BUGBUG NEEDS formatMinMM
+		uiSetTextExplicit("txtT7Lat_Sec",latsec );								//BUGBUG NEEDS formatSec
+		uiSetTextExplicit("txtT7Long_Sec",longsec );								//BUGBUG NEEDS formatSec
+		uiSetTextExplicit("TextFieldExtent",extent );						//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldMeasurementError",measurementerror );	//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldFromDistance",fromdistance );			//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldToDistance",todistance );				//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldScaleFromDistance",scalefromdistance );	//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldScaleToDistance",scaletodistance );		//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldOffset",offset );						//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldOffsetEW",offsetew );					//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldHeading",heading );					//BUGBUG NEEDS formatCalcError
+
 		if(calctypeindex >= 0)
 		{
 			uiSetSelectedIndex("ChoiceCalcType", calctypeindex );
@@ -1051,17 +1034,11 @@ function setVariables( )
 			uiSetSelectedIndex("ChoiceModel",loctypeindex);
 		}
 		
-//		if( ChoiceModel.getSelectedIndex()!=-1 &&
-//			ChoiceModel.getSelectedItem().equals(props.getProperty("loctype.orthodist."+language)))
-//		{
-//		LabelOffset.setText(props.getProperty("label.distns."+language));
+
 		
-		
-		if( 
-//BUGBUG UNSURE OF THIS LINE, WAS		uiSetSelectedIndex("ChoiceModel".getSelectedIndex()!=-1 && 
-		uiSetSelectedIndex("ChoiceModel") != 0 && 
-		uiGetSelectedValue( "ChoiceModel") == g_properties.getPropertyLang("loctype.orthodist")
-		)
+		if( uiSetSelectedIndex("ChoiceModel") != 0 && 
+			uiGetSelectedText( "ChoiceModel") ==
+			g_properties.getPropertyLang("loctype.orthodist") )
 		{
 			uiSetLabel("LabelOffset", g_properties.getPropertyLang("label.distns"));
 		}
@@ -1187,7 +1164,7 @@ function setVariables( )
 		uiSetLabel("LabelExtent","label.extent");
 		uiSetLabel("LabelMeasurementError","label.measurementerror");
 		var index = g_canonicalloctypes.indexOf(value);
-		var csource = uiGetSelectedValue("ChoiceCoordSource");
+		var csource = uiGetSelectedText("ChoiceCoordSource");
 		var cindex = g_canonicalsources.indexOf(csource);
 		if( cindex==1 ){ // GPS
 			uiSetLabel("LabelMeasurementError","label.extent.gps");
@@ -1202,7 +1179,7 @@ function setVariables( )
 		} else if( index==3 ){ // Distance along path
 			showDistancePrecision(true);
 		} else if( index==4 ){ // Distance along orthogonal directions
-			var SCalcType = uiGetSelectedValue("ChoiceCalcType");
+			var SCalcType = uiGetSelectedText("ChoiceCalcType");
 			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
 			if( calcindex==0 ){ // Error only
 				showNSOffset(true);
@@ -1224,7 +1201,7 @@ function setVariables( )
 			}
 		} else if( index==5 ){ // Distance at a heading
 			showOffset(true);
-			var SCalcType = uiGetSelectedValue("ChoiceCalcType");
+			var SCalcType = uiGetSelectedText("ChoiceCalcType");
 			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
 			if( calcindex==1 ){ // Coordinates and error
 				showDistancePrecision(true);
@@ -1253,12 +1230,15 @@ function setVariables( )
 //	private void cleanCalcTypeSlate(){
 	function cleanCalcTypeSlate(){
 		cleanSlate();
+		//Note:this differs from the oringal java below, but somehow works.
+		//Note it doesn't have to uiShow/HideElement to work either, odd
 		setVisibility("ChoiceModel", false );
 		setVisibility("LabelModel", false );
 		setVisibility("LabelTitle", false );
+		//
+		setVisibility("LabelStepZero", false );
 		setVisibility("LabelStepOne", false );
 		setVisibility("LabelStepTwo", false );
-		setVisibility("LabelStepZero", false );
 		
 		/*LabelModel.setVisible(false);
 		LabelTitle.setVisible(false);
@@ -1345,8 +1325,8 @@ function setVariables( )
 		uiSetLabel("LabelCalcDecLong","label.declon");
 		uiSetLabel("LabelCalcMaxError","label.maxerrdist");
 
-		uiSetElementValue("ButtonCalculate","label.calculate");
-		uiSetElementValue("ButtonPromote","label.promote");
+		uiSetLabelExplicit("ButtonCalculate",g_properties.getPropertyLang("label.calculate"));
+		uiSetLabelExplicit("ButtonPromote",g_properties.getPropertyLang("label.promote"));
 		
 		
 		uiSetLabel("LabelDistanceConverter","label.distanceconverter");
@@ -1356,838 +1336,49 @@ function setVariables( )
 	
 /*
 	public Component createComponents() {
-		pane = new Panel();
-		if(pane==null) return null;
-		pane.setSize(appletWidth, appletHeight);
-		pane.setLayout(null);  
-		pane.setVisible(true);
-
-		ChoiceLanguage = new Choice ();
-		ChoiceLanguage.setName ("ChoiceLanguage");
-		ChoiceLanguage.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceLanguage.setForeground (new Color (0x000000));
-		ChoiceLanguage.setBackground (new Color (0xffffff));
-		ChoiceLanguage.setVisible(true);
-		pane.add (ChoiceLanguage);
-		ChoiceLanguage.setBounds (5, 5, 110, 23);
-
-		ChoiceLanguage.removeAll();
-		int i=0;
-		while(g_properties.getProperty("language.name."+i)!=null){
-			ChoiceLanguage.addItem(g_properties.getProperty("language.name."+i));
-			i++;
-		}
-
-		LabelVersion = new Label (g_properties.getProperty("version."+language)+" "+versionNumber+language, Label.LEFT);
-		LabelVersion.setName ("LabelVersion");
-		LabelVersion.setFont (new Font ("Helvetica", 0, 10));
-		LabelVersion.setForeground (new Color (0x000000));
-		LabelVersion.setBackground (new Color (0xc0c0c0));
-		LabelVersion.setVisible (true);
-		pane.add(LabelVersion);
-		LabelVersion.setBounds (10, 465, 100, 10);
-
-		LabelCopyright = new Label (embeddedCopyright, Label.RIGHT);
-		LabelCopyright.setName ("LabelCopyright");
-		LabelCopyright.setFont (new Font ("Helvetica", 0, 10));
-		LabelCopyright.setForeground (new Color (0x000000));
-		LabelCopyright.setBackground (new Color (0xc0c0c0));
-		LabelCopyright.setVisible (true);
-		pane.add(LabelCopyright);
-		LabelCopyright.setBounds (310, 465, 300, 10);
-
-		LabelCalcType = new Label (g_properties.getProperty("label.calctype."+language), Label.LEFT);
-		LabelCalcType.setName ("LabelCalcType");
-		LabelCalcType.setFont (new Font ("Helvetica", 0, 12));
-		LabelCalcType.setForeground (new Color (0x000000));
-		LabelCalcType.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelCalcType);
-		LabelCalcType.setBounds (5, 33, 115, 27);
-		LabelCalcType.setVisible(true);
-
-		ChoiceCalcType = new Choice ();
-		ChoiceCalcType.setName ("ChoiceCalcType");
-		ChoiceCalcType.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceCalcType.setForeground (new Color (0x000000));
-		ChoiceCalcType.setBackground (new Color (0xffffff));
-		ChoiceCalcType.setVisible(true);
-		pane.add (ChoiceCalcType);
-		ChoiceCalcType.setBounds (125, 33, 490, 23);
-
-		LabelStepZero = new Label (g_properties.getProperty("label.step0."+language), Label.CENTER);
-		LabelStepZero.setName ("LabelStepZero");
-		LabelStepZero.setFont (new Font ("Helvetica", 0, 18));
-		LabelStepZero.setForeground (new Color (0x000000));
-		LabelStepZero.setBackground (new Color (0xc0c0c0));
-		LabelCalcType.setVisible(true);
-		pane.add (LabelStepZero);
-		LabelStepZero.setBounds (125, 2, 490, 27);
-
-		LabelTitle = new Label (g_properties.getProperty("label.title."+language), Label.CENTER);
-		LabelTitle.setName ("LabelTitle");
-		LabelTitle.setFont (new Font ("Helvetica", 0, 18));
-		LabelTitle.setForeground (new Color (0x000000));
-		LabelTitle.setBackground (new Color (0xc0c0c0));
-		LabelTitle.setVisible (false);
-		pane.add (LabelTitle);
-		LabelTitle.setBounds (125, 2, 490, 27);
-
-		LabelModel = new Label (g_properties.getProperty("label.loctype."+language), Label.LEFT);
-		LabelModel.setName ("LabelModel");
-		LabelModel.setSize( 118, 27);
-		LabelModel.setFont (new Font ("Helvetica", 0, 12));
-		LabelModel.setVisible (false);
-		LabelModel.setForeground (new Color (0x000000));
-		LabelModel.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelModel);
-		LabelModel.setBounds (5, 86, 108, 27);
-
-		ChoiceModel = new Choice ();
-		ChoiceModel.setName ("ChoiceModel");
-		ChoiceModel.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceModel.setVisible (false);
-		ChoiceModel.setForeground (new Color (0x00000));
-		ChoiceModel.setBackground (new Color (0xffffff));
-		ChoiceModel.setVisible(false);
-		pane.add (ChoiceModel);
-		ChoiceModel.setBounds (125, 87, 490, 23);
-
-		LabelStepOne = new Label (g_properties.getProperty("label.step1."+language), Label.CENTER);
-		LabelStepOne.setName ("LabelStepOne");
-		LabelStepOne.setFont (new Font ("Helvetica", 0, 18));
-		LabelStepOne.setVisible (false);
-		LabelStepOne.setForeground (new Color (0x000000));
-		LabelStepOne.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelStepOne);
-		LabelStepOne.setBounds (125, 61, 490, 27);
-
-		LabelStepTwo = new Label (g_properties.getProperty("label.step2."+language), Label.CENTER);
-		LabelStepTwo.setName ("LabelStepTwo");
-		LabelStepTwo.setFont (new Font ("Helvetica", 0, 18));
-		LabelStepTwo.setVisible (false);
-		LabelStepTwo.setForeground (new Color (0x000000));
-		LabelStepTwo.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelStepTwo);
-		LabelStepTwo.setBounds (125, 113, 490, 27);
-
-		LabelCoordSource = new Label (g_properties.getProperty("label.coordsource."+language), Label.LEFT);
-		LabelCoordSource.setName ("LabelCoordSource");
-		LabelCoordSource.setFont (new Font ("Helvetica", 0, 12));
-		LabelCoordSource.setVisible (false);
-		LabelCoordSource.setForeground (new Color (0x000000));
-		pane.add (LabelCoordSource);
-		LabelCoordSource.setBounds (5, 145, 160, 27);
-
-		ChoiceCoordSource = new Choice ();
-		ChoiceCoordSource.setName ("ChoiceCoordSource");
-		ChoiceCoordSource.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceCoordSource.setVisible (false);
-		ChoiceCoordSource.setForeground (new Color (0x000000));
-		ChoiceCoordSource.setBackground (new Color (0xffffff));
-		ChoiceCoordSource.setVisible(false);
-		pane.add (ChoiceCoordSource);
-		ChoiceCoordSource.setBounds (165, 146, 180, 23);
-
-		LabelCoordSystem = new Label (g_properties.getProperty("label.coordsys."+language), Label.LEFT);
-		LabelCoordSystem.setName ("LabelCoordSystem");
-		LabelCoordSystem.setFont (new Font ("Helvetica", 0, 12));
-		LabelCoordSystem.setVisible (false);
-		LabelCoordSystem.setForeground (new Color (0x000000));
-		pane.add (LabelCoordSystem);
-		LabelCoordSystem.setBounds (5, 172, 160, 27);
-
-		ChoiceCoordSystem = new Choice ();
-		ChoiceCoordSystem.setName ("ChoiceCoordSystem");
-		ChoiceCoordSystem.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceCoordSystem.setVisible (false);
-		ChoiceCoordSystem.setForeground (new Color (0x000000));
-		ChoiceCoordSystem.setBackground (new Color (0xffffff));
-		ChoiceCoordSystem.setVisible(false);
-		pane.add (ChoiceCoordSystem);
-		ChoiceCoordSystem.setBounds (165, 173, 180, 23);
-
-		PanelCoords = new Panel ();
-		PanelCoords.setName ("PanelCoords");
-		PanelCoords.setLayout(null);
-		PanelCoords.setFont (new Font ("Helvetica", 0, 12));
-		PanelCoords.setVisible (false);
-		PanelCoords.setForeground (new Color (0x000000));
-		pane.add (PanelCoords);
-		PanelCoords.setBounds (4, 201, 340, 83);
-
 		lblT2Dec_Lat = new Label (g_properties.getProperty("label.lat."+language), Label.LEFT);
-		lblT2Dec_Lat.setName ("lblT2Dec_Lat");
-		lblT2Dec_Lat.setFont (new Font ("Helvetica", 0, 12));
-		lblT2Dec_Lat.setForeground (new Color (0x000000));
-		PanelCoords.add (lblT2Dec_Lat);
-		lblT2Dec_Lat.setBounds (2, 2, 80, 26);
-
 		lblT2Dec_Long = new Label (g_properties.getProperty("label.lon."+language), Label.LEFT);
-		lblT2Dec_Long.setName ("lblT2Dec_Long");
-		lblT2Dec_Long.setFont (new Font ("Helvetica", 0, 12));
-		lblT2Dec_Long.setForeground (new Color (0x000000));
-		PanelCoords.add (lblT2Dec_Long);
-		lblT2Dec_Long.setBounds (2, 29, 80, 24);
-
-		PanelDecLatLong = new Panel ();
-		PanelDecLatLong.setName ("PanelDecLatLong");
-		PanelDecLatLong.setLayout(null);  
-		PanelDecLatLong.setFont (new Font ("Helvetica", 0, 12));
-		PanelDecLatLong.setForeground (new Color (0x000000));
-		PanelCoords.add (PanelDecLatLong);
-		PanelDecLatLong.setBounds (80, 0, 120, 51);
-
-		txtT2Dec_Lat = new TextField ("txtT2Dec_Lat");
-		txtT2Dec_Lat.setName ("txtT2Dec_Lat");
-		txtT2Dec_Lat.setFont (new Font ("TimesRoman", 0, 13));
-		txtT2Dec_Lat.setForeground (new Color (0x000000));
-		txtT2Dec_Lat.setText ("");
-		PanelDecLatLong.add (txtT2Dec_Lat);
-		txtT2Dec_Lat.setBounds (4, 2, 108, 23);
-
-		txtT2Dec_Long = new TextField ("txtT2Dec_Long");
-		txtT2Dec_Long.setName ("txtT2Dec_Long");
-		txtT2Dec_Long.setFont (new Font ("TimesRoman", 0, 13));
-		txtT2Dec_Long.setForeground (new Color (0x000000));
-		txtT2Dec_Long.setText ("");
-		PanelDecLatLong.add (txtT2Dec_Long);
-		txtT2Dec_Long.setBounds (4, 26, 108, 23);
-
-		PanelDDMMSS = new Panel ();
-		PanelDDMMSS.setName ("PanelDDMMSS");
-		PanelDDMMSS.setLayout(null);  
-		PanelDDMMSS.setFont (new Font ("Helvetica", 0, 12));
-		PanelDDMMSS.setForeground (new Color (0x000000));
-		PanelCoords.add (PanelDDMMSS);
-		PanelDDMMSS.setBounds (96, 0, 250, 53);
-
-		txtT7Lat_DegDMS = new TextField ("txtT7Lat_DegDMS");
-		txtT7Lat_DegDMS.setName ("txtT7Lat_DegDMS");
-		txtT7Lat_DegDMS.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Lat_DegDMS.setForeground (new Color (0x000000));
-		txtT7Lat_DegDMS.setText ("");
-		PanelDDMMSS.add (txtT7Lat_DegDMS);
-		txtT7Lat_DegDMS.setBounds (4, 2, 45, 23);
-
-		txtT7Lat_MinDMS = new TextField ("txtT7Lat_MinDMS");
-		txtT7Lat_MinDMS.setName ("txtT7Lat_MinDMS");
-		txtT7Lat_MinDMS.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Lat_MinDMS.setForeground (new Color (0x000000));
-		txtT7Lat_MinDMS.setText ("");
-		PanelDDMMSS.add (txtT7Lat_MinDMS);
-		txtT7Lat_MinDMS.setBounds (62, 2, 40, 23);
-
-		txtT7Lat_Sec = new TextField ("txtT7Lat_Sec");
-		txtT7Lat_Sec.setName ("txtT7Lat_Sec");
-		txtT7Lat_Sec.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Lat_Sec.setForeground (new Color (0x000000));
-		txtT7Lat_Sec.setText ("");
-		PanelDDMMSS.add (txtT7Lat_Sec);
-		txtT7Lat_Sec.setBounds (112, 2, 65, 23);
-
-		ChoiceLatDirDMS = new Choice ();
-		ChoiceLatDirDMS.setName ("ChoiceLatDirDMS");
-		ChoiceLatDirDMS.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceLatDirDMS.setForeground (new Color (0x000000));
-		ChoiceLatDirDMS.setBackground (new Color (0xffffff));
-		ChoiceLatDirDMS.setVisible(false);
-		PanelDDMMSS.add (ChoiceLatDirDMS);
-		ChoiceLatDirDMS.setBounds (188, 2, 41, 23);
-
-		txtT7Long_DegDMS = new TextField ("txtT7Long_DegDMS");
-		txtT7Long_DegDMS.setName ("txtT7Long_DegDMS");
-		txtT7Long_DegDMS.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Long_DegDMS.setForeground (new Color (0x000000));
-		txtT7Long_DegDMS.setText ("");
-		PanelDDMMSS.add (txtT7Long_DegDMS);
-		txtT7Long_DegDMS.setBounds (4, 26, 45, 23);
-
-		txtT7Long_MinDMS = new TextField ("txtT7Long_MinDMS");
-		txtT7Long_MinDMS.setName ("txtT7Long_MinDMS");
-		txtT7Long_MinDMS.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Long_MinDMS.setForeground (new Color (0x000000));
-		txtT7Long_MinDMS.setText ("");
-		PanelDDMMSS.add (txtT7Long_MinDMS);
-		txtT7Long_MinDMS.setBounds (62, 26, 40, 23);
-
-		txtT7Long_Sec = new TextField ("txtT7Long_Sec");
-		txtT7Long_Sec.setName ("txtT7Long_Sec");
-		txtT7Long_Sec.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Long_Sec.setForeground (new Color (0x000000));
-		txtT7Long_Sec.setText ("");
-		PanelDDMMSS.add (txtT7Long_Sec);
-		txtT7Long_Sec.setBounds (112, 26, 65, 23);
-
-		ChoiceLongDirDMS = new Choice ();
-		ChoiceLongDirDMS.setName ("ChoiceLongDirDMS");
-		ChoiceLongDirDMS.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceLongDirDMS.setForeground (new Color (0x000000));
-		ChoiceLongDirDMS.setBackground (new Color (0xffffff));
-		ChoiceLongDirDMS.setVisible(false);
-		PanelDDMMSS.add (ChoiceLongDirDMS);
-		ChoiceLongDirDMS.setBounds (188, 26, 56, 23);
-
-		PanelDecMin = new Panel ();
-		PanelDecMin.setName ("PanelDecMin");
-		PanelDecMin.setLayout(null);  
-		PanelDecMin.setFont (new Font ("Helvetica", 0, 12));
-		PanelDecMin.setForeground (new Color (0x000000));
-		PanelCoords.add (PanelDecMin);
-		PanelDecMin.setBounds (142, 0, 210, 51);
-
-		txtT7Lat_DegMM = new TextField ("txtT7Lat_DegMM");
-		txtT7Lat_DegMM.setName ("txtT7Lat_DegMM");
-		txtT7Lat_DegMM.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Lat_DegMM.setForeground (new Color (0x000000));
-		txtT7Lat_DegMM.setText ("");
-		PanelDecMin.add (txtT7Lat_DegMM);
-		txtT7Lat_DegMM.setBounds (4, 2, 45, 22);
-
-		txtT7Lat_MinMM = new TextField ("txtT7Lat_MinMM");
-		txtT7Lat_MinMM.setName ("txtT7Lat_MinMM");
-		txtT7Lat_MinMM.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Lat_MinMM.setForeground (new Color (0x000000));
-		txtT7Lat_MinMM.setText ("");
-		PanelDecMin.add (txtT7Lat_MinMM);
-		txtT7Lat_MinMM.setBounds (61, 2, 70, 23);
-
-		ChoiceLatDirMM = new Choice ();
-		ChoiceLatDirMM.setName ("ChoiceLatDirMM");
-		ChoiceLatDirMM.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceLatDirMM.setForeground (new Color (0x000000));
-		ChoiceLatDirMM.setBackground (new Color (0xffffff));
-		ChoiceLatDirMM.setVisible(false);
-		PanelDecMin.add (ChoiceLatDirMM);
-		ChoiceLatDirMM.setBounds (142, 3, 56, 23);
-
-		txtT7Long_DegMM = new TextField ("txtT7Long_DegMM");
-		txtT7Long_DegMM.setName ("txtT7Long_DegMM");
-		txtT7Long_DegMM.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Long_DegMM.setForeground (new Color (0x000000));
-		txtT7Long_DegMM.setText ("");
-		PanelDecMin.add (txtT7Long_DegMM);
-		txtT7Long_DegMM.setBounds (4, 26, 45, 23);
-
-		txtT7Long_MinMM = new TextField ("txtT7Long_MinMM");
-		txtT7Long_MinMM.setName ("txtT7Long_MinMM");
-		txtT7Long_MinMM.setFont (new Font ("TimesRoman", 0, 13));
-		txtT7Long_MinMM.setForeground (new Color (0x000000));
-		txtT7Long_MinMM.setText ("");
-		PanelDecMin.add (txtT7Long_MinMM);
-		txtT7Long_MinMM.setBounds (61, 26, 70, 23);
-
-		ChoiceLongDirMM = new Choice ();
-		ChoiceLongDirMM.setName ("ChoiceLongDirMM");
-		ChoiceLongDirMM.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceLongDirMM.setForeground (new Color (0x000000));
-		ChoiceLongDirMM.setBackground (new Color (0xffffff));
-		ChoiceLongDirMM.setVisible(false);
-		PanelDecMin.add (ChoiceLongDirMM);
-		ChoiceLongDirMM.setBounds (142, 27, 56, 23);
-
 		Label2111111 = new Label ("'", Label.LEFT);
-		Label2111111.setName ("Label2111111");
-		Label2111111.setFont (new Font ("Helvetica", 0, 14));
-		Label2111111.setForeground (new Color (0x000000));
-		PanelDecMin.add (Label2111111);
-		Label2111111.setBounds (133, 26, 12, 14);
-
 		Label22111 = new Label ("'", Label.LEFT);
-		Label22111.setName ("Label22111");
-		Label22111.setFont (new Font ("Helvetica", 0, 14));
-		Label22111.setForeground (new Color (0x000000));
-		PanelDecMin.add (Label22111);
-		Label22111.setBounds (133, 0, 12, 14);
-
 		Label21212 = new Label ("o", Label.LEFT);
-		Label21212.setName ("Label21212");
-		Label21212.setFont (new Font ("Helvetica", 0, 12));
-		Label21212.setForeground (new Color (0x000000));
-		PanelDecMin.add (Label21212);
-		Label21212.setBounds (50, 23, 12, 14);
-
 		Label231 = new Label ("o", Label.LEFT);
-		Label231.setName ("Label231");
-		Label231.setFont (new Font ("Helvetica", 0, 12));
-		Label231.setForeground (new Color (0x000000));
-		PanelDecMin.add (Label231);
-		Label231.setBounds (50, -1, 12, 14);
-
 		Label211111 = new Label ("\"", Label.LEFT);
-		Label211111.setName ("Label211111");
-		Label211111.setFont (new Font ("Helvetica", 0, 14));
-		Label211111.setForeground (new Color (0x000000));
-		PanelDDMMSS.add (Label211111);
-		Label211111.setBounds (179, 25, 12, 14);
-
 		Label2211 = new Label ("\"", Label.LEFT);
-		Label2211.setName ("Label2211");
-		Label2211.setFont (new Font ("Helvetica", 0, 14));
-		Label2211.setForeground (new Color (0x000000));
-		PanelDDMMSS.add (Label2211);
-		Label2211.setBounds (179, 0, 12, 14);
-
 		Label21121 = new Label ("'", Label.LEFT);
-		Label21121.setName ("Label21121");
-		Label21121.setFont (new Font ("Helvetica", 0, 14));
-		Label21121.setForeground (new Color (0x000000));
-		PanelDDMMSS.add (Label21121);
-		Label21121.setBounds (105, 25, 12, 14);
-
 		Label222 = new Label ("'", Label.LEFT);
-		Label222.setName ("Label222");
-		Label222.setFont (new Font ("Helvetica", 0, 14));
-		Label222.setForeground (new Color (0x000000));
-		PanelDDMMSS.add (Label222);
-		Label222.setBounds (105, 0, 12, 14);
-
 		Label2123 = new Label ("o", Label.LEFT);
-		Label2123.setName ("Label2123");
-		Label2123.setFont (new Font ("Helvetica", 0, 12));
-		Label2123.setForeground (new Color (0x000000));
-		PanelDDMMSS.add (Label2123);
-		Label2123.setBounds (50, 21, 12, 14);
-
 		Label23 = new Label ("o", Label.LEFT);
-		Label23.setName ("Label23");
-		Label23.setFont (new Font ("Helvetica", 0, 12));
-		Label23.setForeground (new Color (0x000000));
-		Label23.setBounds (50, -1, 12, 14);
-		PanelDDMMSS.add (Label23);
-
 		LabelDatum = new Label (g_properties.getProperty("label.datum."+language), Label.LEFT);
-		LabelDatum.setName ("LabelDatum");
-		LabelDatum.setFont (new Font ("Helvetica", 0, 12));
-		LabelDatum.setForeground (new Color (0x000000));
-		LabelDatum.setBackground (new Color (0xc0c0c0));
-		PanelCoords.add (LabelDatum);
-		LabelDatum.setBounds (2, 52, 42, 27);
-
-		ChoiceDatum = new Choice ();
-		ChoiceDatum.setName ("ChoiceDatum");
-		ChoiceDatum.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceDatum.setForeground (new Color (0x000000));
-		ChoiceDatum.setBackground (new Color (0xffffff));
-		ChoiceDatum.setVisible(false);
-		PanelCoords.add (ChoiceDatum);
-		ChoiceDatum.setBounds (50, 53, 290, 23);
-
-		PanelCoordPrecision = new Panel ();
-		PanelCoordPrecision.setName ("PanelCoordPrecision");
-		PanelCoordPrecision.setLayout(null);  
-		PanelCoordPrecision.setFont (new Font ("Helvetica", 0, 12));
-		PanelCoordPrecision.setVisible (false);
-		PanelCoordPrecision.setForeground (new Color (0x000000));
-		pane.add (PanelCoordPrecision);
-		PanelCoordPrecision.setBounds (3, 281, 340, 32);
-
 		LabelLatPrecision = new Label (g_properties.getProperty("label.coordprec."+language), Label.LEFT);
-		LabelLatPrecision.setName ("LabelLatPrecision");
-		LabelLatPrecision.setFont (new Font ("Helvetica", 0, 12));
-		LabelLatPrecision.setForeground (new Color (0x000000));
-		PanelCoordPrecision.add (LabelLatPrecision);
-		LabelLatPrecision.setBounds (2, 3, 170, 27);
-
-		ChoiceLatPrecision = new Choice ();
-		ChoiceLatPrecision.setName ("ChoiceLatPrecision");
-		ChoiceLatPrecision.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceLatPrecision.setForeground (new Color (0x000000));
-		ChoiceLatPrecision.setBackground (new Color (0xffffff));
-		ChoiceLatPrecision.setVisible(false);
-		PanelCoordPrecision.add (ChoiceLatPrecision);
-		ChoiceLatPrecision.setBounds (175, 4, 165, 23);
-
 		LabelDirection = new Label (g_properties.getProperty("label.direction."+language), Label.RIGHT);
-		LabelDirection.setName ("LabelDirection");
-		LabelDirection.setFont (new Font ("Helvetica", 0, 12));
-		LabelDirection.setVisible (false);
-		LabelDirection.setForeground (new Color (0x000000));
-		LabelDirection.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelDirection);
-		LabelDirection.setBounds (360, 146, 90, 23);
-
-		ChoiceDirection = new Choice ();
-		ChoiceDirection.setName ("ChoiceDirection");
-		ChoiceDirection.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceDirection.setVisible (false);
-		ChoiceDirection.setForeground (new Color (0x000000));
-		ChoiceDirection.setBackground (new Color (0xffffff));
-		ChoiceDirection.setVisible(false);
-		pane.add (ChoiceDirection);
-		ChoiceDirection.setBounds (455, 145, 110, 23);
-
-		TextFieldHeading = new TextField ("TextFieldHeading");
-		TextFieldHeading.setName ("TextFieldHeading");
-		TextFieldHeading.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldHeading.setVisible (false);
-		TextFieldHeading.setForeground (new Color (0x000000));
-		TextFieldHeading.setBackground (new Color (0xffffff));
-		TextFieldHeading.setText("");
-		pane.add (TextFieldHeading);
-		TextFieldHeading.setBounds (570, 145, 40, 23);
-
-		TextFieldOffset = new TextField ("TextFieldOffset");
-		TextFieldOffset.setName ("TextFieldOffset");
-		TextFieldOffset.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldOffset.setVisible (false);
-		TextFieldOffset.setForeground (new Color (0x000000));
-		TextFieldOffset.setBackground (new Color (0xffffff));
-		TextFieldOffset.setText("");
-		pane.add (TextFieldOffset);
-		TextFieldOffset.setBounds (525, 146, 40, 23);
-
-		ChoiceOffsetNSDir = new Choice ();
-		ChoiceOffsetNSDir.setName ("ChoiceOffsetNSDir");
-		ChoiceOffsetNSDir.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceOffsetNSDir.setForeground (new Color (0x000000));
-		ChoiceOffsetNSDir.setBackground (new Color (0xffffff));
-		ChoiceOffsetNSDir.setVisible(false);
-		pane.add (ChoiceOffsetNSDir);
-		ChoiceOffsetNSDir.setBounds (565, 145, 50, 23);
-
 		LabelOffsetEW = new Label (g_properties.getProperty("label.distew."+language), Label.RIGHT);
-		LabelOffsetEW.setName ("LabelOffsetEW");
-		LabelOffsetEW.setFont (new Font ("Helvetica", 0, 12));
-		LabelOffsetEW.setVisible (false);
-		LabelOffsetEW.setForeground (new Color (0x000000));
-		LabelOffsetEW.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelOffsetEW);
-		LabelOffsetEW.setBounds (350, 174, 170, 23);
-
-		TextFieldOffsetEW = new TextField ("TextFieldOffsetEW");
-		TextFieldOffsetEW.setName ("TextFieldOffsetEW");
-		TextFieldOffsetEW.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldOffsetEW.setVisible (false);
-		TextFieldOffsetEW.setForeground (new Color (0x000000));
-		TextFieldOffsetEW.setBackground (new Color (0xffffff));
-		TextFieldOffsetEW.setText("");
-		pane.add (TextFieldOffsetEW);
-		TextFieldOffsetEW.setBounds (525, 173, 40, 23);
-
-		ChoiceOffsetEWDir = new Choice();
-		ChoiceOffsetEWDir.setName("ChoiceOffsetEWDir");
-		ChoiceOffsetEWDir.setFont(new Font ("Helvetica", 0, 12));
-		ChoiceOffsetEWDir.setForeground (new Color (0x000000));
-		ChoiceOffsetEWDir.setBackground (new Color (0xffffff));
-		ChoiceOffsetEWDir.setVisible(false);
-		pane.add(ChoiceOffsetEWDir);
-		ChoiceOffsetEWDir.setBounds(565, 172, 50, 23);
-
 		LabelOffset = new Label (g_properties.getProperty("label.offset."+language), Label.RIGHT);
-		LabelOffset.setName ("LabelOffset");
-		LabelOffset.setFont (new Font ("Helvetica", 0, 12));
-		LabelOffset.setVisible (false);
-		LabelOffset.setForeground (new Color (0x000000));
-		LabelOffset.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelOffset);
-		LabelOffset.setBounds (340, 147, 180, 23);
-
 		LabelExtent = new Label (g_properties.getProperty("label.extent."+language), Label.RIGHT);
-		LabelExtent.setName ("LabelExtent");
-		LabelExtent.setFont (new Font ("Helvetica", 0, 12));
-		LabelExtent.setVisible (false);
-		LabelExtent.setForeground (new Color (0x000000));
-		LabelExtent.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelExtent);
-		LabelExtent.setBounds (340, 201, 180, 23);
-
-		TextFieldExtent = new TextField ("TextFieldExtent");
-		TextFieldExtent.setName ("TextFieldExtent");
-		TextFieldExtent.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldExtent.setVisible (false);
-		TextFieldExtent.setForeground (new Color (0x000000));
-		TextFieldExtent.setBackground (new Color (0xffffff));
-		TextFieldExtent.setText ("");
-		pane.add (TextFieldExtent);
-		TextFieldExtent.setBounds (525, 200, 40, 23);
-
 		LabelMeasurementError = new Label (g_properties.getProperty("label.measurementerror."+language), Label.RIGHT);
-		LabelMeasurementError.setName ("LabelMeasurementError");
-		LabelMeasurementError.setFont (new Font ("Helvetica", 0, 12));
-		LabelMeasurementError.setVisible (false);
-		LabelMeasurementError.setForeground (new Color (0x000000));
-		LabelMeasurementError.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelMeasurementError);
-		LabelMeasurementError.setBounds (340, 226, 180, 23);
-
-		TextFieldMeasurementError = new TextField ("TextFieldMeasurementError");
-		TextFieldMeasurementError.setName ("TextFieldMeasurementError");
-		TextFieldMeasurementError.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldMeasurementError.setVisible (false);
-		TextFieldMeasurementError.setForeground (new Color (0x000000));
-		TextFieldMeasurementError.setBackground (new Color (0xffffff));
-		TextFieldMeasurementError.setText ("");
-		pane.add (TextFieldMeasurementError);
-		TextFieldMeasurementError.setBounds (525, 226, 40, 23);
-
 		LabelDistUnits = new Label (g_properties.getProperty("label.distunits."+language), Label.RIGHT);
-		LabelDistUnits.setName ("LabelDistUnits");
-		LabelDistUnits.setFont (new Font ("Helvetica", 0, 12));
-		LabelDistUnits.setVisible (false);
-		LabelDistUnits.setForeground (new Color (0x000000));
-		LabelDistUnits.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelDistUnits);
-		LabelDistUnits.setBounds (340, 255, 180, 27);
-
-		ChoiceDistUnits = new Choice ();
-		ChoiceDistUnits.setName ("ChoiceDistUnits");
-		ChoiceDistUnits.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceDistUnits.setVisible (false);
-		ChoiceDistUnits.setForeground (new Color (0x000000));
-		ChoiceDistUnits.setBackground (new Color (0xffffff));
-		ChoiceDistUnits.setVisible(false);
-		pane.add (ChoiceDistUnits);
-		ChoiceDistUnits.setBounds (525, 256, 60, 23);
-
 		LabelDistancePrecision = new Label (g_properties.getProperty("label.distprec."+language), Label.RIGHT);
-		LabelDistancePrecision.setName ("LabelDistancePrecision");
-		LabelDistancePrecision.setFont (new Font ("Helvetica", 0, 12));
-		LabelDistancePrecision.setVisible (false);
-		LabelDistancePrecision.setForeground (new Color (0x000000));
-		LabelDistancePrecision.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelDistancePrecision);
-		LabelDistancePrecision.setBounds (350, 280, 170, 23);
-
-		ChoiceDistancePrecision = new Choice ();
-		ChoiceDistancePrecision.setName ("ChoiceDistancePrecision");
-		ChoiceDistancePrecision.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceDistancePrecision.setVisible (false);
-		ChoiceDistancePrecision.setForeground (new Color (0x000000));
-		ChoiceDistancePrecision.setBackground (new Color (0xffffff));
-		ChoiceDistancePrecision.setVisible(false);
-		pane.add (ChoiceDistancePrecision);
-		ChoiceDistancePrecision.setBounds (525, 281, 90, 23);
-
-		ButtonCalculate = new Button(g_properties.getProperty("label.calculate."+language));
-		ButtonCalculate.setName ("ButtonCalculate");
-		ButtonCalculate.setFont (new Font ("Helvetica", 1, 12));
-		ButtonCalculate.setForeground (new Color (0x000000));
-		ButtonCalculate.setBackground (new Color (0xc6c6c6));
-		ButtonCalculate.setVisible (false);
-		pane.add(ButtonCalculate);
-		ButtonCalculate.setBounds (445, 343, 82, 26); 
-
-		ButtonPromote = new Button(g_properties.getProperty("label.promote."+language));
-		ButtonPromote.setName ("ButtonPromote");
-		ButtonPromote.setFont (new Font ("Helvetica", 1, 12));
-		ButtonPromote.setForeground (new Color (0x000000));
-		ButtonPromote.setBackground (new Color (0xc6c6c6));
-		ButtonPromote.setVisible (false);
-		pane.add(ButtonPromote);
-		ButtonPromote.setBounds (527, 343, 82, 26); 
-
-		PanelResults = new Panel ();
-		PanelResults.setName ("PanelResults");
-		PanelResults.setLayout(null);  
-		PanelResults.setFont (new Font ("Helvetica", 0, 12));
-		PanelResults.setVisible (false);
-		PanelResults.setForeground (new Color (0x000000));
-		pane.add (PanelResults);
-		PanelResults.setBounds (4, 322, 611, 77);
-
 		LabelCalcDecLat = new Label (g_properties.getProperty("label.declat."+language), Label.CENTER);
-		LabelCalcDecLat.setName ("LabelCalcDecLat");
-		LabelCalcDecLat.setFont (new Font ("Helvetica", 0, 12));
-		LabelCalcDecLat.setForeground (new Color (0x000000));
-		PanelResults.add (LabelCalcDecLat);
-		LabelCalcDecLat.setBounds (1, 3, 134, 18);
-
-		TextFieldCalcDecLat = new TextField ("TextFieldCalcDecLat");
-		TextFieldCalcDecLat.setName ("TextFieldCalcDecLat");
-		TextFieldCalcDecLat.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldCalcDecLat.setForeground (new Color (0x0000ff));
-		TextFieldCalcDecLat.setText ("");
-		TextFieldCalcDecLat.setEditable(false);
-		PanelResults.add (TextFieldCalcDecLat);
-		TextFieldCalcDecLat.setBounds (5, 21, 130, 25);
-
 		LabelCalcDecLong = new Label (g_properties.getProperty("label.declon."+language), Label.CENTER);
-		LabelCalcDecLong.setName ("LabelCalcDecLong");
-		LabelCalcDecLong.setFont (new Font ("Helvetica", 0, 12));
-		LabelCalcDecLong.setForeground (new Color (0x000000));
-		PanelResults.add (LabelCalcDecLong);
-		LabelCalcDecLong.setBounds (138, 3, 134, 18);
-
-		TextFieldCalcDecLong = new TextField ("TextFieldCalcDecLong");
-		TextFieldCalcDecLong.setName ("TextFieldCalcDecLong");
-		TextFieldCalcDecLong.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldCalcDecLong.setForeground (new Color (0x0000ff));
-		TextFieldCalcDecLong.setText ("");
-		TextFieldCalcDecLong.setEditable(false);
-		PanelResults.add (TextFieldCalcDecLong);
-		TextFieldCalcDecLong.setBounds (140, 21, 130, 25);
-
 		LabelCalcMaxError = new Label (g_properties.getProperty("label.maxerrdist."+language), Label.CENTER);
-		LabelCalcMaxError.setName ("LabelCalcMaxError");
-		LabelCalcMaxError.setFont (new Font ("Helvetica", 0, 12));
-		LabelCalcMaxError.setForeground (new Color (0x000000));
-		PanelResults.add (LabelCalcMaxError);
-		LabelCalcMaxError.setBounds (273, 3, 165, 18);
-
-		TextFieldCalcErrorDist = new TextField ("TextFieldCalcErrorDist");
-		TextFieldCalcErrorDist.setName ("TextFieldCalcErrorDist");
-		TextFieldCalcErrorDist.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldCalcErrorDist.setForeground (new Color (0x0000ff));
-		TextFieldCalcErrorDist.setText ("");
-		TextFieldCalcErrorDist.setEditable(false);
-		PanelResults.add (TextFieldCalcErrorDist);
-		TextFieldCalcErrorDist.setBounds (275, 21, 111, 25);
-
-		TextFieldCalcErrorUnits = new TextField ("TextFieldCalcErrorUnits");
-		TextFieldCalcErrorUnits.setName ("TextFieldCalcErrorUnits");
-		TextFieldCalcErrorUnits.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldCalcErrorUnits.setForeground (new Color (0x0000ff));
-		TextFieldCalcErrorUnits.setEditable(false);
-		PanelResults.add (TextFieldCalcErrorUnits);
-		TextFieldCalcErrorUnits.setBounds (390, 21, 46, 25);
-
-		TextFieldFullResult = new TextField ("TextFieldFullResult");
-		TextFieldFullResult.setName ("TextFieldFullResult");
-		TextFieldFullResult.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldFullResult.setForeground (new Color (0x0000ff));
-		TextFieldFullResult.setEditable(false);
-		PanelResults.add (TextFieldFullResult);
-		TextFieldFullResult.setBounds (5, 48, 602, 25);
-
+		
 		//=== Distance Converter Controls ===//
 		LabelDistanceConverter = new Label (g_properties.getProperty("label.distanceconverter."+language), Label.LEFT);
-		LabelDistanceConverter.setName ("LabelDistanceConverter");
-		LabelDistanceConverter.setFont (new Font ("Helvetica", 0, 12));
-		LabelDistanceConverter.setVisible (false);
-		LabelDistanceConverter.setForeground (new Color (0x000000));
-		LabelDistanceConverter.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelDistanceConverter);
-		LabelDistanceConverter.setBounds (10, 410, 160, 27);
-
 		TextFieldFromDistance = new TextField ("TextFieldFromDistance");
-		TextFieldFromDistance.setName ("TextFieldFromDistance");
-		TextFieldFromDistance.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldFromDistance.setVisible (false);
-		TextFieldFromDistance.setForeground (new Color (0x000000));
-		TextFieldFromDistance.setBackground (new Color (0xffffff));
-		TextFieldFromDistance.setText ("");
-		pane.add (TextFieldFromDistance);
-		TextFieldFromDistance.setBounds (180, 410, 80, 23);
-
 		ChoiceFromDistUnits = new Choice();
-		ChoiceFromDistUnits.setName ("ChoiceFromDistUnits");
-		ChoiceFromDistUnits.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceFromDistUnits.setVisible (false);
-		ChoiceFromDistUnits.setForeground (new Color (0x000000));
-		ChoiceFromDistUnits.setBackground (new Color (0xffffff));
-		ChoiceFromDistUnits.setVisible(false);
-		pane.add (ChoiceFromDistUnits);
-		ChoiceFromDistUnits.setBounds (265, 410, 60, 23);
-
 		LabelEquals = new Label ("=", Label.CENTER);
-		LabelEquals.setName ("LabelEquals");
-		LabelEquals.setFont (new Font ("Helvetica", 0, 12));
-		LabelEquals.setVisible (false);
-		LabelEquals.setForeground (new Color (0x000000));
-		LabelEquals.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelEquals);
-		LabelEquals.setBounds (325, 410, 20, 27);
-
 		TextFieldToDistance = new TextField ("TextFieldToDistance");
-		TextFieldToDistance.setName ("TextFieldToDistance");
-		TextFieldToDistance.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldToDistance.setVisible (false);
-		TextFieldToDistance.setForeground (new Color (0x0000ff));
-		TextFieldToDistance.setText ("");
-		TextFieldToDistance.setEditable(false);
-		pane.add (TextFieldToDistance);
-		TextFieldToDistance.setBounds (345, 410, 80, 23);
-		
 		ChoiceToDistUnits = new Choice();
-		ChoiceToDistUnits.setName ("ChoiceToDistUnits");
-		ChoiceToDistUnits.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceToDistUnits.setVisible (false);
-		ChoiceToDistUnits.setForeground (new Color (0x000000));
-		ChoiceToDistUnits.setBackground (new Color (0xffffff));
-		ChoiceToDistUnits.setVisible(false);
-		pane.add (ChoiceToDistUnits);
-		ChoiceToDistUnits.setBounds (430, 410, 60, 23);
 
 		//=== Scale Converter Controls ===//
 		LabelScaleConverter = new Label (g_properties.getProperty("label.scaleconverter."+language), Label.LEFT);
-		LabelScaleConverter.setName ("LabelScaleConverter");
-		LabelScaleConverter.setFont (new Font ("Helvetica", 0, 12));
-		LabelScaleConverter.setVisible (false);
-		LabelScaleConverter.setForeground (new Color (0x000000));
-		LabelScaleConverter.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelScaleConverter);
-		LabelScaleConverter.setBounds (10, 440, 160, 27);
-
 		TextFieldScaleFromDistance = new TextField ("TextFieldScaleFromDistance");
-		TextFieldScaleFromDistance.setName ("TextFieldScaleFromDistance");
-		TextFieldScaleFromDistance.setFont (new Font ("Helvetica", 0, 12));
-		TextFieldScaleFromDistance.setVisible (false);
-		TextFieldScaleFromDistance.setForeground (new Color (0x000000));
-		TextFieldScaleFromDistance.setBackground (new Color (0xffffff));
-		TextFieldScaleFromDistance.setText ("");
-		pane.add (TextFieldScaleFromDistance);
-		TextFieldScaleFromDistance.setBounds (180, 440, 80, 23);
-
 		ChoiceScaleFromDistUnits = new Choice();
-		ChoiceScaleFromDistUnits.setName ("ChoiceScaleFromDistUnits");
-		ChoiceScaleFromDistUnits.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceScaleFromDistUnits.setVisible (false);
-		ChoiceScaleFromDistUnits.setForeground (new Color (0x000000));
-		ChoiceScaleFromDistUnits.setBackground (new Color (0xffffff));
-		ChoiceScaleFromDistUnits.setVisible(false);
-		pane.add (ChoiceScaleFromDistUnits);
-		ChoiceScaleFromDistUnits.setBounds (265, 440, 60, 23);
-
 		ChoiceScale = new Choice();
-		ChoiceScale.setName ("ChoiceScale");
-		ChoiceScale.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceScale.setVisible (false);
-		ChoiceScale.setForeground (new Color (0x000000));
-		ChoiceScale.setBackground (new Color (0xffffff));
-		ChoiceScale.setVisible(false);
-		pane.add (ChoiceScale);
-		ChoiceScale.setBounds (325, 440, 120, 23);
-
 		LabelScaleEquals = new Label ("=", Label.CENTER);
-		LabelScaleEquals.setName ("LabelScaleEquals");
-		LabelScaleEquals.setFont (new Font ("Helvetica", 0, 12));
-		LabelScaleEquals.setVisible (false);
-		LabelScaleEquals.setForeground (new Color (0x000000));
-		LabelScaleEquals.setBackground (new Color (0xc0c0c0));
-		pane.add (LabelScaleEquals);
-		LabelScaleEquals.setBounds (445, 440, 20, 27);
-
 		TextFieldScaleToDistance = new TextField ("TextFieldScaleToDistance");
-		TextFieldScaleToDistance.setName ("TextFieldScaleToDistance");
-		TextFieldScaleToDistance.setFont (new Font ("Helvetica", 1, 12));
-		TextFieldScaleToDistance.setVisible (false);
-		TextFieldScaleToDistance.setForeground (new Color (0x0000ff));
-		TextFieldScaleToDistance.setText ("");
-		TextFieldScaleToDistance.setEditable(false);
-		pane.add (TextFieldScaleToDistance);
-		TextFieldScaleToDistance.setBounds (465, 440, 80, 23);
-		
 		ChoiceScaleToDistUnits = new Choice();
-		ChoiceScaleToDistUnits.setName ("ChoiceScaleToDistUnits");
-		ChoiceScaleToDistUnits.setFont (new Font ("Helvetica", 0, 12));
-		ChoiceScaleToDistUnits.setVisible (false);
-		ChoiceScaleToDistUnits.setForeground (new Color (0x000000));
-		ChoiceScaleToDistUnits.setBackground (new Color (0xffffff));
-		ChoiceScaleToDistUnits.setVisible(false);
-		pane.add (ChoiceScaleToDistUnits);
-		ChoiceScaleToDistUnits.setBounds (545, 440, 60, 23);
-
-		PanelResults.setBackground (new Color (0xc0c0c0));
-		PanelCoords.setBackground (new Color (0xc0c0c0));
-		PanelDecLatLong.setBackground (new Color (0xc0c0c0));
-		PanelDecMin.setBackground (new Color (0xc0c0c0));
-		PanelDDMMSS.setBackground (new Color (0xc0c0c0));
-		PanelCoordPrecision.setBackground (new Color (0xc0c0c0));
-		pane.setBackground (new Color (0xc0c0c0));
-
 		afterFormInitialize();
 		addListeners();
-		return pane;
 	}
 */
 /*
@@ -2355,15 +1546,6 @@ function setVariables( )
 
 	/*
 	//initialize the applet
-	public void init() {
-		Component contents = createComponents();
-		this.add(contents);
-		this.setVisible(true);
-		setIgnoreRepaint(true);
-		datumErrorInst=new Datumerror();
-		datumErrorInst.init();
-		datumErrorInst.create();
-	}
 
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -2386,115 +1568,47 @@ function setVariables( )
 	public void keyTyped(KeyEvent e) {
 	}
 
-	public void paint(Graphics g) {
-		super.paint (g);
-		if (!ChoiceOffsetEWDir.isShowing ()) {
-			ChoiceOffsetEWDir.setBounds (565, 173, 50, 23);
-		}
-		if(!ChoiceOffsetNSDir.isShowing ()) {
-			ChoiceOffsetNSDir.setBounds (565, 146, 50, 23);
-		}
-		if (!ChoiceCalcType.isShowing ()) {
-			ChoiceCalcType.setBounds (117, 33, 478, 23);
-			ChoiceCalcType.setVisible(true);
-		}
-		if (!ChoiceModel.isShowing ()) {
-			ChoiceModel.setBounds (125, 87, 490, 23);
-		}
-		if (!ChoiceCoordSource.isShowing ()) {
-			ChoiceCoordSource.setBounds (165, 146, 180, 23);
-		}
-		if (!ChoiceCoordSystem.isShowing ()) {
-			ChoiceCoordSystem.setBounds (165, 173, 180, 23);
-		}
-		if (!ChoiceDatum.isShowing ()) {
-			ChoiceDatum.setBounds (50, 53, 290, 23);
-			ChoiceDatum.setVisible(true);
-		}
-		if (!ChoiceDistUnits.isShowing ()) {
-			ChoiceDistUnits.setBounds (525, 256, 60, 23);
-		}
-		if (!ChoiceFromDistUnits.isShowing ()) {
-			ChoiceFromDistUnits.setBounds (265, 410, 60, 23);
-		}
-		if (!ChoiceToDistUnits.isShowing ()) {
-			ChoiceToDistUnits.setBounds (430, 410, 60, 23);
-		}
-		if (!ChoiceScaleFromDistUnits.isShowing ()) {
-			ChoiceScaleFromDistUnits.setBounds (265, 440, 60, 23);
-		}
-		if (!ChoiceScaleToDistUnits.isShowing ()) {
-			ChoiceScaleToDistUnits.setBounds (545, 440, 60, 23);
-		}
-		if (!ChoiceScale.isShowing ()) {
-			ChoiceScale.setBounds (325, 440, 120, 23);
-		}
-
-		if (!ChoiceDistancePrecision.isShowing ()) {
-			ChoiceDistancePrecision.setBounds (525, 281, 90, 23);
-		}
-		if (!ChoiceDirection.isShowing ()) {
-			ChoiceDirection.setBounds (455, 145, 110, 23);
-		}
-		if (!ChoiceLatDirMM.isShowing ()) {
-			ChoiceLatDirMM.setBounds (142, 2, 56, 23);
-			ChoiceLatDirMM.setVisible(true);
-		}
-		if (!ChoiceLongDirMM.isShowing ()) {
-			ChoiceLongDirMM.setBounds (142, 26, 56, 23);
-			ChoiceLongDirMM.setVisible(true);
-		}
-		if (!ChoiceLongDirDMS.isShowing ()) {
-			ChoiceLongDirDMS.setBounds (188, 26, 56, 23);
-			ChoiceLongDirDMS.setVisible(true);
-		}
-		if (!ChoiceLatDirDMS.isShowing ()) {
-			ChoiceLatDirDMS.setBounds (188, 2, 56, 23);
-			ChoiceLatDirDMS.setVisible(true);
-		}
-		if (!ChoiceLatPrecision.isShowing ()) {
-			ChoiceLatPrecision.setBounds (175, 4, 165, 23);
-			ChoiceLatPrecision.setVisible(true);
-		}
-	}
-
-	// Populate the Coordinate Precision Controls based on the Coordinate System
-	private void populateCoordinatePrecision( String system ){
-		ChoiceLatPrecision.removeAll();
-		int index = g_canonicalcoordsystems.indexOf(system);
-		if( index==0 ){
-			for(int i=0;i<g_canonicalddprec.size();i++){
-				ChoiceLatPrecision.addItem((String)g_canonicalddprec.get(i));
-			}
-			ChoiceLatPrecision.select(g_properties.getProperty("coordprec.dd.degree."+language));
-		} else if( index==1 ){
-			for(int i=0;i<g_canonicaldmsprec.size();i++){
-				ChoiceLatPrecision.addItem((String)g_canonicaldmsprec.get(i));
-			}
-			ChoiceLatPrecision.select(g_properties.getProperty("coordprec.dms.degree."+language));
-		} else if( index==2 ){
-			for(int i=0;i<g_canonicalddmprec.size();i++){
-				ChoiceLatPrecision.addItem((String)g_canonicalddmprec.get(i));
-			}
-			ChoiceLatPrecision.select(g_properties.getProperty("coordprec.ddm.degree."+language));
-		}
-	}
-
-	private void populateDistancePrecision( String units ){
-		ChoiceDistancePrecision.removeAll();
-		ChoiceDistancePrecision.addItem("100 "+units);
-		ChoiceDistancePrecision.addItem("10 "+units);
-		ChoiceDistancePrecision.addItem("1 "+units);
-		ChoiceDistancePrecision.addItem("1/2 "+units);
-		ChoiceDistancePrecision.addItem("1/3 "+units);
-		ChoiceDistancePrecision.addItem("1/4 "+units);
-		ChoiceDistancePrecision.addItem("1/8 "+units);
-		ChoiceDistancePrecision.addItem("1/10 "+units);
-		ChoiceDistancePrecision.addItem("1/100 "+units);
-		ChoiceDistancePrecision.addItem(g_properties.getProperty("coordprec.dd.exact."+language));
-		ChoiceDistancePrecision.select("1 "+units);
-	}
 */
+	// Populate the Coordinate Precision Controls based on the Coordinate System
+	function populateCoordinatePrecision( system )
+	{
+		uiClearSelect("ChoiceLatPrecision");
+		
+		var index = g_canonicalcoordsystems.indexOf(system);
+		if( index==0 ){
+			for( i=0;i<g_canonicalddprec.size();i++){
+				uiSelectAddExplicitItem("ChoiceLatPrecision", g_canonicalddprec.get(i));
+			}
+			uiSetSelectedValue("ChoiceLatPrecision", g_properties.getPropertyLang("coordprec.dd.degree"));
+		} else if( index==1 ){
+			for( i=0;i<g_canonicaldmsprec.size();i++){
+				uiSelectAddExplicitItem("ChoiceLatPrecision", g_canonicaldmsprec.get(i));
+			}
+			uiSetSelectedValue("ChoiceLatPrecision", g_properties.getPropertyLang("coordprec.dms.degree"));
+		} else if( index==2 ){
+			for( i=0;i<g_canonicalddmprec.size();i++){
+				uiSelectAddExplicitItem("ChoiceLatPrecision", g_canonicalddmprec.get(i));
+			}
+			uiSetSelectedValue("ChoiceLatPrecision", g_properties.getPropertyLang("coordprec.ddm.degree"));
+		}
+	}
+
+	function populateDistancePrecision( units )
+	{
+		uiClearSelect("ChoiceDistancePrecision");
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","100 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","10 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1/2 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1/3 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1/4 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1/8 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1/10 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision","1/100 " + units );
+		uiSelectAddExplicitItem("ChoiceDistancePrecision", g_properties.getPropertyLang("coordprec.dd.exact") );
+		uiSetSelectedValue("ChoiceDistancePrecision", "1 " + units );
+	}
+
 
 	function populateStableControls()
 	{
@@ -2504,355 +1618,357 @@ function setVariables( )
 		uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
 		uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
 		uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
+		uiSetSelectedIndex("ChoiceCalcType",0);
 		//ChoiceCalcType.select("");
 
 		// Coordinate System controls
 		uiClearSelect( "ChoiceCoordSystem");
-		uiSelectAddEmptyItem("ChoiceCoordSystem");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dms");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dd");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.ddm");
-
-		//BUGBUG add me back ChoiceCoordSystem.select(g_properties.getProperty("coordsys.dd."+language));
+		
+		uiSetSelectedValue("ChoiceCoordSystem", g_properties.getPropertyLang("coordsys.dd" ));
 
 		// Coordinate Source controls
 		uiClearSelect("ChoiceCoordSource");
 		for( i=0; i< g_canonicalsources.contents.length; i++){
 			uiSelectAddExplicitItem("ChoiceCoordSource", g_canonicalsources.contents[i] )
 		}
-		//BUGBUG add me back ChoiceCoordSource.select("gazetteer");
-/*
+		uiSetSelectedValue("ChoiceCoordSource", "gazetteer" );
+
 
 		// Datum controls
-		ChoiceDatum.removeAll();
-		ChoiceDatum.addItem(g_properties.getProperty("datum.notrecorded."+language));
-		ChoiceDatum.addItem("(WGS84) World Geodetic System 1984");
-		ChoiceDatum.addItem("(NAD83) North American 1983");
-		ChoiceDatum.addItem("(NAD27) North American 1927");
+		uiClearSelect("ChoiceDatum");
+		uiSelectAddItem("ChoiceDatum","datum.notrecorded");
 
-		ChoiceDatum.addItem("Adindan");
-		ChoiceDatum.addItem("Afgooye");
-		ChoiceDatum.addItem("Ain el Abd 1970");
-		ChoiceDatum.addItem("Airy 1830 ellipsoid");
-		ChoiceDatum.addItem("American Samoa 1962");
-		ChoiceDatum.addItem("Anna 1 Astro 1965");
-		ChoiceDatum.addItem("Antigua Island Astro 1943");
-		ChoiceDatum.addItem("Arc 1950");
-		ChoiceDatum.addItem("Arc 1960");
-		ChoiceDatum.addItem("Ascension Island 1958");
-		ChoiceDatum.addItem("Astro Beacon 'E' 1945");
-		ChoiceDatum.addItem("Astro DOS 71/4");
-		ChoiceDatum.addItem("Astro Tern Island (FRIG) 1961");
-		ChoiceDatum.addItem("Astronomic Station No. 1 1951");
-		ChoiceDatum.addItem("Astronomic Station No. 2 1951, Truk Island");
-		ChoiceDatum.addItem("Astronomic Station Ponape 1951");
-		ChoiceDatum.addItem("Astronomical Station 1952");
-		ChoiceDatum.addItem("(AGD66) Australian Geodetic 1966");
-		ChoiceDatum.addItem("(AGD84) Australian Geodetic 1984");
-		ChoiceDatum.addItem("Australian National ellipsoid");
-		ChoiceDatum.addItem("Ayabelle Lighthouse");
-		ChoiceDatum.addItem("Bekaa Valley 1920 (IGN)");
-		ChoiceDatum.addItem("Bellevue (IGN)");
-		ChoiceDatum.addItem("Bermuda 1957");
-		ChoiceDatum.addItem("Bessel 1841 ellipsoid (Namibia)");
-		ChoiceDatum.addItem("Bessel 1841 ellipsoid (non-Namibia)");
-		ChoiceDatum.addItem("Bissau");
-		ChoiceDatum.addItem("Bogota Observatory");
-		ChoiceDatum.addItem("Bukit Rimpah");
-		ChoiceDatum.addItem("Campo Inchauspe");
-		ChoiceDatum.addItem("Canton Astro 1966");
-		ChoiceDatum.addItem("Cape");
-		ChoiceDatum.addItem("Cape Canaveral");
-		ChoiceDatum.addItem("Carthage");
-		ChoiceDatum.addItem("Chatham Island Astro 1971");
-		ChoiceDatum.addItem("Chua Astro");
-		ChoiceDatum.addItem("Clarke 1858 ellipsoid");
-		ChoiceDatum.addItem("Clarke 1866 ellipsoid");
-		ChoiceDatum.addItem("Clarke 1880 ellipsoid");
-		ChoiceDatum.addItem("Co-Ordinate System 1937 of Estonia");
-		ChoiceDatum.addItem("Corrego Alegre");
-		ChoiceDatum.addItem("Dabola");
-		ChoiceDatum.addItem("Deception Island");
-		ChoiceDatum.addItem("Djakarta (Batavia)");
-		ChoiceDatum.addItem("DOS 1968");
-		ChoiceDatum.addItem("Easter Island 1967");
+		uiSelectAddExplicitItem("ChoiceDatum","(WGS84) World Geodetic System 1984");
+		uiSelectAddExplicitItem("ChoiceDatum","(NAD83) North American 1983");
+		uiSelectAddExplicitItem("ChoiceDatum","(NAD27) North American 1927");
 
-		ChoiceDatum.addItem("European 1950");
-		ChoiceDatum.addItem("European 1979");
+		uiSelectAddExplicitItem("ChoiceDatum","Adindan");
+		uiSelectAddExplicitItem("ChoiceDatum","Afgooye");
+		uiSelectAddExplicitItem("ChoiceDatum","Ain el Abd 1970");
+		uiSelectAddExplicitItem("ChoiceDatum","Airy 1830 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","American Samoa 1962");
+		uiSelectAddExplicitItem("ChoiceDatum","Anna 1 Astro 1965");
+		uiSelectAddExplicitItem("ChoiceDatum","Antigua Island Astro 1943");
+		uiSelectAddExplicitItem("ChoiceDatum","Arc 1950");
+		uiSelectAddExplicitItem("ChoiceDatum","Arc 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","Ascension Island 1958");
+		uiSelectAddExplicitItem("ChoiceDatum","Astro Beacon 'E' 1945");
+		uiSelectAddExplicitItem("ChoiceDatum","Astro DOS 71/4");
+		uiSelectAddExplicitItem("ChoiceDatum","Astro Tern Island (FRIG) 1961");
+		uiSelectAddExplicitItem("ChoiceDatum","Astronomic Station No. 1 1951");
+		uiSelectAddExplicitItem("ChoiceDatum","Astronomic Station No. 2 1951, Truk Island");
+		uiSelectAddExplicitItem("ChoiceDatum","Astronomic Station Ponape 1951");
+		uiSelectAddExplicitItem("ChoiceDatum","Astronomical Station 1952");
+		uiSelectAddExplicitItem("ChoiceDatum","(AGD66) Australian Geodetic 1966");
+		uiSelectAddExplicitItem("ChoiceDatum","(AGD84) Australian Geodetic 1984");
+		uiSelectAddExplicitItem("ChoiceDatum","Australian National ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Ayabelle Lighthouse");
+		uiSelectAddExplicitItem("ChoiceDatum","Bekaa Valley 1920 (IGN)");
+		uiSelectAddExplicitItem("ChoiceDatum","Bellevue (IGN)");
+		uiSelectAddExplicitItem("ChoiceDatum","Bermuda 1957");
+		uiSelectAddExplicitItem("ChoiceDatum","Bessel 1841 ellipsoid (Namibia)");
+		uiSelectAddExplicitItem("ChoiceDatum","Bessel 1841 ellipsoid (non-Namibia)");
+		uiSelectAddExplicitItem("ChoiceDatum","Bissau");
+		uiSelectAddExplicitItem("ChoiceDatum","Bogota Observatory");
+		uiSelectAddExplicitItem("ChoiceDatum","Bukit Rimpah");
+		uiSelectAddExplicitItem("ChoiceDatum","Campo Inchauspe");
+		uiSelectAddExplicitItem("ChoiceDatum","Canton Astro 1966");
+		uiSelectAddExplicitItem("ChoiceDatum","Cape");
+		uiSelectAddExplicitItem("ChoiceDatum","Cape Canaveral");
+		uiSelectAddExplicitItem("ChoiceDatum","Carthage");
+		uiSelectAddExplicitItem("ChoiceDatum","Chatham Island Astro 1971");
+		uiSelectAddExplicitItem("ChoiceDatum","Chua Astro");
+		uiSelectAddExplicitItem("ChoiceDatum","Clarke 1858 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Clarke 1866 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Clarke 1880 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Co-Ordinate System 1937 of Estonia");
+		uiSelectAddExplicitItem("ChoiceDatum","Corrego Alegre");
+		uiSelectAddExplicitItem("ChoiceDatum","Dabola");
+		uiSelectAddExplicitItem("ChoiceDatum","Deception Island");
+		uiSelectAddExplicitItem("ChoiceDatum","Djakarta (Batavia)");
+		uiSelectAddExplicitItem("ChoiceDatum","DOS 1968");
+		uiSelectAddExplicitItem("ChoiceDatum","Easter Island 1967");
 
-		ChoiceDatum.addItem("Everest ellipsoid (Brunei, Sabah, Sarawak)");
-		ChoiceDatum.addItem("Everest India 1830 ellipsoid");
-		ChoiceDatum.addItem("Everest India 1856 ellipsoid");
-		ChoiceDatum.addItem("Everest Pakistan ellipsoid");
-		ChoiceDatum.addItem("Everest ellipsoid (W. Malaysia, Singapore 1948)");
-		ChoiceDatum.addItem("Everest W. Malaysia 1969 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","European 1950");
+		uiSelectAddExplicitItem("ChoiceDatum","European 1979");
 
-		ChoiceDatum.addItem("Fort Thomas 1955");
-		ChoiceDatum.addItem("Gan 1970");
-		ChoiceDatum.addItem("Geodetic Datum 1949");
-		ChoiceDatum.addItem("Graciosa Base SW 1948");
+		uiSelectAddExplicitItem("ChoiceDatum","Everest ellipsoid (Brunei, Sabah, Sarawak)");
+		uiSelectAddExplicitItem("ChoiceDatum","Everest India 1830 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Everest India 1856 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Everest Pakistan ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Everest ellipsoid (W. Malaysia, Singapore 1948)");
+		uiSelectAddExplicitItem("ChoiceDatum","Everest W. Malaysia 1969 ellipsoid");
 
-		ChoiceDatum.addItem("GRS80 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Fort Thomas 1955");
+		uiSelectAddExplicitItem("ChoiceDatum","Gan 1970");
+		uiSelectAddExplicitItem("ChoiceDatum","Geodetic Datum 1949");
+		uiSelectAddExplicitItem("ChoiceDatum","Graciosa Base SW 1948");
 
-		ChoiceDatum.addItem("Guam 1963");
-		ChoiceDatum.addItem("Gunung Segara");
-		ChoiceDatum.addItem("GUX 1 Astro");
+		uiSelectAddExplicitItem("ChoiceDatum","GRS80 ellipsoid");
 
-		ChoiceDatum.addItem("Helmert 1906 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Guam 1963");
+		uiSelectAddExplicitItem("ChoiceDatum","Gunung Segara");
+		uiSelectAddExplicitItem("ChoiceDatum","GUX 1 Astro");
 
-		ChoiceDatum.addItem("Hito XVIII 1963");
-		ChoiceDatum.addItem("Hjorsey 1955");
-		ChoiceDatum.addItem("Hong Kong 1963");
+		uiSelectAddExplicitItem("ChoiceDatum","Helmert 1906 ellipsoid");
 
-		ChoiceDatum.addItem("Hough 1960 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Hito XVIII 1963");
+		uiSelectAddExplicitItem("ChoiceDatum","Hjorsey 1955");
+		uiSelectAddExplicitItem("ChoiceDatum","Hong Kong 1963");
 
-		ChoiceDatum.addItem("Hu-Tzu-Shan");
-		ChoiceDatum.addItem("Indian");
-		ChoiceDatum.addItem("Indian 1954");
-		ChoiceDatum.addItem("Indian 1960");
-		ChoiceDatum.addItem("Indian 1975");
-		ChoiceDatum.addItem("Indonesian 1974");
+		uiSelectAddExplicitItem("ChoiceDatum","Hough 1960 ellipsoid");
 
-		ChoiceDatum.addItem("International 1924 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Hu-Tzu-Shan");
+		uiSelectAddExplicitItem("ChoiceDatum","Indian");
+		uiSelectAddExplicitItem("ChoiceDatum","Indian 1954");
+		uiSelectAddExplicitItem("ChoiceDatum","Indian 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","Indian 1975");
+		uiSelectAddExplicitItem("ChoiceDatum","Indonesian 1974");
 
-		ChoiceDatum.addItem("Ireland 1965");
-		ChoiceDatum.addItem("ISTS 061 Astro 1968");
-		ChoiceDatum.addItem("ISTS 073 Astro 1969");
-		ChoiceDatum.addItem("Japanese Geodetic Datum 2000");
-		ChoiceDatum.addItem("Johnston Island 1961");
-		ChoiceDatum.addItem("Kandawala");
-		ChoiceDatum.addItem("Kapingamarangi Astronomic Station No. 3 1951");
-		ChoiceDatum.addItem("Kerguelen Island 1949");
-		ChoiceDatum.addItem("Kertau 1948");
-		ChoiceDatum.addItem("Korean Geodetic System 1995");
+		uiSelectAddExplicitItem("ChoiceDatum","International 1924 ellipsoid");
 
-		ChoiceDatum.addItem("Krassovsky 1940 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Ireland 1965");
+		uiSelectAddExplicitItem("ChoiceDatum","ISTS 061 Astro 1968");
+		uiSelectAddExplicitItem("ChoiceDatum","ISTS 073 Astro 1969");
+		uiSelectAddExplicitItem("ChoiceDatum","Japanese Geodetic Datum 2000");
+		uiSelectAddExplicitItem("ChoiceDatum","Johnston Island 1961");
+		uiSelectAddExplicitItem("ChoiceDatum","Kandawala");
+		uiSelectAddExplicitItem("ChoiceDatum","Kapingamarangi Astronomic Station No. 3 1951");
+		uiSelectAddExplicitItem("ChoiceDatum","Kerguelen Island 1949");
+		uiSelectAddExplicitItem("ChoiceDatum","Kertau 1948");
+		uiSelectAddExplicitItem("ChoiceDatum","Korean Geodetic System 1995");
 
-		ChoiceDatum.addItem("Kusaie Astro 1951");
-		ChoiceDatum.addItem("L.C. 5 Astro 1961");
-		ChoiceDatum.addItem("Leigon");
-		ChoiceDatum.addItem("Lemuta");
-		ChoiceDatum.addItem("Liberia 1964");
-		ChoiceDatum.addItem("Luzon");
-		ChoiceDatum.addItem("Mahe 1971");
-		ChoiceDatum.addItem("Massawa");
-		ChoiceDatum.addItem("Merchich");
-		ChoiceDatum.addItem("Midway Astro 1961");
-		ChoiceDatum.addItem("Minna");
+		uiSelectAddExplicitItem("ChoiceDatum","Krassovsky 1940 ellipsoid");
 
-		ChoiceDatum.addItem("Modified Airy ellipsoid");
-		ChoiceDatum.addItem("Modified Fischer 1960 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Kusaie Astro 1951");
+		uiSelectAddExplicitItem("ChoiceDatum","L.C. 5 Astro 1961");
+		uiSelectAddExplicitItem("ChoiceDatum","Leigon");
+		uiSelectAddExplicitItem("ChoiceDatum","Lemuta");
+		uiSelectAddExplicitItem("ChoiceDatum","Liberia 1964");
+		uiSelectAddExplicitItem("ChoiceDatum","Luzon");
+		uiSelectAddExplicitItem("ChoiceDatum","Mahe 1971");
+		uiSelectAddExplicitItem("ChoiceDatum","Massawa");
+		uiSelectAddExplicitItem("ChoiceDatum","Merchich");
+		uiSelectAddExplicitItem("ChoiceDatum","Midway Astro 1961");
+		uiSelectAddExplicitItem("ChoiceDatum","Minna");
 
-		ChoiceDatum.addItem("Montserrat Island Astro 1958");
-		ChoiceDatum.addItem("M'Poraloko");
-		ChoiceDatum.addItem("Nahrwan");
-		ChoiceDatum.addItem("Naparima, BWI");
-		ChoiceDatum.addItem("Naparima 1972");
-		ChoiceDatum.addItem("North Sahara 1959");
-		ChoiceDatum.addItem("Observatorio Meteorologico 1939");
-		ChoiceDatum.addItem("Ocotepeque 1935");
-		ChoiceDatum.addItem("Old Egyptian 1907");
-		ChoiceDatum.addItem("Old Hawaiian, Clarke 1866");
-		ChoiceDatum.addItem("Old Hawaiian, International 1924");
-		ChoiceDatum.addItem("Old Trinidad 1903");
-		ChoiceDatum.addItem("Oman");
-		ChoiceDatum.addItem("Ordnance Survey of Great Britain 1936");
-		ChoiceDatum.addItem("Pico de las Nieves");
-		ChoiceDatum.addItem("Pitcairn Astro 1967");
-		ChoiceDatum.addItem("Point 58");
-		ChoiceDatum.addItem("Point Noire 1958");
-		ChoiceDatum.addItem("Porto Santo 1936");
-		ChoiceDatum.addItem("Provisional South American 1956");
-		ChoiceDatum.addItem("Provisional South Chilean 1963");
-		ChoiceDatum.addItem("Puerto Rico");
-		ChoiceDatum.addItem("Qatar National");
-		ChoiceDatum.addItem("Qornoq");
-		ChoiceDatum.addItem("Reunion");
-		ChoiceDatum.addItem("Rome 1940");
-		ChoiceDatum.addItem("S-42 (Pulkovo 1942)");
-		ChoiceDatum.addItem("S-JTSK");
-		ChoiceDatum.addItem("Santo (DOS) 1965");
-		ChoiceDatum.addItem("Sao Braz");
-		ChoiceDatum.addItem("Sapper Hill 1943");
+		uiSelectAddExplicitItem("ChoiceDatum","Modified Airy ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Modified Fischer 1960 ellipsoid");
 
-		ChoiceDatum.addItem("Schwarzeck");
-		ChoiceDatum.addItem("Selvagem Grande 1938");
-		ChoiceDatum.addItem("Sierra Leone 1960");
-		ChoiceDatum.addItem("South American 1969");
-		ChoiceDatum.addItem("SIRGAS - South American Geocentric Reference System");
-		ChoiceDatum.addItem("South Asia");
-		ChoiceDatum.addItem("Tananarive Observatory 1925");
-		ChoiceDatum.addItem("Timbalai 1948");
-		ChoiceDatum.addItem("Tokyo");
-		ChoiceDatum.addItem("Tristan Astro 1968");
-		ChoiceDatum.addItem("Viti Levu 1916");
-		ChoiceDatum.addItem("Voirol 1874");
-		ChoiceDatum.addItem("Voirol 1960");
-		ChoiceDatum.addItem("Wake-Eniwetok 1960");
-		ChoiceDatum.addItem("Wake Island Astro 1952");
-		ChoiceDatum.addItem("(WGS66) World Geodetic System 1966");
-		ChoiceDatum.addItem("(WGS72) World Geodetic System 1972");
-		ChoiceDatum.addItem("Yacare");
-		ChoiceDatum.addItem("Zanderij");
-		ChoiceDatum.select(g_properties.getProperty("datum.notrecorded."+language));
+		uiSelectAddExplicitItem("ChoiceDatum","Montserrat Island Astro 1958");
+		uiSelectAddExplicitItem("ChoiceDatum","M'Poraloko");
+		uiSelectAddExplicitItem("ChoiceDatum","Nahrwan");
+		uiSelectAddExplicitItem("ChoiceDatum","Naparima, BWI");
+		uiSelectAddExplicitItem("ChoiceDatum","Naparima 1972");
+		uiSelectAddExplicitItem("ChoiceDatum","North Sahara 1959");
+		uiSelectAddExplicitItem("ChoiceDatum","Observatorio Meteorologico 1939");
+		uiSelectAddExplicitItem("ChoiceDatum","Ocotepeque 1935");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Egyptian 1907");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian, Clarke 1866");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian, International 1924");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Trinidad 1903");
+		uiSelectAddExplicitItem("ChoiceDatum","Oman");
+		uiSelectAddExplicitItem("ChoiceDatum","Ordnance Survey of Great Britain 1936");
+		uiSelectAddExplicitItem("ChoiceDatum","Pico de las Nieves");
+		uiSelectAddExplicitItem("ChoiceDatum","Pitcairn Astro 1967");
+		uiSelectAddExplicitItem("ChoiceDatum","Point 58");
+		uiSelectAddExplicitItem("ChoiceDatum","Point Noire 1958");
+		uiSelectAddExplicitItem("ChoiceDatum","Porto Santo 1936");
+		uiSelectAddExplicitItem("ChoiceDatum","Provisional South American 1956");
+		uiSelectAddExplicitItem("ChoiceDatum","Provisional South Chilean 1963");
+		uiSelectAddExplicitItem("ChoiceDatum","Puerto Rico");
+		uiSelectAddExplicitItem("ChoiceDatum","Qatar National");
+		uiSelectAddExplicitItem("ChoiceDatum","Qornoq");
+		uiSelectAddExplicitItem("ChoiceDatum","Reunion");
+		uiSelectAddExplicitItem("ChoiceDatum","Rome 1940");
+		uiSelectAddExplicitItem("ChoiceDatum","S-42 (Pulkovo 1942)");
+		uiSelectAddExplicitItem("ChoiceDatum","S-JTSK");
+		uiSelectAddExplicitItem("ChoiceDatum","Santo (DOS) 1965");
+		uiSelectAddExplicitItem("ChoiceDatum","Sao Braz");
+		uiSelectAddExplicitItem("ChoiceDatum","Sapper Hill 1943");
+
+		uiSelectAddExplicitItem("ChoiceDatum","Schwarzeck");
+		uiSelectAddExplicitItem("ChoiceDatum","Selvagem Grande 1938");
+		uiSelectAddExplicitItem("ChoiceDatum","Sierra Leone 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","South American 1969");
+		uiSelectAddExplicitItem("ChoiceDatum","SIRGAS - South American Geocentric Reference System");
+		uiSelectAddExplicitItem("ChoiceDatum","South Asia");
+		uiSelectAddExplicitItem("ChoiceDatum","Tananarive Observatory 1925");
+		uiSelectAddExplicitItem("ChoiceDatum","Timbalai 1948");
+		uiSelectAddExplicitItem("ChoiceDatum","Tokyo");
+		uiSelectAddExplicitItem("ChoiceDatum","Tristan Astro 1968");
+		uiSelectAddExplicitItem("ChoiceDatum","Viti Levu 1916");
+		uiSelectAddExplicitItem("ChoiceDatum","Voirol 1874");
+		uiSelectAddExplicitItem("ChoiceDatum","Voirol 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","Wake-Eniwetok 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","Wake Island Astro 1952");
+		uiSelectAddExplicitItem("ChoiceDatum","(WGS66) World Geodetic System 1966");
+		uiSelectAddExplicitItem("ChoiceDatum","(WGS72) World Geodetic System 1972");
+		uiSelectAddExplicitItem("ChoiceDatum","Yacare");
+		uiSelectAddExplicitItem("ChoiceDatum","Zanderij");
+		
+		uiSetSelectedValue("ChoiceDatum",g_properties.getPropertyLang("datum.notrecorded"));
 
 
 		// Distance Precision controls
 		populateDistancePrecision("km");
 
 		// Direction Precision controls
-		ChoiceDirection.removeAll();
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nearestdegree."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.n."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.e."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.s."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.w."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.ne."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.se."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.sw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nne."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.ene."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.ese."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.sse."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.ssw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.wsw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.wnw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nnw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nbe."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nebn."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nebe."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.ebn."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.ebs."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.sebe."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.sebs."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.sbe."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.sbw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.swbs."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.swbw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.wbs."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.wbn."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nwbw."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nwbn."+language));
-		ChoiceDirection.addItem(g_properties.getProperty("headings.nbw."+language));
-		ChoiceDirection.select(g_properties.getProperty("headings.n."+language));
-
+		uiClearSelect("ChoiceDirection");
+		
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nearestdegree"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.n"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.e"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.s"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.w"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.ne"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.se"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.sw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nne"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.ene"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.ese"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.sse"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.ssw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.wsw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.wnw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nnw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nbe"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nebn"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nebe"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.ebn"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.ebs"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.sebe"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.sebs"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.sbe"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.sbw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.swbs"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.swbw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.wbs"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.wbn"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nwbw"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nwbn"));
+		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nbw"));
+		
+		uiSetSelectedValue("ChoiceDirection",g_properties.getPropertyLang("headings.n"));
 		// Distance Units controls
-		ChoiceDistUnits.removeAll();
-		ChoiceDistUnits.addItem("km");
-		ChoiceDistUnits.addItem("m");
-		ChoiceDistUnits.addItem("mi");
-		ChoiceDistUnits.addItem("yds");
-		ChoiceDistUnits.addItem("ft");
-		ChoiceDistUnits.addItem("nm");
-		ChoiceDistUnits.select("km");
-
-		ChoiceFromDistUnits.removeAll();
-		ChoiceFromDistUnits.addItem("km");
-		ChoiceFromDistUnits.addItem("m");
-		ChoiceFromDistUnits.addItem("mi");
-		ChoiceFromDistUnits.addItem("yds");
-		ChoiceFromDistUnits.addItem("ft");
-		ChoiceFromDistUnits.addItem("nm");
-		ChoiceFromDistUnits.select("km");
-
-		ChoiceToDistUnits.removeAll();
-		ChoiceToDistUnits.addItem("km");
-		ChoiceToDistUnits.addItem("m");
-		ChoiceToDistUnits.addItem("mi");
-		ChoiceToDistUnits.addItem("yds");
-		ChoiceToDistUnits.addItem("ft");
-		ChoiceToDistUnits.addItem("nm");
-		ChoiceToDistUnits.select("km");
-
-		ChoiceScaleFromDistUnits.removeAll();
-		ChoiceScaleFromDistUnits.addItem("mm");
-		ChoiceScaleFromDistUnits.addItem("cm");
-		ChoiceScaleFromDistUnits.addItem("in");
-		ChoiceScaleFromDistUnits.select("mm");
-
-		ChoiceScale.removeAll();
-		ChoiceScale.addItem("1:1000");
-		ChoiceScale.addItem("1:1200");
-		ChoiceScale.addItem("1:2000");
-		ChoiceScale.addItem("1:2400");
-		ChoiceScale.addItem("1:2500");
-		ChoiceScale.addItem("1:4800");
-		ChoiceScale.addItem("1:5000");
-		ChoiceScale.addItem("1:9600");
-		ChoiceScale.addItem("1:10000");
-		ChoiceScale.addItem("1:12000");
-		ChoiceScale.addItem("1:20000");
-		ChoiceScale.addItem("1:24000");
-		ChoiceScale.addItem("1:25000");
-		ChoiceScale.addItem("1:32500");
-		ChoiceScale.addItem("1:40000");
-		ChoiceScale.addItem("1:50000");
-		ChoiceScale.addItem("1:60000");
-		ChoiceScale.addItem("1:62500");
-		ChoiceScale.addItem("1:63600");
-		ChoiceScale.addItem("1:80000");
-		ChoiceScale.addItem("1:100000");
-		ChoiceScale.addItem("1:120000");
-		ChoiceScale.addItem("1:125000");
-		ChoiceScale.addItem("1:150000");
-		ChoiceScale.addItem("1:180000");
-		ChoiceScale.addItem("1:200000");
-		ChoiceScale.addItem("1:250000");
-		ChoiceScale.addItem("1:500000");
-		ChoiceScale.addItem("1:1000000");
-		ChoiceScale.addItem("1:1500000");
-		ChoiceScale.addItem("1:2500000");
-		ChoiceScale.addItem("1:3000000");
-		ChoiceScale.select("1:24000");
-
-		ChoiceScaleToDistUnits.removeAll();
-		ChoiceScaleToDistUnits.addItem("km");
-		ChoiceScaleToDistUnits.addItem("m");
-		ChoiceScaleToDistUnits.addItem("mi");
-		ChoiceScaleToDistUnits.addItem("yds");
-		ChoiceScaleToDistUnits.addItem("ft");
-		ChoiceScaleToDistUnits.addItem("nm");
-		ChoiceScaleToDistUnits.select("km");
-
+		uiClearSelect("ChoiceDistUnits");
+		
+		uiSelectAddExplicitItem("ChoiceDistUnits","km");
+		uiSelectAddExplicitItem("ChoiceDistUnits","m");
+		uiSelectAddExplicitItem("ChoiceDistUnits","mi");
+		uiSelectAddExplicitItem("ChoiceDistUnits","yds");
+		uiSelectAddExplicitItem("ChoiceDistUnits","ft");
+		uiSelectAddExplicitItem("ChoiceDistUnits","nm");
+		
+		uiSetSelectedValue("ChoiceDistUnits","km");
+		uiClearSelect("ChoiceFromDistUnits");
+		
+		uiSelectAddExplicitItem("ChoiceFromDistUnits","km");
+		uiSelectAddExplicitItem("ChoiceFromDistUnits","m");
+		uiSelectAddExplicitItem("ChoiceFromDistUnits","mi");
+		uiSelectAddExplicitItem("ChoiceFromDistUnits","yds");
+		uiSelectAddExplicitItem("ChoiceFromDistUnits","ft");
+		uiSelectAddExplicitItem("ChoiceFromDistUnits","nm");
+		
+		uiSetSelectedValue("ChoiceFromDistUnits","km");
+		uiClearSelect("ChoiceToDistUnits");
+		
+		uiSelectAddExplicitItem("ChoiceToDistUnits","km");
+		uiSelectAddExplicitItem("ChoiceToDistUnits","m");
+		uiSelectAddExplicitItem("ChoiceToDistUnits","mi");
+		uiSelectAddExplicitItem("ChoiceToDistUnits","yds");
+		uiSelectAddExplicitItem("ChoiceToDistUnits","ft");
+		uiSelectAddExplicitItem("ChoiceToDistUnits","nm");
+		
+		uiSetSelectedValue("ChoiceToDistUnits","km");
+		uiClearSelect("ChoiceScaleFromDistUnits");
+		
+		uiSelectAddExplicitItem("ChoiceScaleFromDistUnits","mm");
+		uiSelectAddExplicitItem("ChoiceScaleFromDistUnits","cm");
+		uiSelectAddExplicitItem("ChoiceScaleFromDistUnits","in");
+		
+		uiSetSelectedValue("ChoiceScaleFromDistUnits","mm");
+		uiClearSelect("ChoiceScale");
+		
+		uiSelectAddExplicitItem("ChoiceScale","1:1000");
+		uiSelectAddExplicitItem("ChoiceScale","1:1200");
+		uiSelectAddExplicitItem("ChoiceScale","1:2000");
+		uiSelectAddExplicitItem("ChoiceScale","1:2400");
+		uiSelectAddExplicitItem("ChoiceScale","1:2500");
+		uiSelectAddExplicitItem("ChoiceScale","1:4800");
+		uiSelectAddExplicitItem("ChoiceScale","1:5000");
+		uiSelectAddExplicitItem("ChoiceScale","1:9600");
+		uiSelectAddExplicitItem("ChoiceScale","1:10000");
+		uiSelectAddExplicitItem("ChoiceScale","1:12000");
+		uiSelectAddExplicitItem("ChoiceScale","1:20000");
+		uiSelectAddExplicitItem("ChoiceScale","1:24000");
+		uiSelectAddExplicitItem("ChoiceScale","1:25000");
+		uiSelectAddExplicitItem("ChoiceScale","1:32500");
+		uiSelectAddExplicitItem("ChoiceScale","1:40000");
+		uiSelectAddExplicitItem("ChoiceScale","1:50000");
+		uiSelectAddExplicitItem("ChoiceScale","1:60000");
+		uiSelectAddExplicitItem("ChoiceScale","1:62500");
+		uiSelectAddExplicitItem("ChoiceScale","1:63600");
+		uiSelectAddExplicitItem("ChoiceScale","1:80000");
+		uiSelectAddExplicitItem("ChoiceScale","1:100000");
+		uiSelectAddExplicitItem("ChoiceScale","1:120000");
+		uiSelectAddExplicitItem("ChoiceScale","1:125000");
+		uiSelectAddExplicitItem("ChoiceScale","1:150000");
+		uiSelectAddExplicitItem("ChoiceScale","1:180000");
+		uiSelectAddExplicitItem("ChoiceScale","1:200000");
+		uiSelectAddExplicitItem("ChoiceScale","1:250000");
+		uiSelectAddExplicitItem("ChoiceScale","1:500000");
+		uiSelectAddExplicitItem("ChoiceScale","1:1000000");
+		uiSelectAddExplicitItem("ChoiceScale","1:1500000");
+		uiSelectAddExplicitItem("ChoiceScale","1:2500000");
+		uiSelectAddExplicitItem("ChoiceScale","1:3000000");
+		
+		uiSetSelectedValue("ChoiceScale","1:24000");
+		uiClearSelect("ChoiceScaleToDistUnits");
+		
+		uiSelectAddExplicitItem("ChoiceScaleToDistUnits","km");
+		uiSelectAddExplicitItem("ChoiceScaleToDistUnits","m");
+		uiSelectAddExplicitItem("ChoiceScaleToDistUnits","mi");
+		uiSelectAddExplicitItem("ChoiceScaleToDistUnits","yds");
+		uiSelectAddExplicitItem("ChoiceScaleToDistUnits","ft");
+		uiSelectAddExplicitItem("ChoiceScaleToDistUnits","nm");
+		
+		uiSetSelectedValue("ChoiceScaleToDistUnits","km");
 		// Lat/Long Direction controls
-		ChoiceLatDirMM.removeAll();
-		ChoiceLatDirMM.addItem(g_properties.getProperty("headings.n."+language));
-		ChoiceLatDirMM.addItem(g_properties.getProperty("headings.s."+language));
-//		ChoiceLatDirMM.addItem("N");
-//		ChoiceLatDirMM.addItem("S");
+		uiClearSelect("ChoiceLatDirMM");
+		
+		uiSelectAddExplicitItem("ChoiceLatDirMM",g_properties.getPropertyLang("headings.n"));
+		uiSelectAddExplicitItem("ChoiceLatDirMM",g_properties.getPropertyLang("headings.s"));
 
-		ChoiceLongDirMM.removeAll();
-		ChoiceLongDirMM.addItem(g_properties.getProperty("headings.w."+language));
-		ChoiceLongDirMM.addItem(g_properties.getProperty("headings.e."+language));
-//		ChoiceLongDirMM.addItem("W");
-//		ChoiceLongDirMM.addItem("E");
+		uiClearSelect("ChoiceLongDirMM");
+		
+		uiSelectAddExplicitItem("ChoiceLongDirMM",g_properties.getPropertyLang("headings.w"));
+		uiSelectAddExplicitItem("ChoiceLongDirMM",g_properties.getPropertyLang("headings.e"));
 
-		ChoiceLatDirDMS.removeAll();
-		ChoiceLatDirDMS.addItem(g_properties.getProperty("headings.n."+language));
-		ChoiceLatDirDMS.addItem(g_properties.getProperty("headings.s."+language));
-//		ChoiceLatDirDMS.addItem("N");
-//		ChoiceLatDirDMS.addItem("S");
+		uiClearSelect("ChoiceLatDirDMS");
+		
+		uiSelectAddExplicitItem("ChoiceLatDirDMS",g_properties.getPropertyLang("headings.n"));
+		uiSelectAddExplicitItem("ChoiceLatDirDMS",g_properties.getPropertyLang("headings.s"));
 
-		ChoiceLongDirDMS.removeAll();
-		ChoiceLongDirDMS.addItem(g_properties.getProperty("headings.w."+language));
-		ChoiceLongDirDMS.addItem(g_properties.getProperty("headings.e."+language));
-//		ChoiceLongDirDMS.addItem("W");
-//		ChoiceLongDirDMS.addItem("E");
+		uiClearSelect("ChoiceLongDirDMS");
+		
+		uiSelectAddExplicitItem("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.w"));
+		uiSelectAddExplicitItem("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.e"));
 
 		// Offset Direction Controls
-		ChoiceOffsetNSDir.removeAll();
-		ChoiceOffsetNSDir.addItem(g_properties.getProperty("headings.n."+language));
-		ChoiceOffsetNSDir.addItem(g_properties.getProperty("headings.s."+language));
-		ChoiceOffsetEWDir.removeAll();
-		ChoiceOffsetEWDir.addItem(g_properties.getProperty("headings.w."+language));
-		ChoiceOffsetEWDir.addItem(g_properties.getProperty("headings.e."+language));
-//		ChoiceOffsetNSDir.addItem("N");
-//		ChoiceOffsetNSDir.addItem("S");
-//		ChoiceOffsetEWDir.addItem("W");
-//		ChoiceOffsetEWDir.addItem("E");
-
-*/
+		uiClearSelect("ChoiceOffsetNSDir");
+		
+		uiSelectAddExplicitItem("ChoiceOffsetNSDir",g_properties.getPropertyLang("headings.n"));
+		uiSelectAddExplicitItem("ChoiceOffsetNSDir",g_properties.getPropertyLang("headings.s"));
+		
+		uiClearSelect("ChoiceOffsetEWDir");
+		
+		uiSelectAddExplicitItem("ChoiceOffsetEWDir",g_properties.getPropertyLang("headings.w"));
+		uiSelectAddExplicitItem("ChoiceOffsetEWDir",g_properties.getPropertyLang("headings.e"));
 	}
 
 
@@ -2945,7 +2061,7 @@ function setVariables( )
 	}
 
 	//STEP 1 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step0_Visibility_Init( v )
+	function Step0_Visibility_InitDONTUSE( v )
 	{
 		setVisibility( "ChoiceLanguage", true );
 //ALWAYS VISIBLE		LabelVersion
@@ -2958,7 +2074,7 @@ function setVariables( )
 		Step2Controls_SetVisible( false );
 	}
 
-	function Step0_Visibility_ChoiceMade( v )
+	function Step0_Visibility_ChoiceMadeDONTUSE( v )
 	{
 		setVisibility( "ChoiceLanguage", true );
 //ALWAYS VISIBLE		LabelVersion
@@ -2973,7 +2089,7 @@ function setVariables( )
 	}
 	
 	//STEP 2 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step1Controls_SetVisible( v )
+	function Step1Controls_SetVisibleDONTUSE( v )
 	{		
 		setVisibility( "LabelModel", v );
 		setVisibility( "ChoiceModel", v );
@@ -2981,7 +2097,7 @@ function setVariables( )
 	}
 
 	//STEP 3 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step2Controls_SetVisible( v )
+	function Step2Controls_SetVisibleDONTUSE( v )
 	{
 		/*step cero
 		ChoiceLanguage

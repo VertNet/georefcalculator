@@ -6,7 +6,15 @@ g_factory.makeArrayList = function( name, source )
 		al.contents = [];
 		al.name = name;
 		al.source = source;
+		
+		//Redundant with .size() on purpose
 		al.length = function( )
+		{
+			return this.contents.length;
+		};
+		
+		//Redundant with .length() on purpose
+		al.size = function( )
 		{
 			return this.contents.length;
 		};
@@ -15,6 +23,12 @@ g_factory.makeArrayList = function( name, source )
 		{
 			this.contents.push( source );
 		};
+		
+		al.get = function( i )
+		{
+			return this.contents[i];
+		};
+
 		al.clear = function()
 		{
 			this.contents = [];
