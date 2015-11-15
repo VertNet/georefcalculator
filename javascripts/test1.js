@@ -154,141 +154,6 @@
 		TextFieldFullResult.setText(resultstr);//EDIT
 	}
 */
-	/*void ChoiceCalcType_itemStateChanged(String value){
-		cleanCalcTypeSlate();
-
-		if( value.equals("") ){
-			LabelStepZero.setVisible(true);
-			return;
-		} else {
-			LabelStepZero.setVisible(false);
-			LabelTitle.setVisible(true);
-			ChoiceModel.setVisible(true);
-			LabelModel.setVisible(true);
-			LabelStepOne.setVisible(true);
-		}
-
-		ChoiceModel.removeAll();
-
-		ChoiceModel.addItem("");
-		int index=canonicalcalctypes.indexOf(value);
-		if( index==0 ){
-//			if( value.equals("Error only - enter Lat/Long for the actual locality") ){
-			ChoiceModel.addItem(props.getProperty("loctype.coordonly."+language));
-			ChoiceModel.addItem(props.getProperty("loctype.namedplaceonly."+language));
-			ChoiceModel.addItem(props.getProperty("loctype.distanceonly."+language));
-			ChoiceModel.addItem(props.getProperty("loctype.distalongpath."+language));
-			lblT2Dec_Lat.setText(props.getProperty("label.lat."+language));
-			lblT2Dec_Long.setText(props.getProperty("label.lon."+language));
-//			lblT2Dec_Lat.setText("Latitude");
-//			lblT2Dec_Long.setText("Longitude");
-		}
-		ChoiceModel.addItem(props.getProperty("loctype.orthodist."+language));
-		ChoiceModel.addItem(props.getProperty("loctype.distatheading."+language));
-		ChoiceModel.select(0);
-	}*/
-
-	/*void ChoiceCoordSource_itemStateChanged(String value){
-		newModelChosen( (String)ChoiceModel.getSelectedItem() );
-		clearResults();
-	}*/
-
-			 
-	function onCoordSystemSelect( )
-	{
-		var value = uiGetSelectedText("ChoiceCoordSystem");
-		clearResults();
-		showRelevantCoordinates();
-		populateCoordinatePrecision(value);
-		
-		//BUGBUG CRITICAL to add these back in
-		//testLatLongLimits();
-		//translateCoords();
-	}
-
-	/*void ChoiceDatum_itemStateChanged(String value){
-		clearResults();
-	}*/
-
-	/*void ChoiceDirection_itemStateChanged(String value){
-		clearResults();
-		int index = canonicalcalctypes.indexOf(value);
-		if( index==0 ){
-//			if( value.equals("Error only - enter Lat/Long for the actual locality") ){
-			showDirectionPrecision(true);
-		} else {
-			showDirection(true);
-		}
-	}*/
-
-	/*void ChoiceDistancePrecision_itemStateChanged(String value ){
-		clearResults();
-	}*/
-/*
-	void ChoiceDistUnits_itemStateChanged(String value){
-		clearResults();
-		populateDistancePrecision(value);
-	}
-
-	void ChoiceLatDirDMS_itemStateChanged(String value){
-		clearResults();
-		ChoiceLatDirMM.select(value);
-	}
-
-	void ChoiceLatDirMM_itemStateChanged(String value){
-		clearResults();
-		ChoiceLatDirDMS.select(value);
-	}
-
-	void ChoiceLatPrecision_itemStateChanged(String value){
-		clearResults();
-	}
-
-	void ChoiceLongDirDMS_itemStateChanged(String value ){
-		clearResults();
-		ChoiceLongDirMM.select(value);
-	}
-
-	void ChoiceLongDirMM_itemStateChanged(String value ){
-		clearResults();
-		ChoiceLongDirDMS.select(value);
-	}
-
-	void ChoiceLanguage_itemStateChanged(int value )throws ParseException{
-		newLanguageChosen(value);
-	}
-
-	void ChoiceModel_itemStateChanged(String value ){
-		newModelChosen(value);
-	}
-
-	void ChoiceFromDistUnits_itemStateChanged(String value){
-		convertDistance();
-	}
-	void ChoiceToDistUnits_itemStateChanged(String value){
-		convertDistance();
-	}
-
-	void ChoiceScaleFromDistUnits_itemStateChanged(String value){
-		convertScale();
-	}
-	void ChoiceScaleToDistUnits_itemStateChanged(String value){
-		convertScale();
-	}
-	void ChoiceScale_itemStateChanged(String value){
-		convertScale();
-	}
-
-
-	void ChoiceOffsetEWDir_itemStateChanged(String value ){
-		clearResults();
-	}
-
-	void ChoiceOffsetNSDir_itemStateChanged(String value ){
-		clearResults();
-	}
-
-*/
 
 	function convertFromFeetTo( m, units ){
 		//BUGBUG units. is a clasee so the func call will fail
@@ -1991,10 +1856,6 @@
 		clearResults();
 	}
 
-	public void itemStateChanged(ItemEvent e){
-		ActionEvent ae = new ActionEvent(e.getSource(),e.getID(),null);
-		actionPerformed(ae);
-	}
 
 	public void errorDialog(String error, String title, int style){
 		Frame f=null;
@@ -2079,28 +1940,8 @@
 //		populateCoordinatePrecision("decimal degrees");
 	}
 
-	void ButtonCalculate_afterActionPerformed() throws ParseException{
-		clearResults();
-		calculateResults();
-		showResults(true);
-	}
-
-	void ButtonPromote_afterActionPerformed() throws ParseException{
-//		newdecimallatitude = decimallatitude;
-//		newdecimallongitude = decimallongitude;
-		lastcoordsystem = 1;
-//		TextFieldCalcDecLat.setText(formatCalcDec.format(newdecimallatitude));
-//		TextFieldCalcDecLong.setText(formatCalcDec.format(newdecimallongitude));
-
-		txtT2Dec_Lat.setText(formatCalcDec.format(newdecimallatitude));
-		txtT2Dec_Long.setText(formatCalcDec.format(newdecimallongitude));
-		try {
-			ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-	}
 */
+
 /*
 	private void calculateMaxErrorDistance() throws ParseException {
 		maxerrordistance=0.0;

@@ -255,7 +255,7 @@ function uiEmptyLabel( name )
 
 function uiEmptyTextElement( name )
 {
-	return uiSetElementValue( name, "" );
+	return uiEmptyLabel( name );
 	/*var sel = document.getElementById( name );
 	//BUGBUG we should throw an error if we cant find name.
 	if( sel )
@@ -783,64 +783,92 @@ function setVariables( )
 		uiSetSelectedIndex("ChoiceModel", 0 );
 	}
 
-	/*void ChoiceCoordSource_itemStateChanged(String value){
-		newModelChosen( (String)ChoiceModel.getSelectedItem() );
+	//*void ChoiceCoordSource_itemStateChanged(String value)
+	function onCoordSourceSelect()
+	{
+		//var value;
+		var model = uiGetSelectedText("ChoiceModel");
+		newModelChosen( model );
 		clearResults();
-	}*/
+	}
 
 
-	/*void ChoiceDatum_itemStateChanged(String value){
+	//void ChoiceDatum_itemStateChanged(String value){
+	function onDatumSelect()
+	{
 		clearResults();
-	}*/
+	}
 
-	/*void ChoiceDirection_itemStateChanged(String value){
+	//void ChoiceDirection_itemStateChanged(String value){
+	function onDirectionSelect()
+	{
 		clearResults();
-		int index = g_canonicalcalctypes.indexOf(value);
+		var index = g_canonicalcalctypes.indexOf(value);
 		if( index==0 ){
 //			if( value.equals("Error only - enter Lat/Long for the actual locality") ){
 			showDirectionPrecision(true);
 		} else {
 			showDirection(true);
 		}
-	}*/
+	}
 
-	/*void ChoiceDistancePrecision_itemStateChanged(String value ){
+	//void ChoiceDistancePrecision_itemStateChanged(String value ){
+	function onDistancePrecisionSelect()
+	{	
 		clearResults();
-	}*/
-/*
-	void ChoiceDistUnits_itemStateChanged(String value){
+	}
+
+	//void ChoiceDistUnits_itemStateChanged(String value){
+	function onDistUnitsSelect()
+	{
+		var value = uiGetSelectedText("ChoiceDistUnits");
 		clearResults();
 		populateDistancePrecision(value);
 	}
 
-	void ChoiceLatDirDMS_itemStateChanged(String value){
+	//void ChoiceLatDirDMS_itemStateChanged(String value){
+	function onLatDirDMSSelect()
+	{
+		var value = uiGetSelectedText("ChoiceLatDirDMS");
 		clearResults();
-		ChoiceLatDirMM.select(value);
+		uiSetSelectedValue("ChoiceLatDirMM", value);
 	}
 
-	void ChoiceLatDirMM_itemStateChanged(String value){
+	function onLatDirMMSelect()
+	{
+		var value = uiGetSelectedText("ChoiceLatDirMM");
 		clearResults();
-		ChoiceLatDirDMS.select(value);
+		uiSetSelectedValue("ChoiceLatDirDMS", value);
 	}
 
-	void ChoiceLatPrecision_itemStateChanged(String value){
+	//void ChoiceLatPrecision_itemStateChanged(String value){
+	function onLatPrecisionSelect()
+	{
 		clearResults();
 	}
 
-	void ChoiceLongDirDMS_itemStateChanged(String value ){
+	//void ChoiceLongDirDMS_itemStateChanged(String value ){
+	function onLongDirDMSSelect()
+	{
 		clearResults();
-		ChoiceLongDirMM.select(value);
+		var value = uiGetSelectedText("ChoiceLongDirDMS");
+		uiSetSelectedValue("ChoiceLongDirMM")
 	}
 
-	void ChoiceLongDirMM_itemStateChanged(String value ){
+	//void ChoiceLongDirMM_itemStateChanged(String value ){
+	function onLongDirMMSelect()
+	{
 		clearResults();
-		ChoiceLongDirDMS.select(value);
+		var value = uiGetSelectedText("ChoiceLongDirMM");
+		uiSetSelectedValue("ChoiceLongDirDMS",value)
 	}
 
-	void ChoiceLanguage_itemStateChanged(int value )throws ParseException{
-		newLanguageChosen(value);
-	}
-*/
+	//void ChoiceLanguage_itemStateChanged(int value )throws ParseException{
+	//function onLanguage_itemStateChanged(int value 
+	//throws ParseException{
+		//newLanguageChosen(value);
+	//}
+
 //	function newLanguageChosen( value ) was this signature but "value" is not used  //throws ParseException{
 	function newLanguageChosen( ){
 
@@ -1222,15 +1250,34 @@ function setVariables( )
 		setVisibility("ButtonPromote",true);
 		showResults(true);
 	}
-/*
-	void ChoiceOffsetEWDir_itemStateChanged(String value ){
+
+	//void ChoiceOffsetEWDir_itemStateChanged(String value ){
+	function onOffsetEWDirSelect()
+	{
 		clearResults();
 	}
 
-	void ChoiceOffsetNSDir_itemStateChanged(String value ){
+	//void ChoiceOffsetNSDir_itemStateChanged(String value ){
+	function onOffsetNSDirSelect()
+	{
 		clearResults();
 	}
-*/
+
+
+	//void ChoiceCoordSystem_itemStateChanged(String value) throws ParseException{
+	function onCoordSystemSelect( )
+	{
+		var value = uiGetSelectedText("ChoiceCoordSystem");
+		clearResults();
+		showRelevantCoordinates();
+		populateCoordinatePrecision(value);
+		
+		//BUGBUG CRITICAL to add these back in
+		//testLatLongLimits();
+		//translateCoords();
+	}
+
+
 //	private void cleanCalcTypeSlate(){
 	function cleanCalcTypeSlate(){
 		cleanSlate();
@@ -3001,6 +3048,7 @@ function setVariables( )
 	}
 */
 
+
 /*
 	private void translateCoords() throws ParseException{
 		double ddeclat = 0;
@@ -3312,94 +3360,8 @@ function setVariables( )
 		}
 	}
 	*/
+	
 	/*
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == ChoiceLanguage ){
-			try {
-				ChoiceLanguage_itemStateChanged(ChoiceLanguage.getSelectedIndex());				
-			} catch (ParseException e2){
-				e2.printStackTrace();
-			}
-		}
-		if (e.getSource() == ButtonCalculate) {
-			try {
-				ButtonCalculate_afterActionPerformed();
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if (e.getSource() == ButtonPromote) {
-			try {
-				ButtonPromote_afterActionPerformed();
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if (e.getSource() == ChoiceCoordSystem) {
-			try {
-				ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if (e.getSource() == ChoiceModel) {
-			ChoiceModel_itemStateChanged((String)ChoiceModel.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceDistUnits) {
-			ChoiceDistUnits_itemStateChanged((String)ChoiceDistUnits.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceFromDistUnits) {
-			ChoiceFromDistUnits_itemStateChanged((String)ChoiceFromDistUnits.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceToDistUnits) {
-			ChoiceToDistUnits_itemStateChanged((String)ChoiceToDistUnits.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceScaleFromDistUnits) {
-			ChoiceScaleFromDistUnits_itemStateChanged((String)ChoiceScaleFromDistUnits.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceScaleToDistUnits) {
-			ChoiceScaleToDistUnits_itemStateChanged((String)ChoiceScaleToDistUnits.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceScale) {
-			ChoiceScale_itemStateChanged((String)ChoiceScale.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceLatDirDMS) {
-			ChoiceLatDirDMS_itemStateChanged((String)ChoiceLatDirDMS.getSelectedItem());
-		}
-		if (e.getSource() == ChoiceLatDirMM) {
-			ChoiceLatDirMM_itemStateChanged((String)ChoiceLatDirMM.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceLongDirMM) {
-			ChoiceLongDirMM_itemStateChanged((String)ChoiceLongDirMM.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceLongDirDMS) {
-			ChoiceLongDirDMS_itemStateChanged((String)ChoiceLongDirDMS.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceCalcType) {
-			ChoiceCalcType_itemStateChanged((String)ChoiceCalcType.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceDirection) {
-			ChoiceDirection_itemStateChanged((String)ChoiceDirection.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceCoordSource) {
-			ChoiceCoordSource_itemStateChanged((String)ChoiceCoordSource.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceDatum) {
-			ChoiceDatum_itemStateChanged((String)ChoiceDatum.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceLatPrecision) {
-			ChoiceLatPrecision_itemStateChanged((String)ChoiceLatPrecision.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceOffsetNSDir) {
-			ChoiceOffsetNSDir_itemStateChanged((String)ChoiceOffsetNSDir.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceOffsetEWDir) {
-			ChoiceOffsetEWDir_itemStateChanged((String)ChoiceOffsetEWDir.getSelectedItem());
-		}
-		if (e.getSource()== ChoiceDistancePrecision) {
-			ChoiceDistancePrecision_itemStateChanged((String)ChoiceDistancePrecision.getSelectedItem());
-		}
-	}
 	public void afterFormInitialize() {
 		// Write code here for initializing your own control
 		// or creating a new control.

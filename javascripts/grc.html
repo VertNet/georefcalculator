@@ -141,7 +141,7 @@
 		</SPAN>
 	
 		<SPAN id="MARKER" class="span17">
-			<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetNSDirSelect()" class="selectDirection">
+			<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetEWDirSelect()" class="selectDirection">
 				<OPTION>E MARKER</OPTION>
 				<OPTION>W MARKER</OPTION>
 			</SELECT>
@@ -170,7 +170,7 @@
 			<LABEL id="Label21121">&#39;</LABEL>
 			<INPUT TYPE="text" id="txtT7Lat_Sec" value="BUG" class="textSecond"/>
 			<LABEL id="Label211111">&quot;</LABEL>
-			<SELECT id="ChoiceLatDirDMS" onChange="onLatDirDMS()" class="selectDirection">
+			<SELECT id="ChoiceLatDirDMS" onChange="onLatDirDMSSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
 					<OPTION>???</OPTION>
@@ -187,7 +187,7 @@
 			<INPUT TYPE="text" id="txtT7Lat_MinMM" value="ddm lat m BUG" class="textSecond" /><!-- text second is intentional-->
 			<LABEL id="Label2111111">&#39;</LABEL>
 			
-			<SELECT id="ChoiceLatDirMM" onChange="on()" class="selectDirection">
+			<SELECT id="ChoiceLatDirMM" onChange="onLatDirMMSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
 					<OPTION>???</OPTION>
@@ -226,7 +226,7 @@
 			<INPUT TYPE="text" id="txtT7Long_Sec" value="dms long s BUG" class="textSecond" />
 			<LABEL id="Label2211">&quot;</LABEL>
 			
-			<SELECT id="ChoiceLongDirDMS" onChange="on()" class="selectDirection">
+			<SELECT id="ChoiceLongDirDMS" onChange="onLongDirDMSSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
 					<OPTION>???</OPTION>
@@ -240,7 +240,7 @@
 			<LABEL id="Label231">o</LABEL>
 			<INPUT TYPE="text" id="txtT7Long_MinMM" value="ddm long m BUG" class="textSecond" /><!-- text sedcond is intentional-->
 			<LABEL id="Label22111">&#39;</LABEL>
-			<SELECT id="ChoiceLongDirMM" onChange="on()" class="selectDirection">
+			<SELECT id="ChoiceLongDirMM" onChange="onLongDirMMSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
 					<OPTION>???</OPTION>
@@ -291,7 +291,7 @@
 		<LABEL id="LabelLatPrecision" >Coordinate Precision MARKER</LABEL>
 	</SPAN>
 	<SPAN id="MARKER" class="span25">
-		<SELECT id="ChoiceLatPrecision" onChange="onDatumSelect()" >
+		<SELECT id="ChoiceLatPrecision" onChange="onLatPrecisionSelect()" >
 			<OPTION>0 deg MARKER</OPTION>
 			<OPTION>0.1 deg MARKER</OPTION>
 			<OPTION>... deg MARKER</OPTION>
