@@ -110,7 +110,7 @@
 				<INPUT TYPE="text" id="TextFieldOffset" value="BUG"/>
 			</SPAN>
 			<SPAN id="MARKER" class="span17">
-				<SELECT id="ChoiceOffsetNSDir" onChange="onOffsetNSDirSelect()">
+				<SELECT id="ChoiceOffsetNSDir" onChange="onOffsetNSDirSelect()" class="selectDirection">
 					<OPTION>N MARKER</OPTION>
 					<OPTION>S MARKER</OPTION>
 				</SELECT>
@@ -141,7 +141,7 @@
 		</SPAN>
 	
 		<SPAN id="MARKER" class="span17">
-			<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetNSDirSelect()">
+			<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetNSDirSelect()" class="selectDirection">
 				<OPTION>E MARKER</OPTION>
 				<OPTION>W MARKER</OPTION>
 			</SELECT>
@@ -154,32 +154,55 @@
 
 
 <DIV id="divPanelCoords">
-
-	<SPAN class="span100" id="BUGBUG">
-	<SPAN class="span25" id="BUGBUG">
-		<LABEL class="LABELBUGBUG">BUGBUG there are only DD controls here, not DDM or DMS controls... yet</LABEL>
-	</SPAN>
-	<SPAN class="span75" id="BUGBUG">
-	</SPAN>
-	</SPAN>
 <!--</DIV id="divLocality3">-->
 	<SPAN id="MARKER" class="span50">
 
-	<SPAN id="MARKER" class="span50">
-		<LABEL id="lblT2Dec_Lat" >Latitude MARKER</LABEL>
-	</SPAN>
-	<SPAN id="MARKER" class="span50">
-		<INPUT TYPE="text" id="txtT2Dec_Lat" value="BUG"/>
-	</SPAN>
-	</SPAN>
+		<SPAN id="MARKER" class="span17">
+			<LABEL id="lblT2Dec_Lat" >Latitude MARKER</LABEL>
+		</SPAN>
 	
-	<SPAN id="MARKER" class="span50">
-	<SPAN id="MARKER" class="span50">
-		<LABEL id="LabelExtent">Extent of MARKER</LABEL>
+		<SPAN id="MARKER" class="span83">
+
+			<!--  DMS Controls-->
+			<INPUT TYPE="text" id="txtT7Lat_DegDMS" value="BUG" class="textDegree" />
+			<LABEL id="Label2123">o</LABEL>
+			<INPUT TYPE="text" id="txtT7Lat_MinDMS" value="BUG" class="textMinute" />
+			<LABEL id="Label21121">&#39;</LABEL>
+			<INPUT TYPE="text" id="txtT7Lat_Sec" value="BUG" class="textSecond"/>
+			<LABEL id="Label211111">&quot;</LABEL>
+			<SELECT id="ChoiceLatDirDMS" onChange="onLatDirDMS()" class="selectDirection">
+					<OPTION>?</OPTION>
+					<OPTION>??</OPTION>
+					<OPTION>???</OPTION>
+			</SELECT>
+
+			
+			<!--  DD Control-->
+			<INPUT TYPE="text" id="txtT2Dec_Lat" value="DD lat BUG"/>
+
+			
+			<!--  DDM Controls-->
+			<INPUT TYPE="text" id="txtT7Lat_DegMM" value="ddm lat d BUG" class="textDegree" />
+			<LABEL id="Label21212">o</LABEL>
+			<INPUT TYPE="text" id="txtT7Lat_MinMM" value="ddm lat m BUG" class="textSecond" /><!-- text second is intentional-->
+			<LABEL id="Label2111111">&#39;</LABEL>
+			
+			<SELECT id="ChoiceLatDirMM" onChange="on()" class="selectDirection">
+					<OPTION>?</OPTION>
+					<OPTION>??</OPTION>
+					<OPTION>???</OPTION>
+			</SELECT>
+			
+		</SPAN>
 	</SPAN>
+		
 	<SPAN id="MARKER" class="span50">
-		<INPUT TYPE="text" id="TextFieldExtent" value="BUG"/>
-	</SPAN>
+		<SPAN id="MARKER" class="span50">
+			<LABEL id="LabelExtent">Extent of MARKER</LABEL>
+		</SPAN>
+		<SPAN id="MARKER" class="span50">
+			<INPUT TYPE="text" id="TextFieldExtent" value="Extent BUG"/>
+		</SPAN>
 	</SPAN>
 </div>
 	<!--</DIV id="divLocality3">-->
@@ -188,26 +211,51 @@
 
 <!--<DIV id="divLocality4">-->
 <div>
-		<SPAN id="MARKER" class="span50">
+	<SPAN id="MARKER" class="span50">
 
-	<SPAN id="MARKER" class="span50">
-		<LABEL id="lblT2Dec_Long" >Longitude MARKER</LABEL>
-	</SPAN>
-	<SPAN id="MARKER" class="span50">
-		<INPUT TYPE="text" id="txtT2Dec_Long" value="BUG"/>
-	</SPAN>
-	
+		<SPAN id="MARKER" class="span17">
+			<LABEL id="lblT2Dec_Long" >Longitude MARKER</LABEL>
 		</SPAN>
+		<SPAN id="MARKER" class="span83">
+		
+			<!--  DM SControls-->			
+			<INPUT TYPE="text" id="txtT7Long_DegDMS" value="dms long d BUG" class="textDegree" />
+			<LABEL id="Label23">o</LABEL>
+			<INPUT TYPE="text" id="txtT7Long_MinDMS" value="dms long m BUG" class="textMinute" />
+			<LABEL id="Label222">&#39;</LABEL>
+			<INPUT TYPE="text" id="txtT7Long_Sec" value="dms long s BUG" class="textSecond" />
+			<LABEL id="Label2211">&quot;</LABEL>
+			
+			<SELECT id="ChoiceLongDirDMS" onChange="on()" class="selectDirection">
+					<OPTION>?</OPTION>
+					<OPTION>??</OPTION>
+					<OPTION>???</OPTION>
+			</SELECT>
+
+			<!--  DD Control-->
+			<INPUT TYPE="text" id="txtT2Dec_Long" value="DD long BUG"/>
+
+			<!--  DDM Controls-->			
+			<INPUT TYPE="text" id="txtT7Long_DegMM" value="ddm long d BUG" class="textDegree" />
+			<LABEL id="Label231">o</LABEL>
+			<INPUT TYPE="text" id="txtT7Long_MinMM" value="ddm long m BUG" class="textSecond" /><!-- text sedcond is intentional-->
+			<LABEL id="Label22111">&#39;</LABEL>
+			<SELECT id="ChoiceLongDirMM" onChange="on()" class="selectDirection">
+					<OPTION>?</OPTION>
+					<OPTION>??</OPTION>
+					<OPTION>???</OPTION>
+			</SELECT>
+		</SPAN>
+	</SPAN>
 	
-	
+	<SPAN id="MARKER" class="span50">
 		<SPAN id="MARKER" class="span50">
-	<SPAN id="MARKER" class="span50">
-		<LABEL id="LabelMeasurementError">Measurement Error MARKER</LABEL>
-	</SPAN>
-	<SPAN id="MARKER" class="span50">
-		<INPUT TYPE="text" id="TextFieldMeasurementError" value="BUG"/>
-	</SPAN>
+			<LABEL id="LabelMeasurementError">Measurement Error MARKER</LABEL>
 		</SPAN>
+		<SPAN id="MARKER" class="span50">
+			<INPUT TYPE="text" id="TextFieldMeasurementError" value="Error BUG"/>
+		</SPAN>
+	</SPAN>
 </div>
 		<!--</DIV id="divLocality4">-->
 
@@ -229,7 +277,7 @@
 		<LABEL id="LabelDistUnits">Distance Units MARKER</LABEL>
 	</SPAN>
 	<SPAN id="MARKER" class="span25">
-		<SELECT id="ChoiceDistUnits" onChange="onDistUnitsSelect()">
+		<SELECT id="ChoiceDistUnits" onChange="onDistUnitsSelect()" class="selectDirection">
 			<OPTION>km MARKER</OPTION>
 			<OPTION>m MARKER</OPTION>
 			<OPTION>mi MARKER</OPTION>
@@ -243,7 +291,7 @@
 		<LABEL id="LabelLatPrecision" >Coordinate Precision MARKER</LABEL>
 	</SPAN>
 	<SPAN id="MARKER" class="span25">
-		<SELECT id="ChoiceLatPrecision" onChange="onDatumSelect()">
+		<SELECT id="ChoiceLatPrecision" onChange="onDatumSelect()" >
 			<OPTION>0 deg MARKER</OPTION>
 			<OPTION>0.1 deg MARKER</OPTION>
 			<OPTION>... deg MARKER</OPTION>
@@ -253,7 +301,7 @@
 		<LABEL id="LabelDistancePrecision">Distance Precision MARKER</LABEL>
 	</SPAN>
 	<SPAN id="MARKER" class="span25">
-		<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()">
+		<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()" >
 			<OPTION>1 km MARKER</OPTION>
 			<OPTION>1/10 km MARKER</OPTION>
 			<OPTION>1/100 km MARKER</OPTION>

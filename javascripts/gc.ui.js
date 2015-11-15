@@ -134,6 +134,7 @@ function uiHideElement( name )
 	var item = document.getElementById( name );
 	if( item ) //BUGBUG is this safe enough?
 	{
+		item.setAttribute("hidden", true);
 		item.style.display="none";
 	}
 	else
@@ -147,6 +148,7 @@ function uiShowElement( name )
 	var item = document.getElementById( name );
 	if( item ) //BUGBUG is this safe enough?
 	{
+		item.setAttribute("hidden", false);
 		item.style.display="inline-block";
 	}
 	else
@@ -1213,7 +1215,9 @@ function setVariables( )
 				showDirection(true);
 			}
 		}
-		
+		setVisibility( "LabelDatum", true );
+		setVisibility( "ChoiceDatum", true );
+
 		setVisibility("ButtonCalculate",true);
 		setVisibility("ButtonPromote",true);
 		showResults(true);
@@ -2002,11 +2006,13 @@ function setVariables( )
 	{
 		setVisibility( "lblT2Dec_Lat", v);
 		setVisibility( "lblT2Dec_Long", v);
+		//showRelevantCoordinates();
 			PanelDecLatLong_SetVisible( v );
 			PanelDDMMSS_SetVisible( v );
 			PanelDecMin_SetVisible( v );
-		setVisibility( "LabelDatum", v);
-		setVisibility( "ChoiceDatum", v);
+		
+		setVisibility( "LabelDatum", v );
+		setVisibility( "ChoiceDatum", v );
 	}
 
 	function PanelCoordPrecision_SetVisible( v )
@@ -2018,45 +2024,63 @@ function setVariables( )
 
 	function PanelDecLatLong_SetVisible( v )
 	{
-		setVisibility( "txtT2Dec_Lat", v );
-		setVisibility( "txtT2Dec_Long", v );
+		var f_pointer = uiHideElement;
+		if( v == true )
+		{
+			f_pointer=uiShowElement;
+		}
+		f_pointer( "txtT2Dec_Lat");
+		f_pointer( "txtT2Dec_Long" );
 	}
 
 
 	function PanelDDMMSS_SetVisible( v )
 	{
-		setVisibility( "txtT7Lat_DegDMS", v );
-		setVisibility( "txtT7Lat_MinDMS", v );
-		setVisibility( "txtT7Lat_Sec", v );
-		setVisibility( "ChoiceLatDirDMS", v );
 		
-		setVisibility( "txtT7Long_DegDMS", v );
-		setVisibility( "txtT7Long_MinDMS", v );
-		setVisibility( "txtT7Long_Sec", v );
-		setVisibility( "ChoiceLongDirDMS", v );
+		var f_pointer = uiHideElement;
+		if( v == true )
+		{
+			f_pointer=uiShowElement;
+		}
+		f_pointer("txtT7Lat_DegDMS");
+		f_pointer( "txtT7Lat_DegDMS");
+		f_pointer( "txtT7Lat_MinDMS" );
+		f_pointer( "txtT7Lat_Sec" );
+		f_pointer( "ChoiceLatDirDMS" );
 		
-		setVisibility( "Label211111", v );
-		setVisibility( "Label2211", v );
-		setVisibility( "Label21121", v );
-		setVisibility( "Label222", v );
-		setVisibility( "Label2123", v );
-		setVisibility( "Label23", v );
+		f_pointer( "txtT7Long_DegDMS" );
+		f_pointer( "txtT7Long_MinDMS" );
+		f_pointer( "txtT7Long_Sec" );
+		f_pointer( "ChoiceLongDirDMS" );
+		
+		f_pointer( "Label211111" );
+		f_pointer( "Label2211" );
+		f_pointer( "Label21121" );
+		f_pointer( "Label222" );
+		f_pointer( "Label2123" );
+		f_pointer( "Label23" );
 	}
-
+	
+	
 	function PanelDecMin_SetVisible( v )
 	{
-		setVisibility( "txtT7Lat_DegMM", v);
-		setVisibility( "txtT7Lat_MinMM", v);
-		setVisibility( "ChoiceLatDirMM", v);
+		var f_pointer = uiHideElement;
+		if( v == true )
+		{
+			f_pointer=uiShowElement;
+		}
+		f_pointer( "txtT7Lat_DegMM");
+		f_pointer( "txtT7Lat_MinMM");
+		f_pointer( "ChoiceLatDirMM");
 		
-		setVisibility( "txtT7Long_DegMM", v);
-		setVisibility( "txtT7Long_MinMM", v);
-		setVisibility( "ChoiceLongDirMM", v);
+		f_pointer( "txtT7Long_DegMM");
+		f_pointer( "txtT7Long_MinMM");
+		f_pointer( "ChoiceLongDirMM");
 		
-		setVisibility( "Label2111111", v );
-		setVisibility( "Label22111", v );
-		setVisibility( "Label21212", v );
-		setVisibility( "Label231", v );
+		f_pointer( "Label2111111" );
+		f_pointer( "Label22111" );
+		f_pointer( "Label21212" );
+		f_pointer( "Label231" );
 	
 	}
 
@@ -2293,6 +2317,10 @@ function setVariables( )
 	{
 		setVisibility( "ChoiceCoordSource", b );
 		setVisibility( "LabelCoordSource", b );
+
+		setVisibility( "lblT2Dec_Lat", b);
+		setVisibility( "lblT2Dec_Long", b);
+
 	}
 
 	function showCoordinateSystem( b )
@@ -2451,7 +2479,7 @@ function setVariables( )
 			showDMS( false );
 			showDegreesDecimalMinutes( true );
 		}
-		showCoordinates( true );
+//		showCoordinates( true );
 	}
 
 	function showResults( b )
