@@ -33,10 +33,7 @@ function GC_init()
 	g_appletWidth = 620;   //BUGBUG not needed anymore?
 	g_versionNumber = "20151101";
 
-	//protected HashMap propertyMap = new HashMap();
-	g_propertyMap = {};
-	//private static Properties props = new Properties();
-	//var g_properties = {};    //Defined in geprefcalulator.js
+	//var g_properties = {};    //Defined in georefcalulator.js
 	
 	//final ArrayList canonicalheadings = new ArrayList();
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
@@ -85,7 +82,7 @@ function GC_init()
 	setVariables( language );
 	g_languagelist.clear();
 		
-	//BUGBUG the initialization of g_langualist should be its own function
+	//TODO the initialization of g_langualist should be its own function
 	var i = 0;
 	var lang = g_properties.getIndexedProperty( "language.name", i )
 	var code = g_properties.getIndexedProperty( "language.code", i )
@@ -100,7 +97,6 @@ function GC_init()
 	}
 	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
 	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
-//	uiSetLabel( "LabelStepZero", "label.step0" );
 	uiShowElement( "LabelStepZero" );
 	uiHideElement( "LabelTitle" );
 	cleanSlate();
@@ -114,11 +110,6 @@ function onLanguageSelect()
 {
 	var el = document.getElementById( 'ChoiceLanguage' );
 
-	//BUGBUG is setting g_properties.preferredlanguage safe?
-	//we want to NOT use g_properties and stay with otehr globals as a matter of form.
-	//other globals retain a specific order where was g_properties contains all languages, with its bits not necessarily in order.
-	//we should propably set g_language.
-	//g_properties.preferredlanguage =  sel.options[sel.selectedIndex].value;
 	g_language = el.options[el.selectedIndex].value;
 	
 	setVariables( );
@@ -132,7 +123,7 @@ function onLanguageSelect()
 function uiHideElement( name )
 {
 	var item = document.getElementById( name );
-	if( item ) //BUGBUG is this safe enough?
+	if( item )
 	{
 		item.setAttribute("hidden", true);
 		item.style.display="none";
@@ -146,7 +137,7 @@ function uiHideElement( name )
 function uiShowElement( name )
 {
 	var item = document.getElementById( name );
-	if( item ) //BUGBUG is this safe enough?
+	if( item )
 	{
 		item.setAttribute("hidden", false);
 		item.style.display="inline-block";
@@ -158,28 +149,13 @@ function uiShowElement( name )
 
 }
 
-//BUGBUG unfinished, possibly uneeded fuynction
-/*
-function uiSwitchvisibility( name, visibility )
-{
-	var item = document.getElementById( name );
-	if( item ) //BUGBUG is this safe enough?
-	{
-		item.style.display="inline-block";
-	}
-	else
-	(
-		console.log("ERROR uiSwitchvisibility null element name:" + name );
-	)
-
-}
-*/
 
 function uiSetLabel( name, source )
 {
 	var language = g_language; //g_properties.getProperty("preferredlanguage")
 	var el = document.getElementById( name );
-	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
+	
+	//BUGBUG ??? use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = eval( "g_properties." + source + "." + language );
 	if(el )
 	{
@@ -198,10 +174,8 @@ function uiSetLabel( name, source )
 
 function uiSetTextExplicit( name, value )
 {
-	//var language = g_language; //g_properties.getProperty("preferredlanguage")
 	var el = document.getElementById( name );
-	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
-	//var c = eval( "g_properties." + source + "." + language );
+
 	if( el )
 	{
 		el.text = value;
@@ -235,8 +209,7 @@ function uiSetLabelExplicit( name, value )
 function uiEmptyLabel( name )
 {
 	var el = document.getElementById( name );
-	//BUGBUG NO! use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
-	var c = "";
+
 	if( el )
 	{
 		if( el.childNodes.length > 0 )
@@ -256,12 +229,6 @@ function uiEmptyLabel( name )
 function uiEmptyTextElement( name )
 {
 	return uiEmptyLabel( name );
-	/*var sel = document.getElementById( name );
-	//BUGBUG we should throw an error if we cant find name.
-	if( sel )
-	{
-		sel.value = "";
-	}*/
 }
 
 function uiSetElementValue( name, value )
@@ -394,7 +361,7 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 	
 }
 
-//BUBUG unused?
+//FIXME unused?
 function uiFillSelect( name, source, initialEmpty )
 {
 	var el = document.getElementById( name );
@@ -464,12 +431,9 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 
 function uiGetTextValue( name )
 {
-	//BUGBUG maybe put toInt and such in here
-	//Check format on input or use, if use then here.
-
 	var ti = document.getElementById( name );
 	var val = null;
-	//BUGBUG if NOT ti we should force an error as we have sent in a bad name
+	
 	if( ti )
 	{
 		val = ti.value;
@@ -482,7 +446,6 @@ function uiGetTextValue( name )
 }
 
 
-//function setVariables( languagecode )
 function setVariables( )
 {
 		var language = g_language;
@@ -734,29 +697,21 @@ function setVariables( )
 	
 	
 	
-	//void ChoiceCalcType_itemStateChanged(String value){
 	function onCalcTypeSelect()
 	{
 		cleanCalcTypeSlate();
 		var value = uiGetSelectedText( "ChoiceCalcType" )
 		if( value == "" ){
-			//setVisibility( "LabelStepZero", true );
 			uiShowElement( "LabelStepZero" );
 			uiHideElement( "LabelStepTitle" );
 			setVisibility( "ChoiceModel", false );
 			setVisibility( "LabelModel", false );
 			
-			//BUGBUG WE SHOULD NOT HAVE TO SHOW/HIDE BUT USE setVisibility(
-			//not sure why its not working for LabelStepOne LabelStepTwo
-			//			setVisibility( "LabelStepOne", false );
 			uiHideElement( "LabelStepOne" );
 			return;
 		} else {
 			uiHideElement( "LabelStepZero" );
 			uiShowElement( "LabelTitle" );
-			//BUGBUG WE SHOULD NOT HAVE TO SHOW/HIDE BUT USE setVisibility(
-			//not sure why its not working for LabelStepOne LabelStepTwo
-			//setVisibility( "LabelStepOne", true );
 			uiShowElement( "LabelStepOne" );
 			
 			setVisibility( "ChoiceModel", true );
@@ -768,7 +723,7 @@ function setVariables( )
 		uiSelectAddEmptyItem("ChoiceModel");
 
 		var index = g_canonicalcalctypes.indexOf( value );
-		//BUGBUG WE CAN Use uiClearAndFillSelectCanonical here instead?
+		//BUGBUG WE CAN Use uiClearAndFillSelectCanonical here instead? May be important to retain canonical order
 		if( index==0 )
 		{
 			uiSelectAddItem("ChoiceModel", "loctype.coordonly");
@@ -783,42 +738,35 @@ function setVariables( )
 		uiSetSelectedIndex("ChoiceModel", 0 );
 	}
 
-	//*void ChoiceCoordSource_itemStateChanged(String value)
 	function onCoordSourceSelect()
 	{
-		//var value;
 		var model = uiGetSelectedText("ChoiceModel");
 		newModelChosen( model );
 		clearResults();
 	}
 
 
-	//void ChoiceDatum_itemStateChanged(String value){
 	function onDatumSelect()
 	{
 		clearResults();
 	}
 
-	//void ChoiceDirection_itemStateChanged(String value){
 	function onDirectionSelect()
 	{
 		clearResults();
 		var index = g_canonicalcalctypes.indexOf(value);
 		if( index==0 ){
-//			if( value.equals("Error only - enter Lat/Long for the actual locality") ){
 			showDirectionPrecision(true);
 		} else {
 			showDirection(true);
 		}
 	}
 
-	//void ChoiceDistancePrecision_itemStateChanged(String value ){
 	function onDistancePrecisionSelect()
 	{	
 		clearResults();
 	}
 
-	//void ChoiceDistUnits_itemStateChanged(String value){
 	function onDistUnitsSelect()
 	{
 		var value = uiGetSelectedText("ChoiceDistUnits");
@@ -826,7 +774,6 @@ function setVariables( )
 		populateDistancePrecision(value);
 	}
 
-	//void ChoiceLatDirDMS_itemStateChanged(String value){
 	function onLatDirDMSSelect()
 	{
 		var value = uiGetSelectedText("ChoiceLatDirDMS");
@@ -841,13 +788,11 @@ function setVariables( )
 		uiSetSelectedValue("ChoiceLatDirDMS", value);
 	}
 
-	//void ChoiceLatPrecision_itemStateChanged(String value){
 	function onLatPrecisionSelect()
 	{
 		clearResults();
 	}
 
-	//void ChoiceLongDirDMS_itemStateChanged(String value ){
 	function onLongDirDMSSelect()
 	{
 		clearResults();
@@ -855,7 +800,6 @@ function setVariables( )
 		uiSetSelectedValue("ChoiceLongDirMM")
 	}
 
-	//void ChoiceLongDirMM_itemStateChanged(String value ){
 	function onLongDirMMSelect()
 	{
 		clearResults();
@@ -863,13 +807,6 @@ function setVariables( )
 		uiSetSelectedValue("ChoiceLongDirDMS",value)
 	}
 
-	//void ChoiceLanguage_itemStateChanged(int value )throws ParseException{
-	//function onLanguage_itemStateChanged(int value 
-	//throws ParseException{
-		//newLanguageChosen(value);
-	//}
-
-//	function newLanguageChosen( value ) was this signature but "value" is not used  //throws ParseException{
 	function newLanguageChosen( ){
 
 		//NOTE: original Java data types, for reference and debugging
@@ -1004,8 +941,10 @@ function setVariables( )
 		clearResults();
 		setVariables(language);
 		setLabels(  );		
+		
 		//BUGBUG add me back in when we start doing formatters
 		//setDecimalFormat();
+		
 		populateStableControls();
 
 		uiClearSelect("ChoiceModel");
@@ -1251,20 +1190,17 @@ function setVariables( )
 		showResults(true);
 	}
 
-	//void ChoiceOffsetEWDir_itemStateChanged(String value ){
 	function onOffsetEWDirSelect()
 	{
 		clearResults();
 	}
 
-	//void ChoiceOffsetNSDir_itemStateChanged(String value ){
 	function onOffsetNSDirSelect()
 	{
 		clearResults();
 	}
 
 
-	//void ChoiceCoordSystem_itemStateChanged(String value) throws ParseException{
 	function onCoordSystemSelect( )
 	{
 		var value = uiGetSelectedText("ChoiceCoordSystem");
@@ -1278,10 +1214,9 @@ function setVariables( )
 	}
 
 
-//	private void cleanCalcTypeSlate(){
 	function cleanCalcTypeSlate(){
 		cleanSlate();
-		//Note:this differs from the oringal java below, but somehow works.
+		//BUGBUG Note:this differs from the original java below, but somehow works. Add: Does it work??
 		//Note it doesn't have to uiShow/HideElement to work either, odd
 		setVisibility("ChoiceModel", false );
 		setVisibility("LabelModel", false );
@@ -1298,7 +1233,6 @@ function setVariables( )
 		LabelStepZero.setVisible(true);*/
 	}
 
-//	private void cleanSlate(){
 	function cleanSlate()
 	{
 		showCoordinates(false);
@@ -1326,8 +1260,6 @@ function setVariables( )
 		uiHideElement("LabelTitle" );
 		uiShowElement("LabelStepZero" );
 	
-//		setVisibility("LabelStepTwo", false);
-//		setVisibility("LabelStepOne", false);
 		uiHideElement("LabelStepTwo");
 		uiHideElement("LabelStepOne");
 		
@@ -1386,6 +1318,7 @@ function setVariables( )
 	}
 	
 /*
+	//NOTE: here only for reference and layout, this code will not be uncommented out.
 	public Component createComponents() {
 		lblT2Dec_Lat = new Label (g_properties.getProperty("label.lat."+language), Label.LEFT);
 		lblT2Dec_Long = new Label (g_properties.getProperty("label.lon."+language), Label.LEFT);
@@ -1433,73 +1366,6 @@ function setVariables( )
 	}
 */
 /*
-	public void focusGained(FocusEvent e){
-		if (e.getSource() == TextFieldFromDistance) {
-			TextFieldFromDistance_focusGained();
-		}
-		if (e.getSource() == TextFieldToDistance) {
-			TextFieldToDistance_focusGained();
-		}
-		if (e.getSource() == TextFieldScaleFromDistance) {
-			TextFieldScaleFromDistance_focusGained();
-		}
-		if (e.getSource() == TextFieldScaleToDistance) {
-			TextFieldScaleToDistance_focusGained();
-		}
-		if (e.getSource() == TextFieldExtent) {
-			TextFieldExtent_focusGained();
-		}
-		if (e.getSource() == TextFieldMeasurementError) {
-			TextFieldMeasurementError_focusGained();
-		}
-		if (e.getSource() == txtT2Dec_Lat) {
-			txtT2Dec_Lat_focusGained();
-		}
-		if (e.getSource() == txtT2Dec_Long) {
-			txtT2Dec_Long_focusGained();
-		}
-		if (e.getSource() == txtT7Lat_DegDMS) {
-			txtT7Lat_DegDMS_focusGained();
-		}
-		if (e.getSource() == txtT7Lat_DegMM) {
-			txtT7Lat_DegMM_focusGained();
-		}
-		if (e.getSource() == txtT7Lat_MinDMS) {
-			txtT7Lat_MinDMS_focusGained();
-		}
-		if (e.getSource() == txtT7Lat_MinMM) {
-			txtT7Lat_MinMM_focusGained();
-		}
-		if (e.getSource() == txtT7Lat_Sec) {
-			txtT7Lat_Sec_focusGained();
-		}
-		if (e.getSource() == txtT7Long_DegDMS) {
-			txtT7Long_DegDMS_focusGained();
-		}
-		if (e.getSource() == txtT7Long_DegMM) {
-			txtT7Long_DegMM_focusGained();
-		}
-		if (e.getSource() == txtT7Long_MinDMS) {
-			txtT7Long_MinDMS_focusGained();
-		}
-		if (e.getSource() == txtT7Long_MinMM) {
-			txtT7Long_MinMM_focusGained();
-		}
-		if (e.getSource() == txtT7Long_Sec) {
-			txtT7Long_Sec_focusGained();
-		}
-		if (e.getSource() == TextFieldOffset) {
-			TextFieldOffset_focusGained();
-		}
-		if (e.getSource() == TextFieldOffsetEW) {
-			TextFieldOffsetEW_focusGained();
-		}
-		if (e.getSource() == TextFieldHeading) {
-			TextFieldHeading_focusGained();
-		}
-	}
-
-	public void focusLost( FocusEvent e ){}
 
 	private double getCoordPrecisionError(){
 		String latprecision = (String)ChoiceLatPrecision.getSelectedItem();
@@ -1586,16 +1452,8 @@ function setVariables( )
 	}
 */
 
-/*
-	function getGPSAccuracy() throws ParseException{
-		if( ((String)ChoiceCoordSource.getSelectedItem()).equals(g_properties.getProperty("coordsource.gps."+language)) ){
-			return getMeasurementError();
-		}
-		return 0;
-	}
-*/
 
-	/*
+/*
 	//initialize the applet
 
 	public void keyPressed(KeyEvent e) {
@@ -1614,9 +1472,6 @@ function setVariables( )
 	public void keyReleased(KeyEvent e) {
 		convertDistance();
 		convertScale();
-	}
-
-	public void keyTyped(KeyEvent e) {
 	}
 
 */
@@ -1663,14 +1518,12 @@ function setVariables( )
 
 	function populateStableControls()
 	{
-		//uiClearSelect("ChoiceCalcType");
 		uiClearSelect( "ChoiceCalcType" );
 		uiSelectAddEmptyItem("ChoiceCalcType");
 		uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
 		uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
 		uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
 		uiSetSelectedIndex("ChoiceCalcType",0);
-		//ChoiceCalcType.select("");
 
 		// Coordinate System controls
 		uiClearSelect( "ChoiceCoordSystem");
@@ -1905,6 +1758,7 @@ function setVariables( )
 		uiSelectAddExplicitItem("ChoiceDirection",g_properties.getPropertyLang("headings.nbw"));
 		
 		uiSetSelectedValue("ChoiceDirection",g_properties.getPropertyLang("headings.n"));
+
 		// Distance Units controls
 		uiClearSelect("ChoiceDistUnits");
 		
@@ -2131,104 +1985,6 @@ function setVariables( )
 	
 	}
 
-	//STEP 1 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step0_Visibility_InitDONTUSE( v )
-	{
-		setVisibility( "ChoiceLanguage", true );
-//ALWAYS VISIBLE		LabelVersion
-//ALWAYS VISIBLE		LabelCopyright
-		setVisibility( "LabelCalcType", true );
-		setVisibility( "ChoiceCalcType", true );
-		setVisibility( "LabelStepZero", true );
-		setVisibility( "LabelTitle", false );
-		Step1Controls_SetVisible( false );
-		Step2Controls_SetVisible( false );
-	}
-
-	function Step0_Visibility_ChoiceMadeDONTUSE( v )
-	{
-		setVisibility( "ChoiceLanguage", true );
-//ALWAYS VISIBLE		LabelVersion
-//ALWAYS VISIBLE		LabelCopyright
-		setVisibility( "LabelCalcType", true );
-		setVisibility( "ChoiceCalcType", true );
-		setVisibility( "LabelStepZero", false );
-		setVisibility( "LabelTitle", true );
-
-		Step1Controls_SetVisible( true );
-		Step2Controls_SetVisible( false );
-	}
-	
-	//STEP 2 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step1Controls_SetVisibleDONTUSE( v )
-	{		
-		setVisibility( "LabelModel", v );
-		setVisibility( "ChoiceModel", v );
-		setVisibility( "LabelStepOne", v );
-	}
-
-	//STEP 3 TO USER, BUT WE ZERO INXDEX LANGUAGE choice
-	function Step2Controls_SetVisibleDONTUSE( v )
-	{
-		/*step cero
-		ChoiceLanguage
-		LabelVersion
-		LabelCopyright
-		LabelCalcType
-		ChoiceCalcType
-		LabelStepZero
-		LabelTitle
-		*/
-		/*step one
-		
-		LabelModel
-		ChoiceModel
-		LabelStepOne
-		*/
-		
-		/*step two*/
-		setVisibility( "LabelStepTwo", v );
-		setVisibility( "LabelCoordSource", v );
-		setVisibility( "ChoiceCoordSource", v );
-		setVisibility( "LabelCoordSystem", v );
-		setVisibility( "ChoiceCoordSystem", v );
-		PanelCoords_SetVisible( v );
-		PanelCoordPrecision_SetVisible( v );
-		setVisibility( "LabelDirection", v );
-		setVisibility( "ChoiceDirection", v );
-		setVisibility( "TextFieldHeading", v );
-		setVisibility( "TextFieldOffset", v );
-		setVisibility( "ChoiceOffsetNSDir", v );
-		setVisibility( "LabelOffsetEW", v );
-		setVisibility( "TextFieldOffsetEW", v );
-		setVisibility( "ChoiceOffsetEWDir", v );
-		setVisibility( "LabelOffset", v );
-		setVisibility( "LabelExtent", v );
-		setVisibility( "TextFieldExtent", v );
-		setVisibility( "LabelMeasurementError", v );
-		setVisibility( "TextFieldMeasurementError", v );
-		setVisibility( "LabelDistUnits", v );
-		setVisibility( "ChoiceDistUnits", v );
-		setVisibility( "LabelDistancePrecision", v );
-		setVisibility( "ChoiceDistancePrecision", v );
-		setVisibility( "ButtonCalculate", v );
-		setVisibility( "ButtonPromote", v );
-		PanelResults_SetVisbility( v );
-		setVisibility( "LabelDistanceConverter", v );
-		setVisibility( "TextFieldFromDistance", v );
-		setVisibility( "ChoiceFromDistUnits", v );
-		setVisibility( "LabelEquals", v );
-		setVisibility( "TextFieldToDistance", v );
-		setVisibility( "ChoiceToDistUnits", v );
-		setVisibility( "LabelScaleConverter", v );
-		setVisibility( "TextFieldScaleFromDistance", v );
-		setVisibility( "ChoiceScaleFromDistUnits", v );
-		setVisibility( "ChoiceScale", v );
-		setVisibility( "LabelScaleEquals", v );
-		setVisibility( "TextFieldScaleToDistance", v );
-		setVisibility( "ChoiceScaleToDistUnits", v );
-	}
-
 	function PanelResults_SetVisible( v )
 	{
 		setVisibility( "LabelCalcDecLat", v);
@@ -2241,7 +1997,8 @@ function setVariables( )
 		setVisibility( "TextFieldFullResult", v);
 	}
 	
-/* BUGBUG Java	 UI Layout, I am using it for hidden attribute setting as it does not translate well from Java pane to HTML div/span
+/*Note: for reference only Java	 UI Layout, I am using it for hidden attribute setting as it does not translate well from Java pane to HTML div/span
+//NOTE: I strongly suspect we do not need this reference any more.
 	pane
 		ChoiceLanguage
 		LabelVersion
@@ -2388,16 +2145,13 @@ function setVariables( )
 
 	function showDirection( b )
 	{
-		//(String)ChoiceDirection.getSelectedItem();
 		var value = uiGetSelectedText( "ChoiceDirection" );
 		
 		setVisibility( "ChoiceDirection", b );
 		setVisibility( "LabelDirection", b );
 		
-//		if( b && value.equals(g_properties.getProperty("headings.nearestdegree."+language)) ){
 		if( b && value == g_properties.getPropertyLang("headings.nearestdegree." ) )
 		{
-//			if( b && value.equals("nearest degree") ){
 			setVisibility( "TextFieldHeading", true );
 		} else {
 			setVisibility( "TextFieldHeading", false );
@@ -2428,7 +2182,9 @@ function setVariables( )
 		setVisibility( "ChoiceFromDistUnits", b );
 		setVisibility( "ChoiceToDistUnits", b );
 
-		//		LabelFromDistUnits", b );
+//		BUGBUG why are these here, why are they commented out, check oringal Java source same function name
+//		to be sure these either belong, or not
+//		LabelFromDistUnits", b );
 //		LabelToDistUnits", b );
 
 		setVisibility( "LabelEquals", b );
@@ -2485,7 +2241,6 @@ function setVariables( )
 	{
 		setVisibility( "TextFieldOffset", b );
 
-//		***LabelOffset.setText(g_properties.getProperty("."+language));
 		uiSetLabel( "LabelOffset", "label.distns" );
 
 		setVisibility( "LabelOffset", b );
@@ -2495,7 +2250,6 @@ function setVariables( )
 	function showOffset( b )
 	{
 		setVisibility( "TextFieldOffsetEW", b );
-//		***LabelOffsetEW.setText(g_properties.getProperty("label.offset."+language));
 		uiSetLabel( "LabelOffsetEW", "label.offset" );
 		setVisibility( "LabelOffsetEW", b );
 	}
@@ -2503,29 +2257,24 @@ function setVariables( )
 	
 	function showRelevantCoordinates( )
 	{
-
-		//NOTE: we cant just grab index from the SELECT,
-		//g_canonical* properties have an *exact* order, whereas
-		//SELECT and g_properties ordering are not guaranteed
 		var value = uiGetSelectedText( "ChoiceCoordSystem");  
 		var index = g_canonicalcoordsystems.indexOf( value );
 
 		if ( index==0 ){
-//			if ( value.equals("decimal degrees") ){
 			showDMS( false );
 			showDegreesDecimalMinutes( false );
 			showDecimalDegrees( true );
 		} else if ( index==1 ){
-//			} else if ( value.equals("degrees minutes seconds") ){
 			showDecimalDegrees( false );
 			showDegreesDecimalMinutes( false );
 			showDMS( true );
 		} else if ( index==2 ){
-//			} else if ( value.equals("degrees decimal minutes") ){
 			showDecimalDegrees( false );
 			showDMS( false );
 			showDegreesDecimalMinutes( true );
 		}
+		//BUGBUG why is this commente dout?
+		//IIRC its ok but best to audit, and check oringal java source to be sure it either bleongs or not.\
 //		showCoordinates( true );
 	}
 
@@ -2535,6 +2284,20 @@ function setVariables( )
 	}
 
 
+	public void errorDialog(String error, String title, int style){
+		Frame f=null;
+		Container c=getParent();
+		while(c!=null){
+			if(c instanceof Frame){
+				f=(Frame)c;
+				break;
+			}else c=c.getParent();
+		}
+		MinMaxDialog d=new MinMaxDialog(f, error, title, style);
+		d.setVisible(true);
+	}
+
+	
 
 
 /*
@@ -3298,8 +3061,6 @@ function setVariables( )
 	}
 
 
-//	Declarations for instance variables used in the form
-
 
 	/*public void setDecimalFormat(){
 		if(ChoiceLanguage.getSelectedIndex()==0) currentLocale = Locale.getDefault();
@@ -3378,11 +3139,7 @@ function setVariables( )
 	}
 
 	void ButtonPromote_afterActionPerformed() throws ParseException{
-//		newdecimallatitude = decimallatitude;
-//		newdecimallongitude = decimallongitude;
 		lastcoordsystem = 1;
-//		TextFieldCalcDecLat.setText(formatCalcDec.format(newdecimallatitude));
-//		TextFieldCalcDecLong.setText(formatCalcDec.format(newdecimallongitude));
 
 		txtT2Dec_Lat.setText(formatCalcDec.format(newdecimallatitude));
 		txtT2Dec_Long.setText(formatCalcDec.format(newdecimallongitude));
