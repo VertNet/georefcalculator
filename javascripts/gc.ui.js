@@ -80,9 +80,9 @@ function GC_init()
 
 	var language = g_language; //g_properties.getProperty( "preferredlanguage" );
 	setVariables( language );
-	g_languagelist.clear();
-		
+	
 	//TODO the initialization of g_langualist should be its own function
+	g_languagelist.clear();
 	var i = 0;
 	var lang = g_properties.getIndexedProperty( "language.name", i )
 	var code = g_properties.getIndexedProperty( "language.code", i )
@@ -95,6 +95,7 @@ function GC_init()
 		code = g_properties.getIndexedProperty( "language.code", i );
 		nObj = { 'name' : lang, 'value' : code };
 	}
+	
 	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
 	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
 	uiShowElement( "LabelStepZero" );
@@ -216,7 +217,8 @@ function uiEmptyLabel( name )
 		{
 			el.removeChild(el.childNodes[0]);
 		}
-		var textnode = document.createTextNode(c);
+		//BUGBUG fix this. Without the "I" some text elements have 0 hight when empty, showing only border, if any.
+		var textnode = document.createTextNode("I");
 		el.appendChild(textnode);
 	}
 	else
@@ -2283,7 +2285,7 @@ function setVariables( )
 		PanelResults_SetVisible( b );
 	}
 
-
+/*
 	public void errorDialog(String error, String title, int style){
 		Frame f=null;
 		Container c=getParent();
@@ -2296,7 +2298,7 @@ function setVariables( )
 		MinMaxDialog d=new MinMaxDialog(f, error, title, style);
 		d.setVisible(true);
 	}
-
+*/
 	
 
 
@@ -3062,64 +3064,6 @@ function setVariables( )
 
 
 
-	/*public void setDecimalFormat(){
-		if(ChoiceLanguage.getSelectedIndex()==0) currentLocale = Locale.getDefault();
-		else if(ChoiceLanguage.getSelectedItem().equalsIgnoreCase("english")){
-			currentLocale = Locale.US;
-		} else {
-			currentLocale=Locale.FRENCH;
-		}
-		numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
-
-		formatDec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatDeg = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatMin = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatMinMM = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatSec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatCalcError = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatDistance = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		formatCalcDec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		if ( formatDec instanceof DecimalFormat) {
-			((DecimalFormat) formatDec).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatDec).setGroupingUsed(false);
-			((DecimalFormat) formatDec).setMaximumFractionDigits(7);
-		}
-		if ( formatDeg instanceof DecimalFormat) {
-			((DecimalFormat) formatDeg).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatDeg).setGroupingUsed(false);
-			((DecimalFormat) formatDeg).setMaximumFractionDigits(0);
-		}
-		if ( formatMin instanceof DecimalFormat) {
-			((DecimalFormat) formatMin).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatMin).setGroupingUsed(false);
-			((DecimalFormat) formatMin).setMaximumFractionDigits(0);
-		}
-		if ( formatMinMM instanceof DecimalFormat) {
-			((DecimalFormat) formatMinMM).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatMinMM).setGroupingUsed(false);
-			((DecimalFormat) formatMinMM).setMaximumFractionDigits(6);
-		}
-		if ( formatSec instanceof DecimalFormat) {
-			((DecimalFormat) formatSec).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatSec).setGroupingUsed(false);
-			((DecimalFormat) formatSec).setMaximumFractionDigits(2);
-		}
-		if ( formatCalcError instanceof DecimalFormat) {
-			((DecimalFormat) formatCalcError).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatCalcError).setGroupingUsed(false);
-			((DecimalFormat) formatCalcError).setMaximumFractionDigits(3);
-		}
-		if ( formatDistance instanceof DecimalFormat) {
-			((DecimalFormat) formatDistance).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatDistance).setGroupingUsed(false);
-			((DecimalFormat) formatDistance).setMaximumFractionDigits(5);
-		}
-		if ( formatCalcDec instanceof DecimalFormat) {
-			((DecimalFormat) formatCalcDec).setDecimalSeparatorAlwaysShown(false);
-			((DecimalFormat) formatCalcDec).setGroupingUsed(false);
-			((DecimalFormat) formatCalcDec).setMaximumFractionDigits(7);
-		}
-	}
 	*/
 	
 	/*
@@ -3150,4 +3094,3 @@ function setVariables( )
 		}
 	}
 */
-
