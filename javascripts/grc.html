@@ -107,7 +107,7 @@
 		<SPAN class="span50" align="right">
 			<SPAN id="MARKER" class="span75" align="left">
 				<LABEL id="LabelOffset">North or South OffsetBUG</LABEL>
-				<INPUT TYPE="text" id="TextFieldOffset" value="BUG"/>
+				<INPUT TYPE="text" id="TextFieldOffset" value="BUG" onfocus=""  onfocus="TextFieldOffset_focusGained()" />
 			</SPAN>
 			<SPAN id="MARKER" class="span17">
 				<SELECT id="ChoiceOffsetNSDir" FonOffsetNSDirSelect()" class="selectDirection">
@@ -137,7 +137,7 @@
 	<SPAN class="span50" align="right">
 		<SPAN id="MARKER" class="span75" align="left">
 			<LABEL id="LabelOffsetEW" align="left">East or West Offset MARKER</LABEL>
-			<INPUT TYPE="text" id="TextFieldOffsetEW" value="BUG"/>
+			<INPUT TYPE="text" id="TextFieldOffsetEW" value="BUG" onfocus=""  onfocus="TextFieldOffsetEW_focusGained()" />
 		</SPAN>
 	
 		<SPAN id="MARKER" class="span17">
@@ -164,11 +164,11 @@
 		<SPAN id="MARKER" class="span83">
 
 			<!--  DMS Controls-->
-			<INPUT TYPE="text" id="txtT7Lat_DegDMS" value="BUG" class="textDegree" />
+			<INPUT TYPE="text" id="txtT7Lat_DegDMS" value="BUG" class="textDegree" onfocus="txtT7Lat_DegDMS_focusGained()"  />
 			<LABEL id="Label2123">o</LABEL>
-			<INPUT TYPE="text" id="txtT7Lat_MinDMS" value="BUG" class="textMinute" />
+			<INPUT TYPE="text" id="txtT7Lat_MinDMS" value="BUG" class="textMinute"  onfocus="txtT7Lat_MinDMS_focusGained()" />
 			<LABEL id="Label21121">&#39;</LABEL>
-			<INPUT TYPE="text" id="txtT7Lat_Sec" value="BUG" class="textSecond"/>
+			<INPUT TYPE="text" id="txtT7Lat_Sec" value="BUG" class="textSecond" onfocus="txtT7Lat_Sec_focusGained()" />
 			<LABEL id="Label211111">&quot;</LABEL>
 			<SELECT id="ChoiceLatDirDMS" onChange="onLatDirDMSSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
@@ -178,13 +178,13 @@
 
 			
 			<!--  DD Control-->
-			<INPUT TYPE="text" id="txtT2Dec_Lat" value="DD lat BUG"/>
+			<INPUT TYPE="text" id="txtT2Dec_Lat" value="DD lat BUG"  onfocus="txtT2Dec_Lat_focusGained()" />
 
 			
 			<!--  DDM Controls-->
-			<INPUT TYPE="text" id="txtT7Lat_DegMM" value="ddm lat d BUG" class="textDegree" />
+			<INPUT TYPE="text" id="txtT7Lat_DegMM" value="ddm lat d BUG" class="textDegree"  onfocus="txtT7Lat_DegMM_focusGained()"  />
 			<LABEL id="Label21212">o</LABEL>
-			<INPUT TYPE="text" id="txtT7Lat_MinMM" value="ddm lat m BUG" class="textSecond" /><!-- text second is intentional-->
+			<INPUT TYPE="text" id="txtT7Lat_MinMM" value="ddm lat m BUG" class="textSecond"  onfocus="txtT7Lat_MinMM_focusGained()"  /><!-- text second is intentional-->
 			<LABEL id="Label2111111">&#39;</LABEL>
 			
 			<SELECT id="ChoiceLatDirMM" onChange="onLatDirMMSelect()" class="selectDirection">
@@ -201,7 +201,7 @@
 			<LABEL id="LabelExtent">Extent of MARKER</LABEL>
 		</SPAN>
 		<SPAN id="MARKER" class="span50">
-			<INPUT TYPE="text" id="TextFieldExtent" value="Extent BUG"/>
+			<INPUT TYPE="text" id="TextFieldExtent" value="Extent BUG"  onfocus="TextFieldExtent_focusGained()" />
 		</SPAN>
 	</SPAN>
 </div>
@@ -219,11 +219,11 @@
 		<SPAN id="MARKER" class="span83">
 		
 			<!--  DM SControls-->			
-			<INPUT TYPE="text" id="txtT7Long_DegDMS" value="dms long d BUG" class="textDegree" />
+			<INPUT TYPE="text" id="txtT7Long_DegDMS" value="dms long d BUG" class="textDegree"  onfocus="txtT7Long_DegDMS_focusGained() />
 			<LABEL id="Label23">o</LABEL>
-			<INPUT TYPE="text" id="txtT7Long_MinDMS" value="dms long m BUG" class="textMinute" />
+			<INPUT TYPE="text" id="txtT7Long_MinDMS" value="dms long m BUG" class="textMinute"  onfocus="txtT7Long_MinDMS_focusGained()" />
 			<LABEL id="Label222">&#39;</LABEL>
-			<INPUT TYPE="text" id="txtT7Long_Sec" value="dms long s BUG" class="textSecond" />
+			<INPUT TYPE="text" id="txtT7Long_Sec" value="dms long s BUG" class="textSecond"  onfocus="txtT7Long_Sec_focusGained()" />
 			<LABEL id="Label2211">&quot;</LABEL>
 			
 			<SELECT id="ChoiceLongDirDMS" onChange="onLongDirDMSSelect()" class="selectDirection">
@@ -233,12 +233,12 @@
 			</SELECT>
 
 			<!--  DD Control-->
-			<INPUT TYPE="text" id="txtT2Dec_Long" value="DD long BUG"/>
+			<INPUT TYPE="text" id="txtT2Dec_Long" value="DD long BUG" onfocus="txtT2Dec_Long_focusGained()" />
 
 			<!--  DDM Controls-->			
-			<INPUT TYPE="text" id="txtT7Long_DegMM" value="ddm long d BUG" class="textDegree" />
+			<INPUT TYPE="text" id="txtT7Long_DegMM" value="ddm long d BUG" class="textDegree"  onfocus="txtT7Long_DegMM_focusGained()" />
 			<LABEL id="Label231">o</LABEL>
-			<INPUT TYPE="text" id="txtT7Long_MinMM" value="ddm long m BUG" class="textSecond" /><!-- text sedcond is intentional-->
+			<INPUT TYPE="text" id="txtT7Long_MinMM" value="ddm long m BUG" class="textSecond"  onfocus="txtT7Long_MinMM_focusGained()" /><!-- text sedcond is intentional-->
 			<LABEL id="Label22111">&#39;</LABEL>
 			<SELECT id="ChoiceLongDirMM" onChange="onLongDirMMSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
@@ -253,7 +253,7 @@
 			<LABEL id="LabelMeasurementError">Measurement Error MARKER</LABEL>
 		</SPAN>
 		<SPAN id="MARKER" class="span50">
-			<INPUT TYPE="text" id="TextFieldMeasurementError" value="Error BUG"/>
+			<INPUT TYPE="text" id="TextFieldMeasurementError" value="Error BUG"  onfocus="TextFieldMeasurementError_focusGained()" />
 		</SPAN>
 	</SPAN>
 </div>
@@ -324,7 +324,6 @@
 	</SPAN> 
 </DIV>
 
-<!-- BEGIN MARKER These elememnts do not have their IDs set properly, until END MARKER-->
 <DIV id="ReadOnlyFields1">
 	<SPAN class="span66">
 	<SPAN id="MARKER" class="span33">
@@ -354,12 +353,83 @@
 <DIV id="ReadOnlyFields2">
 	<SPAN id="MARKER" class="span100"><LABEL id="TextFieldFullResult" class="readOnlyInput">MARKER</LABEL></SPAN> 
 </DIV>
-<!-- END MARKER about Elelemtns not being tied top proepr names yet-->
 
 <!-- BEGIN/END MARKER the distance converter elements belong here-->
 <DIV>
+
+	<!--- BUGBUG get rid of this comment after scale/distance conversion elements are in with onX tied in
+	Label LabelEquals
+	Label LabelDistanceConverter
+	Choice ChoiceFromDistUnits
+	Choice ChoiceToDistUnits
+	TextField TextFieldFromDistance
+	TextField TextFieldToDistance
+	
+	Label LabelScaleEquals
+	Label LabelScaleConverter
+	Choice ChoiceScale
+	Choice ChoiceScaleFromDistUnits
+	Choice ChoiceScaleToDistUnits
+	TextField TextFieldScaleFromDistance
+	TextField TextFieldScaleToDistance 
+	-->
+
 	<SPAN class="span100" id="BUGBUG">
-		<LABEL class="LABELBUGBUG">BUGBUG Distance conversion and scale controls belong here BUGBUG</LABEL>
+		<SPAN class="span100" id="BUGBUG">
+		</SPAN>
+		<SPAN class="span100" id="BUGBUG" align="left">
+			
+			<LABEL id="LabelDistanceConverter">BUGBUG Distance Converter</LABEL>
+			<INPUT TYPE="text" id="TextFieldFromDistance" value="BUG" class=""  onfocus="TextFieldFromDistance_focusGained()" />
+			
+			<SELECT id="ChoiceFromDistUnits"  onChange="onFromDistUnitsSelect()" >
+				<OPTION>1 BUGBUG ChoiceFromDistUnits</OPTION>
+				<OPTION>2 BUGBUG ChoiceFromDistUnits</OPTION>
+				<OPTION>3 BUGBUG ChoiceFromDistUnits</OPTION>
+			</SELECT>
+			<LABEL id="LabelEquals">=</LABEL>
+
+			<INPUT TYPE="text" id="TextFieldFromDistance" value="BUG" onfocus="TextFieldFromDistance_focusGained()" />
+			<LABEL id="TextFieldToDistance" class="readOnlyInputSmall">BUG</LABEL>
+			
+			<SELECT id="ChoiceToDistUnits"  onChange="onToDistUnitsSelect()" >
+				<OPTION>1 BUGBUG ChoiceToDistUnits</OPTION>
+				<OPTION>2 BUGBUG ChoiceToDistUnits</OPTION>
+				<OPTION>3 BUGBUG ChoiceToDistUnits</OPTION>
+			</SELECT>
+		</SPAN>
+
+		<SPAN class="span100" id="BUGBUG" align="left">		
+
+			<LABEL id="LabelScaleConverter">BUGBUG Scale Converter</LABEL>
+
+			<INPUT TYPE="text" id="TextFieldScaleFromDistance" value="TFSTDBUG" class=""  onfocus="TextFieldScaleFromDistance_focusGained()" />
+			
+			<SELECT id="ChoiceScale"  onChange="onScaleSelect()" >
+				<OPTION>1 BUGBUG scale</OPTION>
+				<OPTION>2 BUGBUG scale</OPTION>
+				<OPTION>3 BUGBUG scale</OPTION>
+			</SELECT>
+
+
+			<SELECT id="ChoiceScaleFromDistUnits"  onChange="onScaleFromDistUnitsSelect()" >
+				<OPTION>1 BUGBUG ScaleFromDistUnits</OPTION>
+				<OPTION>2 BUGBUG ScaleFromDistUnits</OPTION>
+				<OPTION>3 BUGBUG ScaleFromDistUnits</OPTION>	
+			</SELECT>
+
+			<LABEL id="LabelScaleEquals">=</LABEL>
+
+
+			<SELECT id="CChoiceScaleToDistUnits"  onChange="onScaleToDistUnitsSelect()" >
+				<OPTION>1 BUGBUG ScaleToDistUnits</OPTION>	
+				<OPTION>2 BUGBUG ScaleToDistUnits</OPTION>	
+				<OPTION>3 BUGBUG ScaleToDistUnits</OPTION>			
+			</SELECT>
+			<LABEL id="TextFieldScaleToDistance" class="readOnlyInputSmall">tfstd BUG</LABEL>
+
+
+		</SPAN>
 	</SPAN>
 </DIV>
 

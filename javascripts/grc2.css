@@ -5,9 +5,10 @@ SELECT{
 	color: black;
 	background-color: white;
 
+	/*
 	min-width: 100%;
 	max-width: 100%;
-	width: 100%;
+	width: 100%;*/
 
 	/*width:auto;*/
 	border: 1px solid grey;
@@ -137,6 +138,29 @@ INPUT{
 	padding-left:1px;
 	padding-right:1px;
 }
+
+.readOnlyInputSmall{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .8em;
+	color: blue;
+	display: inline-block;
+	
+	min-width:12%;
+	max-width: 12%;
+	width: 12%;
+	
+	
+	background-color: #C0C0C0;
+	display:inline-block;
+	border-style: inset;
+	border-width: 2px;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-left:1px;
+	padding-right:1px;
+}
+
 
 BUTTON{
 	font-family: "Helvetica", Ariel, Sans-serif;

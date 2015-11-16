@@ -1106,8 +1106,9 @@
 			maxerrordistance += getCoordPrecisionError();
 		}
 	}
-
-	private void calculateLatLongMetersPerDegree(){
+*/
+	function calculateLatLongMetersPerDegree()
+	{
 		// The distance between point A at a latitude equal to decimallatitude and point B
 		// at a latitude one degree removed from point A, but at the same longitude, is here
 		// estimated to be the length of an arc subtending an angle of one degree with a
@@ -1119,25 +1120,34 @@
 		// radius equal to the distance from point A to the polar axis and orthogonal to it.
 		// The source for the following values is NIMA 8350.2, 4 Jul 1977
 
-		String datumstr = (String)ChoiceDatum.getSelectedItem();  //EDIT
-		double a = getSemiMajorAxis( getEllipsoidCode( datumstr ) );
-		double f = getFlattening( getEllipsoidCode( datumstr ) );
+//		Note: This is original Java source for debugging type conversion/promotion issues
+//		String datumstr = (String)ChoiceDatum.getSelectedItem();
+//		double a = getSemiMajorAxis( getEllipsoidCode( datumstr ) );
+//		double f = getFlattening( getEllipsoidCode( datumstr ) );
+//		double e_squared = 2.0*f - Math.pow(f,2.0); // e^2 = 2f - f^2
+		
+		var datumstr = uiGetSelectedText("ChoiceDatum");
+		var a = getSemiMajorAxis( getEllipsoidCode( datumstr ) );
+		var f = getFlattening( getEllipsoidCode( datumstr ) );
 
-		double e_squared = 2.0*f - Math.pow(f,2.0); // e^2 = 2f - f^2
+		var e_squared = 2.0*f - Math.pow(f,2.0); // e^2 = 2f - f^2
 
 		// N - radius of curvature in the prime vertical, (tangent to ellipsoid at latitude)
-		double N = a/Math.sqrt(1.0 - e_squared*(Math.pow(Math.sin(decimallatitude*Math.PI/180.0),2.0))); // N(lat) = a/(1-e^2*sin^2(lat))^0.5
+		//JAVA double N = a/Math.sqrt(1.0 - e_squared*(Math.pow(Math.sin(decimallatitude*Math.PI/180.0),2.0))); // N(lat) = a/(1-e^2*sin^2(lat))^0.5
+		var N = a/Math.sqrt(1.0 - e_squared*(Math.pow(Math.sin(decimallatitude*Math.PI/180.0),2.0))); // N(lat) = a/(1-e^2*sin^2(lat))^0.5
 
 		// M - radius of curvature in the prime meridian, (tangent to ellipsoid at latitude)
-		double M = a*(1.0 - e_squared)/Math.pow(1.0 - e_squared*Math.pow(Math.sin(decimallatitude*Math.PI/180.0),2.0),1.5); // M(lat) = a(1-e^2)/(1-e^2*sin^2(lat))^1.5
+		//JAVA double M = a*(1.0 - e_squared)/Math.pow(1.0 - e_squared*Math.pow(Math.sin(decimallatitude*Math.PI/180.0),2.0),1.5); // M(lat) = a(1-e^2)/(1-e^2*sin^2(lat))^1.5
+		var M = a*(1.0 - e_squared)/Math.pow(1.0 - e_squared*Math.pow(Math.sin(decimallatitude*Math.PI/180.0),2.0),1.5); // M(lat) = a(1-e^2)/(1-e^2*sin^2(lat))^1.5
 
 		// longitude is irrelevant for the calculations to follow so simplify by using longitude = 0, so Y = 0
-		double X = N*Math.cos(decimallatitude*Math.PI/180.0)*1.0; // X = Ncos(lat)cos(long). long = 0, so  cos(long) = 1.0
+		//double X = N*Math.cos(decimallatitude*Math.PI/180.0)*1.0; // X = Ncos(lat)cos(long). long = 0, so  cos(long) = 1.0
+		var X = N*Math.cos(decimallatitude*Math.PI/180.0)*1.0; // X = Ncos(lat)cos(long). long = 0, so  cos(long) = 1.0
 
 		latmetersperdegree = Math.PI*M/180.0; // M is a function of latitude.
 		longmetersperdegree = Math.PI*X/180.0; // X is the orthogonal distance to the polar axis.
 	}
 	
-*/
+
 
 	
