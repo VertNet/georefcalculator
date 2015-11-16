@@ -1,0 +1,153 @@
+Common Parameters
+	name
+		For all name parameters it is the id="" in for the element you are looking for
+		Ex: <LABEL id="LabelDistanceConverter">BUGBUG Distance Converter</LABEL>
+		To affect this control you would pass the name "LabelDistanceConverter"
+
+	source	
+		the named source from either g_canonical or g_properties
+		Example call uiSetLabel("lblT2Dec_Lat","label.lat");	
+		"label.lat" is the source, which will map to g_proprties+ source + lanuage;
+	
+	value
+		The value to Set or look for via Get 
+
+	index
+		the index to get, or set
+
+
+
+UI Functions	
+	//JAVA .isVisible
+	function uiIsVisible( name )
+		return an elements HTML attribute visible set to hidden or visible, as a boolean
+	
+	
+	//JAVA setVisbale(false), almost
+	function uiHideElement( name )
+		Will set the display CSS <techinval word> to display: none
+		with display: none the element take 0 space
+
+	//JAVA setVisbale(true), almost
+	function uiShowElement( name )
+		Will set the display CSS <techinval word> to display: inline-block
+		with display: inline-block the element takes space, and oehr css considerations
+
+		
+	//JAVA Label.setText(), almost
+	function uiSetLabel( name, source )
+		set the value of a labels displayed text from the source under g_properties.
+		Ex uiSetLabel("lblT2Dec_Lat","label.lat"); to display g_properties.label.lat.<somelanguage>
+		The function is language aware
+		
+	//JAVA Label.setText(), almost
+	function uiSetLabelExplicit( name, value )
+		set the value of a labels displayed text to exact value
+
+	//JAVA Label.setText("")
+	function uiEmptyLabel( name )
+		set the value of a labels displayed text to be ""
+
+		
+	//JAVA Text.setText()
+	function uiSetTextExplicit( name, value )
+		set the value of a <INPUT type="text"> displayed text to exact value
+
+	//JAVA Text.setText("")
+	function uiEmptyTextElement( name )
+		set the value of a labels displayed text to be ""
+	
+	//JAVA Text.getText()
+	function uiGetTextValue( name )
+		return the string value of the contents of a <INPUT type="text">
+	
+	function uiSetElementValue( name, value )
+		Unused, probably best left that way. there is not a generic way to set values
+	
+	//JAVA Choice.clear() or clearAll()
+	function uiClearSelect( name )
+		empties a SELECT of all OPTIONS
+	
+	//JAVA Choice.?getSelected()?
+	function uiGetSelectedText( name )
+		returns the string of the display text in the currently selected option
+		Not to be confuse with value. The display text is not the value.
+		values are often the index of the option containing the human visible text
+		<OPTION value="1">Hi</OPTION>  value "1", Text "Hi"
+
+	function uiGetSelectedValue( name )
+		returns the string of the value of currently selected option
+		Not to be confuse with the displayed. The display text is not the value.
+		values are often the index of the option containing the human visible text
+		<OPTION value="1">Hi</OPTION>  value "1", Text "Hi"
+
+	function uiGetSelectIndexValue( name, index )
+		returned the text of the option for the given value
+		Ex: <OPTION value="1">Hi</OPTION>  value "1", Text "Hi"
+		Pass in "Hi" and get 1 returned
+
+	function uiGetSelectedIndex( name )
+		get the value, not the text of the currently selected OPTION
+		
+	//JAVA Choice.?setSelected()?
+	function uiSetSelectedValue( name, value )
+		POORLY NAMED
+		set the selected OPTION based on searcing for string in the OPTION text
+		
+	function uiSetSelectedIndex( name, index )
+		POORLY NAMED
+		set the selected OPTION based on searching for Value in the OPTION values
+
+	function uiClearAndFillSelectCanonical( name, source, initialEmpty
+		Empty the named SELECT item, then fill its contents from the canonical source.
+		Optionally you may add an empty first option
+		Ex:	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
+		Fill SELECT  with id of "ChoiceCValcType" with values auto filled in g_canonicalcalctypes
+		and set the inital option to empy.
+		g_conanoical are always language and exact order aware.
+		
+	//JAVA Choice.addItem()
+	function uiSelectAddItem( name, source )
+		add an OPTION to a SELECT from g_poperies + source + language
+		
+	function uiSelectAddExplicitItem( name, value )
+		add an OPTION to a SELECT with an explicit value rather than looking it up.
+		
+	//JAVA Choice.addItem("")	
+	function uiSelectAddEmptyItem( name )
+		add an empty OPTION to a SELECY
+	
+	function uiFillLanguageSelect( name, source, initialEmpty )
+		can be used to fill the language SELECT. Not used?
+		
+	function uiFillSelect( name, source, initialEmpty )
+		fill the OPTIONs of a SELECT  from g_properties.<source>* + lanugage
+		
+	function uiFillSelectCanonical( name, source, initialEmpty )
+		fill the OPTIONs of a SELECT  from g_canonical<source>.*
+
+
+g_properties functions
+	
+	g_properties.getPropertyLang( name )
+		look up a g_property without having to add the +language
+		Ex: g_properties.getPropertyLang("label.lat")
+		will return g_properties.label.lat.<language>
+
+	//JAVA props.getProperty
+	g_properties.getProperty( name )
+		look up a g_property WITH having to add the +language
+		Ex: g_properties.getProperty("label.lat."+language)
+		will return g_properties.label.lat.<language>
+	
+	g_properties.getIndexedProperty( name, index )
+		for language selection
+	
+ArrayLists, typically the g_canonical* arrays
+	al.length( )
+	al.size( )
+	al.add( source )
+	al.get( i )
+	al.clear()
+	al.indexOf( value )
+		find the idex of the string value

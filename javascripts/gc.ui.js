@@ -257,6 +257,7 @@ function uiEmptyTextElement( name )
 	return uiEmptyLabel( name );
 }
 
+//BUGBUG dont use me, remove me. I am dangerous
 function uiSetElementValue( name, value )
 {
 	var returnValue = false;
