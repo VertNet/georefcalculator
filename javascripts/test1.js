@@ -1,4 +1,4 @@
-/*
+ /*
 	function convertDistance(){
 		var fromdist;
 		var todist;

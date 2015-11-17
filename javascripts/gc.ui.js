@@ -2271,12 +2271,6 @@ function setVariables( )
 	{
 		setVisibility( "ChoiceFromDistUnits", b );
 		setVisibility( "ChoiceToDistUnits", b );
-
-//		BUGBUG why are these here, why are they commented out, check oringal Java source same function name
-//		to be sure these either belong, or not
-//		LabelFromDistUnits", b );
-//		LabelToDistUnits", b );
-
 		setVisibility( "LabelEquals", b );
 		setVisibility( "LabelDistanceConverter", b );
 		setVisibility( "TextFieldFromDistance", b );
@@ -2363,8 +2357,9 @@ function setVariables( )
 			showDMS( false );
 			showDegreesDecimalMinutes( true );
 		}
-		//BUGBUG why is this commente dout?
-		//IIRC its ok but best to audit, and check oringal java source to be sure it either bleongs or not.\
+		//BUGBUG why is this commented out?
+		//BEWARE: uncommenting this causes a stack overflow
+		//it is not commented out in oprignal java, but does not cause stack overflow there.
 //		showCoordinates( true );
 	}
 
@@ -3151,7 +3146,10 @@ function setVariables( )
 	{
 		clearResults();
 	}
-	//BUGBUG not found in grc.html, no longer used? check GC.java to see if tis used
+	//BUGBUG not found in grc.html
+	//This is defintely a control that is used.
+	//it is inmainpanel some here
+	//TextFieldHeading.setBounds (570, 145, 40, 23);
 	function TextFieldHeading_focusGained()
 	{
 		clearResults();
@@ -3415,11 +3413,6 @@ function setVariables( )
 	}
 
 /*
-	public void itemStateChanged(ItemEvent e){
-		ActionEvent ae = new ActionEvent(e.getSource(),e.getID(),null);
-		actionPerformed(ae);
-	}
-
 	public void errorDialog(String error, String title, int style){
 		Frame f=null;
 		Container c=getParent();
@@ -3432,9 +3425,6 @@ function setVariables( )
 		MinMaxDialog d=new MinMaxDialog(f, error, title, style);
 		d.setVisible(true);
 	}
-
-
-
 	*/
 	
 	/*
@@ -3444,7 +3434,6 @@ function setVariables( )
 		setDecimalFormat();
 		populateStableControls();
 		populateCoordinatePrecision(g_properties.getProperty("coordsys.dd."+language));
-//		populateCoordinatePrecision("decimal degrees");
 	}
 
 	void ButtonCalculate_afterActionPerformed() throws ParseException{
