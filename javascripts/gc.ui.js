@@ -3168,189 +3168,6 @@ function setVariables( )
 
 
 
-/*
-	private void translateCoords() throws ParseException{
-		double ddeclat = 0;
-		double ddeclong = 0;
-		Number num = null;
-		String s = null;
-
-		if( lastcoordsystem == 1 ){ // was decimal degrees
-			s = txtT2Dec_Lat.getText();
-			if( s == null || s.length() == 0 ){
-				ddeclat = 0;
-			} else {
-				num = numberFormatter.parse(s.trim());
-				ddeclat = num.doubleValue();
-			}
-			decimallatitude = ddeclat;
-			getDMSFromDecDegrees( decimallatitude );
-
-			txtT7Lat_DegDMS.setText( formatDeg.format(degrees) );
-			txtT7Lat_DegMM.setText( formatDeg.format(degrees) );
-			txtT7Lat_MinDMS.setText( formatMin.format(minutes) );
-			txtT7Lat_Sec.setText( formatSec.format(seconds) );
-			if( decimallatitude >= 0 ) {
-				ChoiceLatDirDMS.select(g_properties.getProperty("headings.n."+language));
-				ChoiceLatDirMM.select(g_properties.getProperty("headings.n."+language));
-//				ChoiceLatDirDMS.select("N");
-//				ChoiceLatDirMM.select("N");
-			} else {
-				ChoiceLatDirDMS.select(g_properties.getProperty("headings.s."+language));
-				ChoiceLatDirMM.select(g_properties.getProperty("headings.s."+language));
-//				ChoiceLatDirDMS.select("S");
-//				ChoiceLatDirMM.select("S");
-			}
-
-			double dmins = getDecimalMinutesFromMS( minutes, seconds );
-			txtT7Lat_MinMM.setText( formatMinMM.format(dmins) );
-
-			s = txtT2Dec_Long.getText();
-			if( s == null || s.length() == 0 ){
-				ddeclong = 0;
-			} else {
-				num = numberFormatter.parse(s.trim());
-				ddeclong = num.doubleValue();
-			}
-
-			decimallongitude = ddeclong;
-			getDMSFromDecDegrees( decimallongitude );
-			txtT7Long_DegDMS.setText( formatDeg.format(degrees) );
-			txtT7Long_DegMM.setText( formatDeg.format(degrees) );
-			txtT7Long_MinDMS.setText( formatMin.format(minutes) );
-			txtT7Long_Sec.setText( formatSec.format(seconds) );
-			if( decimallongitude >= 0 ) {
-				ChoiceLongDirDMS.select(g_properties.getProperty("headings.e."+language));
-				ChoiceLongDirMM.select(g_properties.getProperty("headings.e."+language));
-//				ChoiceLongDirDMS.select("E");
-//				ChoiceLongDirMM.select("E");
-			} else {
-				ChoiceLongDirDMS.select(g_properties.getProperty("headings.w."+language));
-				ChoiceLongDirMM.select(g_properties.getProperty("headings.w."+language));
-//				ChoiceLongDirDMS.select("W");
-//				ChoiceLongDirMM.select("W");
-			}
-
-			dmins = getDecimalMinutesFromMS( minutes, seconds );
-			txtT7Long_MinMM.setText( formatMinMM.format(dmins) );
-		} else if( lastcoordsystem == 2 ){ // was degrees minutes seconds
-			num = numberFormatter.parse(txtT7Lat_DegDMS.getText());
-			degrees = num.intValue();
-			num = numberFormatter.parse(txtT7Lat_MinDMS.getText());
-			minutes = num.intValue();
-
-//			degrees = Integer.parseInt( txtT7Lat_DegDMS.getText() );
-//			minutes = Integer.parseInt( txtT7Lat_MinDMS.getText() );
-
-			double d = 0;
-			s = txtT7Lat_Sec.getText();
-			if( s == null || s.length() == 0 ){
-				d = 0;
-			} else {
-				num = numberFormatter.parse(s.trim());
-				d = num.doubleValue();
-			}
-			seconds = d;
-
-			decimallatitude = Math.abs( getDecimalDegreesFromDMS(degrees, minutes, seconds) );
-
-			String SLatDirDMS = (String)ChoiceLatDirDMS.getSelectedItem();
-			if( SLatDirDMS.equals(g_properties.getProperty("headings.s."+language)) ){
-				decimallatitude *= -1.0;
-			}
-			txtT2Dec_Lat.setText( formatDec.format(decimallatitude) );
-
-			txtT7Lat_DegMM.setText( formatDeg.format(degrees) );
-			decminutes = getDecimalMinutesFromMS( minutes, seconds );
-			txtT7Lat_MinMM.setText( formatMinMM.format(decminutes) );
-
-			num = numberFormatter.parse(txtT7Long_DegDMS.getText());
-			degrees = num.intValue();
-			num = numberFormatter.parse(txtT7Long_MinDMS.getText());
-			minutes = num.intValue();
-
-//			degrees = Integer.parseInt( txtT7Long_DegDMS.getText() );
-//			minutes = Integer.parseInt( txtT7Long_MinDMS.getText() );
-			s = txtT7Long_Sec.getText();
-			if( s == null || s.length() == 0 ){
-				d = 0;
-			} else {
-				num = numberFormatter.parse(s.trim());
-				d = num.doubleValue();
-			}
-			seconds = d;
-
-			decimallongitude = Math.abs( getDecimalDegreesFromDMS(degrees, minutes, seconds) );
-			String SLongDirDMS = (String)ChoiceLongDirDMS.getSelectedItem();
-			if( SLongDirDMS.equals(g_properties.getProperty("headings.w."+language)) ){
-				decimallongitude *= -1;
-			}
-			txtT2Dec_Long.setText( formatDec.format(decimallongitude) );
-
-			txtT7Long_DegMM.setText( formatDeg.format(degrees) );
-			decminutes = getDecimalMinutesFromMS( minutes, seconds );
-			txtT7Long_MinMM.setText( formatMinMM.format(decminutes) );
-		} else if( lastcoordsystem == 3 ){ // was degrees decimal minutes
-			num = numberFormatter.parse(txtT7Lat_DegMM.getText());
-			degrees = num.intValue();
-
-//			degrees = Integer.parseInt( txtT7Lat_DegMM.getText() );
-			double m = 0;
-			s = txtT7Lat_MinMM.getText();
-			if( s == null || s.length() == 0 ){
-				m = 0;
-			} else {
-				num = numberFormatter.parse(s.trim());
-				m = num.doubleValue();
-			}
-			decminutes = m;
-
-			decimallatitude = Math.abs( getDecimalDegreesFromDegreesDecimalMinutes(degrees, decminutes) );
-			String SLatDirMM = (String)ChoiceLatDirMM.getSelectedItem();
-			if( SLatDirMM.equals(g_properties.getProperty("headings.s."+language)) ){
-				decimallatitude *= -1;
-			}
-			txtT2Dec_Lat.setText( formatDec.format(decimallatitude) );
-
-			getMSFromDecMinutes(decminutes);
-			txtT7Lat_DegDMS.setText( formatDeg.format(degrees) );
-			txtT7Lat_MinDMS.setText( formatMin.format(minutes) );
-			txtT7Lat_Sec.setText( formatSec.format(seconds) );
-			ChoiceLatDirDMS.select( ChoiceLatDirMM.getSelectedItem() );
-
-			num = numberFormatter.parse(txtT7Long_DegMM.getText());
-			degrees = num.intValue();
-
-//			degrees = Integer.parseInt( txtT7Long_DegMM.getText() );
-			s = txtT7Long_MinMM.getText();
-			if( s == null || s.length() == 0 ){
-				m = 0;
-			} else {
-				num = numberFormatter.parse(s.trim());
-				m = num.doubleValue();
-			}
-			decminutes = m;
-
-			decimallongitude = Math.abs( getDecimalDegreesFromDegreesDecimalMinutes(degrees, decminutes) );
-			String SLongDirMM = (String)ChoiceLongDirMM.getSelectedItem();
-			if( SLongDirMM.equals(g_properties.getProperty("headings.w."+language)) ){
-				decimallongitude *= -1;
-			}
-			txtT2Dec_Long.setText( formatDec.format(decimallongitude) );
-
-			getMSFromDecMinutes(decminutes);
-			txtT7Long_DegDMS.setText( formatDeg.format(degrees) );
-			txtT7Long_MinDMS.setText( formatMin.format(minutes) );
-			txtT7Long_Sec.setText( formatSec.format(seconds) );
-			ChoiceLongDirDMS.select( ChoiceLongDirMM.getSelectedItem() );
-		}
-		String SCoordSystem = (String)ChoiceCoordSystem.getSelectedItem();
-		int index = g_canonicalcoordsystems.indexOf(SCoordSystem);
-
-		lastcoordsystem = index+1;
-	}
-*/
-
 //BEGIN TextX onFocus functions
 	function txtT2Dec_Lat_focusGained()
 	{
@@ -3435,22 +3252,36 @@ function setVariables( )
 		populateStableControls();
 		populateCoordinatePrecision(g_properties.getProperty("coordsys.dd."+language));
 	}
+	*/
+//uiGetTextValue("
+//uiSetTextExplicit("
+//uiSetSelectedText("
+//uiGetSelectedText("
+//uiIsVisible("
 
-	void ButtonCalculate_afterActionPerformed() throws ParseException{
+	function ButtonCalculate_afterActionPerformed()
+//	throws ParseException
+	{
 		clearResults();
 		calculateResults();
 		showResults(true);
 	}
 
-	void ButtonPromote_afterActionPerformed() throws ParseException{
+	function ButtonPromote_afterActionPerformed()
+//	throws ParseException
+	{
 		lastcoordsystem = 1;
 
-		txtT2Dec_Lat.setText(formatCalcDec.format(newdecimallatitude));
-		txtT2Dec_Long.setText(formatCalcDec.format(newdecimallongitude));
-		try {
-			ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
+		uiGetTextValue("txtT2Dec_Lat",newdecimallatitude);//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
+		uiGetTextValue("txtT2Dec_Long", newdecimallongitude);//JAVA format formatCalcDec.format(newdecimallongitude));
+		//try  //JAVA format
+		//{
+		//JAVA ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());
+			ChoiceCoordSystem_itemStateChanged();//uiGetSelectedText("ChoiceCoordSystem"));
+		//}
+		//catch (ParseException e1) 
+		//{
+			//e1.printStackTrace();
+		//}
 	}
-*/
+
