@@ -107,13 +107,24 @@
 		<SPAN class="span50" align="right">
 			<SPAN id="MARKER" class="span75" align="left">
 				<LABEL id="LabelOffset">North or South OffsetBUG</LABEL>
-				<INPUT TYPE="text" id="TextFieldOffset" value="BUG" onfocus=""  onfocus="TextFieldOffset_focusGained()" />
+				<INPUT TYPE="text" id="TextFieldOffset" value="BUG" onfocus="TextFieldOffset_focusGained()" />
+				
+				<LABEL id="LabelDirection">lbl dir BUG</LABEL>
 			</SPAN>
 			<SPAN id="MARKER" class="span17">
-				<SELECT id="ChoiceOffsetNSDir" FonOffsetNSDirSelect()" class="selectDirection">
+				<SELECT id="ChoiceOffsetNSDir" onSelect="onOffsetNSDirSelect()" class="selectDirection">
 					<OPTION>N MARKER</OPTION>
 					<OPTION>S MARKER</OPTION>
 				</SELECT>
+				
+				<SELECT id="ChoiceDirection" onSelect="onOffsetNSDirSelect()" class="selectDirection">
+					<OPTION>a MARKER</OPTION>
+					<OPTION> MARKER</OPTION>
+					<OPTION> MARKER</OPTION>
+					<OPTION> MARKER</OPTION>
+					<OPTION> MARKER</OPTION>
+				</SELECT>
+				<INPUT TYPE="text" id="TextFieldHeading" value="BUG" onfocus="TextFieldHeading_focusGained()" />
 			</SPAN>
 		</SPAN>
 	<!--</SPAN>-->
@@ -219,7 +230,7 @@
 		<SPAN id="MARKER" class="span83">
 		
 			<!--  DM SControls-->			
-			<INPUT TYPE="text" id="txtT7Long_DegDMS" value="dms long d BUG" class="textDegree"  onfocus="txtT7Long_DegDMS_focusGained()" />
+			<INPUT TYPE="text" id="txtT7Long_DegDMS" value="" class="textDegree"  onfocus="txtT7Long_DegDMS_focusGained()" />
 			<LABEL id="Label23">o</LABEL>
 			<INPUT TYPE="text" id="txtT7Long_MinDMS" value="dms long m BUG" class="textMinute"  onfocus="txtT7Long_MinDMS_focusGained()" />
 			<LABEL id="Label222">&#39;</LABEL>
@@ -327,19 +338,23 @@
 <DIV id="ReadOnlyFields1">
 	<SPAN class="span66">
 	<SPAN id="MARKER" class="span33">
-		<LABEL id="TextFieldCalcDecLat" class="readOnlyInput">BUG</LABEL>
+		<!--<LABEL id="TextFieldCalcDecLat" class="readOnlyInput">BUG</LABEL>-->
+		<INPUT type="text" id="TextFieldCalcDecLat" class="readOnlyInput" readonly></INPUT>
 	</SPAN> 
 	<SPAN id="MARKER" class="span33">
-		<LABEL id="TextFieldCalcDecLong" class="readOnlyInput">BUG</LABEL>
+		<!--<LABEL id="TextFieldCalcDecLong" class="readOnlyInput">BUG</LABEL> -->
+		<INPUT type="text" id="TextFieldCalcDecLong" class="readOnlyInput" readonly></INPUT>
 	</SPAN> 
 	<SPAN id="MARKER" class="span33">
-		<LABEL id="TextFieldCalcErrorDist" class="readOnlyInput">BUG</LABEL>
+		<!--<LABEL id="TextFieldCalcErrorDist" class="readOnlyInput">BUG</LABEL>-->
+		<INPUT type="text" id="TextFieldCalcErrorDist" class="readOnlyInput" readonly></INPUT>
 	</SPAN> 
 	</SPAN>
 
 	<SPAN class="span22">
 	<SPAN id="MARKER" class="span17">
-		<LABEL id="TextFieldCalcErrorUnits" class="readOnlyInput">BUG</LABEL>
+		<!--<LABEL id="TextFieldCalcErrorUnits" class="readOnlyInput">BUG</LABEL>-->
+		<INPUT type="text"  id="TextFieldCalcErrorUnits" class="readOnlyInput" readonly></INPUT>
 	</SPAN> 
 	<SPAN id="MARKER" class="span33">
 		<BUTTON id="ButtonCalculate" onClick="ButtonCalculate_afterActionPerformed" >CalculateMARKER</Button>
@@ -351,7 +366,10 @@
 </DIV>
 
 <DIV id="ReadOnlyFields2">
-	<SPAN id="MARKER" class="span100"><LABEL id="TextFieldFullResult" class="readOnlyInput">MARKER</LABEL></SPAN> 
+	<SPAN id="MARKER" class="span100">
+	<!--<LABEL id="TextFieldFullResult" class="readOnlyInput" ">ggg</LABEL> -->
+	<INPUT type="text" id="TextFieldFullResult" class="readOnlyInput" readonly ></INPUT>
+	</SPAN> 
 </DIV>
 
 <!-- BEGIN/END MARKER the distance converter elements belong here-->
@@ -409,8 +427,6 @@
 				<OPTION>3 BUGBUG ScaleToDistUnits</OPTION>			
 			</SELECT>
 			<LABEL id="TextFieldScaleToDistance" class="readOnlyInputSmall">tfstd BUG</LABEL>
-
-
 		</SPAN>
 	</SPAN>
 </DIV>
@@ -421,7 +437,6 @@
 		<LABEL id="LabelVersion" class="LABELINFO">MARKER version 1234 Klingon</LABEL>
 	</SPAN>
 	<SPAN id="BUGBUG" class="span50">
-		<LABEL class="LABELBUGBUG">BUGBUG here for layout help only delete me</LABEL>
 	</SPAN>
 	<SPAN id="MARKER" class="span25" align="right">
 		<LABEL align="right" id="LabelCopyRight" class="LABELINFO">Copyright 2015 Regents of the University of California</LABEL>

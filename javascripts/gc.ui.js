@@ -242,7 +242,7 @@ function uiEmptyLabel( name )
 			el.removeChild(el.childNodes[0]);
 		}
 		//BUGBUG fix this. Without the "I" some text elements have 0 hight when empty, showing only border, if any.
-		var textnode = document.createTextNode("I");
+		var textnode = document.createTextNode("");
 		el.appendChild(textnode);
 	}
 	else
@@ -2078,13 +2078,26 @@ function setVariables( )
 	function PanelResults_SetVisible( v )
 	{
 		setVisibility( "LabelCalcDecLat", v);
-		setVisibility( "TextFieldCalcDecLat", v);
 		setVisibility( "LabelCalcDecLong", v);
-		setVisibility( "TextFieldCalcDecLong", v);
 		setVisibility( "LabelCalcMaxError", v);
-		setVisibility( "TextFieldCalcErrorDist", v);
-		setVisibility( "TextFieldCalcErrorUnits", v);
-		setVisibility( "TextFieldFullResult", v);
+		if( v )
+		{
+			uiShowElement( "TextFieldFullResult" );
+			uiShowElement( "TextFieldCalcDecLat");
+			uiShowElement( "TextFieldCalcDecLong");
+			uiShowElement( "TextFieldCalcErrorDist");
+			uiShowElement( "TextFieldCalcErrorUnits");
+
+		}
+		else
+		{
+			uiHideElement( "TextFieldFullResult" );
+			uiHideElement( "TextFieldCalcDecLat");
+			uiHideElement( "TextFieldCalcDecLong");
+			uiHideElement( "TextFieldCalcErrorDist");
+			uiHideElement( "TextFieldCalcErrorUnits");
+			uiHideElement( "TextFieldFullResult" );
+		}
 	}
 	
 /*Note: for reference only Java	 UI Layout, I am using it for hidden attribute setting as it does not translate well from Java pane to HTML div/span
@@ -2240,7 +2253,7 @@ function setVariables( )
 		setVisibility( "ChoiceDirection", b );
 		setVisibility( "LabelDirection", b );
 		
-		if( b && value == g_properties.getPropertyLang("headings.nearestdegree." ) )
+		if( b && value == g_properties.getPropertyLang("headings.nearestdegree" ) )
 		{
 			setVisibility( "TextFieldHeading", true );
 		} else {
@@ -2316,11 +2329,21 @@ function setVariables( )
 	function showErrors( b )
 	{
 		setVisibility( "LabelCalcMaxError", b );
-		setVisibility( "TextFieldCalcErrorDist", b );
-		setVisibility( "TextFieldCalcErrorUnits", b );
-		setVisibility( "TextFieldFullResult", b );
+		if( b )
+		{
+			uiShowElement( "TextFieldFullResult" );
+			uiShowElement( "TextFieldCalcErrorDist");
+			uiShowElement( "TextFieldCalcErrorUnits");
+		}
+		else
+		{
+			uiHideElement( "TextFieldFullResult", b );
+			uiHideElement( "TextFieldCalcErrorDist");
+			uiHideElement( "TextFieldCalcErrorUnits");
+		}
 	}
 
+	
 	function showNSOffset( b )
 	{
 		setVisibility( "TextFieldOffset", b );
