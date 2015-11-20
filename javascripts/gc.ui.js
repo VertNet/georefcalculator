@@ -1434,27 +1434,27 @@ function setVariables( )
 			//"nearest degree"
 			error *= 1.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.01") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.cp_01") )
 		{
 			//"0.1 degrees
 			error *= 0.1;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.001") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.cp_001") )
 		{
 			//"0.01 degrees"
 			error *= 0.01;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.0001") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.cp_0001") )
 		{
 			//"0.001 degrees"
 			error *= 0.001;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.00001") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.cp_00001") )
 		{
 			//"0.0001 degrees"
 			error *= 0.0001;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.000001") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dd.cp_000001") )
 		{
 			//"0.00001 degrees"
 			error *= 0.00001;
@@ -1469,72 +1469,72 @@ function setVariables( )
 			//"nearest 1/4 degree"
 			error *= 0.25;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.30m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_30m") )
 		{
 			//"nearest 30 minutes"
 			error *= 0.5;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.10m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_10m") )
 		{
 			//"nearest 10 minutes"
 			error /= 6.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.5m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_5m") )
 		{
 			//"nearest 5 minutes"
 			error /= 12.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.1m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_1m") )
 		{
 			//"nearest minute"
 			error /= 60.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.30s") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_30s") )
 		{
 			//"nearest 30 seconds"
 			error /= 120.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.10s") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_10s") )
 		{
 			//"nearest 10 seconds"
 			error /= 360.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.5s") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_5s") )
 		{
 			//"nearest 5 seconds"
 			error /= 720.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.1s") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_1s") )
 		{
 			//"nearest second"
 			error /= 3600.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.01s") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_01s") )
 		{
 			//"0.1 seconds"
 			error /= 36000.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.001s") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.dms.cp_001s") )
 		{
 			//"0.01 seconds"
 			error /= 360000.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.1m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.cp_1m") )
 		{
 			//"1 minute"
 			error /= 60.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.01m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.cp_01m") )
 		{
 			//"0.1 minutes"
 			error /= 600.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.001m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.cp_001m") )
 		{
 			//"0.01 minutes"
 			error /= 6000.0;
 		}
-		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.0001m") )
+		else if( latprecision == g_properties.getPropertyLang("coordprec.ddm.cp_0001m") )
 		{
 			//"0.001 minutes"
 			error /= 60000.0;
