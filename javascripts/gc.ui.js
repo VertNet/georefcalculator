@@ -110,18 +110,18 @@ function GC_init()
 
 function uiIsVisible( name )
 {
-	var el = document.getElementById( 'ChoiceLanguage' );
+	var el = document.getElementById( name );
 	returnVal = null;
 	if( el )
 	{
-		
-		if( el.visibility == "visible" )
+		var st = el.style.display
+		if( st == "none" )
 		{
-			retunVal = true;
+			returnVal = false;
 		}
 		else 
 		{
-			retunVal = false;
+			returnVal = true;
 		}	
 	}
 	else
@@ -150,7 +150,7 @@ function uiHideElement( name )
 	var el = document.getElementById( name );
 	if( el )
 	{
-		el.setAttribute("hidden", true);
+		el.setAttribute("hidden", "true");
 		el.style.display="none";
 	}
 	else
@@ -164,7 +164,7 @@ function uiShowElement( name )
 	var el = document.getElementById( name );
 	if( el )
 	{
-		el.setAttribute("hidden", false);
+		el.setAttribute("hidden", "false");
 		el.style.display="inline-block";
 	}
 	else
@@ -222,6 +222,7 @@ function uiSetLabelExplicit( name, value )
 			el.removeChild(el.childNodes[0]);
 		}
 		var textnode = document.createTextNode(value);
+		el.value = value;
 		el.appendChild(textnode);
 	}
 	else
@@ -2432,7 +2433,7 @@ function setVariables( )
 			
 		if( s == null || s.length == 0 )
 		{
-			uiSetTextExplicit("TextFieldHeading","0");
+			uiSetLabelExplicit("TextFieldHeading","0");
 		}
 		else
 		{ // test input within limits and valid
@@ -2485,7 +2486,8 @@ function setVariables( )
 			s = uiGetTextValue("txtT2Dec_Lat");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT2Dec_Lat",0);
+				uiSetLabelExplicit( "txtT2Dec_Lat",0);
+				//uiSetTextExplicit("txtT2Dec_Lat",0);
 			}
 			else
 			{ // test input within limits and valid
@@ -2531,7 +2533,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT2Dec_Long");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT2Dec_Long","0");
+				uiSetLabelExplicit("txtT2Dec_Long","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2577,7 +2579,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT7Lat_DegDMS");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Lat_DegDMS","0");
+				uiSetLabelExplicit("txtT7Lat_DegDMS","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2585,7 +2587,7 @@ function setVariables( )
 //				try
 //				{
 //					JAVA num = numberFormatter.parse(s.trim());
-					num = s.trim();
+					num = s;
 //					JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
@@ -2624,7 +2626,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT7Long_DegDMS");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Long_DegDMS","0");
+				uiSetLabelExplicit("txtT7Long_DegDMS","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2667,7 +2669,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT7Lat_DegMM");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Lat_DegMM","0");
+				uiSetLabelExplicit("txtT7Lat_DegMM","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2707,7 +2709,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT7Long_DegMM");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Long_DegMM","0");
+				uiSetLabelExplicit("txtT7Long_DegMM","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2748,7 +2750,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT7Lat_MinDMS");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Lat_MinDMS","0");
+				uiSetLabelExplicit("txtT7Lat_MinDMS","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2784,7 +2786,7 @@ function setVariables( )
 			s = uiGetTextValue("txtT7Long_MinDMS");
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Long_MinDMS","0");
+				uiSetLabelExplicit("txtT7Long_MinDMS","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2821,7 +2823,7 @@ function setVariables( )
 			
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Lat_MinMM","0");
+				uiSetLabelExplicit("txtT7Lat_MinMM","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2855,7 +2857,7 @@ function setVariables( )
 			
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Long_MinMM","0");
+				uiSetLabelExplicit("txtT7Long_MinMM","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2890,7 +2892,7 @@ function setVariables( )
 			
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Lat_Sec","0");
+				uiSetLabelExplicit("txtT7Lat_Sec","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2923,7 +2925,7 @@ function setVariables( )
 			
 			if( s == null || s.length == 0 )
 			{
-				uiSetTextExplicit("txtT7Long_Sec","0");
+				uiSetLabelExplicit("txtT7Long_Sec","0");
 			}
 			else
 			{ // test input within limits and valid
@@ -2972,7 +2974,7 @@ function setVariables( )
 		s = uiGetTextValue("TextFieldOffset");
 		if( s == null || s.length == 0 )
 		{
-			uiSetTextExplicit("TextFieldOffset","0");
+			uiSetLabelExplicit("TextFieldOffset","0");
 		}
 		else
 		{
@@ -3005,7 +3007,7 @@ function setVariables( )
 		s = uiGetTextValue("TextFieldOffsetEW");
 		if( s == null || s.length == 0 )
 		{
-			uiSetTextExplicit("TextFieldOffsetEW","0");
+			uiSetLabelExplicit("TextFieldOffsetEW","0");
 		}
 		else
 		{
@@ -3038,7 +3040,7 @@ function setVariables( )
 		s = uiGetTextValue("TextFieldExtent");
 		if( s == null || s.length == 0 )
 		{
-			uiSetTextExplicit("TextFieldExtent","0");
+			uiSetLabelExplicit("TextFieldExtent","0");
 		}
 		else
 		{ // test input within limits and valid
@@ -3071,7 +3073,7 @@ function setVariables( )
 		
 		if( s == null || s.length == 0 )
 		{
-			uiSetTextExplicit("TextFieldMeasurementError","0");
+			uiSetLabelExplicit("TextFieldMeasurementError","0");
 		}
 		else
 		{ // test input within limits and valid
@@ -3102,14 +3104,6 @@ function setVariables( )
 		return testpasses;
 	}
 
-	function testParameterLimits()
-//	throws ParseException
-	{
-		var testspass = testLatLongLimits();
-		testspass &= testHeadingLimits();
-		testspass &= testOffsetLimits();
-		return testspass;
-	}
 
 	function testResultCoordinates()
 	{
@@ -3276,35 +3270,4 @@ function setVariables( )
 		populateCoordinatePrecision(g_properties.getProperty("coordsys.dd."+language));
 	}
 	*/
-//uiGetTextValue("
-//uiSetTextExplicit("
-//uiSetSelectedText("
-//uiGetSelectedText("
-//uiIsVisible("
-
-	function ButtonCalculate_afterActionPerformed()
-//	throws ParseException
-	{
-		clearResults();
-		calculateResults();
-		showResults(true);
-	}
-
-	function ButtonPromote_afterActionPerformed()
-//	throws ParseException
-	{
-		lastcoordsystem = 1;
-
-		uiGetTextValue("txtT2Dec_Lat",newdecimallatitude);//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
-		uiGetTextValue("txtT2Dec_Long", newdecimallongitude);//JAVA format formatCalcDec.format(newdecimallongitude));
-		//try  //JAVA format
-		//{
-		//JAVA ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());
-			ChoiceCoordSystem_itemStateChanged();//uiGetSelectedText("ChoiceCoordSystem"));
-		//}
-		//catch (ParseException e1) 
-		//{
-			//e1.printStackTrace();
-		//}
-	}
 

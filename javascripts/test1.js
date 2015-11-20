@@ -32,7 +32,7 @@
 				fromUnit = uiGetSelectedText("ChoiceFromDistUnits");
 				toUnit = uiGetSelectedText("ChoiceToDistUnits");
 				todist = convertLengthFromTo(fromdist,fromUnit,toUnit);
-				uiSetTextExplicit("TextFieldToDistance", todist );//.setText( formatDistance.format(todist) ); //EDIT
+				uiSetLabelExplicit("TextFieldToDistance", todist );//.setText( formatDistance.format(todist) ); //EDIT
 			//}
 			//BUGBUG add back in when we have number formatters
 			//catch (ParseException e)
@@ -125,8 +125,8 @@
 					scalefactor/=12.0;
 				}
 				todist = scalefactor*convertLengthFromTo(fromdist,fromUnit,toUnit);
-				//uiSetTextExplicit("TextFieldScaleToDistance", formatDistance.format(todist) );
-				uiSetTextExplicit("TextFieldScaleToDistance", todist );
+				//uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.format(todist) );
+				uiSetLabelExplicit("TextFieldScaleToDistance", todist );
 			//}
 			//ADD This back inwhen we get formatters
 			//catch (ParseException e)
@@ -134,14 +134,38 @@
 				//errorDialog(props.getProperty("error.number.message."+language), props.getProperty("error.number.title."+language), 0); //EDIT
 				//JAVA TextFieldScaleFromDistance.setText( formatDistance.format(0) ); //EDIT
 				//JAVA TextFieldScaleToDistance.setText( formatDistance.format(0) ); //EDIT
-				//uiSetTextExplicit("TextFieldScaleFromDistance", 0 ); 
-				//uiSetTextExplicit("TextFieldScaleToDistance", 0 );
+				//uiSetLabelExplicit("TextFieldScaleFromDistance", 0 ); 
+				//uiSetLabelExplicit("TextFieldScaleToDistance", 0 );
 			//}
 		}
 	}
 
 	
 	
+	function testParameterLimits()
+//	throws ParseException
+	{
+		var testspass = testLatLongLimits();
+		if( testspass )
+		{
+			testspass = testHeadingLimits();
+			if( testspass )
+			{
+				testspass = testOffsetLimits();
+				if( testspass == false )
+				{
+					console.log("ERROR: testPaemterLimits() failed at testOffsetLimits()");
+				}
+			}
+			
+		}
+		else
+		{
+			console.log("ERROR: testPaemterLimits() failed at testLatLongLimits");
+		}
+
+		return testspass;
+	}
 
 	function calculateResults()
 	//throws ParseException
@@ -157,20 +181,20 @@
 
 		//JAVA String declatstr = new String( String.valueOf(newdecimallatitude) );
 		var declatstr = newdecimallatitude;
-		uiSetTextExplicit("TextFieldCalcDecLat",  declatstr );
+		uiSetLabelExplicit("TextFieldCalcDecLat",  declatstr );
 
 		//JAVA String declongstr = new String( String.valueOf(newdecimallongitude) );
 		var declongstr = newdecimallongitude;
-		uiSetTextExplicit("TextFieldCalcDecLong", declongstr );
+		uiSetLabelExplicit("TextFieldCalcDecLong", declongstr );
 
 		calculateMaxErrorDistance();
 
 		//JAVA String errstr = new String( String.valueOf(maxerrordistance) );
 		var errstr = maxerrordistance;
-		uiSetTextExplicit("TextFieldCalcErrorDist", errstr );
+		uiSetLabelExplicit("TextFieldCalcErrorDist", errstr );
 		var distunits = uiGetSelectedText("ChoiceDistUnits");
 		
-		uiSetTextExplicit("TextFieldCalcErrorUnits", distunits );
+		uiSetLabelExplicit("TextFieldCalcErrorUnits", distunits );
 
 /* JAVA
 		String datumstr = (String)ChoiceDatum.getSelectedItem();//EDIT
@@ -212,7 +236,7 @@
 			declatstr = declatstr.substring(0,9);
 		}
 		
-		if( declongstr.length() > 10 )
+		if( declongstr.length > 10 )
 		{ // if there are floating point residuals in the calculation
 			declongstr = declongstr.substring(0,10);
 		}
@@ -230,9 +254,9 @@
 		//TextFieldCalcDecLong.setText(formatCalcDec.format(newdecimallongitude));//EDIT
 		//TextFieldCalcErrorDist.setText(formatCalcError.format(maxerrordistance));//EDIT
 
-		uiSetTextExplicit("TextFieldCalcDecLat", newdecimallatitude);
-		uiSetTextExplicit("TextFieldCalcDecLong",newdecimallongitude);
-		uiSetTextExplicit("TextFieldCalcErrorDist",maxerrordistance);
+		uiSetLabelExplicit("TextFieldCalcDecLat", newdecimallatitude);
+		uiSetLabelExplicit("TextFieldCalcDecLong",newdecimallongitude);
+		uiSetLabelExplicit("TextFieldCalcErrorDist",maxerrordistance);
 		/***
 			Output meant to have tab-delimited output in the full result text box.
 			This can then be copied and pasted into a spreadsheet from the application.
@@ -269,7 +293,7 @@
 						distanceprecisionstr + '\u0009' +
 						coordprecisionstr;
 
-		uiSetTextExplicit("TextFieldFullResult",resultstr);
+		uiSetLabelExplicit("TextFieldFullResult",resultstr);
 	}
 
 
@@ -304,26 +328,26 @@
 			decimallatitude = ddeclat;
 			getDMSFromDecDegrees( decimallatitude );
 
-			uiSetTextExplicit("txtT7Lat_DegDMS",degrees); //Deg.format(degrees) );
-			uiSetTextExplicit("txtT7Lat_DegMM",degrees); //Deg.format(degrees) );
-			uiSetTextExplicit("txtT7Lat_MinDMS",miniutes); //Min.format(minutes) );
-			uiSetTextExplicit("txtT7Lat_Sec",seconds); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Lat_DegDMS",degrees); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_DegMM",degrees); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_MinDMS",minutes); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Lat_Sec",seconds); //Sec.format(seconds) );
 			
 			if( decimallatitude >= 0 )
 			{
-				uiSetSelectedText("ChoiceLatDirDMS",g_properties.getPropertyLang("headings.n"));
-				uiSetSelectedText("ChoiceLatDirMM",g_properties.getPropertyLang("headings.n"));
+				uiSetSelectedValue("ChoiceLatDirDMS",g_properties.getPropertyLang("headings.n"));
+				uiSetSelectedValue("ChoiceLatDirMM",g_properties.getPropertyLang("headings.n"));
 			}
 			else
 			{
-				uiSetSelectedText("ChoiceLatDirDMS",g_properties.getPropertyLang("headings.s"));
-				uiSetSelectedText("ChoiceLatDirMM",g_properties.getPropertyLang("headings.s"));
+				uiSetSelectedValue("ChoiceLatDirDMS",g_properties.getPropertyLang("headings.s"));
+				uiSetSelectedValue("ChoiceLatDirMM",g_properties.getPropertyLang("headings.s"));
 			}
 
 			//JAVA double dmins = getDecimalMinutesFromMS( minutes, seconds );
 			var dmins = getDecimalMinutesFromMS( minutes, seconds );
 			
-			uiSetTextExplicit("txtT7Lat_MinMM",dmins); //MinMM.format(dmins) );
+			uiSetLabelExplicit("txtT7Lat_MinMM",dmins); //MinMM.format(dmins) );
 
 			s = uiGetTextValue("txtT2Dec_Long");
 			if( s == null || s.length == 0 )
@@ -338,23 +362,23 @@
 
 			decimallongitude = ddeclong;
 			getDMSFromDecDegrees( decimallongitude );
-			uiSetTextExplicit("txtT7Long_DegDMS",degrees); //Deg.format(degrees) );
-			uiSetTextExplicit("txtT7Long_DegMM",degrees); //Deg.format(degrees) );
-			uiSetTextExplicit("txtT7Long_MinDMS",minutes); //Min.format(minutes) );
-			uiSetTextExplicit("txtT7Long_Sec",seconds); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Long_DegDMS",degrees); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_DegMM",degrees); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_MinDMS",minutes); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Long_Sec",seconds); //Sec.format(seconds) );
 			if( decimallongitude >= 0 )
 			{
-				uiSetSelectedText("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.e"));
-				uiSetSelectedText("ChoiceLongDirMM",g_properties.getPropertyLang("headings.e"));
+				uiSetSelectedValue("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.e"));
+				uiSetSelectedValue("ChoiceLongDirMM",g_properties.getPropertyLang("headings.e"));
 			}
 			else
 			{
-				uiSetSelectedText("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.w"));
-				uiSetSelectedText("ChoiceLongDirMM",g_properties.getPropertyLang("headings.w"));
+				uiSetSelectedValue("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.w"));
+				uiSetSelectedValue("ChoiceLongDirMM",g_properties.getPropertyLang("headings.w"));
 			}
 
 			dmins = getDecimalMinutesFromMS( minutes, seconds );
-			uiSetTextExplicit("txtT7Long_MinMM",dmins); //MinMM.format(dmins) );
+			uiSetLabelExplicit("txtT7Long_MinMM",dmins); //MinMM.format(dmins) );
 		}
 		//BUGBUG Critical I do not think this is the order the Coords sys are in DMS, DD, DMS
 		else if( lastcoordsystem == 2 )
@@ -384,15 +408,15 @@
 			//JAVAString SLatDirDMS = (String)ChoiceLatDirDMS.getSelectedItem();
 			var SLatDirDMS = uiGetSelectedText("ChoiceLatDirDMS");
 			
-			if( SLatDirDMS.equals(g_properties.getPropertyLang("headings.s")) )
+			if( SLatDirDMS == g_properties.getPropertyLang("headings.s")) 
 			{
 				decimallatitude *= -1.0;
 			}
-			uiSetTextExplicit("txtT2Dec_Lat", decimallatitude ); //Dec.format(decimallatitude) );
+			uiSetLabelExplicit("txtT2Dec_Lat", decimallatitude ); //Dec.format(decimallatitude) );
 
-			uiSetTextExplicit("txtT7Lat_DegMM",degrees); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_DegMM",degrees); //Deg.format(degrees) );
 			decminutes = getDecimalMinutesFromMS( minutes, seconds );
-			uiSetTextExplicit("txtT7Lat_MinMM",decminutes); //MinMM.format(decminutes) );
+			uiSetLabelExplicit("txtT7Lat_MinMM",decminutes); //MinMM.format(decminutes) );
 
 //			num = numberFormatter.parse(txtT7Long_DegDMS.getText());
 			num = uiGetTextValue("txtT7Long_DegDMS");
@@ -419,15 +443,15 @@
 			//JAVA String SLongDirDMS = (String)ChoiceLongDirDMS.getSelectedItem();
 			var SLongDirDMS = uiGetSelectedText("ChoiceLongDirDMS");
 			
-			if( SLongDirDMS.equals(g_properties.getPropertyLang("headings.w")) )
+			if( SLongDirDMS  == g_properties.getPropertyLang("headings.w") )
 			{
 				decimallongitude *= -1;
 			}
-			uiSetTextExplicit("txtT2Dec_Long", decimallongitude );//Dec.format(decimallongitude) );
+			uiSetLabelExplicit("txtT2Dec_Long", decimallongitude );//Dec.format(decimallongitude) );
 
-			uiSetTextExplicit("txtT7Long_DegMM", degrees ); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_DegMM", degrees ); //Deg.format(degrees) );
 			decminutes = getDecimalMinutesFromMS( minutes, seconds );
-			uiSetTextExplicit("txtT7Long_MinMM", decminutes); //MinMM.format(decminutes) );
+			uiSetLabelExplicit("txtT7Long_MinMM", decminutes); //MinMM.format(decminutes) );
 		}
 		else if( lastcoordsystem == 3 )
 		{ // was degrees decimal minutes
@@ -452,20 +476,20 @@
 			decimallatitude = Math.abs( getDecimalDegreesFromDegreesDecimalMinutes(degrees, decminutes) );
 			//JAVAString SLatDirMM = (String)ChoiceLatDirMM.getSelectedItem();
 			var SLatDirMM = uiGetSelectedText("ChoiceLatDirMM");
-			if( SLatDirMM.equals(g_properties.getPropertyLang("headings.s")) ) 
+			if( SLatDirMM == g_properties.getPropertyLang("headings.s"))  
 			{
 				decimallatitude *= -1;
 			}
 			
-			uiSetTextExplicit("txtT2Dec_Lat",decimallatitude); //Dec.format(decimallatitude) );
+			uiSetLabelExplicit("txtT2Dec_Lat",decimallatitude); //Dec.format(decimallatitude) );
 
 			getMSFromDecMinutes(decminutes);
-			uiSetTextExplicit("txtT7Lat_DegDMS", degrees ); //Deg.format(degrees) );
-			uiSetTextExplicit("txtT7Lat_MinDMS", minutes ); //Min.format(minutes) );
-			uiSetTextExplicit("txtT7Lat_Sec", seconds ); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Lat_DegDMS", degrees ); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_MinDMS", minutes ); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Lat_Sec", seconds ); //Sec.format(seconds) );
 			
 
-			uiSetSelectedText("ChoiceLatDirDMS", uiGetSelectedText("ChoiceLatDirMM") );
+			uiSetSelectedValue("ChoiceLatDirDMS", uiGetSelectedText("ChoiceLatDirMM") );
 
 			//num = numberFormatter.parse(txtT7Long_DegMM.getText());
 			num = uiGetTextValue("txtT7Long_DegMM");
@@ -486,17 +510,17 @@
 			decimallongitude = Math.abs( getDecimalDegreesFromDegreesDecimalMinutes(degrees, decminutes) );
 			//JAVA String SLongDirMM = (String)ChoiceLongDirMM.getSelectedItem();
 			var SLongDirMM = uiGetSelectedText("ChoiceLongDirMM");
-			if( SLongDirMM.equals(g_properties.getPropertyLang("headings.w")) )
+			if( SLongDirMM == g_properties.getPropertyLang("headings.w") )
 			{
 				decimallongitude *= -1;
 			}
-			uiSetTextExplicit("txtT2Dec_Long", decimallongitude ); //Dec.format(decimallongitude) );
+			uiSetLabelExplicit("txtT2Dec_Long", decimallongitude ); //Dec.format(decimallongitude) );
 
 			getMSFromDecMinutes(decminutes);
-			uiSetTextExplicit("txtT7Long_DegDMS", degrees ); //Deg.format(degrees) );
-			uiSetTextExplicit("txtT7Long_MinDMS", minutes ); //Min.format(minutes) );
-			uiSetTextExplicit("txtT7Long_Sec", seconds ); //Sec.format(seconds) );
-			uiSetSelectedText( "ChoiceLongDirDMS", uiGetSelectedText( "ChoiceLongDirMM" ) );
+			uiSetLabelExplicit("txtT7Long_DegDMS", degrees ); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_MinDMS", minutes ); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Long_Sec", seconds ); //Sec.format(seconds) );
+			uiSetSelectedValue( "ChoiceLongDirDMS", uiGetSelectedText( "ChoiceLongDirMM" ) );
 		}
 		var SCoordSystem = uiGetSelectedText("ChoiceCoordSystem");
 		var index = g_canonicalcoordsystems.indexOf(SCoordSystem);
@@ -1808,6 +1832,33 @@
 		longmetersperdegree = Math.PI*X/180.0; // X is the orthogonal distance to the polar axis.
 	}
 	
+
+//	throws ParseException
+	function ButtonCalculate_afterActionPerformed()
+	{
+		clearResults();
+		calculateResults();
+		showResults(true);
+	}
+
+//	throws ParseException
+	function ButtonPromote_afterActionPerformed()
+	{
+		lastcoordsystem = 1;
+		//BUGBUG redmove the next line, its a dupe off the line following it. for debugging purposes only.
+		uiGetTextValue("txtT2Dec_Lat",newdecimallatitude);//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
+		uiGetTextValue("txtT2Dec_Lat",newdecimallatitude);//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
+		uiGetTextValue("txtT2Dec_Long", newdecimallongitude);//JAVA format formatCalcDec.format(newdecimallongitude));
+		//try  //JAVA format
+		//{
+		//JAVA ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());
+			onCoordSystemSelect();
+		//}
+		//catch (ParseException e1) 
+		//{
+			//e1.printStackTrace();
+		//}
+	}
 
 
 	
