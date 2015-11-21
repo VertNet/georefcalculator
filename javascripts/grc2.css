@@ -29,7 +29,7 @@ SELECT{
 	background-color: white;
 
 	min-width: 2em;
-	max-width: 10em;
+	max-width: 6em;
 	width: 4em;
 
 	/*width:auto;*/
@@ -41,9 +41,30 @@ SELECT{
 	padding-left:1px;
 	padding-right:1px;
 	text-overflow: ellipsis;
-	/*BUGBUG overflow: for adding a scroll bar doesnt work?? do we have to Size on the HTML itself? NO to Size in HTML*/
-    /*overflow: scroll;	*/
 }
+
+.selectDirection{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .8em;
+	color: black;
+	background-color: white;
+
+	min-width: 6em;
+	max-width: 15em;
+	width: 10em;
+
+	/*width:auto;*/
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-left:1px;
+	padding-right:1px;
+	text-overflow: ellipsis;
+}
+
 
 .textDegree{
 	min-width: 2em;

@@ -11,12 +11,14 @@
 <script src="factories.js"></script>
 <script src="gc.ui.js"></script>
 <script src="test1.js"></script>
+<script src="auto-tests.js"></script>
 
 <DIV id="divFiller"  class="divBreak">
 </DIV>
 <DIV id="divLanguage" class="divStandard">
 	<SPAN class="spanStandard" class="span10">
-<!--<button type="button" onclick="GC_init()">Initialize JS</button>-->
+<button type="button" onclick="test_it()">Full Auto Testing!!!</button>
+
 		<SELECT id="ChoiceLanguage" onChange="onLanguageSelect()" select="none">
 			<Option>inglais MARKER</option>
 			<Option>inglais MARKER</option>
@@ -84,7 +86,7 @@
 			<SPAN id="MARKER" class="span50" align="left">
 				<LABEL id="LabelCoordSource" >Coordinate SourceBUG</LABEL>
 			</SPAN>
-			<SPAN id="MARKER" class="span50">
+			<SPAN id="MARKER" class="span50">			
 				<SELECT id="ChoiceCoordSource" onChange="onCoordSourceSelect()">
 					<OPTION>CordSource 1 MARKER</OPTION>
 					<OPTION>CordSource 2 MARKER</OPTION>
@@ -107,24 +109,25 @@
 		<SPAN class="span50" align="right">
 			<SPAN id="MARKER" class="span75" align="left">
 				<LABEL id="LabelOffset">North or South OffsetBUG</LABEL>
+				
+			
 				<INPUT TYPE="text" id="TextFieldOffset"  onfocus="TextFieldOffset_focusGained()" ></INPUT>
 				
 				<LABEL id="LabelDirection"></LABEL>
-			</SPAN>
-			<SPAN id="MARKER" class="span17">
-				<SELECT id="ChoiceOffsetNSDir" onSelect="onOffsetNSDirSelect()" class="selectDirection">
-					<OPTION>N MARKER</OPTION>
-					<OPTION>S MARKER</OPTION>
-				</SELECT>
-				
-				<SELECT id="ChoiceDirection" onSelect="onOffsetNSDirSelect()" class="selectDirection">
+				<SELECT id="ChoiceDirection" onSelect="onDirectionSelect()" class="selectDirection">
 					<OPTION>a MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
+				</SELECT>				
+				<INPUT TYPE="text" id="TextFieldHeading"  onfocus="TextFieldHeading_focusGained()" ></INPUT>				
+			</SPAN>
+			<SPAN id="MARKER" class="span25">
+				<SELECT id="ChoiceOffsetNSDir" onSelect="onOffsetNSDirSelect()" class="selectDirection">
+					<OPTION>N MARKER</OPTION>
+					<OPTION>S MARKER</OPTION>
 				</SELECT>
-				<INPUT TYPE="text" id="TextFieldHeading"  onfocus="TextFieldHeading_focusGained()" ></INPUT>
 			</SPAN>
 		</SPAN>
 	<!--</SPAN>-->
@@ -151,7 +154,7 @@
 			<INPUT TYPE="text" id="TextFieldOffsetEW"   onfocus="TextFieldOffsetEW_focusGained()" ></INPUT>
 		</SPAN>
 	
-		<SPAN id="MARKER" class="span17">
+		<SPAN id="MARKER" class="span25">
 			<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetEWDirSelect()" class="selectDirection">
 				<OPTION>E MARKER</OPTION>
 				<OPTION>W MARKER</OPTION>

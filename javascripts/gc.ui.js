@@ -1156,7 +1156,8 @@ function setVariables( )
 		showNSOffset(false);
 		showEWOffset(false);
 		
-		setVisibility("TextFieldHeading",false);
+		uiHideElement( "TextFieldHeading" );
+		//setVisibility("TextFieldHeading",false);
 		
 		showCoordinateSystem(true);
 		showCoordinateSource(true);
@@ -1290,13 +1291,22 @@ function setVariables( )
 		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
+/*		
 		setVisibility("TextFieldOffsetEW", false);
 		setVisibility("ChoiceOffsetEWDir", false);
 		setVisibility("ChoiceOffsetNSDir", false);
 		setVisibility("TextFieldHeading", false);
 		setVisibility("LabelOffsetEW", false);
+*/
+		setVisibility("TextFieldOffsetEW", false);
+		setVisibility("ChoiceOffsetEWDir", false);
+		uiHideElement("ChoiceOffsetNSDir");
+		uiHideElement("TextFieldHeading");
+		setVisibility("LabelOffsetEW", false);
+		
 		setVisibility("ButtonCalculate", false);
 		setVisibility("ButtonPromote", false);
+		
 		uiHideElement("LabelTitle" );
 		uiShowElement("LabelStepZero" );
 	
@@ -2249,24 +2259,42 @@ function setVariables( )
 
 	function showDirection( b )
 	{
+		var f_pointer = uiHideElement;
+		if( b == true )
+		{
+			f_pointer=uiShowElement;
+		}
+		
 		var value = uiGetSelectedText( "ChoiceDirection" );
 		
-		setVisibility( "ChoiceDirection", b );
-		setVisibility( "LabelDirection", b );
+		//setVisibility( "ChoiceDirection", b );
+		//setVisibility( "LabelDirection", b );
+		f_pointer("ChoiceDirection" );
+		f_pointer("LabelDirection" );
 		
 		if( b && value == g_properties.getPropertyLang("headings.nearestdegree" ) )
 		{
-			setVisibility( "TextFieldHeading", true );
-		} else {
-			setVisibility( "TextFieldHeading", false );
+			//setVisibility( "TextFieldHeading", true );
+			uiShowElement( "TextFieldHeading" );
+		}
+		else
+		{
+			//setVisibility( "TextFieldHeading", false );
+			uiHideElement( "TextFieldHeading", false );
 		}
 	}
 
 	function showDirectionPrecision( b )
 	{
-		setVisibility( "ChoiceDirection", b );
-		setVisibility( "LabelDirection", b );
-		setVisibility( "TextFieldHeading", false );
+		var f_pointer = uiHideElement;
+		if( b == true )
+		{
+			f_pointer=uiShowElement;
+		}
+	
+		f_pointer( "ChoiceDirection" );
+		f_pointer( "LabelDirection" );
+		uiHideElement( "TextFieldHeading", false );
 	}
 
 	function showDistancePrecision( b )
@@ -2347,12 +2375,18 @@ function setVariables( )
 	
 	function showNSOffset( b )
 	{
-		setVisibility( "TextFieldOffset", b );
+		var f_pointer=uiHideElement;
+		if( b )
+		{
+			f_pointer=uiShowElement;
+		}
+		
+		f_pointer( "TextFieldOffset" );
 
 		uiSetLabel( "LabelOffset", "label.distns" );
 
-		setVisibility( "LabelOffset", b );
-		setVisibility( "ChoiceOffsetNSDir", b );
+		f_pointer( "LabelOffset" );
+		f_pointer( "ChoiceOffsetNSDir" );
 	}
 
 	function showOffset( b )
