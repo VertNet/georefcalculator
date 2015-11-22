@@ -357,7 +357,7 @@
 			else
 			{
 				num = s; //numberFormatter.parse(s.trim());
-				ddeclong = num.doubleValue();
+				ddeclong = num;//.doubleValue();
 			}
 
 			decimallongitude = ddeclong;
@@ -495,7 +495,7 @@
 			num = uiGetTextValue("txtT7Long_DegMM");
 			degrees = num;//.intValue();
 
-			s = uiGetTextValue("T7Long_MinMM");
+			s = uiGetTextValue("txtT7Long_MinMM");
 			if( s == null || s.length == 0 )
 			{
 				m = 0;

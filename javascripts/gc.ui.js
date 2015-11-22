@@ -636,7 +636,7 @@ function setVariables( )
 		var returnVal = null;
 		if( el )
 		{
-			returnVal = el.options[el.selectedIndex].value;
+			returnVal = el.options[el.selectedIndex].text;
 		}
 		else
 		(
@@ -686,7 +686,7 @@ function setVariables( )
 		if( el )
 		{
 			//BUGBUG we may need to use option.length to be 100% safe??
-			for( i = 0; i < el.length; i ++ )
+			for( var i = 0; i < el.length; i ++ )
 			{
 				if( el.options[ i ].text == value )
 				{
@@ -728,23 +728,25 @@ function setVariables( )
 	function onCalcTypeSelect()
 	{
 		cleanCalcTypeSlate();
-		var value = uiGetSelectedText( "ChoiceCalcType" )
-		if( value == "" ){
+		var value = uiGetSelectedText( "ChoiceCalcType" );
+		if( value == "" )
+		{
 			uiShowElement( "LabelStepZero" );
-			uiHideElement( "LabelStepTitle" );
+			uiHideElement( "LabelTitle" );
 			setVisibility( "ChoiceModel", false );
 			setVisibility( "LabelModel", false );
 			
 			uiHideElement( "LabelStepOne" );
 			return;
-		} else {
+		}
+		else
+		{
 			uiHideElement( "LabelStepZero" );
 			uiShowElement( "LabelTitle" );
 			uiShowElement( "LabelStepOne" );
 			
 			setVisibility( "ChoiceModel", true );
-			setVisibility( "LabelModel", true );
-			
+			setVisibility( "LabelModel", true );	
 		}
 
 		uiClearSelect( "ChoiceModel" );
@@ -782,11 +784,23 @@ function setVariables( )
 	function onDirectionSelect()
 	{
 		clearResults();
-		var index = g_canonicalcalctypes.indexOf(value);
-		if( index==0 ){
-			showDirectionPrecision(true);
-		} else {
-			showDirection(true);
+		var value = uiGetSelectedText("ChoiceCalcType");
+		
+		if( value == "" )
+		{
+			var do_nothing=true;
+		}
+		else
+		{
+			var index = g_canonicalcalctypes.indexOf(value);
+			if( index==0 )
+			{
+				showDirectionPrecision(true);
+			}
+			else
+			{
+				showDirection(true);
+			}
 		}
 	}
 
@@ -825,14 +839,14 @@ function setVariables( )
 	{
 		clearResults();
 		var value = uiGetSelectedText("ChoiceLongDirDMS");
-		uiSetSelectedValue("ChoiceLongDirMM")
+		uiSetSelectedValue("ChoiceLongDirMM",value);
 	}
 
 	function onLongDirMMSelect()
 	{
 		clearResults();
 		var value = uiGetSelectedText("ChoiceLongDirMM");
-		uiSetSelectedValue("ChoiceLongDirDMS",value)
+		uiSetSelectedValue("ChoiceLongDirDMS",value);
 	}
 
 	function newLanguageChosen( ){
@@ -1173,6 +1187,7 @@ function setVariables( )
 		uiSetLabel("LabelOffset","label.offset");
 		uiSetLabel("LabelExtent","label.extent");
 		uiSetLabel("LabelMeasurementError","label.measurementerror");
+		var value = uiGetSelectedText("ChoiceModel");
 		var index = g_canonicalloctypes.indexOf(value);
 		var csource = uiGetSelectedText("ChoiceCoordSource");
 		var cindex = g_canonicalsources.indexOf(csource);
@@ -1181,6 +1196,7 @@ function setVariables( )
 		} else {
 			uiSetLabel("LabelMeasurementError","label.measurementerror");
 		}
+			//BUGBUG CRITICAL this 0 index methiod does not match the empty first item in the SELECT
 		if( index==0 ){ // Coordinates only
 			showExtents(false);
 		} else if( index==2 ){ // Distance only
@@ -1191,6 +1207,7 @@ function setVariables( )
 		} else if( index==4 ){ // Distance along orthogonal directions
 			var SCalcType = uiGetSelectedText("ChoiceCalcType");
 			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
+			//BUGBUG CRITICAL this 0 index methiod does not match the empty first item in the SELECT
 			if( calcindex==0 ){ // Error only
 				showNSOffset(true);
 				showEWOffset(true);
@@ -1583,17 +1600,17 @@ function setVariables( )
 		
 		var index = g_canonicalcoordsystems.indexOf(system);
 		if( index==0 ){
-			for( i=0;i<g_canonicalddprec.size();i++){
+			for( var i=0;i<g_canonicalddprec.size();i++){
 				uiSelectAddExplicitItem("ChoiceLatPrecision", g_canonicalddprec.get(i));
 			}
 			uiSetSelectedValue("ChoiceLatPrecision", g_properties.getPropertyLang("coordprec.dd.degree"));
 		} else if( index==1 ){
-			for( i=0;i<g_canonicaldmsprec.size();i++){
+			for( var i=0;i<g_canonicaldmsprec.size();i++){
 				uiSelectAddExplicitItem("ChoiceLatPrecision", g_canonicaldmsprec.get(i));
 			}
 			uiSetSelectedValue("ChoiceLatPrecision", g_properties.getPropertyLang("coordprec.dms.degree"));
 		} else if( index==2 ){
-			for( i=0;i<g_canonicalddmprec.size();i++){
+			for( var i=0;i<g_canonicalddmprec.size();i++){
 				uiSelectAddExplicitItem("ChoiceLatPrecision", g_canonicalddmprec.get(i));
 			}
 			uiSetSelectedValue("ChoiceLatPrecision", g_properties.getPropertyLang("coordprec.ddm.degree"));
@@ -1636,7 +1653,7 @@ function setVariables( )
 
 		// Coordinate Source controls
 		uiClearSelect("ChoiceCoordSource");
-		for( i=0; i< g_canonicalsources.contents.length; i++){
+		for( var i=0; i< g_canonicalsources.contents.length; i++){
 			uiSelectAddExplicitItem("ChoiceCoordSource", g_canonicalsources.contents[i] )
 		}
 		uiSetSelectedValue("ChoiceCoordSource", "gazetteer" );

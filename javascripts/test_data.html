@@ -1,196 +1,173 @@
-<a name="calculation_examples"><b>Calculation Examples</b></a>
-<br>Following are detailed examples of maximum error calculations, which
-illustrate the concepts presented in this document. Use the <a href="./gci2.html">Georeferencing 
-Calculator</a> to make these calculations easy.
 
-<p><a name="coordinates_only"></a>
-<b>Coordinates Only</b>
-<br><b>Example 1</b>: 35 degrees 22' 24" N, 119 degrees 1' 4" W
-<br>Calculation Type: Error only (because we already know the coordinates of the final location)
-<br>Locality Type: Coordinates only
-<br>Coordinate Source: locality description
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 22' 24" N
-<br>Longitude: 119 degrees 1' 4" W
-<br>Datum: not recorded 
-<br>Coordinate Precision: nearest second
-<br>Measurement Error: 0
-<br>Distance Units: km, m, mi, yds, or ft
-<br>Decimal Latitude: 35.3733333
-<br>Decimal Longitude: -119.0177778
-<br>Maximum Error Distance: 119 m, 0.119 km, 0.074 mi, 130 yds, 390
-ft, or 0.064 nm
-<br>Uncertainty sources: 79 m from unknown datum, 40 m from coordinate precision nearest second
-</p>
+var g_tests = [];
+	
+tests[0] = {
+    test_name : "coordinates_only" + "EX1",
+	test_descr : "<b>Example 1</b>: "35 degrees 22\' 24\" N, 119 degrees 1\' 4\" W", 	ChoiceCalcType: "Error only (because we already know the coordinates of the final location)",
+	ChoiceModel: "Coordinates only",
+	ChoiceCoordSource: "locality description",
+	ChoiceCoordSystem: "degrees minutes seconds",
+	Latitude: "35 degrees 22' 24" N",
+	Longitude: "119 degrees 1' 4" W",
+	Datum: "not recorded",
+	"Coordinate Precision": "nearest second",
+	"Measurement Error": "0",
+	"Distance Units": "km, m, mi, yds, or ft",
+	"Decimal Latitude": "35.3733333",
+	"Decimal Longitude": "-119.0177778",
+	"Maximum Error Distance": "119 m, 0.119 km, 0.074 mi, 130 yds, 390 ft, or 0.064 nm",
+	"Uncertainty sources": "79 m from unknown datum, 40 m from coordinate precision nearest second"
+}
 
-<p><b>Example 2</b>: 35.37, -119.02, NAD27, Digital USGS Gosford Quad 1:24000 map
-<br>Calculation Type: Error only (because we already know the coordinates of the final location)
-<br>Locality Type: Coordinates only
-<br>Coordinate Source: Digital USGS map: 1:24,000
-<br>Coordinate System: decimal degrees
-<br>Latitude: 35.37
-<br>Longitude: -119.02
-<br>Datum: NAD27
-<br>Coordinate Precision: 0.01 degrees
-<br>Measurement Error: 0 (digital map - no measurement error)
-<br>Distance Units: km, m, mi, yds, or ft
-<br>Decimal Latitude: 35.37
-<br>Decimal Longitude: -119.02
-<br>Maximum Error Distance: 1446 m, 1.446 km, 0.899 mi, 1582 yds, 4745
-ft, or 0.781 nm
-<br>Uncertainty sources: 12 m from coordinate source USGS 1:24,000 map, 1434 m from coordinate precision 0.02 degrees
-</p>
 
-<p><a name="named_place_only"></a>
-<b>Named Place Only</b>
-<br><b>Example</b>: Bakersfield
-<br>Suppose the coordinates for Bakersfield came from the GNIS database
-(a gazetteer) and the distance from the center of Bakersfield to the furthest
-city limit is 3 km.
-<br>Calculation Type: Error only (because we already know the coordinates of the final location)
-<br>Locality Type: Named place only
-<br>Coordinate Source: gazetteer
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 22' 24" N
-<br>Longitude: 119 degrees 1' 4" W
-<br>Datum: not recorded
-<br>Coordinate Precision: nearest second
-<br>Measurement Error: 0
-<br>Extent of Named Place: 3 km
-<br>Distance Units: km
-<br>Decimal Latitude: 35.3733333
-<br>Decimal Longitude: -119.0177778
-<br>Maximum Error Distance: 3.119 km (3119 m)
-<br>Uncertainty sources: 79 m from unknown datum, 40 m from coordinate precision nearest second, 3000 m from the extent of the named place
-</p>
 
-<p><a name="distance_only"></a>
-<b>Distance Only</b>
-<br><b>Example</b>: 5 mi from Bakersfield
-<br>Suppose the coordinates for Bakersfield came from Topozone for which
-all map coordinates have been reprojected in NAD27. Suppose also that the
-distance from the center of Bakersfield to the furthest city limit is 2
-mi.
-<br>Calculation Type: Error only (because we already know the coordinates of the final location)
-<br>Locality Type: Distance only
-<br>Coordinate Source: gazetteer
-<br>Coordinate System: decimal degrees
-<br>Latitude: 35.373
-<br>Longitude: -119.018
-<br>Datum: NAD27
-<br>Coordinate Precision: 0.001 degrees
-<br>Offset Distance: 5 mi
-<br>Extent of Named Place: 2 mi
-<br>Measurement Error: 0
-<br>Distance Units: mi
-<br>Distance Precision: 1 mi
-<br>Decimal Latitude: 35.373
-<br>Decimal Longitude: -119.018
-<br>Maximum Error Distance: 7.589 mi (12213 m)
-<br>Uncertainty sources: 0.089 mi (143 m) from coordinate precision 0.001 degrees, 2 mi (3219 m) from the extent of the named place, 5 mi (8047 m) from the offset distance, 0.5 mi (805 m) from the 1 mi distance precision
-</p>
+tests[1] = {    test_name : "coordinates_only" + "EX2",
+	test_descr : "<b>Example 2</b>: 35.37, -119.02, NAD27, Digital USGS Gosford Quad 1:24000 map",
+	ChoiceCalcType: "Error only (because we already know the coordinates of the final location)",
+	ChoiceModel: "Coordinates only",
+	ChoiceCoordSource: "USGS map: 1:24,000",
+	ChoiceCoordSystem: "decimal degrees",
+	Latitude: "35.37",
+	Longitude: "-119.02",
+	Datum: "NAD27",
+	"Coordinate Precision": "0.01 degrees",
+	"Measurement Error": "0 (digital map - no measurement error)",
+	"Distance Units": "km, m, mi, yds, or ft",
+	"Decimal Latitude": "35.37",
+	"Decimal Longitude": "-119.02",
+	"Maximum Error Distance": "1446 m, 1.446 km, 0.899 mi, 1582 yds, 4745 ft, or 0.781 nm",
+	"Uncertainty sources": "12 m from coordinate source USGS 1:24,000 map, 1434 m from coordinate precision 0.02 degrees"
+}
 
-<p><a name="distance_along_a_path"></a>
-<b>Distance Along a Path</b>
-<br><b>Example</b>: 13 mi E (by road) Bakersfield
-<br>Suppose the coordinates for this locality were interpolated to the nearest
-1/10th minute from the printed USGS Taft 1:100,000 Quad map and the
-distance from the center of Bakersfield to the furthest city limit is 2
-mi.
-<br>Calculation Type: Error only
-<br>Locality Type: Distance along path
-<br>Coordinate Source: USGS map: 1:100,000
-<br>Coordinate System: degrees decimal minutes
-<br>Latitude: 35 degrees 26.1' N
-<br>Longitude: 118 degrees 48.1' W
-<br>Datum: NAD27
-<br>Coordinate Precision: 0.1 minutes
-<br>Extent of Named Place: 2 mi
-<br>Measurement Error: 0.032 mi (0.5 mm on 1:100,000 map)
-<br>Distance Units: mi
-<br>Distance Precision: 1 mi
-<br>Decimal Latitude: 35.435
-<br>Decimal Longitude: -118.8016667
-<br>Maximum Error Distance: 2.712 mi (4365 m)
-<br>Uncertainty sources: 0.032 mi (51 m) from printed USGS 1:100,000 map accuracy, 0.148 mi (239 m) from coordinate precision 0.1 minutes, 2 mi (3219 m) from the extent of the named place, 0.032 mi (51 m) from the ability to distinguish 0.5 mm on a printed USGS 1:100,000 map, 0.5 mi (805 m) from the 1 mi distance precision
-</p>
+tests[2] = {
+    test_name : "named_place_only" + "EX1",
+	test_descr : "\"Bakersfield\", Suppose the coordinates for Bakersfield came from the GNIS database, (a gazetteer) and the distance from the center of Bakersfield to the furthest, city limit is 3 km.",
+	ChoiceCalcType: "Error only (because we already know the coordinates of the final location)",
+	ChoiceModel: "Named place only",
+	ChoiceCoordSource: "gazetteer",
+	ChoiceCoordSystem: "degrees minutes seconds",
+	Latitude: "35 degrees 22' 24" N",
+	Longitude: "119 degrees 1' 4" W",
+	Datum: "not recorded",
+	"Coordinate Precision": "nearest second",
+	"Measurement Error": "0",
+	"Extent of Named Place": "3 km",
+	"Distance Units": "km",
+	"Decimal Latitude": "35.3733333",
+	"Decimal Longitude": "-119.0177778",
+	"Maximum Error Distance": "3.119 km (3119 m)",
+	"Uncertainty sources": "79 m from unknown datum, 40 m from coordinate precision nearest second, 3000 m from the extent of the named place"
+}
 
-<p><a name="distance_along_orthogonal_directions"></a>
-<b>Distance Along Orthogonal Directions</b>
-<br><b>Example</b>: 2 mi E and 3 mi N of Bakersfield
-<br>Suppose the coordinates for Bakersfield (the named place) came from the GNIS database
-(a gazetteer), the coordinates of the locality were calculated to the nearest second,
-and the distance from the center of Bakersfield to
-the furthest city limit is 2 mi.
-<br>Calculation Type: Coordinates and error
-<br>Locality Type: Distance along orthogonal directions
-<br>Coordinate Source: gazetteer
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 25' 4" N
-<br>Longitude: 118 degrees 58' 54" W
-<br>Datum: not recorded
-<br>Coordinate Precision: nearest second
-<br>North or South Offset Distance: 3 mi
-<br>North or South Offset Direction: N
-<br>East or West Offset Distance: 2 mi
-<br>East or West Offset Direction: E
-<br>Extent of Named Place: 2 mi
-<br>Measurement Error: 0
-<br>Distance Units: mi
-<br>Distance Precision: 1 mi
-<br>Decimal Latitude: 35.4612939
-<br>Decimal Longitude: -118.946227
-<br>Maximum Error Distance: 2.781 mi (4475 m)
-<br>Uncertainty sources: 0.049 mi (79 m) from unknown datum, 0.025 mi (40 m) from coordinate precision nearest second, 2 mi (3219 m) from the extent of the named place, 0.707 mi (1138 m) from the 1 mi distance precision in two dimensions (the diagonal of a 0.5 mi by 0.5 mi square)
-</p>
 
-<p><a name="distance_at_a_heading"></a>
-<b>Distance at a Heading</b>
-<br><b>Example 1</b>: 10 mi E (by air) Bakersfield
-<br>Suppose the coordinates for Bakersfield came from the GNIS database
-(a gazetteer), the coordinates of the locality were calculated to the nearest second,
- and the distance from the center of Bakersfield to the furthest
-city limit is 2 mi.
-<br>Calculation Type: Coordinates and error
-<br>Locality Type: Distance at a heading
-<br>Coordinate Source: gazetteer
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 22' 24" N
-<br>Longitude: 118 degrees 50' 56 W
-<br>Datum: not recorded
-<br>Coordinate Precision: nearest second
-<br>Offset Distance: 10 mi
-<br>Extent of Named Place: 2 mi
-<br>Measurement Error: 0
-<br>Distance Units: mi
-<br>Distance Precision: 10 mi
-<br>Decimal Latitude: 35.3733333
-<br>Decimal Longitude: -118.6717921
-<br>Maximum Error Distance: 12.254 mi (19721 m)
-<br>Direction Precision: 45 degrees (between NE and SE, each 45 degrees from E)
-<br>Uncertainty sources: complicated combination of unknown datum, coordinate precision nearest second, extent of the named place, distance precision, and direction precision
-</p>
+tests[3] = {    test_name : "distance_only" + "EX1",
+	test_descr : "5 mi from Bakersfield,	Suppose the coordinates for Bakersfield came from Topozone for which all map coordinates have been reprojected in NAD27. Suppose also that the distance from the center of Bakersfield to the furthest city limit is 2 mi.",
+	ChoiceCalcType: "Error only (because we already know the coordinates of the final location)",
+	ChoiceModel: "Distance only",
+	ChoiceCoordSource: "gazetteer",
+	ChoiceCoordSystem: "decimal degrees",
+	Latitude: "35.373",
+	Longitude: "-119.018",
+	Datum: "NAD27",
+	"Coordinate Precision": "0.001 degrees",
+	"Offset Distance": "5 mi",
+	"Extent of Named Place": "2 mi",
+	"Measurement Error": "0",
+	"Distance Units": "mi",
+	"Distance Precision": "1 mi",
+	"Decimal Latitude": "35.373",
+	"Decimal Longitude": "-119.018",
+	"Maximum Error Distance": "7.589 mi (12213 m)",
+	"Uncertainty sources": "0.089 mi (143 m) from coordinate precision 0.001 degrees, 2 mi (3219 m) from the extent of the named place, 5 mi (8047 m) from the offset distance, 0.5 mi (805 m) from the 1 mi distance precision"
+}
 
-<p><b>Example 2</b>: 10 mi ENE (by air) Bakersfield
-<br>Suppose the coordinates for the locality were interpolated to the nearest
-second from the USGS Gosford 1:24,000 Quad map on which you can distinguish
-between millimeters and the distance from the center of Bakersfield to the furthest city limit is 2 mi.
-<br>Calculation Type: Coordinates and error
-<br>Locality Type: Distance at a heading
-<br>Coordinate Source: USGS map: 1:24,000
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 24' 21" N
-<br>Longitude: 118 degrees 51' 25" W
-<br>Datum: NAD27
-<br>Coordinate Precision: nearest second
-<br>Offset Distance: 10 mi
-<br>Extent of Named Place: 2 mi
-<br>Measurement Error: 0.007 mi (0.5 mm on 1:24,000 map)
-<br>Distance Units: mi
-<br>Distance Precision: 10 mi
-<br>Decimal Latitude: 35.4613445
-<br>Decimal Longitude: -118.6932627
-<br>Maximum Error Distance: 7.491 mi (12055 m)
-<br>Direction Precision: 11.25 degrees either side of ENE
-<br>Uncertainty sources: complicated combination of map accuracy, unknown datum, coordinate precision nearest second, extent of the named place, measurement accuracy (0.5 mm at 1:24,000), distance precision, and direction precision
-</p>
+
+tests[4] = {    test_name : "distance_along_a_path" + "EX1",
+	test_descr : "13 mi E (by road) Bakersfield, Suppose the coordinates for this locality were interpolated to the nearest 1/10th minute from the printed USGS Taft 1:100,000 Quad map and the distance from the center of Bakersfield to the furthest city limit is 2mi.",
+	ChoiceCalcType: "Error only",
+	ChoiceModel: "Distance along path",
+	ChoiceCoordSource: "USGS map: 1:100,000",
+	ChoiceCoordSystem: "degrees decimal minutes",
+	Latitude: "35 degrees 26.1' N",
+	Longitude: "118 degrees 48.1' W",
+	Datum: "NAD27",
+	"Coordinate Precision": "0.1 minutes",
+	"Extent of Named Place": "2 mi",
+	"Measurement Error": "0.032 mi (0.5 mm on 1:100,000 map)",
+	"Distance Units": "mi",
+	"Distance Precision": "1 mi",
+	"Decimal Latitude": "35.435",
+	"Decimal Longitude": "-118.8016667",
+	"Maximum Error Distance": "2.712 mi (4365 m)",
+	"Uncertainty sources": "0.032 mi (51 m) from printed USGS 1:100,000 map accuracy, 0.148 mi (239 m) from coordinate precision 0.1 minutes, 2 mi (3219 m) from the extent of the named place, 0.032 mi (51 m) from the ability to distinguish 0.5 mm on a printed USGS 1:100,000 map, 0.5 mi (805 m) from the 1 mi distance precision"
+}
+
+
+
+tests[5] = {    test_name : "distance_along_orthogonal_directions" + "EX1",
+	test_descr : "2 mi E and 3 mi N of Bakersfield Suppose the coordinates for Bakersfield (the named place) came from the GNIS database (a gazetteer), the coordinates of the locality were calculated to the nearest second, and the distance from the center of Bakersfield to the furthest city limit is 2 mi.",
+	ChoiceCalcType: "Coordinates and error",
+	ChoiceModel: "Distance along orthogonal directions",
+	ChoiceCoordSource: "gazetteer",
+	ChoiceCoordSystem: "degrees minutes seconds",
+	Latitude: "35 degrees 25' 4" N",
+	Longitude: "118 degrees 58' 54" W",
+	Datum: "not recorded",
+	"Coordinate Precision": "nearest second",
+	"North or South Offset Distance": "3 mi",
+	"North or South Offset Direction": "N",
+	"East or West Offset Distance": "2 mi",
+	"East or West Offset Direction": "E",
+	"Extent of Named Place": "2 mi",
+	"Measurement Error": "0",
+	"Distance Units": "mi",
+	"Distance Precision": "1 mi",
+	"Decimal Latitude": "35.4612939",
+	"Decimal Longitude": "-118.946227",
+	"Maximum Error Distance": "2.781 mi (4475 m)",
+	"Uncertainty sources": "0.049 mi (79 m) from unknown datum, 0.025 mi (40 m) from coordinate precision nearest second, 2 mi (3219 m) from the extent of the named place, 0.707 mi (1138 m) from the 1 mi distance precision in two dimensions (the diagonal of a 0.5 mi by 0.5 mi square)"
+}
+
+tests[6] = {    test_name : "distance_at_a_heading" + "EX1",
+	test_descr : "10 mi E (by air) Bakersfield Suppose the coordinates for Bakersfield came from the GNIS database(a gazetteer), the coordinates of the locality were calculated to the nearest second, and the distance from the center of Bakersfield to the furthest city limit is 2 mi.",
+	ChoiceCalcType: "Coordinates and error",
+	ChoiceModel: "Distance at a heading",
+	ChoiceCoordSource: "gazetteer",
+	ChoiceCoordSystem: "degrees minutes seconds",
+	Latitude: "35 degrees 22' 24" N",
+	Longitude: "118 degrees 50' 56 W",
+	Datum: "not recorded",
+	"Coordinate Precision": "nearest second",
+	"Offset Distance": "10 mi",
+	"Extent of Named Place": "2 mi",
+	"Measurement Error": "0",
+	"Distance Units": "mi",
+	"Distance Precision": "10 mi",
+	"Decimal Latitude": "35.3733333",
+	"Decimal Longitude": "-118.6717921",
+	"Maximum Error Distance": "12.254 mi (19721 m)",
+	"Direction Precision": "45 degrees (between NE and SE, each 45 degrees from E)",
+	"Uncertainty sources": "complicated combination of unknown datum, coordinate precision nearest second, extent of the named place, distance precision, and direction precision"
+}
+
+tests[7] = {    test_name : "distance_at_a_heading" + "EX2",
+	test_descr : "10 mi ENE (by air) Bakersfield, Suppose the coordinates for the locality were interpolated to the nearest second from the USGS Gosford 1:24,000 Quad map on which you can distinguish between millimeters and the distance from the center of Bakersfield to the furthest city limit is 2 mi.",
+	ChoiceCalcType: "Coordinates and error",
+	ChoiceModel: "Distance at a heading",
+	ChoiceCoordSource: "USGS map: 1:24,000",
+	ChoiceCoordSystem: "degrees minutes seconds",
+	Latitude: "35 degrees 24' 21" N",
+	Longitude: "118 degrees 51' 25" W",
+	Datum: "NAD27",
+	"Coordinate Precision": "nearest second",
+	"Offset Distance": "10 mi",
+	"Extent of Named Place": "2 mi",
+	"Measurement Error": "0.007 mi (0.5 mm on 1:24,000 map)",
+	"Distance Units": "mi",
+	"Distance Precision": "10 mi",
+	"Decimal Latitude": "35.4613445",
+	"Decimal Longitude": "-118.6932627",
+	"Maximum Error Distance": "7.491 mi (12055 m)",
+	"Direction Precision": "11.25 degrees either side of ENE",
+	"Uncertainty sources": "complicated combination of map accuracy, unknown datum, coordinate precision nearest second, extent of the named place, measurement accuracy (0.5 mm at 1:24,000), distance precision, and direction precision"
+}

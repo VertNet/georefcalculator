@@ -61,7 +61,7 @@ g_factory.makeArrayList = function( name, source )
 
 			if ( index == -1 )
 			{
-				console.log( "ERROR ArrayList " + this.name + " with source " + this. source + " index not found for " + value );
+				console.log( "ERROR ArrayList " + this.name + " with source :" + this.source + ":, index not found for :" + value +":");
 			}
 			return index;			
 		};

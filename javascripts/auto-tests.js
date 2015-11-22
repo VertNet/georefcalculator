@@ -11,44 +11,38 @@ var tr =
 //	SKIP: 3
 }
 
-
+//NOT USED
 var g_test_report = enum_report_level.FULL;
 
 var g_PASS = tr.PASS;
 var g_FAIL = tr.FAIL;
-var g_SKIP = tr.SKIP;
+//var g_SKIP = tr.SKIP;
+
+var g_report_max_depth=2;
+var g_report_current_depth=0;
 
 
-function log_test_result( name, result, extra )
+
+
+function testCaseName( tc, add )
 {
-	console.log("Test: " + name + " Result: " + result )
-	if( extra )
+	g_report_current_depth = g_report_current_depth + 1;
+	var prepend = "-";
+	if( tc === null || tc == "null" || tc == undefined || tc == "" ) 
 	{
-		console.log("Test: " + name + " Extra: " + extra )
+		tc = "";
+		prepend = "";
 	}
-}
-
-function test_SetSelectIndex( name, index )
-{
-
-}
-
-
-function testHiddenDisplay( name, expected_hid, expected_dis )
-{
-	var fName = testHelperfName();
-	var test_result_h = testHidden( name, expected_hid );
-	var test_result_d = testDisplay( name, expected_dis );;
-   
-	var test_result = g_FAIL;
-	if( test_result_h && test_result_d )
+	
+	if( add && add.length > 0 )
 	{
-		test_result = g_PASS;
+		tc = tc + prepend + add;
 	}
-	return test_result;
+
+	return tc;
 }
 
-function testHelperfName()
+function testHelperfName( callstack )
 {
    var fName = arguments.callee.caller.toString();
    fName = fName.substr('function ', fName.length );
@@ -56,91 +50,885 @@ function testHelperfName()
    fName = fName.substr(9, fName.length );
 
    //fName = fName.substr(0, fName.indexOf('('));
-
+	if(callstack)
+	{
+		fName = callstack + ":" + fName;
+	}
    return fName;
 }
 
-function testHidden( name, expected )
+
+
+function log_test_result( tc_base, callstack, result, extra )
 {
-   var fName = testHelperfName();
+	var rs = "%cFAIL%c";
+	var failed = true;
+	var cssnorm = "color: #000"
+	var cssstr = "color: #800"
+	if( result )
+	{
+		cssstr = "color: #060"
+		rs = "%cPASS%c";
+		failed = false;
+	}
+	
+//console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
+
+	if( ( g_report_current_depth <= g_report_max_depth ) || failed )
+	{
+		rs =  rs + " " + tc_base + ": "  + callstack;
+	
+		if( extra )
+		{
+			rs = rs + " Extra: " + extra;
+		}
+
+		console.log( rs, cssstr, cssnorm); 
+	}
+	else
+	{
+		var i;//console.log( "Skipping because g_report_current_depth = " + g_report_current_depth + " " + rs ); 
+	}
+	g_report_current_depth = g_report_current_depth - 1;
+}
+
+
+function testHiddenDisplay( tc_base, name, expected_hid, expected_dis, callstack )
+{
+	tc_base = testCaseName( tc_base, "H/D" );
+
+	var fName = testHelperfName( callstack );
+	var test_result_h = testHidden( tc_base, name, expected_hid, fName );
+	var test_result_d = testDisplay( tc_base, name, expected_dis, fName );
+   
+	var test_result = g_FAIL;
+	if( test_result_h && test_result_d )
+	{
+		test_result = g_PASS;
+		test_extra = "expected_hid: " +  expected_hid + " expected_dis: " + expected_dis;
+	}
+	
+	log_test_result( tc_base, fName, test_result );
+	return test_result;
+}
+
+
+function testHidden( tc_base, name, expected, callstack )
+{
+	var fName = testHelperfName( callstack );	
+	tc_base = testCaseName( tc_base, "HIDDEN" );
 
 	var test_result = g_FAIL;
-	var test_extra = "UNKNOWN";
+	var test_extra = "";
 	var el = document.getElementById( name );
 
 	if( el )
 	{
 		var st = el.hidden;
-		if( st )
+		if( st !== undefined )
 		{
 			var actual = st.toString();
-			if( st == expected )
+			if( actual == expected )
 			{
 				test_result = g_PASS;
+				test_extra = "Actual: " + actual + " Expected: " + expected;
 			}
 			else 
 			{
-				test_extra = fName + ": Element " + name + " style.display Actual: " + actual + " Expected: " + expected;
+				test_extra = "Element " + name + " hidden Actual: " + actual + " Expected: " + expected;
 			}
 		}		
 		else
 		{
-			test_extra = fName + ": Element " + name + " has no HTML attribute 'hidden'";
+			test_extra = "Element " + name + " has no HTML attribute 'hidden'";
 		}
 	}
 	else
 	(
-		test_extra = fName + ": Element " + name + " not found "
+		test_extra = "Element " + name + " not found "
 	)
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
 	return test_result;
+}
 
+function testGetElement( tc_base, name, callstack )
+{
+    var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "GETEL(" + name + ")");
+	
+	var test_result = g_FAIL;
+	var test_extra = name + " not found";
+
+	var el = document.getElementById( name );
+	if( el )
+	{
+		test_result = g_PASS;
+	}
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return el;
+}
+
+/*function testSelectedValue( tc_base, name, expected, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "SELELECTVALUE" );
+	var test_result = g_FAIL;
+	var test_extra = "raw function testStar";
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}*/
+
+
+
+function testChooseSelectValueOld( tc_base, name, value, expected, callstack ) 
+{
+    var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "SELECTOLD" );
+	
+	var test_result = g_FAIL;
+	var sub_result = g_FAIL;
+	var temp = "";
+	
+	var test_extra = "";
+	
+	var el = testGetElement( tc_base, name, fName );
+	if( el )
+	{
+		uiSetSelectedValue( name, value );
+		sub_result = uiGetSelectedValue( name );
+		if( sub_result )
+		{
+			temp = "on"+ name.substr( 6,name.length ) + "Select()";
+			var c = "";
+			var caught = false;
+			try
+			{
+				c = eval( temp );
+			}
+			catch(err)
+			{
+				test_extra = "error eval()ing " + temp + " " + err.messsage;
+				caught = true;
+			}
+			finally
+			{
+				if( caught == false )
+				{
+					test_result = g_PASS;
+				}			
+			}
+		}
+		else
+		{
+			test_extra = "could select value" + value + " from " + name;
+		}
+	}
+	else
+	{
+		test_extra = " could not find element name " + name;
+	}
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+
+function testChooseSelectValue( tc_base, name, value, callstack ) 
+{
+    var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "SELECT" );
+	
+	var test_result = g_FAIL;
+	var sub_result = g_FAIL;
+	var temp = "";
+	
+	var test_extra = "";
+	
+	var el = testGetElement( tc_base, name, fName );
+	if( el )
+	{
+		if( name.indexOf("Dir") > -1 || name.indexOf("Scale") > -1 || name.indexOf("Units") > -1 || name.indexOf("Dist") > -1 )
+		{
+			temp = value;
+		}
+		else
+		{
+			temp = testLazyLookUpSelect( tc_base, name, value, fName );
+		}
+		
+		if( temp )
+		{
+			value = temp;
+			uiSetSelectedValue( name, value );
+			sub_result = uiGetSelectedValue( name );
+		}
+		
+		if( sub_result && sub_result == value )
+		{
+			temp = "on"+ name.substr( 6,name.length ) + "Select()";
+			var c = "";
+			var caught = false;
+			try
+			{
+				c = eval( temp );
+			}
+			catch(err)
+			{
+				test_extra = "error eval()ing " + temp + " " + err.messsage;
+				caught = true;
+			}
+			finally
+			{
+				if( caught == false )
+				{
+					test_result = g_PASS;
+				}			
+			}
+		}
+		else
+		{
+			test_extra = "could select value" + value + " from " + name;
+		}
+	}
+	else
+	{
+		test_extra = " could not find element name " + name;
+	}
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function testSetTextValue( tc_base, name, value, raw_name, callstack ) 
+{
+    var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "SetText" );
+	
+	var test_result = g_FAIL;
+	var sub_result = "";
+	var temp = "";
+	
+	var test_extra = "";
+	
+	var el = testGetElement( tc_base, name, fName );
+	if( el )
+	{
+		uiSetLabelExplicit( name, value );
+		sub_result = uiGetTextValue( name );
+		if( sub_result == value )
+		{
+			temp = name + "_focusGained()";
+			var c = "";
+			var caught = false;
+			try
+			{
+				c = eval( temp );
+			}
+			catch(err)
+			{
+				test_extra = "error eval()ing " + temp + " " + err.messsage;
+				caught = true;
+			}
+			finally
+			{
+				if( caught == false )
+				{
+					test_result = g_PASS;
+				}			
+			}
+		}
+		else
+		{
+			test_extra = "could get value" + value + " from " + name;
+		}
+	}
+	else
+	{
+		test_extra = " could not find element name " + name;
+	}
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+
+function testButtonClick( tc_base, name, value, raw_name, callstack ) 
+{
+    var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "button click" );
+	
+	var test_result = g_FAIL;
+	var sub_result = "";
+	var temp = "";
+	
+	var test_extra = "";
+	
+	var el = testGetElement( tc_base, name, fName );
+	if( el )
+	{
+		temp = name + "_afterActionPerformed()";
+		
+		
+		var c = "";
+		var caught = false;
+		//try
+		//{
+			c = eval( temp );
+		//}
+		//catch(err)
+		//{
+			//test_extra = "error eval()ing " + temp + " " + err.messsage;
+			//caught = true;
+		//}
+		//finally
+		//{
+			//if( caught == false )
+			//{
+				test_result = g_PASS;
+			//}			
+		//}
+	}
+	else
+	{
+		test_extra = " could not find element name " + name;
+	}
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
 }
 
 
 
-function testDisplay( name, expected )
+
+function testDisplay( tc_base, name, expected, callstack )
 {
-   var fName = testHelperfName();
-
+    var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "DISPLAY" );
+	
 	var test_result = g_FAIL;
-	var test_extra = "UNKNOWN";
+	var test_extra = "";
 	var el = document.getElementById( name );
-
+	var actual = null;
+	
 	if( el )
 	{
 		var st = el.style.display;
+		
 		if( st )
 		{
-			var actual = st.toString();
-			if( st == expected )
+			actual = st.toString();
+			if( actual == expected )
 			{
 				test_result = g_PASS;
+				test_extra = "Actual: " + actual + " Expected: " + expected;
 			}
 			else 
 			{
-				test_extra = fName +": Element " + name + " style.display Actual: " + actual + " Expected: " + expected;
+				test_extra = "Element " + name + " style.display Actual: " + actual + " Expected: " + expected;
 			}
-		}		
+		}
+		else if( ( expected === null || expected == "null" || expected == undefined || expected == "" )
+				  &&
+				  ( st === null || st == "null" || st == undefined || st == "" ) 
+				)
+		{
+				test_result = g_PASS;
+				test_extra = "Actual: " + actual + " Expected: " + expected;
+		}
 		else
 		{
-			test_extra = fName +": Element " + name + " has no CSS style property 'display'";
+			test_extra = "Element " + name + " has no CSS style property 'display'";
 		}
 	}
 	else
 	(
-		test_extra = fName +": Element " + name + " not found"
+		test_extra = "Element " + name + " not found"
 	)
+	log_test_result(tc_base, fName, test_result, test_extra );
 	return test_result;
 }
 
-
-
-
-function test_it()
+/*
+function testChooseSelect( tc_base, name, expected, fName )
 {
-	log_test_result("log_test_result", "pass", "foo");
-	testHiddenDisplay("ChoiceModel", "fail", "fail" );
-	testHiddenDisplay("ChoiceModel", "true", "none" );
+	var fName =  testHelperfName( fName );
+	tc_base = testCaseName( tc_base, "SELECTING" );
 	
+	var el = 1
+	
+	var test_result = g_FAIL;
+	var test_extra = "";
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
 }
+*/
+
+
+
+//BUGBUG make this language independent	
+function testCalcType( tc_base, calctype, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "CalcType" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	//tc_base = tc_base + "-CalcType";
+	
+    if( calctype == "err only"  || calctype == "Error only"  || calctype == "Error only (because we already know the coordinates of the final location)")
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceCalcType", "Error only - enter Lat/Long for the actual locality", fName ) 
+	}
+	else if( calctype == "Coordinates and error"  || calctype == "coords and error" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceCalcType", "Coordinates and error - enter the Lat/Long for the named place or starting point", fName ) 	
+	}
+	else if( calctype == "Coordinate only" || calctype == "coords only")
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceCalcType", "Coordinates only - enter the Lat/Long for the named place or starting point", fName ) 		
+	}
+	else if( calctype == "" || calctype == "empty" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceCalcType", "", fName ) 		
+	}
+	else
+	{
+		test_extra = " calcctype :" + calctype + ": not found in if/else"
+	}
+
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+
+}
+
+//BUGBUG make this language independent	
+function testLocType( tc_base, loctype, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "LocType" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	//tc_base = tc_base + "-LocType";
+
+	
+    if( loctype == "coords only"  || loctype == "Coordinates only" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)", fName ) 
+	}
+	else if( loctype == "named place"  || loctype == "Named place"  || loctype == "Named place only" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "Named place only (e.g., Bakersfield)", fName ) 
+	}
+	else if( loctype == "dist only"  || loctype == "Distance only" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "Distance only (e.g., 5 mi from Bakersfield)", fName ) 
+	}
+	else if( loctype == "dist path"  || loctype == "Distance along path" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "Distance along path (e.g., 13 mi E (by road) Bakersfield)", fName ) 
+	}
+	else if( loctype == "dist ortho"  || loctype == "Distance along orthogonal directions" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "Distance along orthogonal directions (e.g., 2 mi E and 3 mi N of Bakersfield)", fName ) 
+	}
+	else if( loctype == "dist at"  || loctype == "Distance at a heading" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "Distance at a heading (e.g., 10 mi E (by air) Bakersfield)", fName ) 
+	}
+	else if( loctype == ""  || loctype == "empty" )
+	{
+		test_result = testChooseSelectValue( tc_base, "ChoiceModel", "", fName ) 
+	}
+	else
+	{
+		test_extra = " calcctype " + loctype + " not found in if else"
+	}
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function testEmptyTextBoxes()
+{
+	uiSetLabelExplicit("TextFieldOffset", "" );
+	uiSetLabelExplicit("TextFieldHeading", "" );
+	uiSetLabelExplicit("TextFieldOffsetEW", "" );
+	uiSetLabelExplicit("txtT7Lat_DegDMS", "" );
+	uiSetLabelExplicit("txtT7Lat_MinDMS", "" );
+	uiSetLabelExplicit("txtT7Lat_Sec", "" );
+	uiSetLabelExplicit("txtT2Dec_Lat", "" );
+	uiSetLabelExplicit("txtT7Lat_DegMM", "" );
+	uiSetLabelExplicit("txtT7Lat_MinMM", "" );
+	uiSetLabelExplicit("TextFieldExtent", "" );
+	uiSetLabelExplicit("txtT7Long_DegDMS", "" );
+	uiSetLabelExplicit("txtT7Long_MinDMS", "" );
+	uiSetLabelExplicit("txtT7Long_Sec", "" );
+	uiSetLabelExplicit("txtT2Dec_Long", "" );
+	uiSetLabelExplicit("txtT7Long_DegMM", "" );
+	uiSetLabelExplicit("txtT7Long_MinMM", "" );
+	uiSetLabelExplicit("TextFieldMeasurementError", "" );
+	uiSetLabelExplicit("TextFieldCalcDecLat", "" );
+	uiSetLabelExplicit("TextFieldCalcDecLong", "" );
+	uiSetLabelExplicit("TextFieldCalcErrorDist", "" );
+	uiSetLabelExplicit("TextFieldCalcErrorUnits", "" );
+	uiSetLabelExplicit("TextFieldFullResult", "" );
+	uiSetLabelExplicit("TextFieldFromDistance", "" );
+	uiSetLabelExplicit("TextFieldFromDistance", "" );
+	uiSetLabelExplicit("TextFieldScaleFromDistance", "" );
+}
+
+
+
+function testSetSelectsDefault()
+{
+//Note: ORDER OF EXECUTION MATTERS
+	
+	uiSetSelectedIndex("ChoiceScale", 0 );
+	onScaleSelect();
+	uiSetSelectedIndex("ChoiceScaleFromDistUnits", 0 );
+	onScaleFromDistUnitsSelect();
+	uiSetSelectedIndex("ChoiceScaleToDistUnits", 0 );
+	onScaleToDistUnitsSelect();
+	uiSetSelectedIndex("ChoiceToDistUnits", 0 );
+	onToDistUnitsSelect();
+	uiSetSelectedIndex("ChoiceFromDistUnits", 0 );
+	onFromDistUnitsSelect();
+
+	uiSetSelectedIndex("ChoiceDistancePrecision", 0 );
+	onDistancePrecisionSelect();
+	
+	uiSetSelectedIndex("ChoiceLatPrecision", 0 );
+	onLatPrecisionSelect();
+
+	uiSetSelectedIndex("ChoiceDistUnits", 0 );
+	onDistUnitsSelect();
+
+	
+	uiSetSelectedIndex("ChoiceLongDirDMS", 0 );
+	onLongDirDMSSelect();
+	uiSetSelectedIndex("ChoiceLatDirDMS", 0 );
+	onLatDirDMSSelect();
+
+	uiSetSelectedIndex("ChoiceLongDirMM", 0 );
+	onLongDirMMSelect();
+	uiSetSelectedIndex("ChoiceLatDirMM", 0 );
+	onLatDirMMSelect();
+	
+	uiSetSelectedIndex("ChoiceOffsetEWDir", 0 );
+	onOffsetEWDirSelect();
+	
+	uiSetSelectedIndex("ChoiceCoordSystem", 0 );
+	onCoordSystemSelect();
+	
+	uiSetSelectedIndex("ChoiceOffsetNSDir", 0 );
+	onOffsetNSDirSelect();
+
+	uiSetSelectedIndex("ChoiceDatum", 0 );
+	onDatumSelect();
+	
+	uiSetSelectedIndex("ChoiceDirection", 0 );
+	onDirectionSelect();
+	uiSetSelectedIndex("ChoiceCoordSource", 0 );
+	onCoordSourceSelect();
+	uiSetSelectedValue("ChoiceModel", "" );
+	onModelSelect();
+	uiSetSelectedValue("ChoiceCalcType", "" );
+	onCalcTypeSelect();
+	//uiSetSelectedIndex("ChoiceLanguage", 0 );
+}
+
+function testReset()
+{
+	testSetSelectsDefault();
+	testEmptyTextBoxes();
+}
+
+function runChoiceElement( tc_base, element, value, raw_name, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "runChoice" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	
+	test_result = testChooseSelectValue(tc_base, element, value, fName)
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function runTextElement( tc_base, element, value, raw_name, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "runText" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	
+	test_result = testSetTextValue(tc_base, element, value, raw_name, fName)
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function runButtonElement( tc_base, element, value, raw_name, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "runText" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	
+	test_result = testButtonClick(tc_base, element, value, raw_name, fName)
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function runStandardCheckElement( tc_base, name, value, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "CheckElement" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	
+	var temp = "";
+	temp = uiGetTextValue(name);
+	
+	if( temp == value )
+	{
+		test_result = g_PASS;
+	}
+	else
+	{
+		test_extra = "value :" + value + ": not found for element :" + name +":";
+	}
+	
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function runStandardUIElement( tc_base, element, value, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "runStandardUI" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+
+	var raw_name = "";
+	var firstPart = element.substring( 0, 3 );
+	if( firstPart == "Cho" )
+	{
+		raw_name = element.substring( 6, element.length );
+		test_result = runChoiceElement( tc_base, element, value, raw_name, fName );
+	}
+	else if( firstPart == "txt")
+	{
+		raw_name = element.substring( 3, element.length );
+		test_result = runTextElement( tc_base, element, value, raw_name, fName );
+	}
+	else if( firstPart == "Tex" )
+	{
+		raw_name = element.substring( 4, element.length );
+		test_result = runTextElement( tc_base, element, value, raw_name, fName );
+	}
+	else if( firstPart == "But" )
+	{
+		raw_name = element.substring( 6, element.length );
+		test_result = runButtonElement( tc_base, element, value, raw_name, fName );
+	}
+	else
+	{
+		test_extra = "unrecognised name scheme to element :"+element+":";
+	}
+
+ 	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result; 
+ }
+
+ function testLazyLookUpSelect( tc_base, name, value, callstack )
+ {
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "LazyLookup" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	var num_found = 0;
+	//Not used
+	var first_found = 0;
+	var return_val = "";
+	
+	var el = document.getElementById( name );
+	if( el )
+	{
+		for( var i = 0; i < el.length; i++ )
+		{			
+			if( el.options[ i ].text.indexOf( value ) > -1 )
+			{
+				if( first_found == -1 )
+				{
+					first_found == i;
+				}
+				num_found = num_found + 1;
+				if( num_found == 1 )
+				{
+					return_val = el.options[ i ].text;
+					test_extra = name +" value :" + value + ": matches" + el.options[ i ].text + " ";
+				}
+				else
+				{
+					return_val = "";
+					test_extra = test_extra + "X value :" + value + ": matches" + el.options[ i ].text + " ";
+				}
+			}			
+		}
+		
+		if( num_found == 1 )
+		{
+			test_result = g_PASS;
+		}
+		else
+		{
+			if( num_found == 0 )
+			{
+				return_val = "";
+				test_extra = "element :"+name+": with value :"+value+": not found";
+			}
+		}
+	}
+	else
+	{
+		return_val = "";
+		test_extra = "element :"+name+": not found";
+	}
+	
+ 	log_test_result(tc_base, fName, test_result, test_extra );
+	//BUGBUG somewhat janky way of returning the val.
+	//I am hesitant to use byRef, if its even possible in JS.
+	if(test_result)
+	{
+		test_result = return_val;
+	}
+	return test_result;
+ }
+ 
+function runStandardTests( tc_base, testObjs, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "STANDARD" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	var pass_count = 0;
+	var expected_passes = -1;
+	var fail_count=0;
+	g_report_max_depth = 3; //g_report_max_depth - 1;
+	if( testObjs )
+	{
+		if( testObjs.length )
+		{
+			expected_passes = testObjs.length;
+			for( var i = 0; i < testObjs.length; i++ )
+			{
+				var sets = testObjs[i].set;
+				var exps = testObjs[i].expect;
+				var temp_result = g_FAIL;
+				var temp_value="";
+				
+				if( sets && exps )
+				{
+					fail_count = 0;
+					for (var kv in sets )
+					{
+						//required? the if seems somewhat dumb in this context, sets is guaranteed .
+						if (sets.hasOwnProperty(kv))
+						{
+							
+							var elName = kv;
+							temp_value = sets[kv];
+							temp_result = runStandardUIElement( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName );							
+							if( temp_result == g_FAIL)
+							{
+								fail_count = fail_count + 1;
+							}
+							
+						}
+					}
+
+					for (var kv in exps )
+					{
+						//required? the if seems somewhat dumb in this context, sets is guaranteed .
+						if( exps.hasOwnProperty( kv ) )
+						{
+							var elName = kv;
+							temp_value = exps[kv];
+							temp_result = runStandardCheckElement( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName );							
+							if( temp_result == g_FAIL )
+							{
+								fail_count = fail_count + 1;
+							}
+						}
+					}
+
+					
+					
+					if( fail_count == 0 )
+					{
+						pass_count = pass_count + 1;
+					}
+					//if(i!=7)
+					testReset();
+				}
+				else
+				{
+					test_extra = "setters or expected null for I" + i;
+					i = testObjs.length;
+				}
+			}
+		}
+		else
+		{
+			text_extra = "testObjs length is empty";
+		}
+	}
+	else
+	{
+		text_extra = "testObjs null";
+	}
+
+	if( pass_count == expected_passes )
+	{
+		test_result = g_PASS;
+		test_extra = "";
+	}
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+
+	g_report_max_depth = 2;
+
+	return test_result;
+}
+
+//BASIC TEST FUNCTION FORMAT/PATTERN 
+function testStar( tc_base, name, expected, callstack )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "SOME VALUE" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+
+	//do stuff
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function test_it( tc_base, callstack  )
+{
+	var fName =  testHelperfName( callstack );	
+	tc_base = testCaseName( tc_base, "SELFCHECK" );
+//	log_test_result(tc_base, "log_test_result", "pass", "foo");
+//	testHiddenDisplay(tc_base+"(eFAIL)", "ChoiceModel", "fail", "I should fail", fName );
+//	testHiddenDisplay(tc_base+"(ePASS)", "ChoiceModel", "true", "null", fName );
+//	testChooseSelectValue( tc_base, "ChoiceCalcType", "Error only - enter Lat/Long for the actual locality", fName );
+	testReset();
+	testCalcType( tc_base, "err only", fName ) ;
+	testLocType( tc_base, "dist at", fName );
+	testReset();
+	runStandardTests( tc_base, g_tests, fName );
+}
+
 
