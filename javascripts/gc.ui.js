@@ -456,6 +456,21 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 	)
 }
 
+function uiGetText( name )
+{
+	var ti = document.getElementById( name );
+	var val = null;
+	
+	if( ti )
+	{
+		val = ti.text;
+	}
+	else
+	(
+		console.log("ERROR uiGetTextValue null element name:" + name )
+	)
+	return val;
+}
 
 function uiGetTextValue( name )
 {

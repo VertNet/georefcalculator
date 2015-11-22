@@ -21,6 +21,16 @@ var g_FAIL = tr.FAIL;
 var g_report_max_depth=2;
 var g_report_current_depth=0;
 
+function onChoiceTest()
+{
+	var testindex = uiGetSelectedIndex("ChoiceTest");
+	var test_obj = [];
+	var tc_base = "test " + testindex;
+	var fName = "onCoiceTest" + testindex;
+	test_obj[0] = g_tests[testindex];
+	runStandardTests( tc_base, test_obj, fName );
+	
+}
 
 
 
@@ -687,7 +697,7 @@ function runStandardCheckElement( tc_base, name, value, callstack )
 	var test_extra = "";
 	
 	var temp = "";
-	temp = uiGetTextValue(name);
+	temp = uiGetText(name);
 	
 	if( temp == value )
 	{
@@ -695,7 +705,7 @@ function runStandardCheckElement( tc_base, name, value, callstack )
 	}
 	else
 	{
-		test_extra = "value :" + value + ": not found for element :" + name +":";
+		test_extra = "value :" + value + ": found :" + temp + ": for element :" + name +":";
 	}
 	
 	
@@ -823,6 +833,8 @@ function runStandardTests( tc_base, testObjs, callstack )
 			expected_passes = testObjs.length;
 			for( var i = 0; i < testObjs.length; i++ )
 			{
+				testReset();
+
 				var sets = testObjs[i].set;
 				var exps = testObjs[i].expect;
 				var temp_result = g_FAIL;
@@ -869,8 +881,6 @@ function runStandardTests( tc_base, testObjs, callstack )
 					{
 						pass_count = pass_count + 1;
 					}
-					//if(i!=7)
-					testReset();
 				}
 				else
 				{
