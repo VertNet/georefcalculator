@@ -32,7 +32,7 @@
 				fromUnit = uiGetSelectedText("ChoiceFromDistUnits");
 				toUnit = uiGetSelectedText("ChoiceToDistUnits");
 				todist = convertLengthFromTo(fromdist,fromUnit,toUnit);
-				uiSetLabelExplicit("TextFieldToDistance", todist );//.setText( formatDistance.format(todist) ); //EDIT
+				uiSetLabelExplicit("TextFieldToDistance", formatDistance.checkFormat( todist ) );//.setText( formatDistance.format(todist) ); //EDIT
 			//}
 			//BUGBUG add back in when we have number formatters
 			//catch (ParseException e)
@@ -126,7 +126,7 @@
 				}
 				todist = scalefactor*convertLengthFromTo(fromdist,fromUnit,toUnit);
 				//uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.format(todist) );
-				uiSetLabelExplicit("TextFieldScaleToDistance", todist );
+				uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.checkFormat( todist ) );
 			//}
 			//ADD This back inwhen we get formatters
 			//catch (ParseException e)
@@ -254,9 +254,9 @@
 		//TextFieldCalcDecLong.setText(formatCalcDec.format(newdecimallongitude));//EDIT
 		//TextFieldCalcErrorDist.setText(formatCalcError.format(maxerrordistance));//EDIT
 
-		uiSetLabelExplicit("TextFieldCalcDecLat", newdecimallatitude);
-		uiSetLabelExplicit("TextFieldCalcDecLong",newdecimallongitude);
-		uiSetLabelExplicit("TextFieldCalcErrorDist",maxerrordistance);
+		uiSetLabelExplicit("TextFieldCalcDecLat", formatCalcDec.checkFormat( newdecimallatitude ) );
+		uiSetLabelExplicit("TextFieldCalcDecLong",formatCalcDec.checkFormat( newdecimallongitude) );
+		uiSetLabelExplicit("TextFieldCalcErrorDist", formatCalcError.checkFormat( maxerrordistance ) );
 		/***
 			Output meant to have tab-delimited output in the full result text box.
 			This can then be copied and pasted into a spreadsheet from the application.
@@ -282,13 +282,13 @@
 			distanceprecisionstr + '\u0009' +
 			coordprecisionstr );
 */
-		var resultstr = newdecimallatitude + '\u0009' +   //JAVA WAS FORMATTED
-						newdecimallongitude + '\u0009' +  //JAVA WAS FORMATTED
-						errorinmeters + '\u0009' +   //JAVA WAS FORMATTED
+		var resultstr = formatCalcDec.checkFormat( newdecimallatitude ) + '\u0009' +   //JAVA WAS FORMATTED
+						formatCalcDec.checkFormat( newdecimallongitude ) + '\u0009' +  //JAVA WAS FORMATTED
+						formatCalcDec.checkFormat( errorinmeters ) + '\u0009' +   //JAVA WAS FORMATTED
 						datumstr + '\u0009' + 
 						coordsysstr + '\u0009' + 
 						extentstr + '\u0009' +
-						maxerrordistance + '\u0009' +    //JAVA WAS FORMATTED
+						formatCalcError.checkFormat( maxerrordistance ) + '\u0009' +    //JAVA WAS FORMATTED
 						distunits + '\u0009' + 
 						distanceprecisionstr + '\u0009' +
 						coordprecisionstr;
@@ -315,7 +315,7 @@
 
 		if( lastcoordsystem == 1 )
 		{ // was decimal degrees
-			uiGetTextValue("txtT2Dec_Lat");
+			s = uiGetTextValue("txtT2Dec_Lat");
 			if( s == null || s.length == 0 )
 			{
 				ddeclat = 0;
@@ -328,10 +328,10 @@
 			decimallatitude = ddeclat;
 			getDMSFromDecDegrees( decimallatitude );
 
-			uiSetLabelExplicit("txtT7Lat_DegDMS",degrees); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Lat_DegMM",degrees); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Lat_MinDMS",minutes); //Min.format(minutes) );
-			uiSetLabelExplicit("txtT7Lat_Sec",seconds); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Lat_DegDMS",formatDeg.checkFormat( degrees ) ); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_DegMM",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_MinDMS",formatMin.checkFormat(minutes)); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Lat_Sec",formatSec.checkFormat(seconds)); //Sec.format(seconds) );
 			
 			if( decimallatitude >= 0 )
 			{
@@ -362,10 +362,10 @@
 
 			decimallongitude = ddeclong;
 			getDMSFromDecDegrees( decimallongitude );
-			uiSetLabelExplicit("txtT7Long_DegDMS",degrees); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Long_DegMM",degrees); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Long_MinDMS",minutes); //Min.format(minutes) );
-			uiSetLabelExplicit("txtT7Long_Sec",seconds); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Long_DegDMS",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_DegMM",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_MinDMS",formatMin.checkFormat(minutes)); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Long_Sec",formatSec.checkFormat(seconds)); //Sec.format(seconds) );
 			if( decimallongitude >= 0 )
 			{
 				uiSetSelectedValue("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.e"));
@@ -378,13 +378,18 @@
 			}
 
 			dmins = getDecimalMinutesFromMS( minutes, seconds );
-			uiSetLabelExplicit("txtT7Long_MinMM",dmins); //MinMM.format(dmins) );
+			uiSetLabelExplicit("txtT7Long_MinMM",formatMinMM.checkFormat(dmins)); //MinMM.format(dmins) );
 		}
 		//BUGBUG Critical I do not think this is the order the Coords sys are in DMS, DD, DMS
 		else if( lastcoordsystem == 2 )
 		{ // was degrees minutes seconds
 			//JAVA num = numberFormatter.parse(txtT7Lat_DegDMS.getText());
 			//JAVA degrees = num.intValue();
+			//num = uiGetTextValue("txtT7Lat_MinDMS");
+			//minutes = num;//.intValue();
+			
+			num = uiGetTextValue("txtT7Lat_DegDMS");
+			degrees = num;//.intValue();
 			num = uiGetTextValue("txtT7Lat_MinDMS");
 			minutes = num;//.intValue();
 
@@ -412,11 +417,11 @@
 			{
 				decimallatitude *= -1.0;
 			}
-			uiSetLabelExplicit("txtT2Dec_Lat", decimallatitude ); //Dec.format(decimallatitude) );
+			uiSetLabelExplicit("txtT2Dec_Lat", formatDeg.checkFormat(decimallatitude )); //Dec.format(decimallatitude) );
 
-			uiSetLabelExplicit("txtT7Lat_DegMM",degrees); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_DegMM",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
 			decminutes = getDecimalMinutesFromMS( minutes, seconds );
-			uiSetLabelExplicit("txtT7Lat_MinMM",decminutes); //MinMM.format(decminutes) );
+			uiSetLabelExplicit("txtT7Lat_MinMM",formatMinMM.checkFormat(decminutes)); //MinMM.format(decminutes) );
 
 //			num = numberFormatter.parse(txtT7Long_DegDMS.getText());
 			num = uiGetTextValue("txtT7Long_DegDMS");
@@ -447,11 +452,11 @@
 			{
 				decimallongitude *= -1;
 			}
-			uiSetLabelExplicit("txtT2Dec_Long", decimallongitude );//Dec.format(decimallongitude) );
+			uiSetLabelExplicit("txtT2Dec_Long", formatDec.checkFormat( decimallongitude ) );//Dec.format(decimallongitude) );
 
-			uiSetLabelExplicit("txtT7Long_DegMM", degrees ); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_DegMM", formatDeg.checkFormat( degrees )); //Deg.format(degrees) );
 			decminutes = getDecimalMinutesFromMS( minutes, seconds );
-			uiSetLabelExplicit("txtT7Long_MinMM", decminutes); //MinMM.format(decminutes) );
+			uiSetLabelExplicit("txtT7Long_MinMM", formatMinMM.checkFormat( decminutes)); //MinMM.format(decminutes) );
 		}
 		else if( lastcoordsystem == 3 )
 		{ // was degrees decimal minutes
@@ -481,12 +486,12 @@
 				decimallatitude *= -1;
 			}
 			
-			uiSetLabelExplicit("txtT2Dec_Lat",decimallatitude); //Dec.format(decimallatitude) );
+			uiSetLabelExplicit("txtT2Dec_Lat",formatDec.checkFormat( decimallatitude)); //Dec.format(decimallatitude) );
 
 			getMSFromDecMinutes(decminutes);
-			uiSetLabelExplicit("txtT7Lat_DegDMS", degrees ); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Lat_MinDMS", minutes ); //Min.format(minutes) );
-			uiSetLabelExplicit("txtT7Lat_Sec", seconds ); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Lat_DegDMS", formatDeg.checkFormat( degrees )); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Lat_MinDMS", formatMin.checkFormat( minutes )); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Lat_Sec", formatSec.checkFormat( seconds )); //Sec.format(seconds) );
 			
 
 			uiSetSelectedValue("ChoiceLatDirDMS", uiGetSelectedText("ChoiceLatDirMM") );
@@ -514,13 +519,17 @@
 			{
 				decimallongitude *= -1;
 			}
-			uiSetLabelExplicit("txtT2Dec_Long", decimallongitude ); //Dec.format(decimallongitude) );
+			uiSetLabelExplicit("txtT2Dec_Long", formatDec.checkFormat( decimallongitude )); //Dec.format(decimallongitude) );
 
 			getMSFromDecMinutes(decminutes);
-			uiSetLabelExplicit("txtT7Long_DegDMS", degrees ); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Long_MinDMS", minutes ); //Min.format(minutes) );
-			uiSetLabelExplicit("txtT7Long_Sec", seconds ); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Long_DegDMS", formatDeg.checkFormat( degrees )); //Deg.format(degrees) );
+			uiSetLabelExplicit("txtT7Long_MinDMS", formatMin.checkFormat( minutes )); //Min.format(minutes) );
+			uiSetLabelExplicit("txtT7Long_Sec", formatSec.checkFormat( seconds )); //Sec.format(seconds) );
 			uiSetSelectedValue( "ChoiceLongDirDMS", uiGetSelectedText( "ChoiceLongDirMM" ) );
+		}
+		else
+		{
+			console.log( "ERROR: translateCoords index not found :" + index + ":" )
 		}
 		var SCoordSystem = uiGetSelectedText("ChoiceCoordSystem");
 		var index = g_canonicalcoordsystems.indexOf(SCoordSystem);
@@ -1620,7 +1629,9 @@
 		var error = 1000; // 1 km error if file can't be read properly
 		var col = Math.round( 5*(decimallongitude+179.48) );
 		var row = Math.round( 5*(84.69-decimallatitude) );
-		error = datumErrorInst.datumerror[col][row];
+		//BUGBUG do we erally need an inst? this line errors anyway
+		//error = datumErrorInst.datumerror[col][row];
+		error = datumerror[col][row];
 		return error;
 	}
 
@@ -1845,10 +1856,11 @@
 	function ButtonPromote_afterActionPerformed()
 	{
 		lastcoordsystem = 1;
-		//BUGBUG redmove the next line, its a dupe off the line following it. for debugging purposes only.
-		uiGetTextValue("txtT2Dec_Lat",newdecimallatitude);//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
-		uiGetTextValue("txtT2Dec_Lat",newdecimallatitude);//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
-		uiGetTextValue("txtT2Dec_Long", newdecimallongitude);//JAVA format formatCalcDec.format(newdecimallongitude));
+		
+		//BUGBUG get text for what purpose
+		//revisit java frunction to be sure this is correct
+		uiSetLabelExplicit("txtT2Dec_Lat",formatCalcDec.checkFormat( newdecimallatitude));//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
+		uiSetLabelExplicit("txtT2Dec_Long",formatCalcDec.checkFormat(  newdecimallongitude));//JAVA format formatCalcDec.format(newdecimallongitude));
 		//try  //JAVA format
 		//{
 		//JAVA ChoiceCoordSystem_itemStateChanged((String)ChoiceCoordSystem.getSelectedItem());

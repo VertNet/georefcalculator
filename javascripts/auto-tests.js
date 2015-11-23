@@ -26,7 +26,7 @@ function onChoiceTest()
 	var testindex = uiGetSelectedIndex("ChoiceTest");
 	var test_obj = [];
 	var tc_base = "test " + testindex;
-	var fName = "onCoiceTest" + testindex;
+	var fName = "onChoiceTest" + testindex;
 	test_obj[0] = g_tests[testindex];
 	runStandardTests( tc_base, test_obj, fName );
 	
@@ -348,7 +348,7 @@ function testSetTextValue( tc_base, name, value, raw_name, callstack )
 		}
 		else
 		{
-			test_extra = "could get value" + value + " from " + name;
+			test_extra = "could not get value" + value + " from " + name +" got "+sub_result+" instead";
 		}
 	}
 	else
@@ -697,7 +697,7 @@ function runStandardCheckElement( tc_base, name, value, callstack )
 	var test_extra = "";
 	
 	var temp = "";
-	temp = uiGetText(name);
+	temp = uiGetTextValue( name );
 	
 	if( temp == value )
 	{
@@ -833,7 +833,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 			expected_passes = testObjs.length;
 			for( var i = 0; i < testObjs.length; i++ )
 			{
-				testReset();
+  				testReset();
 
 				var sets = testObjs[i].set;
 				var exps = testObjs[i].expect;

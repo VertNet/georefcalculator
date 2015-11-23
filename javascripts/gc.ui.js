@@ -1,4 +1,5 @@
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
+
 	var sign = 1;
 	var degrees = 0;
 	var minutes = 0;
@@ -24,6 +25,15 @@
 
 	var lastdecimalminutes = 0;
 	var lastdecimaldegrees = 0;
+
+	var formatDec = g_factory.makeFormat("formatDec", "formatDec");
+	var  formatDeg = g_factory.makeFormat("formatDeg", "formatDeg");
+	var  formatMin = g_factory.makeFormat("formatMin", "formatMin");
+	var  formatMinMM = g_factory.makeFormat("formatMinMM", "formatMinMM");
+	var  formatSec = g_factory.makeFormat("formatSec", "formatSec");
+	var  formatCalcError = g_factory.makeFormat("formatCalcError", "formatCalcError");
+	var  formatDistance = g_factory.makeFormat("formatDistance", "formatDistance");
+	var  formatCalcDec = g_factory.makeFormat("formatCalcDec", "formatCalcDec");
 
 	
 function GC_init()
@@ -57,15 +67,7 @@ function GC_init()
 
 	createDatum();
 	var datumErrorInst = datumerror; 
-	
-	var formatDec = null;
-	var  formatDeg = null; 
-	var  formatMin = null;
-	var  formatMinMM = null;
-	var  formatSec = null;
-	var  formatCalcError = null;
-	var  formatDistance = null;
-	var  formatCalcDec = null;
+	//BUGBUGformatters currently only deal with number of dercomal ponts, not man intr vals, places
 
 	/*
  	DecimalFormat formatDec = new DecimalFormat("0.0000000"); 
@@ -104,6 +106,7 @@ function GC_init()
 	uiSetSelectedIndex("ChoiceLanguage", 0 )
 	onLanguageSelect();		
 	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
+	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
 } 
 
 
@@ -456,6 +459,8 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 	)
 }
 
+/*
+BUGBUG delete me when this is all oer
 function uiGetText( name )
 {
 	var ti = document.getElementById( name );
@@ -470,7 +475,7 @@ function uiGetText( name )
 		console.log("ERROR uiGetTextValue null element name:" + name )
 	)
 	return val;
-}
+} */
 
 function uiGetTextValue( name )
 {
@@ -532,6 +537,7 @@ function setVariables( )
 		g_canonicalcoordsystems.clear();
 		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dd."+language));
 		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dms."+language));
+		//g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dd."+language));
 		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.ddm."+language));
 
 		// Do not change the following, the order is important
@@ -907,17 +913,22 @@ function setVariables( )
 
 		if( s == null || s.length == 0 ){
 			m = 0;
-		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatMinMM
+		}
+		else
+		{
+			num = formatMinMM.checkFormat(s);  //BUGBUG NEEDS formatMinMM
 			m = num; //.doubleValue();
 		}
 		latminmm=m;
 
 		s = uiGetTextValue("txtT7Long_MinMM");
-		if( s == null || s.length == 0 ){
+		if( s == null || s.length == 0 )
+		{
 			m = 0;
-		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatMinMM
+		}
+		else
+		{
+			num = formatMinMM.checkFormat(s);  //BUGBUG NEEDS formatMinMM
 			m = num; //.doubleValue();
 		}
 		longminmm=m;
@@ -927,7 +938,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatSec
+			num = formatSec.checkFormat(s);  //BUGBUG NEEDS formatSec
 			m = num; //.doubleValue();
 		}
 		latsec=m;
@@ -937,7 +948,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatSec
+			num = formatSec.checkFormat(s);  //BUGBUG NEEDS formatSec
 			m = num; //.doubleValue();
 		}
 		longsec=m;
@@ -947,7 +958,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s);;  //BUGBUG NEEDS formatCalcError
 			m = num; //.doubleValue();
 		}
 		extent=m;
@@ -957,7 +968,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s);  //BUGBUG NEEDS formatCalcError
 			m = num; //.doubleValue();
 		}
 		measurementerror=m;
@@ -968,7 +979,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s); //BUGBUG NEEDS formatCalcError
 			m = num; //.doubleValue();
 		}
 		offset=m;
@@ -978,7 +989,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s); //BUGBUG NEEDS formatCalcError
 			m = num; //.doubleValue();
 		}
 		offsetew=m;
@@ -988,7 +999,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = parseFloat(s);  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s);   //BUGBUG NEEDS formatCalcError
 			m = num; //.doubleValue();
 		}
 		heading=m;
@@ -1035,21 +1046,21 @@ function setVariables( )
 		populateDistancePrecision(uiGetSelectIndexValue("ChoiceDistUnits",distunitsindex));
 
 
-		uiSetTextExplicit("txtT2Dec_Lat",decimallatitude );  					//BUGBUG NEEDS formatDec
-		uiSetTextExplicit("txtT2Dec_Long",decimallongitude );					//BUGBUG NEEDS formatDec
-		uiSetTextExplicit("txtT7Lat_MinMM",latminmm );							//BUGBUG NEEDS formatMinMM
-		uiSetTextExplicit("txtT7Long_MinMM",longminmm );						//BUGBUG NEEDS formatMinMM
-		uiSetTextExplicit("txtT7Lat_Sec",latsec );								//BUGBUG NEEDS formatSec
-		uiSetTextExplicit("txtT7Long_Sec",longsec );								//BUGBUG NEEDS formatSec
-		uiSetTextExplicit("TextFieldExtent",extent );						//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldMeasurementError",measurementerror );	//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldFromDistance",fromdistance );			//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldToDistance",todistance );				//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldScaleFromDistance",scalefromdistance );	//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldScaleToDistance",scaletodistance );		//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldOffset",offset );						//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldOffsetEW",offsetew );					//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldHeading",heading );					//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("txtT2Dec_Lat", formatDec.checkFormat( decimallatitude ) );  					//BUGBUG NEEDS formatDec
+		uiSetTextExplicit("txtT2Dec_Long", formatDec.checkFormat( decimallongitude ) );					//BUGBUG NEEDS formatDec
+		uiSetTextExplicit("txtT7Lat_MinMM",formatMinMM.checkFormat( latminmm ) );							//BUGBUG NEEDS formatMinMM
+		uiSetTextExplicit("txtT7Long_MinMM",formatMinMM.checkFormat( longminmm ) );						//BUGBUG NEEDS formatMinMM
+		uiSetTextExplicit("txtT7Lat_Sec",formatSec.checkFormat( latsec ) );								//BUGBUG NEEDS formatSec
+		uiSetTextExplicit("txtT7Long_Sec",formatSec.checkFormat( longsec ) );								//BUGBUG NEEDS formatSec
+		uiSetTextExplicit("TextFieldExtent",formatCalcError.checkFormat( extent ) );						//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldMeasurementError",formatCalcError.checkFormat( measurementerror ) );	//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldFromDistance",formatDistance.checkFormat( fromdistance ) );			//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldToDistance",formatDistance.checkFormat( todistance ) );				//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldScaleFromDistance",formatDistance.checkFormat( scalefromdistance ) );	//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldScaleToDistance",formatDistance.checkFormat( scaletodistance ) );		//BUGBUG NEEDS formatDistance
+		uiSetTextExplicit("TextFieldOffset",formatCalcError.checkFormat( offset ) );						//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldOffsetEW",formatCalcError.checkFormat( offsetew ) );					//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("TextFieldHeading",formatCalcError.checkFormat( heading ) );					//BUGBUG NEEDS formatCalcError
 
 		if(calctypeindex >= 0)
 		{
@@ -1277,13 +1288,14 @@ function setVariables( )
 	function onCoordSystemSelect( )
 	{
 		var value = uiGetSelectedText("ChoiceCoordSystem");
+		lastcoordsystem = g_canonicalcoordsystems.indexOf( value );
+		lastcoordsystem = lastcoordsystem  + 1;
 		clearResults();
 		showRelevantCoordinates();
 		populateCoordinatePrecision(value);
 		
-		//BUGBUG CRITICAL to add these back in
-		//testLatLongLimits();
-		//translateCoords();
+		testLatLongLimits();
+		translateCoords();
 	}
 
 
@@ -3333,6 +3345,7 @@ function setVariables( )
 		// or creating a new control.
 		setDecimalFormat();
 		populateStableControls();
+		//BUGBUG I added this nexline to GC_init() so maybe this entire function can be scratched
 		populateCoordinatePrecision(g_properties.getProperty("coordsys.dd."+language));
 	}
 	*/

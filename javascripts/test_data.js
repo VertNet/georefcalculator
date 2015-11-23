@@ -28,9 +28,9 @@ g_tests[0] = {
 	},
 	
 	expect : {
-		LabelCalcDecLat: "35.3733333",
-		LabelCalcDecLong: "-119.0177778",
-		LabelCalcMaxError: "119",
+		TextFieldCalcDecLat: "35.3733333",
+		TextFieldCalcDecLong: "-119.0177778",
+		TextFieldCalcErrorDist: "119",
 		TextFieldCalcErrorUnits: "m"
 		//m, 0.119 km, 0.074 mi, 130 yds, 390 ft, or 0.064 nm",
 	},
@@ -64,10 +64,9 @@ g_tests[1] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.37",
-		LabelCalcDecLong: "-119.02",
-		//LabelCalcMaxError: "1446 m, 1.446 km, 0.899 mi, 1582 yds, 4745 ft, or 0.781 nm"
-		LabelCalcMaxError: "1446",
+		TextFieldCalcDecLat: "35.37",
+		TextFieldCalcDecLong: "-119.02",
+		TextFieldCalcErrorDist: "1446",
 		TextFieldCalcErrorUnits: "m"
 	},
 	
@@ -103,9 +102,9 @@ g_tests[2] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.3733333",
-		LabelCalcDecLong: "-119.0177778",
-		LabelCalcMaxError: "3.119",
+		TextFieldCalcDecLat: "35.3733333",
+		TextFieldCalcDecLong: "-119.0177778",
+		TextFieldCalcErrorDist: "3.119",
 		TextFieldCalcErrorUnits: "km"
 	},
 	
@@ -138,9 +137,9 @@ g_tests[3] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.373",
-		LabelCalcDecLong: "-119.018",
-		LabelCalcMaxError: "7.589",
+		TextFieldCalcDecLat: "35.373",
+		TextFieldCalcDecLong: "-119.018",
+		TextFieldCalcErrorDist: "7.589",
 		TextFieldCalcErrorUnits: "mi"
 	},
 	
@@ -176,9 +175,9 @@ g_tests[4] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.435",
-		LabelCalcDecLong: "-118.8016667",
-		LabelCalcMaxError: "2.712",// mi (4365 m)",
+		TextFieldCalcDecLat: "35.435",
+		TextFieldCalcDecLong: "-118.8016667",
+		TextFieldCalcErrorDist: "2.712",// mi (4365 m)",		
 		TextFieldCalcErrorUnits: "mi"
 	},
 	
@@ -221,9 +220,9 @@ g_tests[5] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.4612939",
-		LabelCalcDecLong: "-118.946227",
-		LabelCalcMaxError: "2.781",
+		TextFieldCalcDecLat: "35.4612939",
+		TextFieldCalcDecLong: "-118.946227",
+		TextFieldCalcErrorDist: "2.781",
 		TextFieldCalcErrorUnits: "mi"
 	},
 	
@@ -262,9 +261,9 @@ g_tests[6] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.3733333",
-		LabelCalcDecLong: "-118.6717921",
-		LabelCalcMaxError: "12.254",// mi (19721 m)",
+		TextFieldCalcDecLat: "35.3733333",
+		TextFieldCalcDecLong: "-118.6717921",
+		TextFieldCalcErrorDist: "12.254",// mi (19721 m)",
 		TextFieldCalcErrorUnits: "mi"
 	},
 	
@@ -303,9 +302,9 @@ g_tests[7] = {
 	},
 	
 	expect: {
-		LabelCalcDecLat: "35.4613445",
-		LabelCalcDecLong: "-118.6932627",
-		LabelCalcMaxError: "7.491",
+		TextFieldCalcDecLat: "35.4613445",
+		TextFieldCalcDecLong: "-118.6932627",
+		TextFieldCalcErrorDist: "7.491",
 		TextFieldCalcErrorUnits: "mi"
 	},
 	SKIPDirectionPrecision: "11.25 degrees either side of ENE",
