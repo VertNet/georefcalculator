@@ -149,10 +149,10 @@ g_factory.makeFormat = function( name, type )
 			cnum = parseFloat( newnum );
 			newnum = cnum.toString()
 
-			if( parseFloat( newnum ) !== parseFloat( nstr ) )
+			/*if( parseFloat( newnum ) !== parseFloat( nstr ) )
 			{
 				console.log("WARN changing decimals of num from :"+nstr+": to :"+newnum+": by format :"+ this.type + ": md="+ this.maxdigits );
-			}
+			} */
 			return newnum;
 		};
 		

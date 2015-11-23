@@ -1710,10 +1710,10 @@
 		if( index==0 )
 		{
 			//			if( model == "Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)")){
-			maxerrordistance += getDatumError();
-			maxerrordistance += getCoordPrecisionError();
-			maxerrordistance += getMapScaleError();
-			maxerrordistance += getMeasurementError();
+			maxerrordistance += parseFloat( getDatumError());
+			maxerrordistance += parseFloat( getCoordPrecisionError());
+			maxerrordistance += parseFloat( getMapScaleError());
+			maxerrordistance += parseFloat( getMeasurementError());
 //JAVA Commented out			maxerrordistance += getGPSAccuracy();
 		}
 
@@ -1721,36 +1721,36 @@
 		if( index==1 )
 		{
 			//			if( model == "Named place only (e.g., Bakersfield)") ){
-			maxerrordistance += getDatumError();
-			maxerrordistance += getExtentsError();
-			maxerrordistance += getMeasurementError();
-			maxerrordistance += getMapScaleError();
-			maxerrordistance += getCoordPrecisionError();
+			maxerrordistance += parseFloat( getDatumError() );
+			maxerrordistance += parseFloat( getExtentsError() );
+			maxerrordistance += parseFloat( getMeasurementError() );
+			maxerrordistance += parseFloat( getMapScaleError() );
+			maxerrordistance += parseFloat( getCoordPrecisionError() );
 		}
 
 		// Distance only
 		if( index==2 )
 		{
 			//			if( model == "Distance only (e.g., 5 mi from Bakersfield)") ){
-			maxerrordistance += getDatumError();
-			maxerrordistance += getExtentsError();
-			maxerrordistance += getMeasurementError();
-			maxerrordistance += getDistancePrecisionError();
-			maxerrordistance += getMapScaleError();
-			maxerrordistance += getOffset();
-			maxerrordistance += getCoordPrecisionError();
+			maxerrordistance += parseFloat( getDatumError());
+			maxerrordistance += parseFloat( getExtentsError());
+			maxerrordistance += parseFloat( getMeasurementError());
+			maxerrordistance += parseFloat( getDistancePrecisionError());
+			maxerrordistance += parseFloat( getMapScaleError());
+			maxerrordistance += parseFloat( getOffset());
+			maxerrordistance += parseFloat( getCoordPrecisionError());
 		}
 
 		// Distance along path
 		if( index==3 )
 		{
 			//			if( model == "Distance along path (e.g., 13 mi E (by road) Bakersfield)") ){
-			maxerrordistance += getDatumError();
-			maxerrordistance += getExtentsError();
-			maxerrordistance += getMeasurementError();
-			maxerrordistance += getDistancePrecisionError();
-			maxerrordistance += getMapScaleError();
-			maxerrordistance += getCoordPrecisionError();
+			maxerrordistance += parseFloat( getDatumError() );
+			maxerrordistance += parseFloat( getExtentsError() );
+			maxerrordistance += parseFloat( getMeasurementError() );
+			maxerrordistance += parseFloat( getDistancePrecisionError() );
+			maxerrordistance += parseFloat( getMapScaleError() );
+			maxerrordistance += parseFloat( getCoordPrecisionError() );
 		}
 
 		// Orthogonal directions
@@ -1777,12 +1777,12 @@
 			//maxerrordistance += getCoordPrecisionError();
 //
 			// Alternate Method resulting in smaller radii:
-			maxerrordistance += getDistancePrecisionError()*Math.sqrt(2.0);
-			maxerrordistance += getDatumError();
-			maxerrordistance += getExtentsError();
-			maxerrordistance += getMeasurementError();
-			maxerrordistance += getMapScaleError();
-			maxerrordistance += getCoordPrecisionError();
+			maxerrordistance += parseFloat( getDistancePrecisionError())*Math.sqrt(2.0);
+			maxerrordistance += parseFloat( getDatumError());
+			maxerrordistance += parseFloat( getExtentsError());
+			maxerrordistance += parseFloat( getMeasurementError());
+			maxerrordistance += parseFloat( getMapScaleError());
+			maxerrordistance += parseFloat( getCoordPrecisionError());
 		}
 
 		// Distance at Heading
@@ -1790,14 +1790,14 @@
 		{
 			//			if( model == "Distance at a heading (e.g., 10 mi E (by air) Bakersfield)") ){
 			var dp = 0.0; // distance error
-			var d = getOffset(); // offset distance
-			dp += getDatumError();
-			dp += getExtentsError();
-			dp += getMeasurementError();
-			dp += getDistancePrecisionError();
-			dp += getMapScaleError();
-			maxerrordistance = getDirectionError( d, dp );
-			maxerrordistance += getCoordPrecisionError();
+			var d = parseFloat( getOffset()); // offset distance
+			dp += parseFloat( getDatumError());
+			dp += parseFloat( getExtentsError());
+			dp += parseFloat( getMeasurementError());
+			dp += parseFloat( getDistancePrecisionError());
+			dp += parseFloat( getMapScaleError());
+			maxerrordistance = parseFloat( getDirectionError( d, dp ));
+			maxerrordistance += parseFloat( getCoordPrecisionError());
 		}
 	}
 	

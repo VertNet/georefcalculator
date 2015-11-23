@@ -825,7 +825,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 	var pass_count = 0;
 	var expected_passes = -1;
 	var fail_count=0;
-	g_report_max_depth = 3; //g_report_max_depth - 1;
+	g_report_max_depth = 1; //g_report_max_depth - 1;
 	if( testObjs )
 	{
 		if( testObjs.length )
@@ -907,7 +907,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 
-	g_report_max_depth = 2;
+	g_report_max_depth = 1;
 
 	return test_result;
 }
