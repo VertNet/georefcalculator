@@ -270,6 +270,7 @@ g_tests[6] = {
 		
 		ChoiceDatum: "not recorded",
 		ChoiceLatPrecision: "nearest second",
+		ChoiceDirection: "E",
 		TextFieldOffsetEW: "10",
 		TextFieldExtent: "2",
 		TextFieldMeasurementError: "0",
@@ -311,6 +312,7 @@ g_tests[7] = {
 		
 		ChoiceDatum: "NAD27",
 		ChoiceLatPrecision: "nearest second",
+		ChoiceDirection: "ENE",
 		TextFieldOffsetEW: "10",
 		TextFieldExtent: "2",
 		TextFieldMeasurementError: "0.007",// mi (0.5 mm on 1:24,000 map)",
