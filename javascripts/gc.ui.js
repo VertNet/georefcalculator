@@ -1,3 +1,20 @@
+/*
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+__author__ = "Craig Wieczorek, John Wieczorek"
+__copyright__ = "Copyright 2015 Regents of the University of California"
+__version__ = "gc.ui.js 2015-11-23T06:22:55-08:00"
+*/
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 
 	var sign = 1;
@@ -41,7 +58,7 @@ function GC_init()
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
 	g_appletHeight = 480;  //BUGBUG not needed anymore?
 	g_appletWidth = 620;   //BUGBUG not needed anymore?
-	g_versionNumber = "20151101";
+	g_versionNumber = "20151123";
 
 	//var g_properties = {};    //Defined in georefcalulator.js
 	
@@ -2761,13 +2778,15 @@ function setVariables( )
 					if( i < 0 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.lat.message"),							g_properties.getPropertyLang("error.lat.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.lat.message"),
+							g_properties.getPropertyLang("error.lat.title"), 0);
 						uiSetTextExplicit("txtT7Lat_DegMM","0");
 					}
 					else if( i > 90 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.lat.message"),							g_properties.getPropertyLang("error.lat.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.lat.message"),
+							g_properties.getPropertyLang("error.lat.title"), 0);
 						uiSetTextExplicit("txtT7Lat_DegMM","90");
 						uiSetTextExplicit("txtT7Lat_MinMM","0");
 					}
@@ -2801,13 +2820,15 @@ function setVariables( )
 					if( i < 0 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.lon.message"),							g_properties.getPropertyLang("error.lon.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.lon.message"),
+							g_properties.getPropertyLang("error.lon.title"), 0);
 						uiSetTextExplicit("txtT7Long_DegMM","0");
 					}
 					else if( i > 180 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.lon.message"),							g_properties.getPropertyLang("error.lon.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.lon.message"),
+							g_properties.getPropertyLang("error.lon.title"), 0);
 						uiSetTextExplicit("txtT7Long_DegMM","180");
 						uiSetTextExplicit("txtT7Long_MinMM","0");
 					}
@@ -2842,7 +2863,8 @@ function setVariables( )
 					if( i < 0 || i >= 60 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.min.message"),							g_properties.getPropertyLang("error.min.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.min.message"),
+							g_properties.getPropertyLang("error.min.title"), 0);
 						uiSetTextExplicit("txtT7Lat_MinDMS","0");
 						uiSetTextExplicit("txtT7Lat_Sec","0");
 					}
@@ -2878,7 +2900,8 @@ function setVariables( )
 					if( i < 0 || i >= 60 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.min.message"),							g_properties.getPropertyLang("error.min.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.min.message"),
+							g_properties.getPropertyLang("error.min.title"), 0);
 						uiSetTextExplicit("txtT7Long_MinDMS","0");
 						uiSetTextExplicit("txtT7Long_Sec","0");
 					}
@@ -2914,7 +2937,8 @@ function setVariables( )
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.min.message"),							g_properties.getPropertyLang("error.min.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.min.message"),
+							g_properties.getPropertyLang("error.min.title"), 0);
 						uiSetTextExplicit("txtT7Lat_MinMM","0");
 					}
 				//BUGBUG add back in when we have number formatters				
@@ -2949,7 +2973,8 @@ function setVariables( )
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.min.message"),							g_properties.getPropertyLang("error.min.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.min.message"),
+							g_properties.getPropertyLang("error.min.title"), 0);
 						uiSetTextExplicit("txtT7Long_MinMM","0");
 					}
 //				}
@@ -2984,7 +3009,8 @@ function setVariables( )
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.sec.message"),							g_properties.getPropertyLang("error.sec.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.sec.message"),
+							g_properties.getPropertyLang("error.sec.title"), 0);
 						uiSetTextExplicit("txtT7Lat_Sec","0");
 					}
 				//BUGBUG add back in when we have number formatters									
@@ -3017,7 +3043,8 @@ function setVariables( )
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
-						errorDialog(g_properties.getPropertyLang("error.sec.message"),							g_properties.getPropertyLang("error.sec.title"), 0);
+						errorDialog(g_properties.getPropertyLang("error.sec.message"),
+							g_properties.getPropertyLang("error.sec.title"), 0);
 						uiSetTextExplicit("txtT7Long_Sec","0");
 					}
 				//BUGBUG add back in when we have number formatters				\					
