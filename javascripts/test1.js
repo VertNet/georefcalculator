@@ -1391,8 +1391,8 @@
 
 	function getNewCoordinates(){ 
 		// this method should be called only to calculate new coordinates
-		newdecimallatitude=decimallatitude;
-		newdecimallongitude=decimallongitude;
+		newdecimallatitude=parseFloat( decimallatitude );
+		newdecimallongitude=parseFloat(decimallongitude );
 
 		var SCalcType = uiGetSelectedText("ChoiceCalcType");
 		var cindex = g_canonicalcalctypes.indexOf(SCalcType);
@@ -1597,9 +1597,9 @@
 		//JAVA double longchange = meterseast/longmetersperdegree;
 		var latchange = metersnorth/latmetersperdegree;
 		var longchange = meterseast/longmetersperdegree;
-		newdecimallatitude = decimallatitude + latchange;
+		newdecimallatitude = parseFloat( decimallatitude ) + parseFloat( latchange );
 		newdecimallatitude = 1.0*Math.round(newdecimallatitude*10000000)/10000000;
-		newdecimallongitude = decimallongitude + longchange;
+		newdecimallongitude = parseFloat( decimallongitude ) + parseFloat( longchange ); //decimallongitude + longchange;
 		newdecimallongitude = 1.0*Math.round(newdecimallongitude*10000000)/10000000;
 	}
 

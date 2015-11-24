@@ -208,7 +208,7 @@ g_tests[5] = {
 
 		ChoiceDatum: "not recorded",
 		ChoiceLatPrecision: "nearest second",
-		TextFieldOffset: "3 mi",
+		TextFieldOffset: "3",
 		ChoiceOffsetNSDir: "N",
 		TextFieldOffsetEW: "2",
 		ChoiceOffsetEWDir: "E",
