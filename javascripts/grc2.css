@@ -142,6 +142,28 @@ LABEL{
 	background-color: #C0C0C0;
 }
 
+.borderedText{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .8em;
+	display: inline-block;
+	
+/*	min-width:12%;
+	max-width: 12%;
+	width: 12%;*/
+	
+	
+	background-color: #FFFFFF;
+	display:inline-block;
+	border-style: inset;
+	border-width: 3px;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-left:1px;
+	padding-right:1px;
+}
+
+}
 
 INPUT{
 	font-family: "Helvetica", Ariel, Sans-serif;

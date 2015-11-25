@@ -48,7 +48,7 @@ g_tests[0] = {
 	expect : {
 		TextFieldCalcDecLat: "35.3733333",
 		TextFieldCalcDecLong: "-119.0177778",
-		TextFieldCalcErrorDist: "119",
+		TextFieldCalcErrorDist: "118.837",
 		TextFieldCalcErrorUnits: "m"
 		//m, 0.119 km, 0.074 mi, 130 yds, 390 ft, or 0.064 nm",
 	},
@@ -84,7 +84,7 @@ g_tests[1] = {
 	expect: {
 		TextFieldCalcDecLat: "35.37",
 		TextFieldCalcDecLong: "-119.02",
-		TextFieldCalcErrorDist: "1446",
+		TextFieldCalcErrorDist: "1446.325",
 		TextFieldCalcErrorUnits: "m"
 	},
 	
@@ -281,7 +281,7 @@ g_tests[6] = {
 	
 	expect: {
 		TextFieldCalcDecLat: "35.3733333",
-		TextFieldCalcDecLong: "-118.6717921",
+		TextFieldCalcDecLong: "-118.671788",
 		TextFieldCalcErrorDist: "12.254",// mi (19721 m)",
 		TextFieldCalcErrorUnits: "mi"
 	},

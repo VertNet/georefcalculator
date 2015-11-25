@@ -124,6 +124,8 @@ function GC_init()
 	onLanguageSelect();		
 	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
 	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
+	showScaleConverter(true);
+	showDistanceConverter(true);
 } 
 
 
@@ -159,10 +161,10 @@ function onLanguageSelect()
 	
 	setVariables( );
 	newLanguageChosen();
-
+	
 	uiSetLabel( "LabelStepZero", "label.step0" );
 	uiSetLabel( "ChoiceCalcType", "calctype" );
-	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
+	//uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
 }
 
 function uiHideElement( name )
@@ -265,6 +267,7 @@ function uiEmptyLabel( name )
 		//BUGBUG fix this. Without the "I" some text elements have 0 hight when empty, showing only border, if any.
 		var textnode = document.createTextNode("");
 		el.appendChild(textnode);
+		el.value="";
 	}
 	else
 	(
@@ -980,6 +983,8 @@ function setVariables( )
 		}
 		extent=m;
 
+		//PopulateS
+		
 		s = uiGetTextValue("TextFieldMeasurementError");
 		m = 0;
 		if( s == null || s.length == 0 ){
@@ -1030,7 +1035,10 @@ function setVariables( )
 		//BUGBUG add me back in when we start doing formatters
 		//setDecimalFormat();
 		
+		var ci = uiGetSelectedIndex("ChoiceCalcType");
+		var mi = uiGetSelectedIndex("ChoiceModel");
 		populateStableControls();
+		uiSetSelectedIndex("ChoiceCalcType", ci);
 
 		uiClearSelect("ChoiceModel");
 		uiSelectAddEmptyItem("ChoiceModel");
@@ -1050,11 +1058,11 @@ function setVariables( )
 			uiSelectAddItem("ChoiceModel","loctype.orthodist");
 			uiSelectAddItem("ChoiceModel","loctype.distatheading");
 		}
-
+		uiSetSelectedIndex("ChoiceModel", mi);
 		
-		if(coordsystemindex==0){
+		if(coordsystemindex==2){
 			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.dms"));
-		} else if(coordsystemindex==1){
+		} else if(coordsystemindex==0){
 			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.dd"));			
 		} else {
 			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.ddm"));
@@ -1090,7 +1098,7 @@ function setVariables( )
 		
 
 		
-		if( uiSetSelectedIndex("ChoiceModel") != 0 && 
+		if( uiGetSelectedIndex("ChoiceModel") != 0 && 
 			uiGetSelectedText( "ChoiceModel") ==
 			g_properties.getPropertyLang("loctype.orthodist") )
 		{
@@ -1181,6 +1189,17 @@ function setVariables( )
 		convertScale();
 	}
 	
+	
+	function onScaleConvertKeyUp()
+	{
+			convertScale();
+	}
+	
+	function onDistConvertKeyUp()
+	{
+			convertDistance();
+	}
+	
 	function onScaleSelect()
 	{
 		convertScale();
@@ -1223,8 +1242,8 @@ function setVariables( )
 		showExtents(true);
 		showMeasurementError(true);
 		showErrors(true);
-		showDistanceConverter(true);
-		showScaleConverter(true);
+		//showDistanceConverter(true);
+		//showScaleConverter(true);
 		showRelevantCoordinates();
 		
 		uiSetLabel("LabelOffset","label.offset");
@@ -1347,8 +1366,8 @@ function setVariables( )
 		showResults(false);
 		showExtents(false);
 		showMeasurementError(false);
-		showDistanceConverter(false);
-		showScaleConverter(false);
+		//showDistanceConverter(false);
+		//showScaleConverter(false);
 		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
@@ -1615,28 +1634,37 @@ function setVariables( )
 
 	
 
-/*
-	//initialize the applet
+function onBodyKeyUp( e  )
+{
+	//keyCode: 13
+	//keyIdentifier: "Enter"	
 
-	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-		if (keyCode == 10) { // Enter = Calculate
-			if (ButtonCalculate.isShowing()){
-				try {
-					ButtonCalculate_afterActionPerformed();
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-				}
-			}
+	if( e.keyIdentifier == "Enter" && uiIsVisible("ButtonCalculate") )
+	{
+		ButtonCalculate_afterActionPerformed();
+	}
+	else if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true )
+	{
+		//keyCode: 68
+		//keyIdentifier: "U+0044"
+		if( uiIsVisible("ChoiceTest" ) )
+		{
+		   uiHideElement("fat");
+		   uiHideElement("ChoiceTest");
+		}
+		else
+		{
+		   uiShowElement("fat");
+		   uiShowElement("ChoiceTest");
 		}
 	}
-
-	public void keyReleased(KeyEvent e) {
-		convertDistance();
-		convertScale();
+	else if( uiIsVisible("ButtonCalculate" ) )
+	{
+		clearResults();
 	}
+	
+}
 
-*/
 	// Populate the Coordinate Precision Controls based on the Coordinate System
 	function populateCoordinatePrecision( system )
 	{
@@ -1688,19 +1716,22 @@ function setVariables( )
 		uiSetSelectedIndex("ChoiceCalcType",0);
 
 		// Coordinate System controls
+		//order is important
 		uiClearSelect( "ChoiceCoordSystem");
-		uiSelectAddItem("ChoiceCoordSystem","coordsys.dms");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.dd");
 		uiSelectAddItem("ChoiceCoordSystem","coordsys.ddm");
+		uiSelectAddItem("ChoiceCoordSystem","coordsys.dms");
 		
 		uiSetSelectedValue("ChoiceCoordSystem", g_properties.getPropertyLang("coordsys.dd" ));
-
+		uiSetSelectedIndex("ChoiceCoordSystem",1);
 		// Coordinate Source controls
+		var csi = uiSetSelectedIndex("ChoiceCoordSource")
 		uiClearSelect("ChoiceCoordSource");
 		for( var i=0; i< g_canonicalsources.contents.length; i++){
 			uiSelectAddExplicitItem("ChoiceCoordSource", g_canonicalsources.contents[i] )
 		}
-		uiSetSelectedValue("ChoiceCoordSource", "gazetteer" );
+
+		uiSetSelectedIndex("ChoiceCoordSource", csi );
 
 
 		// Datum controls
@@ -2372,6 +2403,7 @@ function setVariables( )
 
 	function showDistanceConverter( b )
 	{
+		//BUGBUG should this ever get used the text and labels sould you show/hihe element funtion instead
 		setVisibility( "ChoiceFromDistUnits", b );
 		setVisibility( "ChoiceToDistUnits", b );
 		setVisibility( "LabelEquals", b );
@@ -2382,6 +2414,7 @@ function setVariables( )
 
 	function showScaleConverter( b )
 	{
+		//BUGBUG should this ever get used the text and labels sould you show/hihe element funtion instead
 		setVisibility( "ChoiceScaleFromDistUnits", b );
 		setVisibility( "ChoiceScaleToDistUnits", b );
 		setVisibility( "ChoiceScale", b );

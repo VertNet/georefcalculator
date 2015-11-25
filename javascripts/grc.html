@@ -19,7 +19,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 */
 -->
 <html>
-<body onLoad="GC_init()">
+<body onLoad="GC_init()"onkeyup="onBodyKeyUp( event )">
 
 <LINK href="grc2.css" rel="stylesheet" type="text/css">
 
@@ -37,7 +37,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 <DIV id="divLanguage" class="divStandard">
 	<SPAN class="spanStandard" class="span10">
-<button type="button" onclick="test_it()">Full Auto Testing!!!</button>
+<button id="fat" type="button" onclick="test_it()">Full Auto Testing!!!</button>
 		<SELECT id="ChoiceTest" onChange="onChoiceTest()" select="none">
 			<Option value="0">0 Test</option>
 			<Option value="1">1 Test</option>
@@ -413,7 +413,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		<SPAN class="span100" id="BUGBUG" align="left">
 			
 			<LABEL id="LabelDistanceConverter">BUGBUG Distance Converter</LABEL>
-			<INPUT TYPE="text" id="TextFieldFromDistance"  class=""  onfocus="TextFieldFromDistance_focusGained()" ></INPUT>
+			<INPUT TYPE="text" id="TextFieldFromDistance"  class="borderedText"  onfocus="TextFieldFromDistance_focusGained()" onkeyup="onDistConvertKeyUp()" ></INPUT>
 			
 			<SELECT id="ChoiceFromDistUnits"  onChange="onFromDistUnitsSelect()" >
 				<OPTION>1 BUGBUG ChoiceFromDistUnits</OPTION>
@@ -422,8 +422,9 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			</SELECT>
 			<LABEL id="LabelEquals">=</LABEL>
 
-			<INPUT TYPE="text" id="TextFieldFromDistance" onfocus="TextFieldFromDistance_focusGained()" ></INPUT>
-			<LABEL id="TextFieldToDistance" class="readOnlyInputSmall">BUG</LABEL>
+			<!--<INPUT TYPE="text" id="TextFieldFromDistance" onfocus="TextFieldFromDistance_focusGained()" class="borderedText"></INPUT>-->
+			<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall"></INPUT>
+			<!--<LABEL id="TextFieldToDistance" class="readOnlyInputSmall"></LABEL>-->
 			
 			<SELECT id="ChoiceToDistUnits"  onChange="onToDistUnitsSelect()" >
 				<OPTION>1 BUGBUG ChoiceToDistUnits</OPTION>
@@ -436,7 +437,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 			<LABEL id="LabelScaleConverter">BUGBUG Scale Converter</LABEL>
 
-			<INPUT TYPE="text" id="TextFieldScaleFromDistance" class=""  onfocus="TextFieldScaleFromDistance_focusGained()" ></INPUT>
+			<INPUT TYPE="text" id="TextFieldScaleFromDistance" onfocus="TextFieldScaleFromDistance_focusGained()" onkeyup="onScaleConvertKeyUp()" class="borderedText" ></INPUT>
 			
 			<SELECT id="ChoiceScale"  onChange="onScaleSelect()" >
 				<OPTION>1 BUGBUG scale</OPTION>
@@ -459,7 +460,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				<OPTION>2 BUGBUG ScaleToDistUnits</OPTION>	
 				<OPTION>3 BUGBUG ScaleToDistUnits</OPTION>			
 			</SELECT>
-			<LABEL id="TextFieldScaleToDistance" class="readOnlyInputSmall">tfstd BUG</LABEL>
+			<LABEL id="TextFieldScaleToDistance" class="readOnlySmall"></LABEL>
 		</SPAN>
 	</SPAN>
 </DIV>
