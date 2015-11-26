@@ -149,7 +149,18 @@ g_factory.makeFormat = function( name, type )
 			console.log("ERROR: trying to make number formatter of type :"+type +":");
 			return null;
 		}
-			
+		
+		//FIXME in here we would also need to check LOCAL when we allow for locals
+		fm.throwFormatError = function( cnum )
+		{
+			var temp = Number(cnum);
+			if(isNaN( temp ))
+			{
+				throw new Error( 'NaN: ' +  cnum );
+			}
+			return temp;
+		}
+		
 		fm.checkFormat = function( cnum )
 		{
 			

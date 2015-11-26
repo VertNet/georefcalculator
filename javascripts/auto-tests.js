@@ -48,8 +48,10 @@ function onChoiceTest()
 	var tc_base = "test " + testindex;
 	var fName = "onChoiceTest" + testindex;
 	test_obj[0] = g_tests[testindex];
+
+	g_report_max_depth = 2;
+	g_report_current_depth = 1;
 	runStandardTests( tc_base, test_obj, fName );
-	
 }
 
 
@@ -771,8 +773,8 @@ function runStandardTests( tc_base, testObjs, callstack )
 	var pass_count = 0;
 	var expected_passes = -1;
 	var fail_count=0;
-	var t = g_report_max_depth;
-	g_report_max_depth = g_report_current_depth;
+	//var t = g_report_max_depth;
+	//g_report_max_depth = g_report_current_depth + 1;
 	if( testObjs )
 	{
 		if( testObjs.length )
@@ -854,7 +856,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 
-	g_report_max_depth = t;
+	//g_report_max_depth = t;
 
 	return test_result;
 }
@@ -875,8 +877,10 @@ function testStar( tc_base, name, expected, callstack )
 
 function test_it( tc_base, callstack  )
 {
-	var fName =  testHelperfName( callstack );	
-	tc_base = testCaseName( tc_base, "SELFCHECK" );
+	g_report_max_depth = 2;
+	g_report_current_depth = 1;
+	var fName =  "FAT";	
+	var tc_base = "test_it";
 //	log_test_result(tc_base, "log_test_result", "pass", "foo");
 //	testHiddenDisplay(tc_base+"(eFAIL)", "ChoiceModel", "fail", "I should fail", fName );
 //	testHiddenDisplay(tc_base+"(ePASS)", "ChoiceModel", "true", "null", fName );
@@ -886,6 +890,7 @@ function test_it( tc_base, callstack  )
 	testLocType( tc_base, "dist at", fName );
 	testReset();
 	runStandardTests( tc_base, g_tests, fName );
+	//onChoiceTest()
 }
 
 

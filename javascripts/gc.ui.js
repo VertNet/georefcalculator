@@ -95,7 +95,8 @@ function downloadTests()
 			option.value= i;
 			e.add( option );	
 		}
-		e.setAttribute("onSelect", "javascript: onChoiceTest();");
+		e.setAttribute("onselect", "javascript: onChoiceTest();");
+		e.setAttribute("onchange", "javascript: onChoiceTest();");
 		e.setAttribute("ID", "ChoiceTest");
 
 		//e.onselect="onChoiceTest()";
@@ -756,7 +757,7 @@ function setVariables( )
 	{
 		var el = document.getElementById( name );
 		var returnVal = null;
-		if( el && null != index )
+		if( el &&  index !== null)
 		{
 			returnVal = el.options[index].text;
 		}
@@ -1716,13 +1717,10 @@ function onBodyKeyUp( e  )
 			clearResults();
 		}
 	}
-	else
+	else if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true  )
+	//FIXME    || ( put mac equiv logic in here  )
 	{
-		if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true  )
-			 //FIXME    || ( put mac equiv logic in here  )
-		{
-			downloadTests();
-		}
+		downloadTests();
 	}
 }
 
@@ -2581,30 +2579,36 @@ function onBodyKeyUp( e  )
 		PanelResults_SetVisible( b );
 	}
 
-/*
-	function errorDialog(String error, String title, int style)
-	{
-		Frame f=null;
-		Container c=getParent();
-		while(c!=null){
-			if(c instanceof Frame){
-				f=(Frame)c;
-				break;
-			}else c=c.getParent();
-		}
-		MinMaxDialog d=new MinMaxDialog(f, error, title, style);
-		d.setVisible(true);
-	}
-*/
 	
-
-
+//TODO this could be improved by using prompt.
+//With a prompt we could display the bad value and the error, and get a replacement value back, plug in and roll with new number
+//NOTE: style is not currently used
+function errorDialog( error, title, source, style )
+{
+			var e = document.getElementById( source );
+			if( e )
+			{
+				e.style.color = "#FF0000";
+			}
+			else
+			{
+				console.log( "ERROR: errorDialog source not found " + source )
+			}
+	
+			alert(title + '\n\n' + error );
+	
+			if( e )
+			{
+				e.style.color = "#000000";
+			}
+}
+	
+	
 
 //BEGIN test* functions
 
 	function testHeadingLimits()
 	{
-//throws ParseException	
 //JAVA original source kept for debugging and reference
 /*
 		boolean testpasses = true;
@@ -2626,33 +2630,29 @@ function onBodyKeyUp( e  )
 		}
 		else
 		{ // test input within limits and valid
-		//	try{
-				//BUGBUG add back in logic from numberForamtter so we can go into the catch block
-				//JAVA num = numberFormatter.parse(s.trim());
-				num = s;
+			try{
+				num = formatCalcDec.throwFormatError( s );
 				//JAVA d = num.doubleValue();
 				d = num;
 				if( d < 0 || d >= 360 )
 				{
 					testpasses = false;
 					errorDialog(g_properties.getPropertyLang("error.heading.message"),
-						g_properties.getPropertyLang("error.heading.title"), 0);
+						g_properties.getPropertyLang("error.heading.title"), "TextFieldHeading", 0);
 					uiSetTextExplicit("TextFieldHeading","0");
 				}
-//			}
-			/*BUGBUG add this back in when formatters are added in
-			catch(NumberFormatException e)
+			}
+			catch( exp )
 			{
 				testpasses = false;
 				errorDialog(g_properties.getPropertyLang("error.heading.message"),
-					g_properties.getPropertyLang("error.heading.title"), 0);
+					g_properties.getPropertyLang("error.heading.title"), "TextFieldHeading", 0);
 				uiSetTextExplicit("TextFieldHeading","0");
-			}*/
+			}
 		}
 		return testpasses;
 	}
 
-//	throws ParseException{
 	function testLatLongLimits( )
 	{
 //JAVA original source kept for debugging and reference
@@ -2680,18 +2680,15 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//try
-				//{
-				//BUGBUG add back in logic from numberForamtter so we can go into the catch block
-				//JAVA num = numberFormatter.parse(s.trim());
-					num = s;
-					//JAVBA d = num.doubleValue();
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 					d = num;
 					if( d < -90.0 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lat.message"),
-							g_properties.getPropertyLang("error.lat.title"), 0);
+							g_properties.getPropertyLang("error.lat.title"), "txtT2Dec_Lat", 0);
 						decimallatitude = -90;
 						uiSetTextExplicit("txtT2Dec_Lat","-90");
 					}
@@ -2699,20 +2696,19 @@ function onBodyKeyUp( e  )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lat.message"),
-							g_properties.getPropertyLang("error.lat.title"), 0);
+							g_properties.getPropertyLang("error.lat.title"), "txtT2Dec_Lat", 0);
 						decimallatitude = 90;
 						uiSetTextExplicit("txtT2Dec_Lat","90");
 					}
-				//}
-			/*BUGBUG add this back in when formatters are added in
-				catch(NumberFormatException e)
+				}
+				catch( exp )
 				{
 					testpasses = false;
-					errorDialog(g_properties.getPropertyLang("error.lat.message"),
-						g_properties.getPropertyLang("error.lat.title"), 0);
+					errorDialog( g_properties.getPropertyLang("error.lat.message"),
+						g_properties.getPropertyLang("error.lat.title"), "txtT2Dec_Lat" , 0 );					
 					decimallatitude = 0;
 					uiSetTextExplicit("txtT2Dec_Lat","0");
-				}*/
+				}
 			}
 		}
 
@@ -2726,18 +2722,16 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-//				try
-//{
-				//BUGBUG add back in logic from numberForamtter so we can go into the catch block
-					//JAVA num = numberFormatter.parse(s.trim());
-					num = s;
+				try
+{
+					num = formatCalcDec.throwFormatError( s );					
 					//JAVA d = num.doubleValue();
 					d = num;
 					if( d < -180 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lon.message"),
-							g_properties.getPropertyLang("error.lon.title"), 0);
+							g_properties.getPropertyLang("error.lon.title"), "txtT2Dec_Long", 0);
 						decimallongitude = -180;
 						uiSetTextExplicit("txtT2Dec_Long","-180");
 					}
@@ -2745,19 +2739,18 @@ function onBodyKeyUp( e  )
 					{
 						decimallongitude = 180;
 						errorDialog(g_properties.getPropertyLang("error.lon.message"),
-							g_properties.getPropertyLang("error.lon.title"), 0);
+							g_properties.getPropertyLang("error.lon.title"), "txtT2Dec_Long", 0);
 						uiSetTextExplicit("txtT2Dec_Long","180");
 					}
-				/*}
-				//BUGBUG add this back in when formatters are added in
-				catch(NumberFormatException e)
+				}
+				catch( exp )
 				{
 					testpasses = false;
 					decimallongitude = 0;
 					errorDialog(g_properties.getPropertyLang("error.lon.message"),
-						g_properties.getPropertyLang("error.lon.title"), 0);
-					txtT2Dec_Long.setText("0");
-				}*/
+						g_properties.getPropertyLang("error.lon.title"), "txtT2Dec_Long", 0);
+					uiSetTextExplicit("txtT2Dec_Long","0");
+				}
 			}
 		}
 
@@ -2772,39 +2765,36 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-//				BUGBUG add this back in when formatters are added in				
-//				try
-//				{
-//					JAVA num = numberFormatter.parse(s.trim());
-					num = s;
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );					
 //					JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lat.message"),
-							g_properties.getPropertyLang("error.lat.title"), 0);
+							g_properties.getPropertyLang("error.lat.title"), "txtT7Lat_DegDMS",0);
 						uiSetTextExplicit("txtT7Lat_DegDMS","0");
 					}
 					else if( i > 90 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lat.message"),
-							g_properties.getPropertyLang("error.lat.title"), 0);
+							g_properties.getPropertyLang("error.lat.title"), "txtT7Lat_DegDMS",0);
 						decimallatitude = 90;
 						uiSetTextExplicit("txtT7Lat_DegDMS","90");
 						uiSetTextExplicit("txtT7Lat_MinDMS","0");
 						uiSetTextExplicit("txtT7Lat_Sec","0");
 					}
-				//}
-//				BUGBUG add this back in when formatters are added in				
-//				catch(NumberFormatException e)
-//				{			
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.lat.message"),
-//						g_properties.getPropertyLang("error.lat.title"), 0);
-//					txtT7Lat_DegDMS.setText("0");
-//				}
+				}
+				catch( exp )
+				{			
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.lat.message"),
+						g_properties.getPropertyLang("error.lat.title"), "txtT7Lat_DegDMS",0);
+					uiSetTextExplicit("txtT7Lat_DegDMS","0");
+				}
 			}
 		}
 
@@ -2819,36 +2809,35 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
-					num = s;
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 					//JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lon.message"),
-							g_properties.getPropertyLang("error.lon.title"), 0);
+							g_properties.getPropertyLang("error.lon.title"), "txtT7Long_DegDMS", 0);
 						uiSetTextExplicit("txtT7Long_DegDMS","0");
 					}
 					else if( i > 180 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lon.message"),
-							g_properties.getPropertyLang("error.lon.title"), 0);
+							g_properties.getPropertyLang("error.lon.title"), "txtT7Long_DegDMS", 0);
 						uiSetTextExplicit("txtT7Long_DegDMS","180");
 						uiSetTextExplicit("txtT7Long_MinDMS","0");
 						uiSetTextExplicit("txtT7Long_Sec","0");
 					}
-//				}
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.lon.message"),
-//						g_properties.getPropertyLang("error.lon.title"), 0);
-//					txtT7Long_DegDMS.setText("0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.lon.message"),
+						g_properties.getPropertyLang("error.lon.title"), "txtT7Long_DegDMS", "txtT7Long_DegDMS", 0);
+					uiSetTextExplicit("txtT7Long_DegDMS","0");
+				}
 			}
 		}
 
@@ -2862,36 +2851,34 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-//				BUGBUG add the try catch back in when we have number formatters
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 					//JAVA i = num.intValue();
-					num = s;
 					i = num;
 					if( i < 0 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lat.message"),
-							g_properties.getPropertyLang("error.lat.title"), 0);
+							g_properties.getPropertyLang("error.lat.title"), "txtT7Lat_DegMM", 0);
 						uiSetTextExplicit("txtT7Lat_DegMM","0");
 					}
 					else if( i > 90 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lat.message"),
-							g_properties.getPropertyLang("error.lat.title"), 0);
+							g_properties.getPropertyLang("error.lat.title"), "txtT7Lat_DegMM", 0);
 						uiSetTextExplicit("txtT7Lat_DegMM","90");
 						uiSetTextExplicit("txtT7Lat_MinMM","0");
 					}
-//				}
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.lat.message"),
-//						g_properties.getPropertyLang("error.lat.title"), 0);
-//					uiSetTextExplicit("txtT7Lat_DegMM","0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.lat.message"),
+						g_properties.getPropertyLang("error.lat.title"), "txtT7Lat_DegMM", 0);
+					uiSetTextExplicit("txtT7Lat_DegMM","0");
+				}
 			}
 		}
 
@@ -2904,37 +2891,34 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters
-				//try
-//				{
-//					JAVA num = numberFormatter.parse(s.trim());
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 //					JAVA i = num.intValue();
-					num = s;
 					i = num;
 					if( i < 0 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lon.message"),
-							g_properties.getPropertyLang("error.lon.title"), 0);
+							g_properties.getPropertyLang("error.lon.title"), "txtT7Long_DegMM",0);
 						uiSetTextExplicit("txtT7Long_DegMM","0");
 					}
 					else if( i > 180 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.lon.message"),
-							g_properties.getPropertyLang("error.lon.title"), 0);
+							g_properties.getPropertyLang("error.lon.title"), "txtT7Long_DegMM",0);
 						uiSetTextExplicit("txtT7Long_DegMM","180");
 						uiSetTextExplicit("txtT7Long_MinMM","0");
 					}
-//				}
-				//BUGBUG add back in when we have number formatters				
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.lon.message"),
-//						g_properties.getPropertyLang("error.lon.title"), 0);
-//					uiSetTextExplicit("txtT7Long_DegMM","0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.lon.message"),
+						g_properties.getPropertyLang("error.lon.title"), "txtT7Long_DegMM",0);
+					uiSetTextExplicit("txtT7Long_DegMM","0");
+				}
 			}
 		}
 
@@ -2947,10 +2931,9 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters				
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 					//JAVA i = num.intValue();
 					num =s;
 					i = num;
@@ -2958,19 +2941,18 @@ function onBodyKeyUp( e  )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.min.message"),
-							g_properties.getPropertyLang("error.min.title"), 0);
+							g_properties.getPropertyLang("error.min.title"), "txtT7Lat_MinDMS",0);
 						uiSetTextExplicit("txtT7Lat_MinDMS","0");
 						uiSetTextExplicit("txtT7Lat_Sec","0");
 					}
-				//BUGBUG add back in when we have number formatters				
-//				}
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.lon.message"),
-//						g_properties.getPropertyLang("error.lon.title"), 0);
-//					uiSetTextExplicit("txtT7Long_DegMM","0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.lon.message"),
+						g_properties.getPropertyLang("error.lon.title"), "txtT7Lat_MinDMS",0);
+					uiSetTextExplicit("txtT7Long_DegMM","0");
+				}
 			}
 		}
 
@@ -2984,31 +2966,29 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters				
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 					//JAVA i = num.intValue();
-					num = s;
+					
 					i = num;
 					if( i < 0 || i >= 60 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.min.message"),
-							g_properties.getPropertyLang("error.min.title"), 0);
+							g_properties.getPropertyLang("error.min.title"), "txtT7Long_MinDMS",0);
 						uiSetTextExplicit("txtT7Long_MinDMS","0");
 						uiSetTextExplicit("txtT7Long_Sec","0");
 					}
-//				}
-				//BUGBUG add back in when we have number formatters				
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.min.message"),
-//						g_properties.getPropertyLang("error.min.title"), 0);
-//					uiSetTextExplicit("txtT7Long_MinDMS","0");
-//					uiSetTextExplicit("txtT7Long_Sec","0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.min.message"),
+						g_properties.getPropertyLang("error.min.title"), "txtT7Long_MinDMS", 0);
+					uiSetTextExplicit("txtT7Long_MinDMS","0");
+					uiSetTextExplicit("txtT7Long_Sec","0");
+				}
 			}
 		}
 
@@ -3022,28 +3002,25 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters							
-//				try{
-					//JAVA num = numberFormatter.parse(s.trim());
-					//JAVA d = num.doubleValue();
-					num = s;
+				try{
+					num = formatCalcDec.throwFormatError( s );
+					//JAVA d = num.doubleValue();					
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.min.message"),
-							g_properties.getPropertyLang("error.min.title"), 0);
+							g_properties.getPropertyLang("error.min.title"), "txtT7Lat_MinMM",0);
 						uiSetTextExplicit("txtT7Lat_MinMM","0");
 					}
-				//BUGBUG add back in when we have number formatters				
-//				}
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.min.message"),
-//						g_properties.getPropertyLang("error.min.title"), 0);
-//					uiSetTextExplicit("txtT7Lat_MinMM","0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.min.message"),
+						g_properties.getPropertyLang("error.min.title"), "txtT7Lat_MinMM",0);
+					uiSetTextExplicit("txtT7Lat_MinMM","0");
+				}
 			}
 		}
 
@@ -3057,29 +3034,26 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters				
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
-					//JAVA d = num.doubleValue();
-					num = s;
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
+					//JAVA d = num.doubleValue();				
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.min.message"),
-							g_properties.getPropertyLang("error.min.title"), 0);
+							g_properties.getPropertyLang("error.min.title"), "txtT7Long_MinMM",0);
 						uiSetTextExplicit("txtT7Long_MinMM","0");
 					}
-//				}
-				//BUGBUG add back in when we have number formatters								
-//				catch(NumberFormatException e)
-//				{
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.min.message"),
-//						g_properties.getPropertyLang("error.min.title"), 0);
-//					uiSetTextExplicit("txtT7Long_MinMM","0");
-//				}
+				}
+				catch( exp )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.min.message"),
+						g_properties.getPropertyLang("error.min.title"), "txtT7Long_MinMM",0);
+					uiSetTextExplicit("txtT7Long_MinMM","0");
+				}
 			}
 		}
 
@@ -3093,27 +3067,24 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters							
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
-					//JAVA d = num.doubleValue();
-					num = s;
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
+					//JAVA d = num.doubleValue()
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.sec.message"),
-							g_properties.getPropertyLang("error.sec.title"), 0);
+							g_properties.getPropertyLang("error.sec.title"), "txtT7Lat_Sec",0);
 						uiSetTextExplicit("txtT7Lat_Sec","0");
 					}
-				//BUGBUG add back in when we have number formatters									
-//				} catch(NumberFormatException e){
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.sec.message"),
-//						g_properties.getPropertyLang("error.sec.title"), 0);
-//					uiSetTextExplicit("txtT7Lat_Sec","0");
-//				}
+				} catch( exp ){
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.sec.message"),
+						g_properties.getPropertyLang("error.sec.title"), "txtT7Lat_Sec",0);
+					uiSetTextExplicit("txtT7Lat_Sec","0");
+				}
 			}
 		}
 
@@ -3127,27 +3098,25 @@ function onBodyKeyUp( e  )
 			}
 			else
 			{ // test input within limits and valid
-				//BUGBUG add back in when we have number formatters							
-//				try
-//				{
-					//JAVA num = numberFormatter.parse(s.trim());
+				try
+				{
+					num = formatCalcDec.throwFormatError( s );
 					//JAVA d = num.doubleValue();
-					num = s;
+					
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
 						testpasses = false;
 						errorDialog(g_properties.getPropertyLang("error.sec.message"),
-							g_properties.getPropertyLang("error.sec.title"), 0);
+							g_properties.getPropertyLang("error.sec.title"), "txtT7Long_Sec",0);
 						uiSetTextExplicit("txtT7Long_Sec","0");
 					}
-				//BUGBUG add back in when we have number formatters				\					
-//				} catch(NumberFormatException e){
-//					testpasses = false;
-//					errorDialog(g_properties.getPropertyLang("error.sec.message"),
-//						g_properties.getPropertyLang("error.sec.title"), 0);
-//					uiSetTextExplicit("txtT7Long_Sec","0");
-//				}
+				} catch( exp ){
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.sec.message"),
+						g_properties.getPropertyLang("error.sec.title"),"txtT7Long_Sec", 0);
+					uiSetTextExplicit("txtT7Long_Sec","0");
+				}
 			}
 		}
 		return testpasses;
@@ -3177,29 +3146,27 @@ function onBodyKeyUp( e  )
 		}
 		else
 		{
-			//BUGBUG add back in when we have number formatters				
-//			try
-//			{
-				//JAVA num = numberFormatter.parse(s.trim());
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
 				//JAVA d = num.doubleValue();
-				num = s;
+				
 				d = num;
 				if( d < 0 )
 				{
 					testpasses = false;
 					errorDialog(g_properties.getPropertyLang("error.offset.message"),
-						g_properties.getPropertyLang("error.offset.title"), 0);
+						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
 					uiSetTextExplicit("TextFieldOffset","0");
 				}
-//			}
-			//BUGBUG add back in when we have number formatters					
-//			catch(NumberFormatException e)
-//			{
-//				testpasses = false;
-//				errorDialog(g_properties.getPropertyLang("error.offset.message"),
-//					g_properties.getPropertyLang("error.offset.title"), 0);
-//				uiSetTextExplicit("TextFieldOffset","0");
-//			}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.offset.message"),
+					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
+				uiSetTextExplicit("TextFieldOffset","0");
+			}
 		}
 
 	
@@ -3210,30 +3177,27 @@ function onBodyKeyUp( e  )
 		}
 		else
 		{
-
-			//BUGBUG add back in when we have number formatters						
-			//try
-			//{
-				//JAVA num = numberFormatter.parse(s.trim());
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
 				//JAVA d = num.doubleValue();
-				num = s;
+				
 				d = num;
 				if( d < 0 )
 				{
 					testpasses = false;
 					errorDialog(g_properties.getPropertyLang("error.offset.message"),
-						g_properties.getPropertyLang("error.offset.title"), 0);
+						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetEW", 0);
 					uiSetTextExplicit("TextFieldOffsetEW","0");
 				}
-			//BUGBUG add back in when we have number formatters								
-			//}
-			//catch(NumberFormatException e)
-			//{
-//				testpasses = false;
-				//errorDialog(g_properties.getPropertyLang("error.offset.message"),
-//					g_properties.getPropertyLang("error.offset.title"), 0);
-//				uiSetTextExplicit("TextFieldOffsetEW","0");
-//			}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.offset.message"),
+					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetEW", 0);
+				uiSetTextExplicit("TextFieldOffsetEW","0");
+			}
 		}
 		
 		s = uiGetTextValue("TextFieldExtent");
@@ -3243,29 +3207,27 @@ function onBodyKeyUp( e  )
 		}
 		else
 		{ // test input within limits and valid
-			//BUGBUG add back in when we have number formatters						
-			//try
-			//{
-				//JAVA num = numberFormatter.parse(s.trim());
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
 				//JAVA d = num.doubleValue();
-				num = s;
+				
 				d = num;
 				if( d < 0 )
 				{
 					testpasses = false;
 					errorDialog(g_properties.getPropertyLang("error.extent.message"),
-						g_properties.getPropertyLang("error.extent.title"), 0);
+						g_properties.getPropertyLang("error.extent.title"), "TextFieldExtent", 0);
 					uiSetTextExplicit("TextFieldExtent","0");
 				}
-			//}
-			//BUGBUG add back in when we have number formatters									
-			//catch(NumberFormatException e)
-			//{
-//				testpasses = false;
-//				errorDialog(g_properties.getPropertyLang("error.extent.message"),
-//					g_properties.getPropertyLang("error.offset.extent"), 0);
-//				uiSetTextExplicit("TextFieldExtent","0");
-			//}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.extent.message"),
+					g_properties.getPropertyLang("error.offset.extent"), "TextFieldExtent", 0);
+				uiSetTextExplicit("TextFieldExtent","0");
+			}
 		}
 
 		s = uiGetTextValue("TextFieldMeasurementError");
@@ -3276,29 +3238,26 @@ function onBodyKeyUp( e  )
 		}
 		else
 		{ // test input within limits and valid
-			//BUGBUG add back in when we have number formatters								
-			//try
-			//{
-				//JAVA num = numberFormatter.parse(s.trim());
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
 				//JAVA d = num.doubleValue();
-				num = s;
 				d = num;
 				if( d < 0 )
 				{
 					testpasses = false;
 					errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
-						g_properties.getPropertyLang("error.measurementerror.title"), 0);
+						g_properties.getPropertyLang("error.measurementerror.title"), "TextFieldMeasurementError", 0);
 					uiSetTextExplicit("TextFieldMeasurementError","0");
 				}
-			//}
-			//BUGBUG add back in when we have number formatters						
-			//catch(NumberFormatException e)
-			//{
-				//testpasses = false;
-				//errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
-				//	g_properties.getPropertyLang("error.measurement.title"), 0);
-				//uiSetTextExplicit("TextFieldMeasurementError","0");
-			//}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
+					g_properties.getPropertyLang("error.measurement.title"), "TextFieldMeasurementError",0);
+				uiSetTextExplicit("TextFieldMeasurementError","0");
+			}
 		}
 		return testpasses;
 	}

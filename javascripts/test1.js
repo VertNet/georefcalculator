@@ -40,24 +40,24 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		else
 		{
 			var num = null;
-			//try 
-			//{
+			try 
+			{
 				//num = numberFormatter.parse(s.trim());
+				num = formatCalcDec.throwFormatError( s );
 				//fromdist = num.doubleValue();
-				num = s;
 				fromdist = num;
 				fromUnit = uiGetSelectedText("ChoiceFromDistUnits");
 				toUnit = uiGetSelectedText("ChoiceToDistUnits");
 				todist = convertLengthFromTo(fromdist,fromUnit,toUnit);
-				uiSetLabelExplicit("TextFieldToDistance", formatDistance.checkFormat( todist ) );//.setText( formatDistance.format(todist) ); //EDIT
-			//}
-			//BUGBUG add back in when we have number formatters
-			//catch (ParseException e)
-			//{
-			//	errorDialog(props.getProperty("error.number.message."+language), props.getProperty("error.number.title."+language), 0);
-			//	TextFieldFromDistance.setText( formatDistance.format(0) );  //EDIT
-			//	TextFieldToDistance.setText( formatDistance.format(0) );	//EDIT
-			//}
+				uiSetLabelExplicit("TextFieldToDistance", formatDistance.ceckFormat(todist) );
+			}
+			catch ( exp )
+			{
+				errorDialog(props.getPropertyLang("error.number.message"),
+					props.getPropertyLang("error.number.title"), "TextFieldFromDistance", 0);
+				uiSetLabelExplicit("TextFieldFromDistance","0" );
+				uiSetLabelExplicit("TextFieldToDistance", "0" );
+			}
 		}
 	}
 
@@ -92,18 +92,17 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		else
 		{
 			var num = null;
-			//try
-			//{
+			try
+			{
 				//num = numberFormatter.parse(s.trim());
+				num = formatCalcDec.throwFormatError( s );
 				//fromdist = num.doubleValue();
-				num = s;
+				//num = s;
 				fromdist = num;
 				fromUnit = uiGetSelectedText("ChoiceScaleFromDistUnits");
 				toUnit = uiGetSelectedText("ChoiceScaleToDistUnits");
 				fromScale = uiGetSelectedText("ChoiceScale");
 				
-				//s = fromScale.substring(2, fromScale.length());
-				//BUGBUG this is a possible source of a scale convert bug if JAVA and js subtring do not exactly match
 				s = fromScale.substring(2, fromScale.length);
 				
 				if( s == null || s.length == 0 )
@@ -114,10 +113,11 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 				{
 					//try 
 					//{
+						num = formatCalcDec.throwFormatError( s );
 						//num = numberFormatter.parse(s.trim());
-						num = s;
+						//num = s;
 					//}
-					//catch (ParseException e)
+					//catch ( exp )
 					//{
 						// TODO Auto-generated catch block
 						//e.printStackTrace();
@@ -142,25 +142,21 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 					scalefactor/=12.0;
 				}
 				todist = scalefactor*convertLengthFromTo(fromdist,fromUnit,toUnit);
-				//uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.format(todist) );
-				uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.checkFormat( todist ) );
-			//}
-			//ADD This back inwhen we get formatters
-			//catch (ParseException e)
-			//{
-				//errorDialog(props.getProperty("error.number.message."+language), props.getProperty("error.number.title."+language), 0); //EDIT
-				//JAVA TextFieldScaleFromDistance.setText( formatDistance.format(0) ); //EDIT
-				//JAVA TextFieldScaleToDistance.setText( formatDistance.format(0) ); //EDIT
-				//uiSetLabelExplicit("TextFieldScaleFromDistance", 0 ); 
-				//uiSetLabelExplicit("TextFieldScaleToDistance", 0 );
-			//}
+				uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.ceckFormat(todist) );
+			}
+			catch( exp )
+			{
+				errorDialog(g_properties.getPropertyLang("error.number.message"),
+					g_properties.getPropertyLang("error.number.title."), "TextFieldScaleFromDistance", 0);
+				uiSetLabelExplicit("TextFieldScaleFromDistance", "0" ); 
+				uiSetLabelExplicit("TextFieldScaleToDistance", "0" );
+			}
 		}
 	}
 
 	
 	
-	function testParameterLimits()
-//	throws ParseException
+function testParameterLimits()
 	{
 		var testspass = testLatLongLimits();
 		if( testspass )
@@ -171,14 +167,14 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 				testspass = testOffsetLimits();
 				if( testspass == false )
 				{
-					console.log("ERROR: testPaemterLimits() failed at testOffsetLimits()");
+					console.log("ERROR: testParameterLimits() failed at testOffsetLimits()");
 				}
 			}
 			
 		}
 		else
 		{
-			console.log("ERROR: testPaemterLimits() failed at testLatLongLimits");
+			console.log("ERROR: testParameterLimits() failed at testLatLongLimits");
 		}
 
 		return testspass;
@@ -1408,8 +1404,8 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 
 	function getNewCoordinates(){ 
 		// this method should be called only to calculate new coordinates
-		newdecimallatitude=parseFloat( decimallatitude );
-		newdecimallongitude=parseFloat(decimallongitude );
+		newdecimallatitude=Number( decimallatitude );
+		newdecimallongitude=Number(decimallongitude );
 
 		var SCalcType = uiGetSelectedText("ChoiceCalcType");
 		var cindex = g_canonicalcalctypes.indexOf(SCalcType);
@@ -1614,9 +1610,9 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		//JAVA double longchange = meterseast/longmetersperdegree;
 		var latchange = metersnorth/latmetersperdegree;
 		var longchange = meterseast/longmetersperdegree;
-		newdecimallatitude = parseFloat( decimallatitude ) + parseFloat( latchange );
+		newdecimallatitude = Number( decimallatitude ) + Number( latchange );
 		newdecimallatitude = 1.0*Math.round(newdecimallatitude*10000000)/10000000;
-		newdecimallongitude = parseFloat( decimallongitude ) + parseFloat( longchange ); //decimallongitude + longchange;
+		newdecimallongitude = Number( decimallongitude ) + Number( longchange ); //decimallongitude + longchange;
 		newdecimallongitude = 1.0*Math.round(newdecimallongitude*10000000)/10000000;
 	}
 
@@ -1727,10 +1723,10 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		if( index==0 )
 		{
 			//			if( model == "Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)")){
-			maxerrordistance += parseFloat( getDatumError());
-			maxerrordistance += parseFloat( getCoordPrecisionError());
-			maxerrordistance += parseFloat( getMapScaleError());
-			maxerrordistance += parseFloat( getMeasurementError());
+			maxerrordistance += Number( getDatumError());
+			maxerrordistance += Number( getCoordPrecisionError());
+			maxerrordistance += Number( getMapScaleError());
+			maxerrordistance += Number( getMeasurementError());
 //JAVA Commented out			maxerrordistance += getGPSAccuracy();
 		}
 
@@ -1738,36 +1734,36 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		if( index==1 )
 		{
 			//			if( model == "Named place only (e.g., Bakersfield)") ){
-			maxerrordistance += parseFloat( getDatumError() );
-			maxerrordistance += parseFloat( getExtentsError() );
-			maxerrordistance += parseFloat( getMeasurementError() );
-			maxerrordistance += parseFloat( getMapScaleError() );
-			maxerrordistance += parseFloat( getCoordPrecisionError() );
+			maxerrordistance += Number( getDatumError() );
+			maxerrordistance += Number( getExtentsError() );
+			maxerrordistance += Number( getMeasurementError() );
+			maxerrordistance += Number( getMapScaleError() );
+			maxerrordistance += Number( getCoordPrecisionError() );
 		}
 
 		// Distance only
 		if( index==2 )
 		{
 			//			if( model == "Distance only (e.g., 5 mi from Bakersfield)") ){
-			maxerrordistance += parseFloat( getDatumError());
-			maxerrordistance += parseFloat( getExtentsError());
-			maxerrordistance += parseFloat( getMeasurementError());
-			maxerrordistance += parseFloat( getDistancePrecisionError());
-			maxerrordistance += parseFloat( getMapScaleError());
-			maxerrordistance += parseFloat( getOffset());
-			maxerrordistance += parseFloat( getCoordPrecisionError());
+			maxerrordistance += Number( getDatumError());
+			maxerrordistance += Number( getExtentsError());
+			maxerrordistance += Number( getMeasurementError());
+			maxerrordistance += Number( getDistancePrecisionError());
+			maxerrordistance += Number( getMapScaleError());
+			maxerrordistance += Number( getOffset());
+			maxerrordistance += Number( getCoordPrecisionError());
 		}
 
 		// Distance along path
 		if( index==3 )
 		{
 			//			if( model == "Distance along path (e.g., 13 mi E (by road) Bakersfield)") ){
-			maxerrordistance += parseFloat( getDatumError() );
-			maxerrordistance += parseFloat( getExtentsError() );
-			maxerrordistance += parseFloat( getMeasurementError() );
-			maxerrordistance += parseFloat( getDistancePrecisionError() );
-			maxerrordistance += parseFloat( getMapScaleError() );
-			maxerrordistance += parseFloat( getCoordPrecisionError() );
+			maxerrordistance += Number( getDatumError() );
+			maxerrordistance += Number( getExtentsError() );
+			maxerrordistance += Number( getMeasurementError() );
+			maxerrordistance += Number( getDistancePrecisionError() );
+			maxerrordistance += Number( getMapScaleError() );
+			maxerrordistance += Number( getCoordPrecisionError() );
 		}
 
 		// Orthogonal directions
@@ -1794,12 +1790,12 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 			//maxerrordistance += getCoordPrecisionError();
 //
 			// Alternate Method resulting in smaller radii:
-			maxerrordistance += parseFloat( getDistancePrecisionError())*Math.sqrt(2.0);
-			maxerrordistance += parseFloat( getDatumError());
-			maxerrordistance += parseFloat( getExtentsError());
-			maxerrordistance += parseFloat( getMeasurementError());
-			maxerrordistance += parseFloat( getMapScaleError());
-			maxerrordistance += parseFloat( getCoordPrecisionError());
+			maxerrordistance += Number( getDistancePrecisionError())*Math.sqrt(2.0);
+			maxerrordistance += Number( getDatumError());
+			maxerrordistance += Number( getExtentsError());
+			maxerrordistance += Number( getMeasurementError());
+			maxerrordistance += Number( getMapScaleError());
+			maxerrordistance += Number( getCoordPrecisionError());
 		}
 
 		// Distance at Heading
@@ -1807,14 +1803,14 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		{
 			//			if( model == "Distance at a heading (e.g., 10 mi E (by air) Bakersfield)") ){
 			var dp = 0.0; // distance error
-			var d = parseFloat( getOffset()); // offset distance
-			dp += parseFloat( getDatumError());
-			dp += parseFloat( getExtentsError());
-			dp += parseFloat( getMeasurementError());
-			dp += parseFloat( getDistancePrecisionError());
-			dp += parseFloat( getMapScaleError());
-			maxerrordistance = parseFloat( getDirectionError( d, dp ));
-			maxerrordistance += parseFloat( getCoordPrecisionError());
+			var d = Number( getOffset()); // offset distance
+			dp += Number( getDatumError());
+			dp += Number( getExtentsError());
+			dp += Number( getMeasurementError());
+			dp += Number( getDistancePrecisionError());
+			dp += Number( getMapScaleError());
+			maxerrordistance = Number( getDirectionError( d, dp ));
+			maxerrordistance += Number( getCoordPrecisionError());
 		}
 	}
 	
@@ -1861,7 +1857,6 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 	}
 	
 
-//	throws ParseException
 	function ButtonCalculate_afterActionPerformed()
 	{
 		clearResults();
@@ -1869,13 +1864,10 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		showResults(true);
 	}
 
-//	throws ParseException
 	function ButtonPromote_afterActionPerformed()
 	{
 		lastcoordsystem = 1;
 		
-		//BUGBUG get text for what purpose
-		//revisit java frunction to be sure this is correct
 		uiSetLabelExplicit("txtT2Dec_Lat",formatCalcDec.checkFormat( newdecimallatitude));//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
 		uiSetLabelExplicit("txtT2Dec_Long",formatCalcDec.checkFormat(  newdecimallongitude));//JAVA format formatCalcDec.format(newdecimallongitude));
 		//try  //JAVA format
