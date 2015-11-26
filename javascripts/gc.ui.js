@@ -16,7 +16,7 @@ __copyright__ = "Copyright 2015 Regents of the University of California"
 __version__ = "gc.ui.js 2015-11-23T06:22:55-08:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
-
+	
 	var sign = 1;
 	var degrees = 0;
 	var minutes = 0;
@@ -52,6 +52,71 @@ __version__ = "gc.ui.js 2015-11-23T06:22:55-08:00"
 	var  formatDistance = g_factory.makeFormat("formatDistance", "formatDistance");
 	var  formatCalcDec = g_factory.makeFormat("formatCalcDec", "formatCalcDec");
 
+	var g_debug_active = false;
+	var g_debug_loaded = false;
+
+
+function downloadTests()
+{
+	if( g_debug_active == false )
+	{
+		var df = document.getElementById("divFiller");
+
+		if( g_debug_loaded == false )
+		{
+			//load test_data.js
+			e = document.createElement("script");
+			e.src = "test_data.js";
+			df.appendChild(e);
+		
+			//load auto-tests.js
+			e = document.createElement("script");
+			e.src = "auto-tests.js";
+			df.appendChild(e);
+			g_debug_loaded = true;
+		}
+		
+		//create FAT button
+		e = document.createElement( "BUTTON" );
+		var t = document.createTextNode("fat");
+		e.setAttribute("onClick", "javascript: test_it();");
+		e.setAttribute("ID", "fat");
+
+		e.appendChild(t);
+		df.appendChild(e);
+		
+		//created SELECT button
+		e = document.createElement( "SELECT" );
+		//FIXME i<8 is bad, but we cant use g_tests.length because it ?no longer global? due to delayed load?
+		for( var i = 0; i< 8; i++ )
+		{
+			var option = document.createElement("option");
+			option.text = "Test " + i;
+			option.value= i;
+			e.add( option );	
+		}
+		e.setAttribute("onSelect", "javascript: onChoiceTest();");
+		e.setAttribute("ID", "ChoiceTest");
+
+		//e.onselect="onChoiceTest()";
+		df.appendChild(e);
+		
+		g_debug_active = true;
+	}
+	else
+	{
+		if( uiIsVisible("ChoiceTest" ) )
+		{
+		   uiHideElement("fat");
+		   uiHideElement("ChoiceTest");
+		}
+		else
+		{
+		   uiShowElement("fat");
+		   uiShowElement("ChoiceTest");
+		}
+	}
+}
 	
 function GC_init()
 {
@@ -1644,26 +1709,21 @@ function onBodyKeyUp( e  )
 	{
 		ButtonCalculate_afterActionPerformed();
 	}
-	else if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true )
+	else if( e.srcElement.localName.toLowerCase() == "input" )
 	{
-		//keyCode: 68
-		//keyIdentifier: "U+0044"
-		if( uiIsVisible("ChoiceTest" ) )
+		if( uiIsVisible("ButtonCalculate" ) && e.keyCode !== 9 )
 		{
-		   uiHideElement("fat");
-		   uiHideElement("ChoiceTest");
-		}
-		else
-		{
-		   uiShowElement("fat");
-		   uiShowElement("ChoiceTest");
+			clearResults();
 		}
 	}
-	else if( uiIsVisible("ButtonCalculate" ) )
+	else
 	{
-		clearResults();
+		if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true  )
+			 //FIXME    || ( put mac equiv logic in here  )
+		{
+			downloadTests();
+		}
 	}
-	
 }
 
 	// Populate the Coordinate Precision Controls based on the Coordinate System
@@ -3293,96 +3353,98 @@ function onBodyKeyUp( e  )
 		convertScale();
 	}
 
+	//FIXME remove these no longer used functions, and references to them in grc.html
 	function TextFieldExtent_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
-
+	//FIXME remove these no longer used functions, and references to them in grc.html
 	function TextFieldMeasurementError_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
-	//BUGBUG not found in grc.html
-	//This is defintely a control that is used.
-	//it is inmainpanel some here
-	//TextFieldHeading.setBounds (570, 145, 40, 23);
+
+
+
 	function TextFieldHeading_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function TextFieldOffset_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function TextFieldOffsetEW_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
+	
 //END TextX onFocus functions
 
 
 
-//BEGIN TextX onFocus functions
+//BEGIN txtX onFocus functions
+//FIXME remove these no longer used functions, and references to them in grc.html
 	function txtT2Dec_Lat_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT2Dec_Long_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Lat_DegDMS_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Lat_DegMM_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Lat_MinDMS_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Lat_MinMM_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Lat_Sec_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Long_DegDMS_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Long_DegMM_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Long_MinDMS_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Long_MinMM_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 	function txtT7Long_Sec_focusGained()
 	{
-		clearResults();
+		//clearResults();
 	}
 
 /*
