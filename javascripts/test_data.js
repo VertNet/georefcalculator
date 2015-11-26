@@ -93,12 +93,12 @@ g_tests[1] = {
 
 g_tests[2] = {
     test_name : "named_place_only" + "EX1",
-	test_descr : "\"Bakersfield\", Suppose the coordinates for Bakersfield came from the GNIS database, (a gazetteer) and the distance from the center of Bakersfield to the furthest, city limit is 3 km.", 
+	test_descr : "\"Bakersfield\", Suppose the coordinates for Bakersfield came from the GNIS database, (a Google) and the distance from the center of Bakersfield to the furthest, city limit is 3 km.", 
 	
 	set: {
 		ChoiceCalcType: "Error only - enter Lat/Long for the actual locality",
 		ChoiceModel: "Named place only",
-		ChoiceCoordSource: "gazetteer",
+		ChoiceCoordSource: "Google",
 		ChoiceCoordSystem: "degrees minutes seconds",
 		//Latitude: "35 degrees 22' 24" N",
 		ChoiceLatDirDMS: "N",
@@ -137,7 +137,7 @@ g_tests[3] = {
 	set: {
 		ChoiceCalcType: "Error only - enter Lat/Long for the actual locality",
 		ChoiceModel: "Distance only",
-		ChoiceCoordSource: "gazetteer",
+		ChoiceCoordSource: "Google", 
 		ChoiceCoordSystem: "decimal degrees",
 		//Latitude: "35.373"
 		//Longitude: "-119.018"
@@ -206,12 +206,12 @@ g_tests[4] = {
 
 g_tests[5] = {
     test_name : "distance_along_orthogonal_directionsEX1",
-	test_descr : "2 mi E and 3 mi N of Bakersfield Suppose the coordinates for Bakersfield (the named place) came from the GNIS database (a gazetteer), the coordinates of the locality were calculated to the nearest second, and the distance from the center of Bakersfield to the furthest city limit is 2 mi.", 
+	test_descr : "2 mi E and 3 mi N of Bakersfield Suppose the coordinates for Bakersfield (the named place) came from the GNIS database (a Google), the coordinates of the locality were calculated to the nearest second, and the distance from the center of Bakersfield to the furthest city limit is 2 mi.", 
 	
 	set: {
 		ChoiceCalcType: "Coordinates and error",
 		ChoiceModel: "Distance along orthogonal directions",
-		ChoiceCoordSource: "gazetteer",
+		ChoiceCoordSource: "Google", 
 		ChoiceCoordSystem: "degrees minutes seconds",
 		//Latitude: "35 degrees 25' 4" N"
 		ChoiceLatDirDMS: "N",
@@ -249,12 +249,12 @@ g_tests[5] = {
 
 g_tests[6] = {
     test_name : "distance_at_a_heading" + "EX1",
-	test_descr : "10 mi E (by air) Bakersfield Suppose the coordinates for Bakersfield came from the GNIS database(a gazetteer), the coordinates of the locality were calculated to the nearest second, and the distance from the center of Bakersfield to the furthest city limit is 2 mi.", 
+	test_descr : "10 mi E (by air) Bakersfield Suppose the coordinates for Bakersfield came from the GNIS database(a Google), the coordinates of the locality were calculated to the nearest second, and the distance from the center of Bakersfield to the furthest city limit is 2 mi.", 
 	
 	set: {
 		ChoiceCalcType: "Coordinates and error",
 		ChoiceModel: "Distance at a heading",
-		ChoiceCoordSource: "gazetteer",
+		ChoiceCoordSource: "Google",
 		ChoiceCoordSystem: "degrees minutes seconds",
 		
 		//Latitude: "35 degrees 22' 24" N"

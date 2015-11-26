@@ -16,13 +16,14 @@ __copyright__ = "Copyright 2015 Regents of the University of California"
 __version__ = "auto_tests.js 2015-11-23T20:33:00-07:00"
 */
 
-
+//NOT USED
 var enum_report_level =
 {
 	FULL: 1,
 	FAIL_ONLY: 2
 }
 
+//USED but somewhat silly
 var tr =
 {
 	FAIL: false,
@@ -134,6 +135,9 @@ function testHiddenDisplay( tc_base, name, expected_hid, expected_dis, callstack
 	if( test_result_h && test_result_d )
 	{
 		test_result = g_PASS;
+	}
+	else
+	{
 		test_extra = "expected_hid: " +  expected_hid + " expected_dis: " + expected_dis;
 	}
 	
@@ -198,68 +202,7 @@ function testGetElement( tc_base, name, callstack )
 	return el;
 }
 
-/*function testSelectedValue( tc_base, name, expected, callstack )
-{
-	var fName =  testHelperfName( callstack );
-	tc_base = testCaseName( tc_base, "SELELECTVALUE" );
-	var test_result = g_FAIL;
-	var test_extra = "raw function testStar";
-	log_test_result(tc_base, fName, test_result, test_extra );
-	return test_result;
-}*/
 
-
-
-function testChooseSelectValueOld( tc_base, name, value, expected, callstack ) 
-{
-    var fName =  testHelperfName( callstack );
-	tc_base = testCaseName( tc_base, "SELECTOLD" );
-	
-	var test_result = g_FAIL;
-	var sub_result = g_FAIL;
-	var temp = "";
-	
-	var test_extra = "";
-	
-	var el = testGetElement( tc_base, name, fName );
-	if( el )
-	{
-		uiSetSelectedValue( name, value );
-		sub_result = uiGetSelectedValue( name );
-		if( sub_result )
-		{
-			temp = "on"+ name.substr( 6,name.length ) + "Select()";
-			var c = "";
-			var caught = false;
-			try
-			{
-				c = eval( temp );
-			}
-			catch(err)
-			{
-				test_extra = "error eval()ing " + temp + " " + err.messsage;
-				caught = true;
-			}
-			finally
-			{
-				if( caught == false )
-				{
-					test_result = g_PASS;
-				}			
-			}
-		}
-		else
-		{
-			test_extra = "could select value" + value + " from " + name;
-		}
-	}
-	else
-	{
-		test_extra = " could not find element name " + name;
-	}
-	log_test_result(tc_base, fName, test_result, test_extra );
-	return test_result;
-}
 
 
 function testChooseSelectValue( tc_base, name, value, callstack ) 
@@ -475,22 +418,6 @@ function testDisplay( tc_base, name, expected, callstack )
 	return test_result;
 }
 
-/*
-function testChooseSelect( tc_base, name, expected, fName )
-{
-	var fName =  testHelperfName( fName );
-	tc_base = testCaseName( tc_base, "SELECTING" );
-	
-	var el = 1
-	
-	var test_result = g_FAIL;
-	var test_extra = "";
-	log_test_result(tc_base, fName, test_result, test_extra );
-	return test_result;
-}
-*/
-
-
 
 //BUGBUG make this language independent	
 function testCalcType( tc_base, calctype, callstack )
@@ -660,7 +587,6 @@ function testSetSelectsDefault()
 	onModelSelect();
 	uiSetSelectedValue("ChoiceCalcType", "" );
 	onCalcTypeSelect();
-	//uiSetSelectedIndex("ChoiceLanguage", 0 );
 }
 
 function testReset()
@@ -826,7 +752,8 @@ function runStandardUIElement( tc_base, element, value, callstack )
 	}
 	
  	log_test_result(tc_base, fName, test_result, test_extra );
-	//BUGBUG somewhat janky way of returning the val.
+	
+	//somewhat janky way of returning the val.
 	//I am hesitant to use byRef, if its even possible in JS.
 	if(test_result)
 	{
@@ -844,7 +771,8 @@ function runStandardTests( tc_base, testObjs, callstack )
 	var pass_count = 0;
 	var expected_passes = -1;
 	var fail_count=0;
-	g_report_max_depth = 1; //g_report_max_depth - 1;
+	var t = g_report_max_depth;
+	g_report_max_depth = g_report_current_depth;
 	if( testObjs )
 	{
 		if( testObjs.length )
@@ -864,7 +792,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 					fail_count = 0;
 					for (var kv in sets )
 					{
-						//required? the if seems somewhat dumb in this context, sets is guaranteed .
+						//required? the if seems somewhat dumb in this context, sets are guaranteed .
 						if (sets.hasOwnProperty(kv))
 						{
 							
@@ -926,7 +854,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 
-	g_report_max_depth = 1;
+	g_report_max_depth = t;
 
 	return test_result;
 }
