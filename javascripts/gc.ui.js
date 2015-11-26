@@ -143,27 +143,15 @@ function GC_init()
 	g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
 
 	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
-	//BUGBUG this wont work exactly
+	
 	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
 
 	g_language = "en";	
 
 	createDatum();
 	var datumErrorInst = datumerror; 
-	//BUGBUGformatters currently only deal with number of dercomal ponts, not man intr vals, places
 
-	/*
- 	DecimalFormat formatDec = new DecimalFormat("0.0000000"); 
-	DecimalFormat formatDeg = new DecimalFormat("##0"); 
-	DecimalFormat formatMin = new DecimalFormat("#0");
-	DecimalFormat formatMinMM = new DecimalFormat("#0.000000");
-	DecimalFormat formatSec = new DecimalFormat("#0.00");
-	DecimalFormat formatCalcError = new DecimalFormat("##0.000");
-	DecimalFormat formatCalcDec = new DecimalFormat("##0.00000");	
-	*/
-	
-
-	var language = g_language; //g_properties.getProperty( "preferredlanguage" );
+	var language = g_language; 
 	setVariables( language );
 	
 	//TODO the initialization of g_langualist should be its own function
@@ -268,7 +256,6 @@ function uiSetLabel( name, source )
 	var language = g_language; //g_properties.getProperty("preferredlanguage")
 	var el = document.getElementById( name );
 	
-	//BUGBUG ??? use g_OTHER var, not g_properties, g_OTHERVAR has specific order, g_properties does not.
 	var c = eval( "g_properties." + source + "." + language );
 	if(el )
 	{
@@ -330,7 +317,6 @@ function uiEmptyLabel( name )
 		{
 			el.removeChild(el.childNodes[0]);
 		}
-		//BUGBUG fix this. Without the "I" some text elements have 0 hight when empty, showing only border, if any.
 		var textnode = document.createTextNode("");
 		el.appendChild(textnode);
 		el.value="";
@@ -345,25 +331,6 @@ function uiEmptyLabel( name )
 function uiEmptyTextElement( name )
 {
 	return uiEmptyLabel( name );
-}
-
-//BUGBUG dont use me, remove me. I am dangerous
-function uiSetElementValue( name, value )
-{
-	var returnValue = false;
-	var el = document.getElementById( name );
-
-	if( el )
-	{
-		el.value = value;
-		returnValue = true;
-	}
-	else
-	(
-		console.log("ERROR uiSetElementValue null element name: " + name +" source: " + value )
-	)
-	
-	return returnValue;
 }
 
 
@@ -545,23 +512,6 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 	)
 }
 
-/*
-BUGBUG delete me when this is all oer
-function uiGetText( name )
-{
-	var ti = document.getElementById( name );
-	var val = null;
-	
-	if( ti )
-	{
-		val = ti.text;
-	}
-	else
-	(
-		console.log("ERROR uiGetTextValue null element name:" + name )
-	)
-	return val;
-} */
 
 function uiGetTextValue( name )
 {
@@ -792,7 +742,6 @@ function setVariables( )
 		var returnVal = -1;
 		if( el )
 		{
-			//BUGBUG we may need to use option.length to be 100% safe??
 			for( var i = 0; i < el.length; i ++ )
 			{
 				if( el.options[ i ].text == value )
@@ -860,7 +809,7 @@ function setVariables( )
 		uiSelectAddEmptyItem("ChoiceModel");
 
 		var index = g_canonicalcalctypes.indexOf( value );
-		//BUGBUG WE CAN Use uiClearAndFillSelectCanonical here instead? May be important to retain canonical order
+		
 		if( index==0 )
 		{
 			uiSelectAddItem("ChoiceModel", "loctype.coordonly");
@@ -1002,7 +951,7 @@ function setVariables( )
 		}
 		else
 		{
-			num = formatMinMM.checkFormat(s);  //BUGBUG NEEDS formatMinMM
+			num = formatMinMM.checkFormat(s);  
 			m = num; //.doubleValue();
 		}
 		latminmm=m;
@@ -1014,7 +963,7 @@ function setVariables( )
 		}
 		else
 		{
-			num = formatMinMM.checkFormat(s);  //BUGBUG NEEDS formatMinMM
+			num = formatMinMM.checkFormat(s);  
 			m = num; //.doubleValue();
 		}
 		longminmm=m;
@@ -1024,7 +973,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatSec.checkFormat(s);  //BUGBUG NEEDS formatSec
+			num = formatSec.checkFormat(s);  
 			m = num; //.doubleValue();
 		}
 		latsec=m;
@@ -1034,7 +983,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatSec.checkFormat(s);  //BUGBUG NEEDS formatSec
+			num = formatSec.checkFormat(s);  
 			m = num; //.doubleValue();
 		}
 		longsec=m;
@@ -1044,7 +993,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.checkFormat(s);;  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s);;  
 			m = num; //.doubleValue();
 		}
 		extent=m;
@@ -1056,7 +1005,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.checkFormat(s);  //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s);  
 			m = num; //.doubleValue();
 		}
 		measurementerror=m;
@@ -1067,7 +1016,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.checkFormat(s); //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s); 
 			m = num; //.doubleValue();
 		}
 		offset=m;
@@ -1077,7 +1026,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.checkFormat(s); //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s); 
 			m = num; //.doubleValue();
 		}
 		offsetew=m;
@@ -1087,7 +1036,7 @@ function setVariables( )
 		if( s == null || s.length == 0 ){
 			m = 0;
 		} else {
-			num = formatCalcError.checkFormat(s);   //BUGBUG NEEDS formatCalcError
+			num = formatCalcError.checkFormat(s);   
 			m = num; //.doubleValue();
 		}
 		heading=m;
@@ -1096,7 +1045,7 @@ function setVariables( )
 		var language = g_language;
 		clearResults();
 		setVariables(language);
-		setLabels(  );		
+		setLabels();		
 		
 		//BUGBUG add me back in when we start doing formatters
 		//setDecimalFormat();
@@ -1137,21 +1086,21 @@ function setVariables( )
 		populateDistancePrecision(uiGetSelectIndexValue("ChoiceDistUnits",distunitsindex));
 
 
-		uiSetTextExplicit("txtT2Dec_Lat", formatDec.checkFormat( decimallatitude ) );  					//BUGBUG NEEDS formatDec
-		uiSetTextExplicit("txtT2Dec_Long", formatDec.checkFormat( decimallongitude ) );					//BUGBUG NEEDS formatDec
-		uiSetTextExplicit("txtT7Lat_MinMM",formatMinMM.checkFormat( latminmm ) );							//BUGBUG NEEDS formatMinMM
-		uiSetTextExplicit("txtT7Long_MinMM",formatMinMM.checkFormat( longminmm ) );						//BUGBUG NEEDS formatMinMM
-		uiSetTextExplicit("txtT7Lat_Sec",formatSec.checkFormat( latsec ) );								//BUGBUG NEEDS formatSec
-		uiSetTextExplicit("txtT7Long_Sec",formatSec.checkFormat( longsec ) );								//BUGBUG NEEDS formatSec
-		uiSetTextExplicit("TextFieldExtent",formatCalcError.checkFormat( extent ) );						//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldMeasurementError",formatCalcError.checkFormat( measurementerror ) );	//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldFromDistance",formatDistance.checkFormat( fromdistance ) );			//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldToDistance",formatDistance.checkFormat( todistance ) );				//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldScaleFromDistance",formatDistance.checkFormat( scalefromdistance ) );	//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldScaleToDistance",formatDistance.checkFormat( scaletodistance ) );		//BUGBUG NEEDS formatDistance
-		uiSetTextExplicit("TextFieldOffset",formatCalcError.checkFormat( offset ) );						//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldOffsetEW",formatCalcError.checkFormat( offsetew ) );					//BUGBUG NEEDS formatCalcError
-		uiSetTextExplicit("TextFieldHeading",formatCalcError.checkFormat( heading ) );					//BUGBUG NEEDS formatCalcError
+		uiSetTextExplicit("txtT2Dec_Lat", formatDec.checkFormat( decimallatitude ) );
+		uiSetTextExplicit("txtT2Dec_Long", formatDec.checkFormat( decimallongitude ) );
+		uiSetTextExplicit("txtT7Lat_MinMM",formatMinMM.checkFormat( latminmm ) );
+		uiSetTextExplicit("txtT7Long_MinMM",formatMinMM.checkFormat( longminmm ) );
+		uiSetTextExplicit("txtT7Lat_Sec",formatSec.checkFormat( latsec ) );
+		uiSetTextExplicit("txtT7Long_Sec",formatSec.checkFormat( longsec ) );
+		uiSetTextExplicit("TextFieldExtent",formatCalcError.checkFormat( extent ) );
+		uiSetTextExplicit("TextFieldMeasurementError",formatCalcError.checkFormat( measurementerror ) );
+		uiSetTextExplicit("TextFieldFromDistance",formatDistance.checkFormat( fromdistance ) );
+		uiSetTextExplicit("TextFieldToDistance",formatDistance.checkFormat( todistance ) );
+		uiSetTextExplicit("TextFieldScaleFromDistance",formatDistance.checkFormat( scalefromdistance ) );
+		uiSetTextExplicit("TextFieldScaleToDistance",formatDistance.checkFormat( scaletodistance ) );
+		uiSetTextExplicit("TextFieldOffset",formatCalcError.checkFormat( offset ) );
+		uiSetTextExplicit("TextFieldOffsetEW",formatCalcError.checkFormat( offsetew ) );
+		uiSetTextExplicit("TextFieldHeading",formatCalcError.checkFormat( heading ) );
 
 		if(calctypeindex >= 0)
 		{
@@ -1325,7 +1274,7 @@ function setVariables( )
 		} else {
 			uiSetLabel("LabelMeasurementError","label.measurementerror");
 		}
-			//BUGBUG CRITICAL this 0 index methiod does not match the empty first item in the SELECT
+
 		if( index==0 ){ // Coordinates only
 			showExtents(false);
 		} else if( index==2 ){ // Distance only
@@ -1336,7 +1285,7 @@ function setVariables( )
 		} else if( index==4 ){ // Distance along orthogonal directions
 			var SCalcType = uiGetSelectedText("ChoiceCalcType");
 			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
-			//BUGBUG CRITICAL this 0 index methiod does not match the empty first item in the SELECT
+			
 			if( calcindex==0 ){ // Error only
 				showNSOffset(true);
 				showEWOffset(true);
@@ -1404,8 +1353,7 @@ function setVariables( )
 
 	function cleanCalcTypeSlate(){
 		cleanSlate();
-		//BUGBUG Note:this differs from the original java below, but somehow works. Add: Does it work??
-		//Note it doesn't have to uiShow/HideElement to work either, odd
+
 		setVisibility("ChoiceModel", false );
 		setVisibility("LabelModel", false );
 		setVisibility("LabelTitle", false );
@@ -1414,11 +1362,6 @@ function setVariables( )
 		setVisibility("LabelStepOne", false );
 		setVisibility("LabelStepTwo", false );
 		
-		/*LabelModel.setVisible(false);
-		LabelTitle.setVisible(false);
-		LabelStepOne.setVisible(false);
-		LabelStepTwo.setVisible(false);
-		LabelStepZero.setVisible(true);*/
 	}
 
 	function cleanSlate()
@@ -2462,7 +2405,7 @@ function onBodyKeyUp( e  )
 
 	function showDistanceConverter( b )
 	{
-		//BUGBUG should this ever get used the text and labels sould you show/hihe element funtion instead
+		//TODO should this ever get used the text and labels sould you show/hihe element funtion instead
 		setVisibility( "ChoiceFromDistUnits", b );
 		setVisibility( "ChoiceToDistUnits", b );
 		setVisibility( "LabelEquals", b );
@@ -2473,7 +2416,7 @@ function onBodyKeyUp( e  )
 
 	function showScaleConverter( b )
 	{
-		//BUGBUG should this ever get used the text and labels sould you show/hihe element funtion instead
+		//TODO should this ever get used the text and labels sould you show/hihe element funtion instead
 		setVisibility( "ChoiceScaleFromDistUnits", b );
 		setVisibility( "ChoiceScaleToDistUnits", b );
 		setVisibility( "ChoiceScale", b );
@@ -2568,10 +2511,6 @@ function onBodyKeyUp( e  )
 			showDMS( false );
 			showDegreesDecimalMinutes( true );
 		}
-		//BUGBUG why is this commented out?
-		//BEWARE: uncommenting this causes a stack overflow
-		//it is not commented out in oprignal java, but does not cause stack overflow there.
-//		showCoordinates( true );
 	}
 
 	function showResults( b )
@@ -3405,30 +3344,4 @@ function errorDialog( error, title, source, style )
 	{
 		//clearResults();
 	}
-
-/*
-	public void errorDialog(String error, String title, int style){
-		Frame f=null;
-		Container c=getParent();
-		while(c!=null){
-			if(c instanceof Frame){
-				f=(Frame)c;
-				break;
-			}else c=c.getParent();
-		}
-		MinMaxDialog d=new MinMaxDialog(f, error, title, style);
-		d.setVisible(true);
-	}
-	*/
-	
-	/*
-	public void afterFormInitialize() {
-		// Write code here for initializing your own control
-		// or creating a new control.
-		setDecimalFormat();
-		populateStableControls();
-		//BUGBUG I added this nexline to GC_init() so maybe this entire function can be scratched
-		populateCoordinatePrecision(g_properties.getProperty("coordsys.dd."+language));
-	}
-	*/
 
