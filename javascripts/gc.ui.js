@@ -594,6 +594,7 @@ function setVariables( )
 		// Do not change the following, the order is important
 		g_canonicalsources.clear();
 		g_canonicalsources.add(g_properties.getProperty("coordsource.gaz."+language));
+		g_canonicalsources.add(g_properties.getProperty("coordsource.gem."+language));
 		g_canonicalsources.add(g_properties.getProperty("coordsource.gps."+language));
 		g_canonicalsources.add(g_properties.getProperty("coordsource.loc."+language));
 		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs250000."+language));
@@ -1269,7 +1270,7 @@ function setVariables( )
 		var csource = uiGetSelectedText("ChoiceCoordSource");
 		// BUGBUG: If gazetteer is to be added back into the list, the cindex references have to change so the logic applies to the correct selections.
 		var cindex = g_canonicalsources.indexOf(csource);
-		if( cindex==1 ){ // GPS
+		if( cindex==2 ){ // GPS
 			uiSetLabel("LabelMeasurementError","label.extent.gps");
 		} else {
 			uiSetLabel("LabelMeasurementError","label.measurementerror");
@@ -3194,7 +3195,7 @@ function errorDialog( error, title, source, style )
 			{
 				testpasses = false;
 				errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
-					g_properties.getPropertyLang("error.measurement.title"), "TextFieldMeasurementError",0);
+					g_properties.getPropertyLang("error.measurementerror.title"), "TextFieldMeasurementError",0);
 				uiSetTextExplicit("TextFieldMeasurementError","0");
 			}
 		}

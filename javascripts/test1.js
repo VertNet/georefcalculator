@@ -1182,152 +1182,157 @@ function testParameterLimits()
 		if( index==0 /*sourcestr.equals("gazetteer")*/ )
 		{
 			error = 0.0;
-		} else if( index==1 /*sourcestr.equals("GPS")*/ )
+		}
+		else if( index==1 /*sourcestr.equals("Google Maps/Earth")*/ )
 		{
 			error = 0.0;
-		} else if( index==2 /*sourcestr.equals("locality description")*/ )
+		}
+		else if( index==2 /*sourcestr.equals("GPS")*/ )
 		{
 			error = 0.0;
-		} else if( index==3 /*sourcestr.equals("USGS map: 1:250,000")*/ )
+		} else if( index==3 /*sourcestr.equals("locality description")*/ )
+		{
+			error = 0.0;
+		} else if( index==4 /*sourcestr.equals("USGS map: 1:250,000")*/ )
 		{
 			error = 417;
-		} else if( index==4 /*sourcestr.equals("USGS map: 1:100,000")*/ )
+		} else if( index==5 /*sourcestr.equals("USGS map: 1:100,000")*/ )
 		{
 			error = 167;
 		}
-		else if( index==5 /*sourcestr.equals("USGS map: 1:63,360")*/ )
+		else if( index==6 /*sourcestr.equals("USGS map: 1:63,360")*/ )
 		{
 			error = 106;
 		}
-		else if( index==6 /*sourcestr.equals("USGS map: 1:62,500")*/ )
+		else if( index==7 /*sourcestr.equals("USGS map: 1:62,500")*/ )
 		{
 			error = 105;
 		}
-		else if( index==7 /*sourcestr.equals("USGS map: 1:25,000")*/ )
+		else if( index==8 /*sourcestr.equals("USGS map: 1:25,000")*/ )
 		{
 			error = 41.8;
 		}
-		else if( index==8 /*sourcestr.equals("USGS map: 1:24,000")*/ )
+		else if( index==9 /*sourcestr.equals("USGS map: 1:24,000")*/ )
 		{
 			error = 40.0;
 		}
-		else if( index==9 /*sourcestr.equals("USGS map: 1:12,000")*/ )
+		else if( index==10 /*sourcestr.equals("USGS map: 1:12,000")*/ )
 		{
 			error = 33.3;
 		}
-		else if( index==10 /*sourcestr.equals("USGS map: 1:10,000")*/ )
+		else if( index==11 /*sourcestr.equals("USGS map: 1:10,000")*/ )
 		{
 			error = 27.8;
 		}
-		else if( index==11 /*sourcestr.equals("USGS map: 1:4800")*/ )
+		else if( index==12 /*sourcestr.equals("USGS map: 1:4800")*/ )
 		{
 			error = 13.3;
 		}
-		else if( index==12 /*sourcestr.equals("USGS map: 1:2400")*/ )
+		else if( index==13 /*sourcestr.equals("USGS map: 1:2400")*/ )
 		{
 			error = 6.7;
 		}
-		else if( index==13 /*sourcestr.equals("USGS map: 1:1200")*/ )
+		else if( index==14 /*sourcestr.equals("USGS map: 1:1200")*/ )
 		{
 			error = 3.3;
 		}
-		else if( index==14 /*sourcestr.equals("NTS map (A): 1:250,000")*/ )
+		else if( index==15 /*sourcestr.equals("NTS map (A): 1:250,000")*/ )
 		{
 			error = 125*3.28084; // 0.5mm NATO STANAG 2215 Edition 5 Accuracy ratings
 		}
-		else if( index==15 /*sourcestr.equals("NTS map (B): 1:250,000")*/ )
+		else if( index==16 /*sourcestr.equals("NTS map (B): 1:250,000")*/ )
 		{
 			error = 250*3.28084; // 1.0mm NATO STANAG 2215 Edition 5 Accuracy ratings
 		}
-		else if( index==16 /*sourcestr.equals("NTS map (C): 1:250,000")*/ )
+		else if( index==17 /*sourcestr.equals("NTS map (C): 1:250,000")*/ )
 		{
 			error = 375*3.28084; // 1.5mm NATO STANAG 2215 Edition 5 Accuracy ratings
 		}
-		else if( index==17 /*sourcestr.equals("NTS map (A): 1:50,000")*/ )
+		else if( index==18 /*sourcestr.equals("NTS map (A): 1:50,000")*/ )
 		{
 			error = 25*3.28084; // 0.5mm NATO STANAG 2215 Edition 5 Accuracy ratings
 		}
-		else if( index==18 /*sourcestr.equals("NTS map (B): 1:50,000")*/ )
+		else if( index==19 /*sourcestr.equals("NTS map (B): 1:50,000")*/ )
 		{
 			error = 50*3.28084; // 1.0mm NATO STANAG 2215 Edition 5 Accuracy ratings
 		}
-		else if( index==19 /*sourcestr.equals("NTS map (C): 1:50,000")*/ )
+		else if( index==20 /*sourcestr.equals("NTS map (C): 1:50,000")*/ )
 		{
 			error = 75*3.28084; // 1.5mm NATO STANAG 2215 Edition 5 Accuracy ratings
 		}
-		else if( index==20 /*sourcestr.equals("non-USGS map: 1:3,000,000")*/ )
+		else if( index==21 /*sourcestr.equals("non-USGS map: 1:3,000,000")*/ )
 		{
 			error = 3000.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==21 /*sourcestr.equals("non-USGS map: 1:2,500,000")*/ )
+		else if( index==22 /*sourcestr.equals("non-USGS map: 1:2,500,000")*/ )
 		{
 			error = 2500.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==22 /*sourcestr.equals("non-USGS map: 1:1,000,000")*/ )
+		else if( index==23 /*sourcestr.equals("non-USGS map: 1:1,000,000")*/ )
 		{
 			error = 1000.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==23 /*sourcestr.equals("non-USGS map: 1:500,000")*/ )
+		else if( index==24 /*sourcestr.equals("non-USGS map: 1:500,000")*/ )
 		{
 			error = 500.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==24 /*sourcestr.equals("non-USGS map: 1:250,000")*/ )
+		else if( index==25 /*sourcestr.equals("non-USGS map: 1:250,000")*/ )
 		{
 			error = 250.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==25 /*sourcestr.equals("non-USGS map: 1:200,000")*/ )
+		else if( index==26 /*sourcestr.equals("non-USGS map: 1:200,000")*/ )
 		{
 			error = 200.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==26 /*sourcestr.equals("non-USGS map: 1:180,000")*/ )
+		else if( index==27 /*sourcestr.equals("non-USGS map: 1:180,000")*/ )
 		{
 			error = 180.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==27 /*sourcestr.equals("non-USGS map: 1:150,000")*/ )
+		else if( index==28 /*sourcestr.equals("non-USGS map: 1:150,000")*/ )
 		{
 			error = 150.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==28 /*sourcestr.equals("non-USGS map: 1:125,000")*/ )
+		else if( index==29 /*sourcestr.equals("non-USGS map: 1:125,000")*/ )
 		{
 			error = 125.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==29 /*sourcestr.equals("non-USGS map: 1:100,000")*/ )
+		else if( index==30 /*sourcestr.equals("non-USGS map: 1:100,000")*/ )
 		{
 			error = 100.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==30 /*sourcestr.equals("non-USGS map: 1:80,000")*/ )
+		else if( index==31 /*sourcestr.equals("non-USGS map: 1:80,000")*/ )
 		{
 			error = 80.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==31 /*sourcestr.equals("non-USGS map: 1:62,500")*/ )
+		else if( index==32 /*sourcestr.equals("non-USGS map: 1:62,500")*/ )
 		{
 			error = 62.5*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==32 /*sourcestr.equals("non-USGS map: 1:60,000")*/ )
+		else if( index==33 /*sourcestr.equals("non-USGS map: 1:60,000")*/ )
 		{
 			error = 60.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==33 /*sourcestr.equals("non-USGS map: 1:50,000")*/ )
+		else if( index==34 /*sourcestr.equals("non-USGS map: 1:50,000")*/ )
 		{
 			error = 50.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==34 /*sourcestr.equals("non-USGS map: 1:40,000")*/ )
+		else if( index==35 /*sourcestr.equals("non-USGS map: 1:40,000")*/ )
 		{
 			error = 40.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==35 /*sourcestr.equals("non-USGS map: 1:32,500")*/ )
+		else if( index==36 /*sourcestr.equals("non-USGS map: 1:32,500")*/ )
 		{
 			error = 32.5*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==36 /*sourcestr.equals("non-USGS map: 1:25,000")*/ )
+		else if( index==37 /*sourcestr.equals("non-USGS map: 1:25,000")*/ )
 		{
 			error = 25.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==37 /*sourcestr.equals("non-USGS map: 1:20,000")*/ )
+		else if( index==38 /*sourcestr.equals("non-USGS map: 1:20,000")*/ )
 		{
 			error = 20.0*3.28084; // 1mm error default when map quality not known
 		}
-		else if( index==38 /*sourcestr.equals("non-USGS map: 1:10,000")*/ )
+		else if( index==39 /*sourcestr.equals("non-USGS map: 1:10,000")*/ )
 		{
 			error = 10.0*3.28084; // 1mm error default when map quality not known
 		}
