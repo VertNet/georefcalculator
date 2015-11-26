@@ -43,7 +43,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 			try 
 			{
 				//num = numberFormatter.parse(s.trim());
-				num = formatCalcDec.throwFormatError( s );
+				num = s; //formatCalcDec.throwFormatError( s );
 				//fromdist = num.doubleValue();
 				fromdist = num;
 				fromUnit = uiGetSelectedText("ChoiceFromDistUnits");
@@ -95,7 +95,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 			try
 			{
 				//num = numberFormatter.parse(s.trim());
-				num = formatCalcDec.throwFormatError( s );
+				num = s; //formatCalcDec.throwFormatError( s );
 				//fromdist = num.doubleValue();
 				//num = s;
 				fromdist = num;
@@ -113,7 +113,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 				{
 					//try 
 					//{
-						num = formatCalcDec.throwFormatError( s );
+						num = s; //formatCalcDec.throwFormatError( s );
 						//num = numberFormatter.parse(s.trim());
 						//num = s;
 					//}
@@ -261,11 +261,6 @@ function testParameterLimits()
 									uiGetSelectedText("ChoiceDistUnits"), "m" )
 							   );
 
-		//Format the results to show:
-		//BUGBUG add these back when we get formatters
-		//TextFieldCalcDecLat.setText(formatCalcDec.format(newdecimallatitude));//EDIT
-		//TextFieldCalcDecLong.setText(formatCalcDec.format(newdecimallongitude));//EDIT
-		//TextFieldCalcErrorDist.setText(formatCalcError.format(maxerrordistance));//EDIT
 
 		uiSetLabelExplicit("TextFieldCalcDecLat", formatCalcDec.checkFormat( newdecimallatitude ) );
 		uiSetLabelExplicit("TextFieldCalcDecLong",formatCalcDec.checkFormat( newdecimallongitude) );
@@ -281,27 +276,14 @@ function testParameterLimits()
 			The CoordinatePrecision here is the precision of the input coordinates, not of the final output. So this does
 			not match the meaning of the Darwin Core term coordinatePrecision.
 		***/
-/*
-		BUGBUG orginal JAVA, we need to put this backl when we get formatters
-		String resultstr = new String( 
-			formatCalcDec.format(newdecimallatitude) + '\u0009' + 
-			formatCalcDec.format(newdecimallongitude) + '\u0009' + 
-			formatCalcDec.format(errorinmeters) + '\u0009' + 
-			datumstr + '\u0009' + 
-			coordsysstr + '\u0009' + 
-			extentstr + '\u0009' +
-			formatCalcError.format(maxerrordistance) + '\u0009' +
-			distunits + '\u0009' + 
-			distanceprecisionstr + '\u0009' +
-			coordprecisionstr );
-*/
-		var resultstr = formatCalcDec.checkFormat( newdecimallatitude ) + '\u0009' +   //JAVA WAS FORMATTED
-						formatCalcDec.checkFormat( newdecimallongitude ) + '\u0009' +  //JAVA WAS FORMATTED
-						formatCalcDec.checkFormat( errorinmeters ) + '\u0009' +   //JAVA WAS FORMATTED
+
+		var resultstr = formatCalcDec.checkFormat( newdecimallatitude ) + '\u0009' +
+						formatCalcDec.checkFormat( newdecimallongitude ) + '\u0009' +
+						formatCalcDec.checkFormat( errorinmeters ) + '\u0009' +
 						datumstr + '\u0009' + 
 						coordsysstr + '\u0009' + 
 						extentstr + '\u0009' +
-						formatCalcError.checkFormat( maxerrordistance ) + '\u0009' +    //JAVA WAS FORMATTED
+						formatCalcError.checkFormat( maxerrordistance ) + '\u0009' +
 						distunits + '\u0009' + 
 						distanceprecisionstr + '\u0009' +
 						coordprecisionstr;
@@ -310,10 +292,7 @@ function testParameterLimits()
 	}
 
 
-//BUGBUG FIXME many formatters take out of this function, put them back.
-//you can see them in // comments still
 	function translateCoords()
-//	throws ParseException
 	{
 		/*JAVA original types for debugging purposes
 		double ddeclat = 0;
@@ -335,16 +314,16 @@ function testParameterLimits()
 			}
 			else
 			{
-				num = s; //numberFormatter.parse(s.trim()); 
+				num = s;//formatCalcDec.throwFormatError( s );
 				ddeclat = num; //.doubleValue();
 			}
 			decimallatitude = ddeclat;
 			getDMSFromDecDegrees( decimallatitude );
 
-			uiSetLabelExplicit("txtT7Lat_DegDMS",formatDeg.checkFormat( degrees ) ); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Lat_DegMM",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Lat_MinDMS",formatMin.checkFormat(minutes)); //Min.format(minutes) );
-			uiSetLabelExplicit("txtT7Lat_Sec",formatSec.checkFormat(seconds)); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Lat_DegDMS",formatDeg.checkFormat( degrees ) );
+			uiSetLabelExplicit("txtT7Lat_DegMM",formatDeg.checkFormat(degrees)); 
+			uiSetLabelExplicit("txtT7Lat_MinDMS",formatMin.checkFormat(minutes));
+			uiSetLabelExplicit("txtT7Lat_Sec",formatSec.checkFormat(seconds)); 
 			
 			if( decimallatitude >= 0 )
 			{
@@ -360,7 +339,7 @@ function testParameterLimits()
 			//JAVA double dmins = getDecimalMinutesFromMS( minutes, seconds );
 			var dmins = getDecimalMinutesFromMS( minutes, seconds );
 			
-			uiSetLabelExplicit("txtT7Lat_MinMM",dmins); //MinMM.format(dmins) );
+			uiSetLabelExplicit("txtT7Lat_MinMM",formatMinMM.checkFormat(dmins)); //MinMM.format(dmins) );
 
 			s = uiGetTextValue("txtT2Dec_Long");
 			if( s == null || s.length == 0 )
@@ -369,16 +348,16 @@ function testParameterLimits()
 			}
 			else
 			{
-				num = s; //numberFormatter.parse(s.trim());
+				num = s; //formatCalcDec.throwFormatError( s );
 				ddeclong = num;//.doubleValue();
 			}
 
 			decimallongitude = ddeclong;
 			getDMSFromDecDegrees( decimallongitude );
-			uiSetLabelExplicit("txtT7Long_DegDMS",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Long_DegMM",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
-			uiSetLabelExplicit("txtT7Long_MinDMS",formatMin.checkFormat(minutes)); //Min.format(minutes) );
-			uiSetLabelExplicit("txtT7Long_Sec",formatSec.checkFormat(seconds)); //Sec.format(seconds) );
+			uiSetLabelExplicit("txtT7Long_DegDMS",formatDeg.checkFormat(degrees));
+			uiSetLabelExplicit("txtT7Long_DegMM",formatDeg.checkFormat(degrees));
+			uiSetLabelExplicit("txtT7Long_MinDMS",formatMin.checkFormat(minutes));
+			uiSetLabelExplicit("txtT7Long_Sec",formatSec.checkFormat(seconds));
 			if( decimallongitude >= 0 )
 			{
 				uiSetSelectedValue("ChoiceLongDirDMS",g_properties.getPropertyLang("headings.e"));
@@ -393,7 +372,6 @@ function testParameterLimits()
 			dmins = getDecimalMinutesFromMS( minutes, seconds );
 			uiSetLabelExplicit("txtT7Long_MinMM",formatMinMM.checkFormat(dmins)); //MinMM.format(dmins) );
 		}
-		//BUGBUG Critical I do not think this is the order the Coords sys are in DMS, DD, DMS
 		else if( lastcoordsystem == 2 )
 		{ // was degrees minutes seconds
 			//JAVA num = numberFormatter.parse(txtT7Lat_DegDMS.getText());
@@ -402,8 +380,10 @@ function testParameterLimits()
 			//minutes = num;//.intValue();
 			
 			num = uiGetTextValue("txtT7Lat_DegDMS");
+			//num = formatCalcDec.throwFormatError( num );
 			degrees = num;//.intValue();
 			num = uiGetTextValue("txtT7Lat_MinDMS");
+			//num = formatCalcDec.throwFormatError( num );
 			minutes = num;//.intValue();
 
 
@@ -609,8 +589,6 @@ function testParameterLimits()
 
 	function convertLengthFromTo( length, from_units, to_units )
 {
-		//BUGBUG the == could be a BIG trap, may need ===
-		//maybe typof instead of null check?
 		if( from_units == null || to_units == null )
 		{
 			return 0.0;
@@ -896,7 +874,7 @@ function testParameterLimits()
 		
 		seconds = sign*dval*3600.0; // 14461.2,  24156
 		var degs = sign*dval; // 40.17, 67.1
-		degrees = degs; // 40, 67  //BUGBUG toInt?
+		degrees = degs; // 40, 67  
 		seconds -= degrees*3600.0; // 61.2, 36.0
 		var mins = seconds/60.0; // 1.02, 0.6
 		decminutes = mins;
@@ -1642,8 +1620,7 @@ function testParameterLimits()
 		var error = 1000; // 1 km error if file can't be read properly
 		var col = Math.round( 5*(decimallongitude+179.48) );
 		var row = Math.round( 5*(84.69-decimallatitude) );
-		//BUGBUG do we erally need an inst? this line errors anyway
-		//error = datumErrorInst.datumerror[col][row];
+
 		error = datumerror[col][row];
 		return error;
 	}
@@ -1713,7 +1690,6 @@ function testParameterLimits()
 */
 
 	function calculateMaxErrorDistance()
-//	throws ParseException
 	{
 		maxerrordistance=0.0;
 		var model = uiGetSelectedText("ChoiceModel");
