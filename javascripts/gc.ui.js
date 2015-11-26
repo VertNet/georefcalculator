@@ -1252,6 +1252,7 @@ function setVariables( )
 		var value = uiGetSelectedText("ChoiceModel");
 		var index = g_canonicalloctypes.indexOf(value);
 		var csource = uiGetSelectedText("ChoiceCoordSource");
+		// BUGBUG: If gazetteer is to be added back into the list, the cindex references have to change so the logic applies to the correct selections.
 		var cindex = g_canonicalsources.indexOf(csource);
 		if( cindex==1 ){ // GPS
 			uiSetLabel("LabelMeasurementError","label.extent.gps");
