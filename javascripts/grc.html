@@ -34,7 +34,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <DIV id="divFiller"  class="divBreak">
 </DIV>
 <DIV id="divLanguage" class="divStandard">
-	<SPAN class="spanStandard" class="span10">
+	<SPAN class="span25">
 
 		<SELECT id="ChoiceLanguage" onChange="onLanguageSelect()" select="none">
 			<Option>inglais MARKER</option>
@@ -52,11 +52,11 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceCalcType">
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span17">
 		<LABEL id="LabelCalcType" >Calculation Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span75">
-		<SELECT id="ChoiceCalcType" onChange="onCalcTypeSelect()">
+	<SPAN id="MARKER" class="span83" align="right">
+		<SELECT id="ChoiceCalcType" onChange="onCalcTypeSelect()" class="SELECT95">
 			<OPTION>CalcType1 MARKER</OPTION>
 			<OPTION>CalcType2 MARKER</OPTION>
 			<OPTION>CalcType3 MARKER</OPTION>
@@ -77,11 +77,11 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceModel">
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span17">
 		<LABEL id="LabelModel" >Locality Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span75">
-		<SELECT id="ChoiceModel" onChange="onModelSelect()">
+	<SPAN id="MARKER" class="span83" align="right">
+		<SELECT id="ChoiceModel" onChange="onModelSelect()" class="SELECT95">
 			<OPTION>Loc Type1 MARKER</OPTION>
 			<OPTION>Loc Type2 MARKER</OPTION>
 		</SELECT>
@@ -96,15 +96,13 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
-<!--<DIV id="step3" display="inline-block">-->
 <DIV id="divLocality1">
-	<!--<SPAN class="span100" align="left"> -->
-		<SPAN class="span50" align="left">
+		<SPAN class="span56" align="left">
 			<SPAN id="MARKER" class="span50" align="left">
 				<LABEL id="LabelCoordSource" >Coordinate SourceBUG</LABEL>
 			</SPAN>
 			<SPAN id="MARKER" class="span50">			
-				<SELECT id="ChoiceCoordSource" onChange="onCoordSourceSelect()">
+				<SELECT id="ChoiceCoordSource" onChange="onCoordSourceSelect()" class="SELECT95">
 					<OPTION>CordSource 1 MARKER</OPTION>
 					<OPTION>CordSource 2 MARKER</OPTION>
 					<OPTION>CordSource 3 MARKER</OPTION>
@@ -123,12 +121,9 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				</SELECT>
 			</SPAN>
 		</SPAN>
-		<SPAN class="span50" align="right">
-			<SPAN id="MARKER" class="span75" align="left">
+		<SPAN class="span44" align="right">
+			<SPAN id="MARKER" class="span64" align="left">
 				<LABEL id="LabelOffset">North or South OffsetBUG</LABEL>
-				
-			
-				<INPUT TYPE="text" id="TextFieldOffset"  onfocus="TextFieldOffset_focusGained()" ></INPUT>
 				
 				<LABEL id="LabelDirection"></LABEL>
 				<SELECT id="ChoiceDirection" onSelect="onDirectionSelect()" class="selectDirection">
@@ -138,9 +133,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 					<OPTION> MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
 				</SELECT>				
-				<INPUT TYPE="text" id="TextFieldHeading"  onfocus="TextFieldHeading_focusGained()" ></INPUT>				
 			</SPAN>
-			<SPAN id="MARKER" class="span25">
+			<SPAN id="MARKER" class="span36">
+				<INPUT TYPE="text" id="TextFieldHeading"  onfocus="TextFieldHeading_focusGained()"class="textOffset" ></INPUT>				
+				<INPUT TYPE="text" id="TextFieldOffset"  onfocus="TextFieldOffset_focusGained()" class="textOffset"></INPUT>
 				<SELECT id="ChoiceOffsetNSDir" onSelect="onOffsetNSDirSelect()" class="selectDirection">
 					<OPTION>N MARKER</OPTION>
 					<OPTION>S MARKER</OPTION>
@@ -151,27 +147,27 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV id="divLocality1">
 
 <DIV id="divLocality2">
-		<SPAN class="span50">
-			<SPAN id="MARKER" class="span50" align="left">
-				<LABEL id="LabelCoordSystem" >Coordinate SystemBUG</LABEL>
-			</SPAN>	
-		
-			<SPAN id="MARKER" class="span50">
-				<SELECT id="ChoiceCoordSystem" onChange="onCoordSystemSelect()">
-					<OPTION>Deg 1 MARKER</OPTION>
-					<OPTION>Deg 2 MARKER</OPTION>
-					<OPTION>Deg 3 MARKER</OPTION>
-				</SELECT>
-			</SPAN>
+	<SPAN class="span56">
+		<SPAN id="MARKER" class="span50" align="left">
+			<LABEL id="LabelCoordSystem" >Coordinate SystemBUG</LABEL>
 		</SPAN>	
+		
+		<SPAN id="MARKER" class="span50">
+			<SELECT id="ChoiceCoordSystem" onChange="onCoordSystemSelect()" class="SELECT95">
+				<OPTION>Deg 1 MARKER</OPTION>
+				<OPTION>Deg 2 MARKER</OPTION>
+				<OPTION>Deg 3 MARKER</OPTION>
+			</SELECT>
+		</SPAN>
+	</SPAN>	
 
-	<SPAN class="span50" align="right">
-		<SPAN id="MARKER" class="span75" align="left">
+	<SPAN class="span44">
+		<SPAN id="MARKER" class="span64" align="right">
 			<LABEL id="LabelOffsetEW" align="left">East or West Offset MARKER</LABEL>
-			<INPUT TYPE="text" id="TextFieldOffsetEW"   onfocus="TextFieldOffsetEW_focusGained()" ></INPUT>
 		</SPAN>
 	
-		<SPAN id="MARKER" class="span25">
+		<SPAN id="MARKER" class="span36" align="lef">
+			<INPUT TYPE="text" id="TextFieldOffsetEW"   onfocus="TextFieldOffsetEW_focusGained()" class="textOffset" ></INPUT>
 			<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetEWDirSelect()" class="selectDirection">
 				<OPTION>E MARKER</OPTION>
 				<OPTION>W MARKER</OPTION>
@@ -186,21 +182,20 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 <DIV id="divPanelCoords">
 <!--</DIV id="divLocality3">-->
-	<SPAN id="MARKER" class="span50">
-
-		<SPAN id="MARKER" class="span17">
+	<SPAN id="MARKER" class="span56">
+		<SPAN id="MARKER" class="span25" align="left">
 			<LABEL id="lblT2Dec_Lat" >Latitude MARKER</LABEL>
 		</SPAN>
 	
-		<SPAN id="MARKER" class="span83">
+		<SPAN id="MARKER" class="span75" align="right">
 
 			<!--  DMS Controls-->
 			<INPUT TYPE="text" id="txtT7Lat_DegDMS"  class="textDegree" onfocus="txtT7Lat_DegDMS_focusGained()"  ></INPUT>
-			<LABEL id="Label2123">o</LABEL>
+			<LABEL id="Label2123" class="super">o</LABEL>
 			<INPUT TYPE="text" id="txtT7Lat_MinDMS"  class="textMinute"  onfocus="txtT7Lat_MinDMS_focusGained()" ></INPUT>
-			<LABEL id="Label21121">&#39;</LABEL>
+			<LABEL id="Label21121" class="super">&#39;</LABEL>
 			<INPUT TYPE="text" id="txtT7Lat_Sec"  class="textSecond" onfocus="txtT7Lat_Sec_focusGained()" ></INPUT>
-			<LABEL id="Label211111">&quot;</LABEL>
+			<LABEL id="Label211111" class="super">&quot;</LABEL>
 			<SELECT id="ChoiceLatDirDMS" onChange="onLatDirDMSSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
@@ -209,14 +204,14 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 			
 			<!--  DD Control-->
-			<INPUT TYPE="text" id="txtT2Dec_Lat"   onfocus="txtT2Dec_Lat_focusGained()" ></INPUT>
+			<INPUT TYPE="text" id="txtT2Dec_Lat"   onfocus="txtT2Dec_Lat_focusGained()" class="textDecDeg"></INPUT>
 
 			
 			<!--  DDM Controls-->
 			<INPUT TYPE="text" id="txtT7Lat_DegMM"  class="textDegree"  onfocus="txtT7Lat_DegMM_focusGained()"  ></INPUT>
-			<LABEL id="Label21212">o</LABEL>
+			<LABEL id="Label21212" class="super">o</LABEL>
 			<INPUT TYPE="text" id="txtT7Lat_MinMM"  class="textSecond"  onfocus="txtT7Lat_MinMM_focusGained()"  ></INPUT><!-- text second is intentional-->
-			<LABEL id="Label2111111">&#39;</LABEL>
+			<LABEL id="Label2111111" class="super">&#39;</LABEL>
 			
 			<SELECT id="ChoiceLatDirMM" onChange="onLatDirMMSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
@@ -227,12 +222,12 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 		
-	<SPAN id="MARKER" class="span50">
-		<SPAN id="MARKER" class="span50">
+	<SPAN id="MARKER" class="span44">
+		<SPAN id="MARKER" class="span64" align="right">
 			<LABEL id="LabelExtent">Extent of MARKER</LABEL>
 		</SPAN>
-		<SPAN id="MARKER" class="span50">
-			<INPUT TYPE="text" id="TextFieldExtent"   onfocus="TextFieldExtent_focusGained()" ></INPUT>
+		<SPAN id="MARKER" class="span36" align="left">
+			<INPUT TYPE="text" id="TextFieldExtent"   onfocus="TextFieldExtent_focusGained()" class="textOffset" ></INPUT>
 		</SPAN>
 	</SPAN>
 </div>
@@ -242,20 +237,19 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 <!--<DIV id="divLocality4">-->
 <div>
-	<SPAN id="MARKER" class="span50">
-
-		<SPAN id="MARKER" class="span17">
+	<SPAN id="MARKER" class="span56">
+		<SPAN id="MARKER" class="span25" align="left">
 			<LABEL id="lblT2Dec_Long" >Longitude MARKER</LABEL>
 		</SPAN>
-		<SPAN id="MARKER" class="span83">
+		<SPAN id="MARKER" class="span75" align="right">
 		
 			<!--  DM SControls-->			
 			<INPUT TYPE="text" id="txtT7Long_DegDMS"  class="textDegree"  onfocus="txtT7Long_DegDMS_focusGained()" ></INPUT>
-			<LABEL id="Label23">o</LABEL>
+			<LABEL id="Label23" class="super" >o</LABEL>
 			<INPUT TYPE="text" id="txtT7Long_MinDMS"  class="textMinute"  onfocus="txtT7Long_MinDMS_focusGained()" ></INPUT>
-			<LABEL id="Label222">&#39;</LABEL>
+			<LABEL id="Label222" class="super">&#39;</LABEL>
 			<INPUT TYPE="text" id="txtT7Long_Sec"  class="textSecond"  onfocus="txtT7Long_Sec_focusGained()" ></INPUT>
-			<LABEL id="Label2211">&quot;</LABEL>
+			<LABEL id="Label2211" class="super">&quot;</LABEL>
 			
 			<SELECT id="ChoiceLongDirDMS" onChange="onLongDirDMSSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
@@ -264,13 +258,13 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			</SELECT>
 
 			<!--  DD Control-->
-			<INPUT TYPE="text" id="txtT2Dec_Long"  onfocus="txtT2Dec_Long_focusGained()" ></INPUT>
+			<INPUT TYPE="text" id="txtT2Dec_Long"  onfocus="txtT2Dec_Long_focusGained()" class="textDecDeg"></INPUT>
 
 			<!--  DDM Controls-->			
 			<INPUT TYPE="text" id="txtT7Long_DegMM"  class="textDegree"  onfocus="txtT7Long_DegMM_focusGained()" ></INPUT>
-			<LABEL id="Label231">o</LABEL>
+			<LABEL id="Label231" class="super">o</LABEL>
 			<INPUT TYPE="text" id="txtT7Long_MinMM"  class="textSecond"  onfocus="txtT7Long_MinMM_focusGained()" ></INPUT><!-- text sedcond is intentional-->
-			<LABEL id="Label22111">&#39;</LABEL>
+			<LABEL id="Label22111" class="super">&#39;</LABEL>
 			<SELECT id="ChoiceLongDirMM" onChange="onLongDirMMSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
@@ -279,12 +273,12 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 	
-	<SPAN id="MARKER" class="span50">
-		<SPAN id="MARKER" class="span50">
+	<SPAN id="MARKER" class="span44">
+		<SPAN id="MARKER" class="span64" align="right">
 			<LABEL id="LabelMeasurementError">Measurement Error MARKER</LABEL>
 		</SPAN>
-		<SPAN id="MARKER" class="span50">
-			<INPUT TYPE="text" id="TextFieldMeasurementError"   onfocus="TextFieldMeasurementError_focusGained()" ></INPUT>
+		<SPAN id="MARKER" class="span36" align="left">
+			<INPUT TYPE="text" id="TextFieldMeasurementError"   onfocus="TextFieldMeasurementError_focusGained()" class="textSecond" ></INPUT>
 		</SPAN>
 	</SPAN>
 </div>
@@ -293,7 +287,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 
 <DIV id="divLocality5">
-	<SPAN class="span50">
+	<SPAN class="span56">
 		<SPAN id="MARKER" class="span17">
 			<LABEL id="LabelDatum" >Datum MARKER</LABEL>
 		</SPAN>
@@ -306,7 +300,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			</SELECT>
 		</SPAN>
 	</SPAN>
-	<SPAN class="span50">
+	<SPAN class="span44">
 		<SPAN id="MARKER" class="span50">
 			<LABEL id="LabelDistUnits">Distance Units MARKER</LABEL>
 		</SPAN>
@@ -322,20 +316,16 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divLocality6">
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span56">
 		<LABEL id="LabelLatPrecision" >Coordinate Precision MARKER</LABEL>
-	</SPAN>
-	<SPAN id="MARKER" class="span25">
 		<SELECT id="ChoiceLatPrecision" onChange="onLatPrecisionSelect()" >
 			<OPTION>0 deg MARKER</OPTION>
 			<OPTION>0.1 deg MARKER</OPTION>
 			<OPTION>... deg MARKER</OPTION>
 		</SELECT>
 	</SPAN>
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span44">
 		<LABEL id="LabelDistancePrecision">Distance Precision MARKER</LABEL>
-	</SPAN>
-	<SPAN id="MARKER" class="span25">
 		<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()" >
 			<OPTION>1 km MARKER</OPTION>
 			<OPTION>1/10 km MARKER</OPTION>

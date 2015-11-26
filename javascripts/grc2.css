@@ -20,16 +20,10 @@ __version__ = "grc2.css 2015-11-23T20:33:00-07:00"
 SELECT{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: black;
 	background-color: white;
 
-	/*
-	min-width: 100%;
-	max-width: 100%;
-	width: 100%;*/
-
-	/*width:auto;*/
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -40,18 +34,41 @@ SELECT{
 	text-overflow: ellipsis;
 }
 
+.super{
+  vertical-align: super;
+}
+
+.SELECT95{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .75em;
+	color: black;
+	background-color: white;
+
+	width: 95%;
+
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-left:1px;
+	padding-right:1px;
+	text-overflow: ellipsis;
+}
+
+
 .selectDirection{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: black;
 	background-color: white;
 
 	min-width: 2em;
 	max-width: 6em;
-	width: 4em;
+	width: 3.5em;
 
-	/*width:auto;*/
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -62,45 +79,57 @@ SELECT{
 	text-overflow: ellipsis;
 }
 
-.selectDirection{
-	font-family: "Helvetica", Ariel, Sans-serif;
-	font-style: normal;
-	font-size: .8em;
-	color: black;
-	background-color: white;
-
-	min-width: 6em;
-	max-width: 15em;
-	width: 10em;
-
-	/*width:auto;*/
+.textOffset{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
-	text-overflow: ellipsis;
+
+	min-width: 1em;
+	max-width: 6em;
+	width: 3em;
 }
 
+
+
+.textDecDeg{
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+
+	min-width: 2em;
+	max-width: 10em;
+	width: 8em;
+}
 
 .textDegree{
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+
 	min-width: 2em;
 	max-width: 10em;
-	width: 4em;
+	width: 2.5em;
 }
 
+
 .textMinute{
-	min-width: 2em;
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+
+	min-width: 1em;
 	max-width: 10em;
-	width: 4em;
+	width: 2.5em;
 }
 
 .textSecond{
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+
 	min-width: 5em;
 	max-width: 15em;
-	width: 8em;
+	width: 3em;
 }
 
 
@@ -109,15 +138,15 @@ SELECT{
 LABEL{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: black;
 	background-color: #C0C0C0;
 }
 
 .LABELSTEP{
 	font-family: "Helvetica", Ariel, Sans-serif;
-	font-style: normal;
 	font-size: 1em;
+	font-weight: bold;
 	display: inline-block;
 	color: black;
 	width: 100%;
@@ -129,7 +158,7 @@ LABEL{
 .LABELBUGBUG{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: red;
 	background-color: #C0C0C0;
 }
@@ -145,12 +174,8 @@ LABEL{
 .borderedText{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	display: inline-block;
-	
-/*	min-width:12%;
-	max-width: 12%;
-	width: 12%;*/
 	
 	
 	background-color: #FFFFFF;
@@ -168,7 +193,7 @@ LABEL{
 INPUT{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: black;
 	background-color: white;
 	border: 2px solid grey;
@@ -178,7 +203,7 @@ INPUT{
 .readOnlyInput{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: blue;
 	display: inline-block;
 	
@@ -199,7 +224,7 @@ INPUT{
 .readOnlyInputSmall{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
-	font-size: .8em;
+	font-size: .75em;
 	color: blue;
 	display: inline-block;
 	
@@ -223,7 +248,7 @@ BUTTON{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
 	font-weight: bold;
-	font-size: .8em;
+	font-size: .75em;
 	color: black;
 	background-color: #C0C0C0;
 }
@@ -255,16 +280,16 @@ SPAN{
 
 .span66{
 	display: inline-block;
-	min-width: 64%;
-	max-width: 64%;
-	width: 64%;
+	min-width: 65%;
+	max-width: 65%;
+	width: 65%;
 }
 
 .span50{
 	display: inline-block;
-	min-width: 48%;
-	max-width: 48%;
-	width: 48%;
+	min-width: 49%;
+	max-width: 49%;
+	width: 49%;
 }
 
 .span25{
@@ -276,9 +301,9 @@ SPAN{
 
 .span33{
 	display: inline-block;
-	min-width: 31%;
-	max-width: 31%;
-	width: 31%;
+	min-width: 32%;
+	max-width: 32%;
+	width: 32%;
 }
 
 
@@ -301,6 +326,67 @@ SPAN{
 	min-width: 82%;
 	max-width: 82%;
 	width: 82%;
+}
+
+.span80{
+	display: inline-block;
+	min-width: 78%;
+	max-width: 78%;
+	width: 78%;
+}
+
+.span20{
+	display: inline-block;
+	min-width: 19%;
+	max-width: 19%;
+	width: 19%;
+}
+
+
+.span44{
+	display: inline-block;
+	min-width: 43%;
+	max-width: 43%;
+	width: 43%;
+}
+
+
+.span56{
+	display: inline-block;
+	min-width: 55%;
+	max-width: 55%;
+	width: 55%;
+}
+
+
+.span43{
+	display: inline-block;
+	min-width: 42%;
+	max-width: 42%;
+	width: 42%;
+}
+
+
+.span57{
+	display: inline-block;
+	min-width: 56%;
+	max-width: 56%;
+	width: 56%;
+}
+
+
+.span64{
+	display: inline-block;
+	min-width: 63%;
+	max-width: 63%;
+	width: 63%;
+}
+
+.span36{
+	display: inline-block;
+	min-width: 35%;
+	max-width: 35%;
+	width: 35%;
 }
 
 .span10{

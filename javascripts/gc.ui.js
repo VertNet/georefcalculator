@@ -176,7 +176,17 @@ function GC_init()
 	cleanSlate();
 	uiSetSelectedIndex("ChoiceLanguage", 0 )
 	onLanguageSelect();		
-	uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
+
+	//uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
+	uiClearSelect( "ChoiceCalcType" );
+	uiSelectAddEmptyItem("ChoiceCalcType");
+	uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
+	uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
+	uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
+	uiSetSelectedIndex("ChoiceCalcType",0);
+
+	
+	
 	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
 	showScaleConverter(true);
 	showDistanceConverter(true);
