@@ -2528,7 +2528,8 @@ function errorDialog( error, title, source, style )
 			var e = document.getElementById( source );
 			if( e )
 			{
-				e.style.color = "#FF0000";
+				e.style.color = "#76ACFF";
+				e.style.fontWeight = "bold";
 			}
 			else
 			{
@@ -2540,6 +2541,7 @@ function errorDialog( error, title, source, style )
 			if( e )
 			{
 				e.style.color = "#000000";
+				e.style.fontWeight = "normal";				
 			}
 }
 	
