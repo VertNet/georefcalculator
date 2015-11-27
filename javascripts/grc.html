@@ -52,10 +52,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceCalcType">
-	<SPAN id="MARKER" class="span17">
+	<SPAN id="MARKER" class="span20">
 		<LABEL id="LabelCalcType" >Calculation Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span83" align="right">
+	<SPAN id="MARKER" class="span80" align="right">
 		<SELECT id="ChoiceCalcType" onChange="onCalcTypeSelect()" class="SELECT95">
 			<OPTION>CalcType1 MARKER</OPTION>
 			<OPTION>CalcType2 MARKER</OPTION>
@@ -65,10 +65,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divStep2">
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span20">
 		<LABEL id="MARKER" class="LABELMARKER"></LABEL>
 	</SPAN>
-	<SPAN class="span75">
+	<SPAN class="span80">
 		<LABEL id="LabelStepOne" class="LABELSTEP">MARKER Step 2</LABEL>
 	</SPAN>
 	<!-- <SPAN id="MARKER">
@@ -77,10 +77,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceModel">
-	<SPAN id="MARKER" class="span17">
+	<SPAN id="MARKER" class="span25">
 		<LABEL id="LabelModel" >Locality Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span83" align="right">
+	<SPAN id="MARKER" class="span75" align="right">
 		<SELECT id="ChoiceModel" onChange="onModelSelect()" class="SELECT95">
 			<OPTION>Loc Type1 MARKER</OPTION>
 			<OPTION>Loc Type2 MARKER</OPTION>
@@ -121,12 +121,12 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				</SELECT>
 			</SPAN>
 		</SPAN>
-		<SPAN class="span44" align="right">
-			<SPAN id="MARKER" class="span64" align="left">
+		<SPAN class="span44" >
+			<SPAN id="MARKER" class="span64" align="right">
 				<LABEL id="LabelOffset">North or South OffsetBUG</LABEL>
 				
 				<LABEL id="LabelDirection"></LABEL>
-				<SELECT id="ChoiceDirection" onSelect="onDirectionSelect()" class="selectDirection">
+				<SELECT id="ChoiceDirection" onSelect="onDirectionSelect()" class="selectPrecision">
 					<OPTION>a MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
@@ -134,7 +134,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 					<OPTION> MARKER</OPTION>
 				</SELECT>				
 			</SPAN>
-			<SPAN id="MARKER" class="span36">
+			<SPAN id="MARKER" class="span36" align="left">
 				<INPUT TYPE="text" id="TextFieldHeading"  onfocus="TextFieldHeading_focusGained()"class="textOffset" ></INPUT>				
 				<INPUT TYPE="text" id="TextFieldOffset"  onfocus="TextFieldOffset_focusGained()" class="textOffset"></INPUT>
 				<SELECT id="ChoiceOffsetNSDir" onSelect="onOffsetNSDirSelect()" class="selectDirection">
@@ -227,7 +227,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			<LABEL id="LabelExtent">Extent of MARKER</LABEL>
 		</SPAN>
 		<SPAN id="MARKER" class="span36" align="left">
-			<INPUT TYPE="text" id="TextFieldExtent"   onfocus="TextFieldExtent_focusGained()" class="textOffset" ></INPUT>
+			<INPUT TYPE="text" id="TextFieldExtent"   onfocus="TextFieldExtent_focusGained()" class="textSecond" ></INPUT>
 		</SPAN>
 	</SPAN>
 </div>
@@ -288,24 +288,25 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 <DIV id="divLocality5">
 	<SPAN class="span56">
-		<SPAN id="MARKER" class="span17">
+		<SPAN id="MARKER" class="span13" align="left">
 			<LABEL id="LabelDatum" >Datum MARKER</LABEL>
 		</SPAN>
-		<SPAN id="MARKER" class="span83">
-			<SELECT id="ChoiceDatum" onChange="onDatumSelect()">
+		<SPAN id="MARKER" class="span87" align="right">
+			<SELECT id="ChoiceDatum" onChange="onDatumSelect()" class="SELECTDATUM">
 				<OPTION>D 1 MARKER</OPTION>
 				<OPTION>D 2 MARKER</OPTION>
 				<OPTION>D 3 MARKER</OPTION>
 				<OPTION>D ... MARKER</OPTION>
 			</SELECT>
+			<LABEL id="MARKER"> </LABEL>
 		</SPAN>
 	</SPAN>
 	<SPAN class="span44">
-		<SPAN id="MARKER" class="span50">
+		<SPAN id="MARKER" class="span64" align="right">
 			<LABEL id="LabelDistUnits">Distance Units MARKER</LABEL>
 		</SPAN>
-		<SPAN id="MARKER" class="span50">
-			<SELECT id="ChoiceDistUnits" onChange="onDistUnitsSelect()" class="selectDirection">
+		<SPAN id="MARKER" class="span36" align="left">
+			<SELECT id="ChoiceDistUnits" onChange="onDistUnitsSelect()" class="selectUnits">
 				<OPTION>km MARKER</OPTION>
 				<OPTION>m MARKER</OPTION>
 				<OPTION>mi MARKER</OPTION>
@@ -316,62 +317,76 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divLocality6">
-	<SPAN id="MARKER" class="span56">
-		<LABEL id="LabelLatPrecision" >Coordinate Precision MARKER</LABEL>
-		<SELECT id="ChoiceLatPrecision" onChange="onLatPrecisionSelect()" >
-			<OPTION>0 deg MARKER</OPTION>
-			<OPTION>0.1 deg MARKER</OPTION>
-			<OPTION>... deg MARKER</OPTION>
-		</SELECT>
-	</SPAN>
-	<SPAN id="MARKER" class="span44">
-		<LABEL id="LabelDistancePrecision">Distance Precision MARKER</LABEL>
-		<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()" >
-			<OPTION>1 km MARKER</OPTION>
-			<OPTION>1/10 km MARKER</OPTION>
-			<OPTION>1/100 km MARKER</OPTION>
-			<OPTION>... MARKER</OPTION>
-		</SELECT>
+	<SPAN id="MARKER" class="span56" align="left">
+		<SPAN id="MARKER" class="span50" align="left">
+			<LABEL id="LabelLatPrecision" >Coordinate Precision MARKER</LABEL>
+		</SPAN>
+		<SPAN id="MARKER" class="span50" align="right">
+			<SELECT id="ChoiceLatPrecision" onChange="onLatPrecisionSelect()" class="selectPrecision">
+				<OPTION>0 deg MARKER</OPTION>
+				<OPTION>0.1 deg MARKER</OPTION>
+				<OPTION>... deg MARKER</OPTION>
+			</SELECT>
+			<LABEL id="MARKER" > </LABEL>
+		</SPAN>
+	</SPAN>		
+	<SPAN id="MARKER" class="span44" align="right">
+		<SPAN id="MARKER" class="span64" align="right">
+			<LABEL id="LabelDistancePrecision">Distance Precision MARKER</LABEL>
+		</SPAN>
+		<SPAN id="MARKER" class="span36" align="left">
+			<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()" class="selectPrecision">
+				<OPTION>1 km MARKER</OPTION>
+				<OPTION>1/10 km MARKER</OPTION>
+				<OPTION>1/100 km MARKER</OPTION>
+				<OPTION>... MARKER</OPTION>
+			</SELECT>
+			
+		</SPAN>
 	</SPAN>
 </DIV>
 
 
 <DIV id="ReadOnlyLabels">
-	<!-- MARKER It would be ?better? to make these TEXT intput instead of LABEL, but css hasd an issue with read only-->
-	<SPAN id="MARKER">
-		<LABEL id="LabelCalcDecLat">Decimal Latitude MARKER</LABEL>
+	<SPAN class="span70" align="center"">
+		<SPAN id="MARKER" class="span28">
+			<LABEL id="LabelCalcDecLat">Decimal Latitude MARKER</LABEL>
+		</SPAN> 
+		<SPAN id="MARKER" class="span28">
+			<LABEL id="LabelCalcDecLong">Decimal Longitude MARKER</LABEL>
+		</SPAN> 
+		<SPAN id="MARKER" class="span44">
+			<LABEL id="LabelCalcMaxError">Maximum Error Distance MARKER</LABEL>
+		</SPAN> 
 	</SPAN> 
-	<SPAN id="MARKER">
-		<LABEL id="LabelCalcDecLong">Decimal Longitude MARKER</LABEL>
-	</SPAN> 
-	<SPAN id="MARKER">
-		<LABEL id="LabelCalcMaxError">Maximum Error Distance MARKER</LABEL>
+	<SPAN class="span30" align="center"">
+		<LABEL></LABEL>
 	</SPAN> 
 </DIV>
 
 <DIV id="ReadOnlyFields1">
-	<SPAN class="span66">
-	<SPAN id="MARKER" class="span33">
-		<INPUT type="text" id="TextFieldCalcDecLat" class="readOnlyInput" readonly></INPUT>
-	</SPAN> 
-	<SPAN id="MARKER" class="span33">
-		<INPUT type="text" id="TextFieldCalcDecLong" class="readOnlyInput" readonly></INPUT>
-	</SPAN> 
-	<SPAN id="MARKER" class="span33">
-		<INPUT type="text" id="TextFieldCalcErrorDist" class="readOnlyInput" readonly></INPUT>
-	</SPAN> 
+	<SPAN class="span70" >
+		<SPAN id="MARKER" class="span28" align="left">
+			<INPUT type="text" id="TextFieldCalcDecLat" class="readOnlyInput" readonly></INPUT>
+		</SPAN> 
+		<SPAN id="MARKER" class="span28" align="center">
+			<INPUT type="text" id="TextFieldCalcDecLong" class="readOnlyInput" readonly></INPUT>
+		</SPAN> 
+		<SPAN id="MARKER" class="span28" align="right">
+			<INPUT type="text" id="TextFieldCalcErrorDist" class="readOnlyInput" readonly></INPUT>
+		</SPAN> 
+		<SPAN id="MARKER" class="span17" align="left">
+			<INPUT type="text"  id="TextFieldCalcErrorUnits" class="readOnlyInput" readonly></INPUT>
+		</SPAN> 
 	</SPAN>
 
-	<SPAN class="span33">
-	<SPAN id="MARKER" class="span17">
-		<INPUT type="text"  id="TextFieldCalcErrorUnits" class="readOnlyInput" readonly></INPUT>
-	</SPAN> 
-	<SPAN id="MARKER" class="span33">
-		<BUTTON id="ButtonCalculate" onclick="ButtonCalculate_afterActionPerformed()" >CalculateMARKER</Button>
-	</SPAN> 
-	<SPAN id="MARKER" class="span33">
-		<BUTTON id="ButtonPromote" onclick="ButtonPromote_afterActionPerformed()">PromoteMARKER</BUTTON>
-	</SPAN> 
+	<SPAN class="span30" >
+		<SPAN id="MARKER" class="span49">
+			<BUTTON id="ButtonCalculate" onclick="ButtonCalculate_afterActionPerformed()" >CalculateMARKER</Button>
+		</SPAN> 
+		<SPAN id="MARKER" class="span49">
+			<BUTTON id="ButtonPromote" onclick="ButtonPromote_afterActionPerformed()">PromoteMARKER</BUTTON>
+		</SPAN> 
 	</SPAN>
 </DIV>
 
@@ -385,71 +400,83 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <!-- BEGIN/END MARKER the distance converter elements belong here-->
 <DIV>
 	<SPAN class="span100" id="BUGBUG">
-		<SPAN class="span100" id="BUGBUG">
+	</SPAN>
+	<SPAN class="span100" id="BUGBUG" align="left">
+		<SPAN class="span20" id="BUGBUG" align="left">		
+				<LABEL id="LabelDistanceConverter">BUGBUG Distance Converter</LABEL>
+		</SPAN>		
+		
+		<SPAN class="span80" id="BUGBUG">
+			<SPAN class="span36" id="BUGBUG">
+				<INPUT TYPE="text" id="TextFieldFromDistance"  class="textDecDeg"  onfocus="TextFieldFromDistance_focusGained()" onkeyup="onDistConvertKeyUp()" ></INPUT>
+				
+				<SELECT id="ChoiceFromDistUnits"  onChange="onFromDistUnitsSelect()" class="selectUnits">
+					<OPTION>1 BUGBUG ChoiceFromDistUnits</OPTION>
+					<OPTION>2 BUGBUG ChoiceFromDistUnits</OPTION>
+					<OPTION>3 BUGBUG ChoiceFromDistUnits</OPTION>
+				</SELECT>
+			</SPAN>		
+			
+			<SPAN class="span64" id="BUGBUG" align="left">
+				<LABEL id="LabelEquals">=</LABEL>
+
+				<!--<INPUT TYPE="text" id="TextFieldFromDistance" onfocus="TextFieldFromDistance_focusGained()" class="borderedText"></INPUT>-->
+				<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall" readOnly></INPUT>
+				<!--<LABEL id="TextFieldToDistance" class="readOnlyInputSmall"></LABEL>-->
+				
+				<SELECT id="ChoiceToDistUnits"  onChange="onToDistUnitsSelect()" class="selectPrecision">
+					<OPTION>1 BUGBUG ChoiceToDistUnits</OPTION>
+					<OPTION>2 BUGBUG ChoiceToDistUnits</OPTION>
+					<OPTION>3 BUGBUG ChoiceToDistUnits</OPTION>
+				</SELECT>
+			</SPAN>
 		</SPAN>
-		<SPAN class="span100" id="BUGBUG" align="left">
-			
-			<LABEL id="LabelDistanceConverter">BUGBUG Distance Converter</LABEL>
-			<INPUT TYPE="text" id="TextFieldFromDistance"  class="borderedText"  onfocus="TextFieldFromDistance_focusGained()" onkeyup="onDistConvertKeyUp()" ></INPUT>
-			
-			<SELECT id="ChoiceFromDistUnits"  onChange="onFromDistUnitsSelect()" >
-				<OPTION>1 BUGBUG ChoiceFromDistUnits</OPTION>
-				<OPTION>2 BUGBUG ChoiceFromDistUnits</OPTION>
-				<OPTION>3 BUGBUG ChoiceFromDistUnits</OPTION>
-			</SELECT>
-			<LABEL id="LabelEquals">=</LABEL>
+	</SPAN>
 
-			<!--<INPUT TYPE="text" id="TextFieldFromDistance" onfocus="TextFieldFromDistance_focusGained()" class="borderedText"></INPUT>-->
-			<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall"></INPUT>
-			<!--<LABEL id="TextFieldToDistance" class="readOnlyInputSmall"></LABEL>-->
-			
-			<SELECT id="ChoiceToDistUnits"  onChange="onToDistUnitsSelect()" >
-				<OPTION>1 BUGBUG ChoiceToDistUnits</OPTION>
-				<OPTION>2 BUGBUG ChoiceToDistUnits</OPTION>
-				<OPTION>3 BUGBUG ChoiceToDistUnits</OPTION>
-			</SELECT>
-		</SPAN>
-
-		<SPAN class="span100" id="BUGBUG" align="left">		
-
+	<SPAN class="span100" id="BUGBUG" >		
+		<SPAN class="span20" id="BUGBUG" align="left">		
 			<LABEL id="LabelScaleConverter">BUGBUG Scale Converter</LABEL>
+		</SPAN>
+		
+		<SPAN class="span80" id="BUGBUG" >				
+			<SPAN class="span36" id="BUGBUG" align="left">
+					<INPUT TYPE="text" id="TextFieldScaleFromDistance" onfocus="TextFieldScaleFromDistance_focusGained()" onkeyup="onScaleConvertKeyUp()" class="textDecDeg" ></INPUT>
+		
+					<SELECT id="ChoiceScaleFromDistUnits"  onChange="onScaleFromDistUnitsSelect()" class="selectPrecision">
+						<OPTION>1 BUGBUG ScaleFromDistUnits</OPTION>
+						<OPTION>2 BUGBUG ScaleFromDistUnits</OPTION>
+						<OPTION>3 BUGBUG ScaleFromDistUnits</OPTION>	
+					</SELECT>
+			</SPAN>
 
-			<INPUT TYPE="text" id="TextFieldScaleFromDistance" onfocus="TextFieldScaleFromDistance_focusGained()" onkeyup="onScaleConvertKeyUp()" class="borderedText" ></INPUT>
-			
-			<SELECT id="ChoiceScale"  onChange="onScaleSelect()" >
-				<OPTION>1 BUGBUG scale</OPTION>
-				<OPTION>2 BUGBUG scale</OPTION>
-				<OPTION>3 BUGBUG scale</OPTION>
-			</SELECT>
+			<SPAN class="span64" id="BUGBUG" align="left">
+				<SELECT id="ChoiceScale"  onChange="onScaleSelect()" class="selectPrecision">
+					<OPTION>1 BUGBUG scale</OPTION>
+					<OPTION>2 BUGBUG scale</OPTION>
+					<OPTION>3 BUGBUG scale</OPTION>
+				</SELECT>
 
+				<LABEL id="LabelScaleEquals">=</LABEL>
 
-			<SELECT id="ChoiceScaleFromDistUnits"  onChange="onScaleFromDistUnitsSelect()" >
-				<OPTION>1 BUGBUG ScaleFromDistUnits</OPTION>
-				<OPTION>2 BUGBUG ScaleFromDistUnits</OPTION>
-				<OPTION>3 BUGBUG ScaleFromDistUnits</OPTION>	
-			</SELECT>
+				<!-- <LABEL id="TextFieldScaleToDistance" class="readOnlySmall"></LABEL> -->
+				<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall" readOnly></INPUT>
 
-			<LABEL id="LabelScaleEquals">=</LABEL>
-
-
-			<SELECT id="ChoiceScaleToDistUnits"  onChange="onScaleToDistUnitsSelect()" >
-				<OPTION>1 BUGBUG ScaleToDistUnits</OPTION>	
-				<OPTION>2 BUGBUG ScaleToDistUnits</OPTION>	
-				<OPTION>3 BUGBUG ScaleToDistUnits</OPTION>			
-			</SELECT>
-			<LABEL id="TextFieldScaleToDistance" class="readOnlySmall"></LABEL>
+				<SELECT id="ChoiceScaleToDistUnits"  onChange="onScaleToDistUnitsSelect()" class="selectPrecision">
+					<OPTION>1 BUGBUG ScaleToDistUnits</OPTION>	
+					<OPTION>2 BUGBUG ScaleToDistUnits</OPTION>	
+					<OPTION>3 BUGBUG ScaleToDistUnits</OPTION>			
+				</SELECT>
+			</SPAN>
 		</SPAN>
 	</SPAN>
 </DIV>
 
 
 <DIV id="divInfo" >
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span50">
 		<LABEL id="LabelVersion" class="LABELINFO">MARKER version 1234 Klingon</LABEL>
 	</SPAN>
-	<SPAN id="BUGBUG" class="span50">
-	</SPAN>
-	<SPAN id="MARKER" class="span25" align="right">
+	<SPAN id="MARKER" class="span50" align="right">
 		<LABEL align="right" id="LabelCopyRight" class="LABELINFO">Copyright 2015 Regents of the University of California</LABEL>
 	</SPAN>
 </DIV>
