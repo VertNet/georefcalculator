@@ -860,7 +860,7 @@ function setVariables( )
 		else
 		{
 			var index = g_canonicalcalctypes.indexOf(value);
-			if( index==0 )
+			if( index==0 )  //Error Only
 			{
 				showDirectionPrecision(true);
 			}
@@ -1657,9 +1657,6 @@ function setVariables( )
 
 function onBodyKeyUp( e  )
 {
-	//keyCode: 13
-	//keyIdentifier: "Enter"	
-
 	if( e.keyIdentifier == "Enter" && uiIsVisible("ButtonCalculate") )
 	{
 		ButtonCalculate_afterActionPerformed();
@@ -1668,7 +1665,19 @@ function onBodyKeyUp( e  )
 	{
 		if( uiIsVisible("ButtonCalculate" ) && e.keyCode !== 9 )
 		{
-			clearResults();
+			var src = e.srcElement
+			var id = src.id
+			var clear = true;
+			
+			if( id == "TextFieldFromDistance" || id == "TextFieldScaleFromDistance" || src.readOnly )
+			{
+				clear = false
+			}
+			
+			if( clear )
+			{
+				clearResults();
+			}
 		}
 	}
 	else if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true  )
@@ -2372,20 +2381,16 @@ function onBodyKeyUp( e  )
 		
 		var value = uiGetSelectedText( "ChoiceDirection" );
 		
-		//setVisibility( "ChoiceDirection", b );
-		//setVisibility( "LabelDirection", b );
 		f_pointer("ChoiceDirection" );
 		f_pointer("LabelDirection" );
-		
+	
 		if( b && value == g_properties.getPropertyLang("headings.nearestdegree" ) )
 		{
-			//setVisibility( "TextFieldHeading", true );
 			uiShowElement( "TextFieldHeading" );
 		}
 		else
 		{
-			//setVisibility( "TextFieldHeading", false );
-			uiHideElement( "TextFieldHeading", false );
+			uiHideElement( "TextFieldHeading");
 		}
 	}
 
@@ -2399,7 +2404,17 @@ function onBodyKeyUp( e  )
 	
 		f_pointer( "ChoiceDirection" );
 		f_pointer( "LabelDirection" );
-		uiHideElement( "TextFieldHeading", false );
+
+		var value = uiGetSelectedText( "ChoiceDirection" );
+		
+		if( b && value == g_properties.getPropertyLang("headings.nearestdegree" ) )
+		{
+			uiShowElement( "TextFieldHeading" );
+		}
+		else
+		{
+			uiHideElement( "TextFieldHeading" );
+		}
 	}
 
 	function showDistancePrecision( b )

@@ -251,8 +251,7 @@ public class GC extends Applet implements ActionListener, ItemListener, FocusLis
 	void ChoiceDirection_itemStateChanged(String value){
 		clearResults();
 		int index = canonicalcalctypes.indexOf(value);
-		if( index==0 ){
-//			if( value.equals("Error only - enter Lat/Long for the actual locality") ){
+		if( index==0 ){//Error only
 			showDirectionPrecision(true);
 		} else {
 			showDirection(true);

@@ -43,18 +43,18 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 			try 
 			{
 				//num = numberFormatter.parse(s.trim());
-				num = s; //formatCalcDec.throwFormatError( s );
+				num = formatCalcDec.throwFormatError( s );
 				//fromdist = num.doubleValue();
 				fromdist = num;
 				fromUnit = uiGetSelectedText("ChoiceFromDistUnits");
 				toUnit = uiGetSelectedText("ChoiceToDistUnits");
 				todist = convertLengthFromTo(fromdist,fromUnit,toUnit);
-				uiSetLabelExplicit("TextFieldToDistance", formatDistance.ceckFormat(todist) );
+				uiSetLabelExplicit("TextFieldToDistance", formatDistance.checkFormat(todist) );
 			}
 			catch ( exp )
 			{
-				errorDialog(props.getPropertyLang("error.number.message"),
-					props.getPropertyLang("error.number.title"), "TextFieldFromDistance", 0);
+				errorDialog(g_properties.getPropertyLang("error.number.message"),
+					g_properties.getPropertyLang("error.number.title"), "TextFieldFromDistance", 0);
 				uiSetLabelExplicit("TextFieldFromDistance","0" );
 				uiSetLabelExplicit("TextFieldToDistance", "0" );
 			}
@@ -142,7 +142,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 					scalefactor/=12.0;
 				}
 				todist = scalefactor*convertLengthFromTo(fromdist,fromUnit,toUnit);
-				uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.ceckFormat(todist) );
+				uiSetLabelExplicit("TextFieldScaleToDistance", formatDistance.checkFormat(todist) );
 			}
 			catch( exp )
 			{

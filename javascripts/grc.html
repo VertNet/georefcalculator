@@ -77,10 +77,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceModel">
-	<SPAN id="MARKER" class="span25">
+	<SPAN id="MARKER" class="span20">
 		<LABEL id="LabelModel" >Locality Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span75" align="right">
+	<SPAN id="MARKER" class="span80" align="right">
 		<SELECT id="ChoiceModel" onChange="onModelSelect()" class="SELECT95">
 			<OPTION>Loc Type1 MARKER</OPTION>
 			<OPTION>Loc Type2 MARKER</OPTION>
@@ -126,7 +126,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				<LABEL id="LabelOffset">North or South OffsetBUG</LABEL>
 				
 				<LABEL id="LabelDirection"></LABEL>
-				<SELECT id="ChoiceDirection" onSelect="onDirectionSelect()" class="selectPrecision">
+				<SELECT id="ChoiceDirection" onchange="onDirectionSelect()" class="selectPrecision">
 					<OPTION>a MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
 					<OPTION> MARKER</OPTION>
@@ -137,7 +137,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			<SPAN id="MARKER" class="span36" align="left">
 				<INPUT TYPE="text" id="TextFieldHeading"  onfocus="TextFieldHeading_focusGained()"class="textOffset" ></INPUT>				
 				<INPUT TYPE="text" id="TextFieldOffset"  onfocus="TextFieldOffset_focusGained()" class="textOffset"></INPUT>
-				<SELECT id="ChoiceOffsetNSDir" onSelect="onOffsetNSDirSelect()" class="selectDirection">
+				<SELECT id="ChoiceOffsetNSDir" onchange="onOffsetNSDirSelect()" class="selectDirection">
 					<OPTION>N MARKER</OPTION>
 					<OPTION>S MARKER</OPTION>
 				</SELECT>
@@ -407,7 +407,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>		
 		
 		<SPAN class="span80" id="BUGBUG">
-			<SPAN class="span36" id="BUGBUG">
+			<SPAN class="span36" id="BUGBUG" align="right">
 				<INPUT TYPE="text" id="TextFieldFromDistance"  class="textDecDeg"  onfocus="TextFieldFromDistance_focusGained()" onkeyup="onDistConvertKeyUp()" ></INPUT>
 				
 				<SELECT id="ChoiceFromDistUnits"  onChange="onFromDistUnitsSelect()" class="selectUnits">
@@ -439,7 +439,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 		
 		<SPAN class="span80" id="BUGBUG" >				
-			<SPAN class="span36" id="BUGBUG" align="left">
+			<SPAN class="span36" id="BUGBUG" align="right">
 					<INPUT TYPE="text" id="TextFieldScaleFromDistance" onfocus="TextFieldScaleFromDistance_focusGained()" onkeyup="onScaleConvertKeyUp()" class="textDecDeg" ></INPUT>
 		
 					<SELECT id="ChoiceScaleFromDistUnits"  onChange="onScaleFromDistUnitsSelect()" class="selectPrecision">
@@ -459,7 +459,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				<LABEL id="LabelScaleEquals">=</LABEL>
 
 				<!-- <LABEL id="TextFieldScaleToDistance" class="readOnlySmall"></LABEL> -->
-				<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall" readOnly></INPUT>
+				<INPUT TYPE="text" id="TextFieldScaleToDistance" class="readOnlyInputSmall" readOnly></INPUT>
 
 				<SELECT id="ChoiceScaleToDistUnits"  onChange="onScaleToDistUnitsSelect()" class="selectPrecision">
 					<OPTION>1 BUGBUG ScaleToDistUnits</OPTION>	
