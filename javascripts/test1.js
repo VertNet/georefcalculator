@@ -1143,7 +1143,6 @@ function testParameterLimits()
 
 		if( s != null && s.length != 0 )
 		{
-		//BUGBUG JAVA formatters
 		//JAVA	num = numberFormatter.parse(s.trim()); 
 		//JAVA	e = num.doubleValue();
 			num = s; 
@@ -1162,7 +1161,6 @@ function testParameterLimits()
 
 		if( s != null && s.length != 0 )
 		{
-			//BUGBUG formatter work required
 			//JAVA num = numberFormatter.parse(s.trim()); 
 			//JAVA e = num.doubleValue();
 			num = s; 
@@ -1703,18 +1701,18 @@ function testParameterLimits()
 		// Coordinates only
 		if( index==0 )
 		{
-			//			if( model == "Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)")){
+			//"Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)"
 			maxerrordistance += Number( getDatumError());
 			maxerrordistance += Number( getCoordPrecisionError());
 			maxerrordistance += Number( getMapScaleError());
 			maxerrordistance += Number( getMeasurementError());
-//JAVA Commented out			maxerrordistance += getGPSAccuracy();
+			maxerrordistance += Number( getGPSAccuracy());
 		}
 
 		// Named Place only
 		if( index==1 )
 		{
-			//			if( model == "Named place only (e.g., Bakersfield)") ){
+			//"Named place only (e.g., Bakersfield)"
 			maxerrordistance += Number( getDatumError() );
 			maxerrordistance += Number( getExtentsError() );
 			maxerrordistance += Number( getMeasurementError() );

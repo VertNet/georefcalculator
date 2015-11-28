@@ -78,16 +78,16 @@ function downloadTests()
 		
 		//create FAT button
 		e = document.createElement( "BUTTON" );
-		var t = document.createTextNode("fat");
+		var t = document.createTextNode("FAT");
 		e.setAttribute("onClick", "javascript: test_it();");
-		e.setAttribute("ID", "fat");
+		e.setAttribute("ID", "FAT");
 
 		e.appendChild(t);
 		df.appendChild(e);
 		
 		//created SELECT button
 		e = document.createElement( "SELECT" );
-		//FIXME i<8 is bad, but we cant use g_tests.length because it ?no longer global? due to delayed load?
+		//TODO i<8 is bad, but we cant use g_tests.length because it ?no longer global? due to delayed load?
 		for( var i = 0; i< 8; i++ )
 		{
 			var option = document.createElement("option");
@@ -99,7 +99,6 @@ function downloadTests()
 		e.setAttribute("onchange", "javascript: onChoiceTest();");
 		e.setAttribute("ID", "ChoiceTest");
 
-		//e.onselect="onChoiceTest()";
 		df.appendChild(e);
 		
 		g_debug_active = true;
@@ -122,13 +121,11 @@ function downloadTests()
 function GC_init()
 {
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
-	g_appletHeight = 480;  //BUGBUG not needed anymore?
-	g_appletWidth = 620;   //BUGBUG not needed anymore?
+	g_appletHeight = 480;  //TODO not needed anymore?
+	g_appletWidth = 620;   //TODO not needed anymore?
 	g_versionNumber = "20151123";
 
-	//var g_properties = {};    //Defined in georefcalulator.js
 	
-	//final ArrayList canonicalheadings = new ArrayList();
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
 	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
@@ -140,11 +137,11 @@ function GC_init()
 	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
 	
 	//Locale currentLocale = Locale.getDefault();
-	g_currentLocale = "en"; //BUGBUG FIXME TODO getDefaultLocal();
+	g_currentLocale = "en"; //FIXME TODO getDefaultLocal();
 
 	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
 	
-	g_numberFormatter = "en"; //BUGBUG FIXME TODO getNumberInstance(currentLocale); 
+	g_numberFormatter = "en"; //FIXME TODO getNumberInstance(currentLocale); 
 
 	g_language = "en";	
 
@@ -177,7 +174,6 @@ function GC_init()
 	uiSetSelectedIndex("ChoiceLanguage", 0 )
 	onLanguageSelect();		
 
-	//uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
 	uiClearSelect( "ChoiceCalcType" );
 	uiSelectAddEmptyItem("ChoiceCalcType");
 	uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
@@ -283,7 +279,7 @@ function setTabOrders()
 	a=setElementOrder("ChoiceToDistUnits", a);
 
 	a=setElementOrder("TextFieldScaleFromDistance", a);
-	a=setElementOrder("ChoiceScaleFromDistUnits ", a);
+	a=setElementOrder("ChoiceScaleFromDistUnits", a);
 	a=setElementOrder("ChoiceScale", a);
 	a=setElementOrder("TextFieldScaleToDistance", a);
 	a=setElementOrder("ChoiceScaleToDistUnits", a);
@@ -324,7 +320,6 @@ function onLanguageSelect()
 	
 	uiSetLabel( "LabelStepZero", "label.step0" );
 	uiSetLabel( "ChoiceCalcType", "calctype" );
-	//uiClearAndFillSelectCanonical( "ChoiceCalcType", "g_canonicalcalctypes", true );
 }
 
 function uiHideElement( name )
@@ -359,7 +354,7 @@ function uiShowElement( name )
 
 function uiSetLabel( name, source )
 {
-	var language = g_language; //g_properties.getProperty("preferredlanguage")
+	var language = g_language;
 	var el = document.getElementById( name );
 	
 	var c = eval( "g_properties." + source + "." + language );
@@ -552,6 +547,7 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 }
 
 //FIXME unused?
+/*
 function uiFillSelect( name, source, initialEmpty )
 {
 	var el = document.getElementById( name );
@@ -584,6 +580,7 @@ function uiFillSelect( name, source, initialEmpty )
 		console.log("ERROR uiFillSelect null element name: " + name + " source: " + source )
 	)
 }
+*/
 
 function uiFillSelectCanonical( name, source, initialEmpty )
 {
@@ -1046,10 +1043,8 @@ function setVariables( )
 		directionindex=uiGetSelectedIndex( "ChoiceDirection" );
 
 
-		//Number num = null;
 		var num = null;
 		
-		//String s = txtT7Lat_MinMM.getText();
 		var s = uiGetTextValue("txtT7Lat_MinMM");
 		
 
@@ -1105,8 +1100,7 @@ function setVariables( )
 		}
 		extent=m;
 
-		//PopulateS
-		
+	
 		s = uiGetTextValue("TextFieldMeasurementError");
 		m = 0;
 		if( s == null || s.length == 0 ){
@@ -1154,7 +1148,7 @@ function setVariables( )
 		setVariables(language);
 		setLabels();		
 		
-		//BUGBUG add me back in when we start doing formatters
+		//TODO add me back in when we start doing formatters
 		//setDecimalFormat();
 		
 		var ci = uiGetSelectedIndex("ChoiceCalcType");
@@ -1355,7 +1349,6 @@ function setVariables( )
 		showEWOffset(false);
 		
 		uiHideElement( "TextFieldHeading" );
-		//setVisibility("TextFieldHeading",false);
 		
 		showCoordinateSystem(true);
 		showCoordinateSource(true);
@@ -1364,8 +1357,6 @@ function setVariables( )
 		showExtents(true);
 		showMeasurementError(true);
 		showErrors(true);
-		//showDistanceConverter(true);
-		//showScaleConverter(true);
 		showRelevantCoordinates();
 		
 		uiSetLabel("LabelOffset","label.offset");
@@ -1374,7 +1365,7 @@ function setVariables( )
 		var value = uiGetSelectedText("ChoiceModel");
 		var index = g_canonicalloctypes.indexOf(value);
 		var csource = uiGetSelectedText("ChoiceCoordSource");
-		// BUGBUG: If gazetteer is to be added back into the list, the cindex references have to change so the logic applies to the correct selections.
+
 		var cindex = g_canonicalsources.indexOf(csource);
 		if( cindex==2 ){ // GPS
 			uiSetLabel("LabelMeasurementError","label.extent.gps");
@@ -1483,18 +1474,14 @@ function setVariables( )
 		showResults(false);
 		showExtents(false);
 		showMeasurementError(false);
+		
 		//showDistanceConverter(false);
 		//showScaleConverter(false);
+		
 		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
-/*		
-		setVisibility("TextFieldOffsetEW", false);
-		setVisibility("ChoiceOffsetEWDir", false);
-		setVisibility("ChoiceOffsetNSDir", false);
-		setVisibility("TextFieldHeading", false);
-		setVisibility("LabelOffsetEW", false);
-*/
+
 		setVisibility("TextFieldOffsetEW", false);
 		setVisibility("ChoiceOffsetEWDir", false);
 		uiHideElement("ChoiceOffsetNSDir");
@@ -1564,58 +1551,9 @@ function setVariables( )
 	
 	}
 	
-/*
-	//NOTE: here only for reference and layout, this code will not be uncommented out.
-	public Component createComponents() {
-		lblT2Dec_Lat = new Label (g_properties.getProperty("label.lat."+language), Label.LEFT);
-		lblT2Dec_Long = new Label (g_properties.getProperty("label.lon."+language), Label.LEFT);
-		Label2111111 = new Label ("'", Label.LEFT);
-		Label22111 = new Label ("'", Label.LEFT);
-		Label21212 = new Label ("o", Label.LEFT);
-		Label231 = new Label ("o", Label.LEFT);
-		Label211111 = new Label ("\"", Label.LEFT);
-		Label2211 = new Label ("\"", Label.LEFT);
-		Label21121 = new Label ("'", Label.LEFT);
-		Label222 = new Label ("'", Label.LEFT);
-		Label2123 = new Label ("o", Label.LEFT);
-		Label23 = new Label ("o", Label.LEFT);
-		LabelDatum = new Label (g_properties.getProperty("label.datum."+language), Label.LEFT);
-		LabelLatPrecision = new Label (g_properties.getProperty("label.coordprec."+language), Label.LEFT);
-		LabelDirection = new Label (g_properties.getProperty("label.direction."+language), Label.RIGHT);
-		LabelOffsetEW = new Label (g_properties.getProperty("label.distew."+language), Label.RIGHT);
-		LabelOffset = new Label (g_properties.getProperty("label.offset."+language), Label.RIGHT);
-		LabelExtent = new Label (g_properties.getProperty("label.extent."+language), Label.RIGHT);
-		LabelMeasurementError = new Label (g_properties.getProperty("label.measurementerror."+language), Label.RIGHT);
-		LabelDistUnits = new Label (g_properties.getProperty("label.distunits."+language), Label.RIGHT);
-		LabelDistancePrecision = new Label (g_properties.getProperty("label.distprec."+language), Label.RIGHT);
-		LabelCalcDecLat = new Label (g_properties.getProperty("label.declat."+language), Label.CENTER);
-		LabelCalcDecLong = new Label (g_properties.getProperty("label.declon."+language), Label.CENTER);
-		LabelCalcMaxError = new Label (g_properties.getProperty("label.maxerrdist."+language), Label.CENTER);
-		
-		//=== Distance Converter Controls ===//
-		LabelDistanceConverter = new Label (g_properties.getProperty("label.distanceconverter."+language), Label.LEFT);
-		TextFieldFromDistance = new TextField ("TextFieldFromDistance");
-		ChoiceFromDistUnits = new Choice();
-		LabelEquals = new Label ("=", Label.CENTER);
-		TextFieldToDistance = new TextField ("TextFieldToDistance");
-		ChoiceToDistUnits = new Choice();
-
-		//=== Scale Converter Controls ===//
-		LabelScaleConverter = new Label (g_properties.getProperty("label.scaleconverter."+language), Label.LEFT);
-		TextFieldScaleFromDistance = new TextField ("TextFieldScaleFromDistance");
-		ChoiceScaleFromDistUnits = new Choice();
-		ChoiceScale = new Choice();
-		LabelScaleEquals = new Label ("=", Label.CENTER);
-		TextFieldScaleToDistance = new TextField ("TextFieldScaleToDistance");
-		ChoiceScaleToDistUnits = new Choice();
-		afterFormInitialize();
-		addListeners();
-	}
-*/
 
 	function getCoordPrecisionError()
 	{
-		//String latprecision = (String)ChoiceLatPrecision.getSelectedItem();
 		var latprecision = uiGetSelectedText("ChoiceLatPrecision");
 		
 		if( latprecision == g_properties.getPropertyLang("coordprec.dd.exact")) 
@@ -2218,10 +2156,10 @@ function onBodyKeyUp( e  )
 	{
 		setVisibility( "lblT2Dec_Lat", v);
 		setVisibility( "lblT2Dec_Long", v);
-		//showRelevantCoordinates();
-			PanelDecLatLong_SetVisible( v );
-			PanelDDMMSS_SetVisible( v );
-			PanelDecMin_SetVisible( v );
+		
+		PanelDecLatLong_SetVisible( v );
+		PanelDDMMSS_SetVisible( v );
+		PanelDecMin_SetVisible( v );
 		
 		setVisibility( "LabelDatum", v );
 		setVisibility( "ChoiceDatum", v );
@@ -2641,7 +2579,7 @@ function onBodyKeyUp( e  )
 	}
 
 	
-//TODO this could be improved by using prompt.
+//TODO this could be improved by using prompt alert type.
 //With a prompt we could display the bad value and the error, and get a replacement value back, plug in and roll with new number
 //NOTE: style is not currently used
 function errorDialog( error, title, source, style )
@@ -2739,7 +2677,6 @@ function errorDialog( error, title, source, style )
 			if( s == null || s.length == 0 )
 			{
 				uiSetLabelExplicit( "txtT2Dec_Lat",0);
-				//uiSetTextExplicit("txtT2Dec_Lat",0);
 			}
 			else
 			{ // test input within limits and valid
