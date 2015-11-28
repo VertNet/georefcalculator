@@ -97,7 +97,7 @@ SELECT{
 
 	min-width: 2em;
 	max-width: 6em;
-	width: 3.5em;
+	width: 3.75em;
 
 	border: 1px solid grey;
 	border-style: inset;
@@ -119,7 +119,7 @@ SELECT{
 
 	min-width: 2em;
 	max-width: 6em;
-	width: 4em;
+	width: 5em;
 
 	border: 1px solid grey;
 	border-style: inset;
@@ -185,7 +185,7 @@ SELECT{
 
 	min-width: 2em;
 	max-width: 18Em;
-	width: 14em;
+	width: 15em;
 
 	border: 1px solid grey;
 	border-style: inset;
@@ -210,7 +210,6 @@ SELECT{
 }
 
 
-
 .textDecDeg{
 	border: 1px solid grey;
 	border-style: inset;
@@ -229,6 +228,16 @@ SELECT{
 	min-width: 2em;
 	max-width: 10em;
 	width: 2.5em;
+}
+
+.textConvert{
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+
+	min-width: 2em;
+	max-width: 10em;
+	width: 7.5em;
 }
 
 
