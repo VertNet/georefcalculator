@@ -184,14 +184,110 @@ function GC_init()
 	uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
 	uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
 	uiSetSelectedIndex("ChoiceCalcType",0);
-
-	
 	
 	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
 	showScaleConverter(true);
 	showDistanceConverter(true);
+	setTabOrders();
+	setLanguageFocused();
+	
 } 
 
+function setLanguageFocused()
+{
+	var e = document.getElementById( "ChoiceLanguage" );
+	e.focus();
+}
+
+function setElementOrder( element, order )
+{
+	var e = document.getElementById( element );
+	if( e )
+	{
+		e.tabIndex = order;
+	}
+	else
+	{
+		console.log("ERROR: setElementOrder, element not found" + element )
+	}
+	return order+1;
+}
+
+function setTabOrders()
+{
+	var a=1;
+
+	a=setElementOrder("ChoiceLanguage", a);
+	
+	a=setElementOrder("ChoiceCalcType", a);
+	a=setElementOrder("ChoiceModel", a);
+	
+	a=setElementOrder("ChoiceCoordSource", a);
+	a=setElementOrder("ChoiceCoordSystem", a);
+
+	//DD
+	a=setElementOrder("txtT2Dec_Lat", a);
+	a=setElementOrder("txtT2Dec_Long", a);
+
+	//DDM
+	a=setElementOrder("txtT7Lat_DegMM", a);
+	a=setElementOrder("txtT7Lat_MinMM", a);
+	a=setElementOrder("ChoiceLatDirMM", a);
+	
+	a=setElementOrder("txtT7Long_DegMM", a);
+	a=setElementOrder("txtT7Long_MinMM", a);
+	a=setElementOrder("ChoiceLongDirMM", a);
+	
+	//DMS
+	a=setElementOrder("txtT7Lat_DegDMS", a);
+	a=setElementOrder("txtT7Lat_MinDMS", a);
+	a=setElementOrder("txtT7Lat_Sec", a);
+	a=setElementOrder("ChoiceLatDirDMS", a);
+		
+	a=setElementOrder("txtT7Long_DegDMS", a);
+	a=setElementOrder("txtT7Long_MinDMS", a);
+	a=setElementOrder("txtT7Long_Sec", a);
+	a=setElementOrder("ChoiceLongDirDMS", a);
+
+	
+	a=setElementOrder("ChoiceDatum", a);
+	a=setElementOrder("ChoiceLatPrecision", a);
+
+	//loc model dist at
+	a=setElementOrder("ChoiceDirection", a);
+	a=setElementOrder("TextFieldHeading", a);
+
+	//loc model dist along
+	a=setElementOrder("TextFieldOffset", a);
+	a=setElementOrder("ChoiceOffsetNSDir", a);
+	
+	a=setElementOrder("TextFieldOffsetEW", a);
+	a=setElementOrder("ChoiceOffsetEWDir", a);
+
+
+	a=setElementOrder("TextFieldExtent", a);
+	a=setElementOrder("TextFieldMeasurementError", a);
+	a=setElementOrder("ChoiceDistUnits", a);
+	a=setElementOrder("ChoiceDistancePrecision", a);	
+
+	a=setElementOrder("ButtonCalculate", a);
+
+	a=setElementOrder("TextFieldFullResult", a);
+
+	a=setElementOrder("ButtonPromote", a);
+
+	
+	a=setElementOrder("TextFieldFromDistance", a);
+	a=setElementOrder("ChoiceFromDistUnits ", a);
+	a=setElementOrder("TextFieldToDistance", a);
+	a=setElementOrder("ChoiceToDistUnits", a);
+
+	a=setElementOrder("TextFieldScaleFromDistance", a);
+	a=setElementOrder("ChoiceScaleFromDistUnits ", a);
+	a=setElementOrder("ChoiceScale", a);
+	a=setElementOrder("TextFieldScaleToDistance", a);
+	a=setElementOrder("ChoiceScaleToDistUnits", a);
+}
 
 
 function uiIsVisible( name )

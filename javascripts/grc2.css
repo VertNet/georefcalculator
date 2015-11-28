@@ -16,6 +16,16 @@ __copyright__ = "Copyright 2015 Regents of the University of California"
 __version__ = "grc2.css 2015-11-23T20:33:00-07:00"
 */
 
+select:focus {
+	border: 2px solid blue;
+}
+input:focus {
+	border: 2px solid blue;
+}
+
+button:focus {
+	border: 2px solid blue;
+}
 
 SELECT{
 	font-family: "Helvetica", Ariel, Sans-serif;
@@ -23,14 +33,14 @@ SELECT{
 	font-size: .75em;
 	color: black;
 	background-color: white;
-
+	
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -50,10 +60,10 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -70,10 +80,10 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -92,10 +102,10 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -114,10 +124,10 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -136,10 +146,10 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -158,10 +168,32 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
+	text-overflow: ellipsis;
+}
+
+
+.selectCoordPrecision{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .75em;
+	color: black;
+	background-color: white;
+
+	min-width: 2em;
+	max-width: 18Em;
+	width: 14em;
+
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
 
@@ -270,10 +302,10 @@ LABEL{
 	display:inline-block;
 	border-style: inset;
 	border-width: 3px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 }
 
 }
@@ -303,10 +335,10 @@ INPUT{
 	display:inline-block;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 }
 
 .readOnlyInputSmall{
@@ -325,10 +357,10 @@ INPUT{
 	display:inline-block;
 	border-style: inset;
 	border-width: 2px;
-	padding-top:1px;
-	padding-bottom:1px;
-	padding-left:1px;
-	padding-right:1px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
 }
 
 
