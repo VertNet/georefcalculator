@@ -278,7 +278,7 @@ function setTabOrders()
 
 	
 	a=setElementOrder("TextFieldFromDistance", a);
-	a=setElementOrder("ChoiceFromDistUnits ", a);
+	a=setElementOrder("ChoiceFromDistUnits", a);
 	a=setElementOrder("TextFieldToDistance", a);
 	a=setElementOrder("ChoiceToDistUnits", a);
 
