@@ -2642,6 +2642,10 @@ function errorDialog( error, title, source, style )
 		var d = 0;
 		var num = null;
 		
+		/*if( !uiIsVisible("TextFieldHeading") )
+		{
+			return testpasses;
+		}*/
 		
 		s = uiGetTextValue("TextFieldHeading");
 			
