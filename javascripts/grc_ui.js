@@ -1739,6 +1739,11 @@ function onBodyKeyUp( e  )
 	{
 		downloadTests();
 	}
+	else if( e.keyIdentifier == "s" && e.ctrlKey == true && e.shiftKey == true  )
+	//FIXME    || ( put mac equiv logic in here  )
+	{
+		document.body.style.width = '640px';
+	}
 }
 
 	// Populate the Coordinate Precision Controls based on the Coordinate System

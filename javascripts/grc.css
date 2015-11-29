@@ -16,6 +16,8 @@ __copyright__ = "Copyright 2015 Regents of the University of California"
 __version__ = "grc2.css 2015-11-23T20:33:00-07:00"
 */
 
+
+
 select:focus {
 	border: 2px solid blue;
 }
@@ -65,6 +67,10 @@ SELECT{
 	ppadding-left:1px;
 	ppadding-right:1px;
 	text-overflow: ellipsis;
+}
+
+.main{
+	width: 640px;
 }
 
 
