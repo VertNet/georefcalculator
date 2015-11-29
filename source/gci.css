@@ -73,7 +73,6 @@ SELECT{
 	width: 640px;
 }
 
-
 .SELECTDATUM{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
@@ -92,7 +91,6 @@ SELECT{
 	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
-
 
 .selectDirection{
 	font-family: "Helvetica", Ariel, Sans-serif;
@@ -115,7 +113,6 @@ SELECT{
 	text-overflow: ellipsis;
 }
 
-
 .selectUnits{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
@@ -136,7 +133,6 @@ SELECT{
 	ppadding-right:1px;
 	text-overflow: ellipsis;
 }
-
 
 .selectUnitsParts{
 	font-family: "Helvetica", Ariel, Sans-serif;
@@ -159,7 +155,6 @@ SELECT{
 	text-overflow: ellipsis;
 }
 
-
 .selectPrecision{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
@@ -181,7 +176,6 @@ SELECT{
 	text-overflow: ellipsis;
 }
 
-
 .selectCoordPrecision{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
@@ -190,8 +184,8 @@ SELECT{
 	background-color: white;
 
 	min-width: 2em;
-	max-width: 18Em;
-	width: 15em;
+	max-width: 15Em;
+	width: 13em;
 
 	border: 1px solid grey;
 	border-style: inset;
@@ -203,8 +197,6 @@ SELECT{
 	text-overflow: ellipsis;
 }
 
-
-
 .textOffset{
 	border: 1px solid grey;
 	border-style: inset;
@@ -214,7 +206,6 @@ SELECT{
 	max-width: 6em;
 	width: 3em;
 }
-
 
 .textDecDeg{
 	border: 1px solid grey;
@@ -246,7 +237,6 @@ SELECT{
 	width: 7.5em;
 }
 
-
 .textMinute{
 	border: 1px solid grey;
 	border-style: inset;
@@ -267,9 +257,6 @@ SELECT{
 	width: 3em;
 }
 
-
-
-
 LABEL{
 	font-family: "Helvetica", Ariel, Sans-serif;
 	font-style: normal;
@@ -288,7 +275,6 @@ LABEL{
 	text-align: center;
 	background-color: #C0C0C0;
 }
-
 
 .LABELBUGBUG{
 	font-family: "Helvetica", Ariel, Sans-serif;
@@ -406,6 +392,27 @@ SPAN{
 	text-align: center;
 }
 
+.span87{
+	display: inline-block;
+	min-width: 86%;
+	max-width: 86%;
+	width: 86%;
+}
+
+.span83{
+	display: inline-block;
+	min-width: 82%;
+	max-width: 82%;
+	width: 82%;
+}
+
+.span80{
+	display: inline-block;
+	min-width: 78%;
+	max-width: 78%;
+	width: 78%;
+}
+
 .span75{
 	display: inline-block;
 	min-width: 73%;
@@ -413,11 +420,53 @@ SPAN{
 	width: 73%;
 }
 
+.span72{
+	display: inline-block;
+	min-width: 71%;
+	max-width: 71%;
+	width: 71%;
+}
+
+.span70{
+	display: inline-block;
+	min-width: 69%;
+	max-width: 69%;
+	width: 69%;
+}
+
 .span66{
 	display: inline-block;
 	min-width: 65%;
 	max-width: 65%;
 	width: 65%;
+}
+
+.span64{
+	display: inline-block;
+	min-width: 63%;
+	max-width: 63%;
+	width: 63%;
+}
+
+.span57{
+	display: inline-block;
+	min-width: 56%;
+	max-width: 56%;
+	width: 56%;
+}
+
+.span56{
+	display: inline-block;
+	min-width: 55%;
+	max-width: 55%;
+	width: 55%;
+}
+
+.span52{
+	display: inline-block;
+	min-width: 51%;
+	max-width: 51%;
+	width: 51%;
 }
 
 .span50{
@@ -434,93 +483,12 @@ SPAN{
 	width: 48%;
 }
 
-.span25{
+.span48{
 	display: inline-block;
-	min-width: 23%;
-	max-width: 23%;
-	width: 23%;
+	min-width: 47%;
+	max-width: 47%;
+	width: 47%;
 }
-
-.span33{
-	display: inline-block;
-	min-width: 32%;
-	max-width: 32%;
-	width: 32%;
-}
-
-
-.span22{
-	display: inline-block;
-	min-width: 22%;
-	max-width: 22%;
-	width: 22%;
-}
-
-.span17{
-	display: inline-block;
-	min-width: 16%;
-	max-width: 16%;
-	width: 16%;
-}
-
-.span83{
-	display: inline-block;
-	min-width: 82%;
-	max-width: 82%;
-	width: 82%;
-}
-
-.span28{
-	display: inline-block;
-	min-width: 27%;
-	max-width: 27%;
-	width: 27%;
-}
-
-.span80{
-	display: inline-block;
-	min-width: 78%;
-	max-width: 78%;
-	width: 78%;
-}
-
-.span20{
-	display: inline-block;
-	min-width: 19%;
-	max-width: 19%;
-	width: 19%;
-}
-
-
-.span70{
-	display: inline-block;
-	min-width: 69%;
-	max-width: 69%;
-	width: 69%;
-}
-
-.span30{
-	display: inline-block;
-	min-width: 29%;
-	max-width: 29%;
-	width: 29%;
-}
-
-
-.span87{
-	display: inline-block;
-	min-width: 86%;
-	max-width: 86%;
-	width: 86%;
-}
-
-.span13{
-	display: inline-block;
-	min-width: 12%;
-	max-width: 12%;
-	width: 12%;
-}
-
 
 .span44{
 	display: inline-block;
@@ -529,15 +497,6 @@ SPAN{
 	width: 43%;
 }
 
-
-.span56{
-	display: inline-block;
-	min-width: 55%;
-	max-width: 55%;
-	width: 55%;
-}
-
-
 .span43{
 	display: inline-block;
 	min-width: 42%;
@@ -545,20 +504,11 @@ SPAN{
 	width: 42%;
 }
 
-
-.span57{
+.span40{
 	display: inline-block;
-	min-width: 56%;
-	max-width: 56%;
-	width: 56%;
-}
-
-
-.span64{
-	display: inline-block;
-	min-width: 63%;
-	max-width: 63%;
-	width: 63%;
+	min-width: 39%;
+	max-width: 39%;
+	width: 39%;
 }
 
 .span36{
@@ -568,6 +518,69 @@ SPAN{
 	width: 35%;
 }
 
+.span33{
+	display: inline-block;
+	min-width: 32%;
+	max-width: 32%;
+	width: 32%;
+}
+
+.span30{
+	display: inline-block;
+	min-width: 29%;
+	max-width: 29%;
+	width: 29%;
+}
+
+.span29{
+	display: inline-block;
+	min-width: 28%;
+	max-width: 28%;
+	width: 28%;
+}
+
+.span28{
+	display: inline-block;
+	min-width: 27%;
+	max-width: 27%;
+	width: 27%;
+}
+
+.span25{
+	display: inline-block;
+	min-width: 23%;
+	max-width: 23%;
+	width: 23%;
+}
+
+.span22{
+	display: inline-block;
+	min-width: 22%;
+	max-width: 22%;
+	width: 22%;
+}
+
+.span20{
+	display: inline-block;
+	min-width: 19%;
+	max-width: 19%;
+	width: 19%;
+}
+
+.span17{
+	display: inline-block;
+	min-width: 16%;
+	max-width: 16%;
+	width: 16%;
+}
+
+.span13{
+	display: inline-block;
+	min-width: 12%;
+	max-width: 12%;
+	width: 12%;
+}
+
 .span10{
 	display: inline-block;
 	min-width: 10%;
@@ -575,10 +588,7 @@ SPAN{
 	width: 10%;
 }
 
-
-.divBreak
-{
+.divBreak{
 	padding: 3px;
 	background-color: #C0C0C0;
 }
-
