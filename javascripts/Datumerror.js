@@ -17,21 +17,15 @@ __version__ = "Datumerror.js 2015-11-23T20:33:00-07:00"
 */
 
 
-//public class Datumerror
-//{
-
-	function test_getDatum()
-	{
-		return datumerror[12][34];
-	}
-    //public short[][] datumerror;
-	//BUGBUG make this a java script typ[e class
+function test_getDatum()
+{
+	return datumerror[12][34];
+}
 	
-	//BUGBUG put comments in here to explain how this represents the odd shaped "sphere" that is the earth.
-	
-    var datumerror = [];// [][] datumerror;
+var datumerror = [];// [][] datumerror;
     
-    function createDatum() {
+function createDatum()
+{
 	init();
 	init00();
 	init01();
@@ -100,15 +94,15 @@ __version__ = "Datumerror.js 2015-11-23T20:33:00-07:00"
     }
     
     function init() {
-		//BUGBUG this almost certainl;y is not needed, the [i] gets INITed via the INIT function calls
 		for( var i = 0; i < 640; i++ )
 		{
 			datumerror[i] = [];
 		}
     }
-	//BUGBUG the concept on init00 was done to deal with Java limited array sizes and
-	//odd constructions metthods. THe entire concept can probably go except for the
-	//very precide data in the calls.
+	
+	//NOTE the concept on init00 was done to deal with Java limited array sizes and
+	//odd constructions methods. The entire concept of making the array can probably go except for the
+	//very precise data in the calls.
     function init00()
 	{
 		datumerror[0] = [

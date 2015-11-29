@@ -421,7 +421,7 @@ function testDisplay( tc_base, name, expected, callstack )
 }
 
 
-//BUGBUG make this language independent	
+//TODO make this language independent	
 function testCalcType( tc_base, calctype, callstack )
 {
 	var fName =  testHelperfName( callstack );
@@ -456,7 +456,7 @@ function testCalcType( tc_base, calctype, callstack )
 
 }
 
-//BUGBUG make this language independent	
+//TODO make this language independent	
 function testLocType( tc_base, loctype, callstack )
 {
 	var fName =  testHelperfName( callstack );

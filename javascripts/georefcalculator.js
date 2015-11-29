@@ -26,8 +26,7 @@ __version__ = "georefcalculator.js 2015-11-23T20:33:00-07:00"
 
 
 
-//BUGBUG maybe rename this georefproperties.js for clarity. is used to be called .properties
-//BUGBUG all of these sub objects should be wrapped into a larger single properties object
+//TODO maybe rename this georefproperties.js for clarity. is used to be called .properties
 
 function test_getSource( lang )
 {
@@ -43,10 +42,10 @@ var test_props = {
 	}
 }
 
-//BUGBUG we'll tie all the object array created below into g_properties at the bottom of this file
+//we'll tie all the object array created below into g_properties at the bottom of this file
 var g_properties = {};
 
-//BUGBUG [0],[1] used tobe java var names. I had to change to array in JS, bugs?
+//NOTE: [0],[1] used to be java var names. I had to change to array in JS
 //I also added the Enum type defs so I don't use magic numbers later on
 var language = {};
 language.name = [];
@@ -78,7 +77,6 @@ language.code[5] = "nl";
 g_properties.preferredlanguage = "en";
 
 //Versions
-//var version = {};
 var version= {};
 version.en = "Version";
 version.es = "Versión";
@@ -86,6 +84,7 @@ version.pt = "Versión";
 version.fr = "Versión";
 version.nl = "Versie";
 //version.de = "Version
+
 //##############################
 
 // Nederlands
@@ -333,7 +332,6 @@ var coordprec = {
 };
 
 coordprec.dd.degree.nl = "dichtsbijzijnde graad";
-//BUGBUG added cp_, this will create bugs.
 coordprec.dd.cp_01.nl = "0,1 graden";
 coordprec.dd.cp_001.nl = "0,01 graden";
 coordprec.dd.cp_0001.nl = "0,001 graden";
@@ -1206,8 +1204,8 @@ units.kilometer = "km";
 
 // Heading Abbreviations:
 // Canonical (don't change these!)
-//BUGBUG I think these are old and deprecated.
-//I have to comment them out or it breaks things in java script
+//FIXME I think these are old and deprecated.
+//I have to comment them out or it breaks things in javascript
 /*
 var heading = {};
 headings.n = "N";
@@ -1248,7 +1246,7 @@ headings.nearestdegree = "nearest degree";
 // Coordinate Systems
 // Canonical (don't change these!)
 /*
-BUGBUG I think these are old and deprecated.
+FIXME I think these are old and deprecated.
 I dont see them used in java, always used with +language.
 I have to comment them out or it breaks things in java script
 coordsys.dd = "decimal degrees";
@@ -1268,7 +1266,7 @@ g_properties.coordprec = coordprec;
 g_properties.datum = datum;
 g_properties.coordsource = coordsource;
 
-//BUGBUG wanted for garbage collection?
+//TODO Needed wanted for garbage collection???
 calctype = null;
 loctype = null;
 coordsys = null;
@@ -1289,14 +1287,14 @@ g_properties.getPropertyLang = function( name )
 }
 
 
-//BUGBUG rename to the more proper getPropertyByName???
+//TODO rename to the more proper getPropertyByName???
 g_properties.getProperty = function( name )
 {
 	var prop = eval( "g_properties." + name );
 	return prop;
 }
 
-//BUGBUG rename to the more proper getPropertyByIndex... maybe???
+//TODO rename to the more proper getPropertyByIndex... maybe???
 g_properties.getIndexedProperty = function( name, index )
 {
 	var prop = eval( "g_properties." + name );

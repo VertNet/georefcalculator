@@ -50,18 +50,7 @@ g_factory.makeArrayList = function( name, source )
 		{
 			this.contents = [];
 		};
-
-		//Why is this very logical function not used?
-		//It fails to determine index of 1 of spanish calc types, and possibly
-		//more issues. javascript bug or limitation is my guess
-		//the new function works perfectly well on the same exact data, *shrugs*
-		/*
-		al.indexOfOrig = function( value )
-		{
-			return this.contents.indexOf( value );
-		};
-		*/
-		
+	
 		al.indexOf = function( value )
 		{
 			var len = this.contents.length;
@@ -90,7 +79,7 @@ g_factory.makeArrayList = function( name, source )
 
 
 
-		//numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
+//JAVA numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
 /*
 		var formatDec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
 		var formatDeg = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
@@ -101,15 +90,13 @@ g_factory.makeArrayList = function( name, source )
 		var formatDistance = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
 		var formatCalcDec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
 */
+
 g_factory.makeFormat = function( name, type )
 {
 		var fm = {};
 		fm.name = name;
 		fm.type = type;
 		fm.maxdigits=0;
-
-		//fm.minval = min;
-		//fm.maxval = max;
 
 		if( type == "formatDec" )
 		{
@@ -150,7 +137,7 @@ g_factory.makeFormat = function( name, type )
 			return null;
 		}
 		
-		//FIXME in here we would also need to check LOCAL when we allow for locals
+		//TODO in here we would also need to check LOCAL when we allow for locals
 		fm.throwFormatError = function( cnum )
 		{
 			var temp = Number(cnum);
@@ -164,10 +151,9 @@ g_factory.makeFormat = function( name, type )
 		fm.checkFormat = function( cnum )
 		{
 			
-			//BUBUG error checking at this level?, throw dialog here?
 			if(typeof(cnum) == "string") 
 			{
-				cnum=parseFloat(cnum);
+				cnum=Number(cnum);
 			}
 			var nstr = cnum.toString();
 			//var digit_len = nstr.substring(nstr.indexOf(".")+1, nstr.length ).length;
@@ -177,10 +163,6 @@ g_factory.makeFormat = function( name, type )
 			cnum = parseFloat( newnum );
 			newnum = cnum.toString()
 
-			/*if( parseFloat( newnum ) !== parseFloat( nstr ) )
-			{
-				console.log("WARN changing decimals of num from :"+nstr+": to :"+newnum+": by format :"+ this.type + ": md="+ this.maxdigits );
-			} */
 			return newnum;
 		};
 		

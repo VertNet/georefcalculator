@@ -1723,7 +1723,7 @@ function testParameterLimits()
 		// Distance only
 		if( index==2 )
 		{
-			//			if( model == "Distance only (e.g., 5 mi from Bakersfield)") ){
+			//"Distance only (e.g., 5 mi from Bakersfield)"
 			maxerrordistance += Number( getDatumError());
 			maxerrordistance += Number( getExtentsError());
 			maxerrordistance += Number( getMeasurementError());
@@ -1736,7 +1736,7 @@ function testParameterLimits()
 		// Distance along path
 		if( index==3 )
 		{
-			//			if( model == "Distance along path (e.g., 13 mi E (by road) Bakersfield)") ){
+			//"Distance along path (e.g., 13 mi E (by road) Bakersfield)"
 			maxerrordistance += Number( getDatumError() );
 			maxerrordistance += Number( getExtentsError() );
 			maxerrordistance += Number( getMeasurementError() );
@@ -1748,7 +1748,7 @@ function testParameterLimits()
 		// Orthogonal directions
 		if( index==4 )
 		{
-			//			if( model == "Distance along orthogonal directions (e.g., 2 mi E and 3 mi N of Bakersfield)") ){
+			//"Distance along orthogonal directions (e.g., 2 mi E and 3 mi N of Bakersfield)")
 			// The method used here since version 20130205 is better method for calculating 
 			// uncertainty than the method described in detail in the Georeferencing Guidelines.
 			// This method always result in smaller radii than the published one, because the 
@@ -1780,7 +1780,7 @@ function testParameterLimits()
 		// Distance at Heading
 		if( index==5 )
 		{
-			//			if( model == "Distance at a heading (e.g., 10 mi E (by air) Bakersfield)") ){
+			//"Distance at a heading (e.g., 10 mi E (by air) Bakersfield)"
 			var dp = 0.0; // distance error
 			var d = Number( getOffset()); // offset distance
 			dp += Number( getDatumError());
