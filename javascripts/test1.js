@@ -289,6 +289,7 @@ function testParameterLimits()
 						coordprecisionstr;
 
 		uiSetLabelExplicit("TextFieldFullResult",resultstr);
+		return true;
 	}
 
 
@@ -1839,8 +1840,12 @@ function testParameterLimits()
 	function ButtonCalculate_afterActionPerformed()
 	{
 		clearResults();
-		calculateResults();
+		var r = calculateResults();
 		showResults(true);
+		if(r)
+		{
+			uiElementSetFocus("TextFieldFullResult", true);
+		}
 	}
 
 	function ButtonPromote_afterActionPerformed()

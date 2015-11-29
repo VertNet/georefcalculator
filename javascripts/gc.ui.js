@@ -286,6 +286,26 @@ function setTabOrders()
 }
 
 
+function uiElementSetFocus( target, selecttext )
+{
+	var el = document.getElementById( target );
+	
+	if( el )
+	{
+		el.focus();
+		el.focus();
+		if( selecttext && el.firstChild && el.firstChild.nodeName=="#text" )
+		{
+			el.select();
+		}
+	}
+	else
+	(
+		console.log("ERROR uiElementSetFocus element name not found" + target )
+	)
+
+}
+
 function uiIsVisible( name )
 {
 	var el = document.getElementById( name );
@@ -3225,7 +3245,7 @@ function errorDialog( error, title, source, style )
 			{
 				testpasses = false;
 				errorDialog(g_properties.getPropertyLang("error.extent.message"),
-					g_properties.getPropertyLang("error.offset.extent"), "TextFieldExtent", 0);
+					g_properties.getPropertyLang("error.extent.title"), "TextFieldExtent", 0);
 				uiSetTextExplicit("TextFieldExtent","0");
 			}
 		}
