@@ -123,7 +123,7 @@ function GC_init()
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
 	g_appletHeight = 480;  //TODO not needed anymore?
 	g_appletWidth = 620;   //TODO not needed anymore?
-	g_versionNumber = "20151129";
+	g_versionNumber = "20151130";
 
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
