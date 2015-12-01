@@ -400,8 +400,8 @@ function testDisplay( tc_base, name, expected, callstack )
 			}
 		}
 		else if( ( expected === null || expected == "null" || expected == undefined || expected == "" )
-				  &&
-				  ( st === null || st == "null" || st == undefined || st == "" ) 
+				&&
+				( st === null || st == "null" || st == undefined || st == "" ) 
 				)
 		{
 				test_result = g_PASS;
@@ -537,7 +537,7 @@ function testEmptyTextBoxes()
 function testSetSelectsDefault()
 {
 //Note: ORDER OF EXECUTION MATTERS
-	
+
 	uiSetSelectedIndex("ChoiceScale", 0 );
 	onScaleSelect();
 	uiSetSelectedIndex("ChoiceScaleFromDistUnits", 0 );
@@ -597,6 +597,206 @@ function testReset()
 	testEmptyTextBoxes();
 }
 
+function testMapElementToProperty( name )
+{
+  var returnVal = null;
+  if( name )
+  {
+	if( name == "ChoiceScale" )
+	{
+		returnVal=["static"];
+	}
+	else if( name == "ChoiceScaleFromDistUnits" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceScaleToDistUnits" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceToDistUnits" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceFromDistUnits" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceDistancePrecision" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceLatPrecision" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceDistUnits" )
+	{
+		returnVal=["static"];
+	}  
+	else if( name == "ChoiceLatDirDMS" )
+	{
+		//TODO nw /ew are all included imn heading making it possible to screw up test data
+		returnVal=[ "headings.n", "headings.s" ];
+	}  
+	else if( name == "ChoiceLongDirDMS" )
+	{
+		//TODO nw /ew are all included imn heading making it possible to screw up test data
+		returnVal=[ "headings.e", "headings.w" ];
+	}  
+	else if( name == "ChoiceLatDirMM" )
+	{
+		//TODO nw /ew are all included imn heading making it possible to screw up test data
+		returnVal=[ "headings.n", "headings.s" ];
+	}  
+	else if( name == "ChoiceLongDirMM" )
+	{
+		//TODO nw /ew are all included imn heading making it possible to screw up test data
+		returnVal=[ "headings.e", "headings.w" ];
+	}  
+	else if( name == "ChoiceOffsetEWDir" )
+	{
+		//TODO nw /ew are all included imn heading making it possible to screw up test data
+		returnVal=[ "headings.e", "headings.w" ];
+	}  
+	else if( name == "ChoiceCoordSystem" )
+	{
+		returnVal=["coordsys.dd","coordsys.ddm","coordsys.dms"];
+	}  
+	else if( name == "ChoiceOffsetNSDir" )
+	{
+		//TODO nw /ew are all included imn heading making it possible to screw up test data
+		returnVal=[ "headings.n", "headings.s" ];
+	}  
+	else if( name == "ChoiceDatum" )
+	{
+		returnVal=[ "static" ];  //not really rtue, datum not recorded is special cased
+	}  
+	else if( name == "ChoiceDirection" )
+	{
+		returnVal=[ "headings"];
+	}  
+	else if( name == "ChoiceCoordSource" )
+	{
+		returnVal=[ "coordsource" ];
+	}  
+	else if( name == "ChoiceModel" )
+	{
+		returnVal=["loctype"];
+	}  
+	else if( name == "ChoiceCalcType" )
+	{
+		returnVal=["calctype"];
+	}  
+	else if( name == "ChoiceLanguage" )
+	{
+		returnVal=["language"];
+	}  
+  }
+  if( !returnVal )
+  {
+	consoloe.log("ERROR testMapElementToProperty element not found:"+name+":")
+  }  
+}
+
+function testMapLanguageToShortName( language )
+{
+  var returnVal = null;
+  if( language )
+  {
+	var l = toLowerCase(language);
+	if( l == "en" || 
+		l == "english" || 
+		l == "english(local)" || 
+		l == "eng")
+	{
+		returnVal="en";
+	}
+	else if(l == "es" || 
+		l == "esp" || 
+		l == "espa" || 
+		l == "span" || 
+		l == "spanish" //|| 
+		//wont work  l == "español" 
+		)
+	{
+		returnVal="esp";
+	}
+	else if(//wont work  l == "português" || 
+		l == "pt" || 
+		l == "portuguese" || 
+		l == "port" )
+	{
+		returnVal="pt";	
+	}
+	else if(l == "fr" || 
+		l == "french" || 
+		//wont work  l == "français" || 
+		l == "fren" )
+	{
+		returnVal="fr";	
+	}
+	else if(l == "nl" || 
+		l == "neder" || 
+		l == "nederlands" || 
+		l == "ederlander" )
+	{
+		returnVal="nl";	
+	}
+  }
+  
+  if( !returnVal )
+  {
+	consoloe.log("ERROR testMapLanguageToShortName language not found:"+language+":")
+  }
+  
+  return returnVal;
+}
+
+//poorly mnamed, source is not used
+function testGetLangEquiv( src_lang, writ_lang, props_from )
+{
+	returnVal = null;
+
+	var src_val = g_properties.getProperty(props_from, src_lang );
+	var w_val =	g_properties.getProperty(props_from, writ_from );
+	
+	if( w_val && src_val )
+	{
+		returnVal = w_val;
+	}	
+	return returnVal;
+}
+
+
+function  testGetStaticValuesFromChoice( element, src_lang, writ_lang  )
+{
+	var el=document.getElementById(element);
+	var additions=[];
+	//testGetLangEquiv( src_lang, writ_lang, props_from )
+	var  slv = g_properties.getProperty( "datum.notrecorded", src_lang );
+	//var  elv = g_properties.getProperty( "datum.notrecorded", "en" );
+	var  wlv = g_properties.getProperty( "datum.notrecorded", writ_lang );
+
+	if( el )
+	{		
+		for( var i=0; i< el.length; i++ )
+		{
+			var val = el[i].text;
+			
+			if( src_lang && val && val == slv )
+			{
+				additions.push( wlv );
+			}
+			else
+			{
+				additions.push( val );
+			}
+		}
+	}
+
+}
+
 function runChoiceElement( tc_base, element, value, raw_name, callstack )
 {
 	var fName =  testHelperfName( callstack );
@@ -604,13 +804,71 @@ function runChoiceElement( tc_base, element, value, raw_name, callstack )
 	var test_result = g_FAIL;
 	var test_extra = "";
 	
-	test_result = testChooseSelectValue(tc_base, element, value, fName)
+	test_result = testChooseSelectValue(tc_base, element, value, fName);
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 	return test_result;
 }
 
-function runTextElement( tc_base, element, value, raw_name, callstack )
+function runChoiceElement_crap( tc_base, element, value, raw_name, callstack, ltf, ltw )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "runChoice" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	var addition = [];
+	
+	var t = value;
+	var lookup_table = {};
+	if( ltf !== ltw )
+	{
+		var lt = testMapLanguageToShortName(ltf);
+		var lw = testMapLanguageToShortName(ltw);
+		
+		var props= testMapElementToProperty(element);
+		if( props && props.length )
+		{
+			var l = props.length
+			
+			for( var i=0; i< l; i++)
+			{
+				if( props[i] == "static" ) //i should always end at for static
+				{
+						var additions = testGetStaticValuesFromChoice( element, ltf, ltw )
+				}
+				else
+				{
+						var str = props[i];
+						//TODO this is a really weak determine hack, lookds for "coords" rather than "headings.n"
+						var split_count = str.split(".");
+						if( split_count == 0 )
+						{
+							c = eval( "props" )
+							for( var k in c )
+							{
+								
+								var a = eval( props + k + ltf );
+								var b = eval( props + k + ltw );
+								if( a && b )
+								{
+									aditions.push( ltw );
+								}
+								
+							}
+						}
+				}
+			}
+			
+		}
+	}
+	
+	test_result = testChooseSelectValue(tc_base, element, t, fName)
+	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function runTextElement( tc_base, element, value, raw_name, callstack, ltf, ltw )
 {
 	var fName =  testHelperfName( callstack );
 	tc_base = testCaseName( tc_base, "runText" );
@@ -623,7 +881,7 @@ function runTextElement( tc_base, element, value, raw_name, callstack )
 	return test_result;
 }
 
-function runButtonElement( tc_base, element, value, raw_name, callstack )
+function runButtonElement( tc_base, element, value, raw_name, callstack, ltf, ltw )
 {
 	var fName =  testHelperfName( callstack );
 	tc_base = testCaseName( tc_base, "runText" );
@@ -636,10 +894,10 @@ function runButtonElement( tc_base, element, value, raw_name, callstack )
 	return test_result;
 }
 
-function runStandardCheckElement( tc_base, name, value, callstack )
+function runStandardCheckTextElement( tc_base, name, value, callstack, ltf, ltw )
 {
 	var fName =  testHelperfName( callstack );
-	tc_base = testCaseName( tc_base, "CheckElement" );
+	tc_base = testCaseName( tc_base, "CheckTextElement" );
 	var test_result = g_FAIL;
 	var test_extra = "";
 	
@@ -655,39 +913,221 @@ function runStandardCheckElement( tc_base, name, value, callstack )
 		test_extra = "value :" + value + ": found :" + temp + ": for element :" + name +":";
 	}
 	
+	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result;
+}
+
+function testGetValuesFromProps( props, ltw)
+{
+	return[];
+}
+
+function runStandardCheckChoiceElement( tc_base, name, value, callstack, ltf, ltw )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "CheckChoiceElement" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+	
+	var versus_val = uiGetSelectedValue( name );
+	var eng_equiv = null;
+	
+	var prop_types = testMapElementToProperty( name )
+	var eng_array_lookup = [];
+
+
+	//purpose of eng_array
+	//a test case a choice may short hand a set or an expect as "Distance at orth"
+	//"error only", nad27, and so on.
+	//we need to turn that short handvalue into the *exact* value to expect
+	//'error only' gets lookup being "Error only - enter Lat/Long for the actual locality"
+	//if we are testing versus spanish, we can then say in english I said "Error only - enter Lat/Long for the actual locality",
+	//what is the exact equiv in spanish
+	
+	//ex: text case right 'expect the spanish equiv for 'local' in 'ChoiceCoordSource'
+	//so  we lookup 'local' for possible matches in 'enn', finding only 1, "locality description"
+	//we then look up the spanish equiv to "locality description" as being "localidad textual"
+	//check the selected item of "ChoiceCoordSource" to be sure it equals "localidad textual"
+	//this is more useful for the calc and loc lookups
+	//short hand is very nice for datum
+	//language jumping is very nice if you dont know the other language, ex: french y nederlander ?Dutch? y potuguese.
+	//AND for now, some characters just wont work, ?cildilla?cidila?, e with accent grave, the n w/ tilde in spanish
+	//there are auto conversion issues in JS, css, HTML, or something I just cant figure out, so I have to short hand it.
+	
+	
+	//note soon eng_array will be ltw array
+	//that way a test could be short-hartned in any language, than translated to the target language
+	
+	//TODO very buggy check, if 1 and static, look up static, + special vars(special for datum)
+	// if 1 then assume like coordsys.*.*lang
+	// if 2 assume xxx.{yyy}.lang and loop trough, for dms, ddm, dd and such
+	
+	//if property type is static is not stored in any canonical array
+	//it is stuffed into SELECTS programatically, most the time
+	//ex: [km, m, yds, in]
+	//another type of static are mixed in 1 of 2??? ways
+	//1) ChoiceDatum, element option [0] is based on "datum.notrecorded.+language, then a very large array of static static data, then  NAD27, Adindan...
+	//2) distance precision, mixed, "static number" + units based lang, and "exact" for lang
+	//3)??
+	//testGetStaticValuesFromChoice special cases 1), and soon 2)
+	
+	
+	//short hand rules find the  value of test data, lower cases, *in* one and only one of all the strings in the array supplied
+	//'dist' matches 4 for of the possible loc type, no bueno. 'distance at' matches one and only one, bueno. 'named', again, bueno.
+	
+	//BEGIN SHORTHAND eng TO FULL VALUE eng LOOK UP
+	//if static, grab values from text choice boxes, special casing ChoiceDatum and ChoiceCoordSource
+	if( prop_types.length == 1 && prop_types[0]=="static" )
+	{
+			eng_array_lookup = testGetStaticValuesFromChoice(name);
+			if( name == "ChoiceDatum" )
+			{
+				eng_array_lookup.push("datum not recorded");
+			}
+			if( name == "ChoiceCoordSource" )
+			{
+				eng_array_lookup.push("exact");
+			}
+
+	}//if array leng of test data is 1, we lookup up elements data source, and for ex:  for 'coordsys' we grabs from all available, coordssys.dms, coordssys..ddm, *and* coordssys..dd
+	else if( prop_types.length == 1 )//coordssys and such
+	{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
+			eng_array_lookup = testGetValuesFromProps( props[0], ltw);
+	}//if array leng of test data is 2, we lookup up elements data source, 100% likely [ "headings.n", "headings.s"] or [ "headings.e", "headings.w"]
+	else if( prop_types.length == 2 )//headings
+	{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
+		eng_array_lookup.push(testGetValueFromProps( props[0], ltw));
+		eng_array_lookup.push(testGetValueFromProps( props[1], ltw));
+	}
+
+	var num_found=0;
+	var found_at=-1;
+	for( var i=0; i< eng_array_lookup.length; i++ )
+	{
+		var v = eng_array_lookup[i].indexOf( value );
+		if(v)
+		{
+			num_found++;
+		}
+		found_at++;
+	}
+
+	if( num_found == 1)
+	{
+		eng_equiv = eng_array_lookup[found_at];
+	}
+	
+	if( num_found == 1 )
+	{
+		test_extra = "runStandardCheckChoiceElement, bad test data, more than one lookup found, plerase refine v=:" + value + ":";
+	}
+	else
+	{
+
+		if( temp == value )
+		{
+			test_result = g_PASS;
+		}
+		else
+		{
+			test_extra = "value :" + value + ": found :" + temp + ": for element :" + name +":";
+		}
+	}
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 	return test_result;
 }
 
-function runStandardUIElement( tc_base, element, value, callstack )
+
+function runStandardUICheckElement( tc_base, element, value, callstack, ltf, ltw )
 {
 	var fName =  testHelperfName( callstack );
-	tc_base = testCaseName( tc_base, "runStandardUI" );
+	tc_base = testCaseName( tc_base, "runStandardUICheckElement" );
 	var test_result = g_FAIL;
 	var test_extra = "";
 
+	if( !ltf )
+	{
+		ltf="en";
+	}
+	
+	if( !ltw )
+	{
+		ltw="en";
+	}
+	
 	var raw_name = "";
 	var firstPart = element.substring( 0, 3 );
+	//TODO WARNING FIXME there are much better ways of getting element type than x == "string"
 	if( firstPart == "Cho" )
 	{
 		raw_name = element.substring( 6, element.length );
-		test_result = runChoiceElement( tc_base, element, value, raw_name, fName );
+		test_result = runStandardCheckChoiceElement( tc_base, element, value, raw_name, fName, ltf, ltw );
 	}
 	else if( firstPart == "txt")
 	{
 		raw_name = element.substring( 3, element.length );
-		test_result = runTextElement( tc_base, element, value, raw_name, fName );
+		test_result = runStandardCheckTextElement( tc_base, element, value, raw_name, fName, ltf, ltw );
 	}
 	else if( firstPart == "Tex" )
 	{
 		raw_name = element.substring( 4, element.length );
-		test_result = runTextElement( tc_base, element, value, raw_name, fName );
+		test_result = runStandardCheckTextElement( tc_base, element, value, raw_name, fName, ltf, ltw );
+	}
+//	else if( firstPart == "But" )
+//	{
+//		raw_name = element.substring( 6, element.length );
+//		test_result = runStandardCheckButtonElement( tc_base, element, value, raw_name, fName, ltf, ltw );
+//	}
+	else
+	{
+		test_extra = "unrecognised name scheme to element :"+element+":";
+	}
+
+ 	log_test_result(tc_base, fName, test_result, test_extra );
+	return test_result; 
+ }
+
+
+function runStandardUIElement( tc_base, element, value, callstack, ltf, ltw )
+{
+	var fName =  testHelperfName( callstack );
+	tc_base = testCaseName( tc_base, "runStandardUIElement" );
+	var test_result = g_FAIL;
+	var test_extra = "";
+
+	if( !ltf )
+	{
+		ltf="English";
+	}
+	
+	if( !ltw )
+	{
+		ltw="English";
+	}
+	
+	var raw_name = "";
+	var firstPart = element.substring( 0, 3 );
+	//TODO WARNING FIXME there are much better ways of getting element type than x == "string"
+	if( firstPart == "Cho" )
+	{
+		raw_name = element.substring( 6, element.length );
+		test_result = runChoiceElement( tc_base, element, value, raw_name, fName, ltf, ltw );
+	}
+	else if( firstPart == "txt")
+	{
+		raw_name = element.substring( 3, element.length );
+		test_result = runTextElement( tc_base, element, value, raw_name, fName, ltf, ltw );
+	}
+	else if( firstPart == "Tex" )
+	{
+		raw_name = element.substring( 4, element.length );
+		test_result = runTextElement( tc_base, element, value, raw_name, fName, ltf, ltw );
 	}
 	else if( firstPart == "But" )
 	{
 		raw_name = element.substring( 6, element.length );
-		test_result = runButtonElement( tc_base, element, value, raw_name, fName );
+		test_result = runButtonElement( tc_base, element, value, raw_name, fName, ltf, ltw );
 	}
 	else
 	{
@@ -713,8 +1153,12 @@ function runStandardUIElement( tc_base, element, value, callstack )
 	if( el )
 	{
 		for( var i = 0; i < el.length; i++ )
-		{			
-			if( el.options[ i ].text.indexOf( value ) > -1 )
+		{	
+			//TODO fix bad programming, inefficeint
+			var elv = el.options[ i ].text.toLowerCase();
+			var nv = value.toLowerCase( );
+			
+			if( elv.indexOf( nv ) > -1 )
 			{
 				if( first_found == -1 )
 				{
@@ -773,8 +1217,7 @@ function runStandardTests( tc_base, testObjs, callstack )
 	var pass_count = 0;
 	var expected_passes = -1;
 	var fail_count=0;
-	//var t = g_report_max_depth;
-	//g_report_max_depth = g_report_current_depth + 1;
+
 	if( testObjs )
 	{
 		if( testObjs.length )
@@ -784,68 +1227,94 @@ function runStandardTests( tc_base, testObjs, callstack )
 			{
   				testReset();
 
-				var sets = testObjs[i].set;
-				var exps = testObjs[i].expect;
+				var a = testObjs[i].a;
+
 				var temp_result = g_FAIL;
 				var temp_value="";
 				
-				if( sets && exps )
+				if( a && a.length)
 				{
 					fail_count = 0;
-					for (var kv in sets )
+					//var a = actions.a;
+					for (var j=0; j< a.length; j++ )
 					{
+						temp_result = g_FAIL;
+						var t = a[j];
 						//required? the if seems somewhat dumb in this context, sets are guaranteed .
-						if (sets.hasOwnProperty(kv))
+						//if (actions.hasOwnProperty(kv))
+						//{
+						var type = t.type;
+						var doit = t.doit;
+						var ltf=t.language_test_for;
+						var ltw=t.language_test_written;
+				
+						if( !ltf )
 						{
-							
-							var elName = kv;
-							temp_value = sets[kv];
-							temp_result = runStandardUIElement( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName );							
-							if( temp_result == g_FAIL)
-							{
-								fail_count = fail_count + 1;
+							ltf="en";
+						}
+						if( !ltw )
+						{
+							ltw="en";
+						}
+
+						if( doit )
+						{
+							for (var kv in doit )
+							{							
+								var elName = kv;
+								temp_value = doit[kv];
+								
+								if( type =="set" )
+								{
+									temp_result = runStandardUIElement( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName, ltf, ltw );
+								}
+								if( type =="expect" )
+								{
+									temp_result = runStandardUICheckElement( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName, ltf, ltw );
+								}
+								if( type =="visibility" )
+								{
+									temp_result = runStandardUICheckVisibility( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName, ltf, ltw );
+								}
+								else
+								{
+									test_extra = "ERROR: bad test data name="+ elName + "type= " + temp_value.type;
+								}
+								
+								if( temp_result == g_FAIL)
+								{
+									fail_count = fail_count + 1;
+								}
 							}
-							
+						}
+						else
+						{
+							test_extra = "ERROR: do element not found for "+ j;
+							fail_count = fail_count + 1;
 						}
 					}
-
-					for (var kv in exps )
-					{
-						//required? the if seems somewhat dumb in this context, sets is guaranteed .
-						if( exps.hasOwnProperty( kv ) )
-						{
-							var elName = kv;
-							temp_value = exps[kv];
-							temp_result = runStandardCheckElement( tc_base + "-"+ i+ "-"+testObjs[i].test_name + "-" , elName, temp_value, fName );							
-							if( temp_result == g_FAIL )
-							{
-								fail_count = fail_count + 1;
-							}
-						}
-					}
-
-					
 					
 					if( fail_count == 0 )
 					{
 						pass_count = pass_count + 1;
 					}
+					
 				}
 				else
 				{
-					test_extra = "setters or expected null for I" + i;
+					test_extra = "actions is null or empty or undefined";
 					i = testObjs.length;
 				}
 			}
 		}
 		else
 		{
-			text_extra = "testObjs length is empty";
+			text_extra = "testObjs length is 0";
 		}
 	}
 	else
 	{
-		text_extra = "testObjs null";
+		text_extra = "testObjs is null";
 	}
 
 	if( pass_count == expected_passes )
@@ -856,7 +1325,6 @@ function runStandardTests( tc_base, testObjs, callstack )
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 
-	//g_report_max_depth = t;
 
 	return test_result;
 }
@@ -886,9 +1354,9 @@ function test_it( tc_base, callstack  )
 //	testHiddenDisplay(tc_base+"(ePASS)", "ChoiceModel", "true", "null", fName );
 //	testChooseSelectValue( tc_base, "ChoiceCalcType", "Error only - enter Lat/Long for the actual locality", fName );
 	testReset();
-	testCalcType( tc_base, "err only", fName ) ;
-	testLocType( tc_base, "dist at", fName );
-	testReset();
+	//testCalcType( tc_base, "err only", fName ) ;
+	//testLocType( tc_base, "dist at", fName );
+	//testReset();
 	runStandardTests( tc_base, g_tests, fName );
 	//onChoiceTest()
 }

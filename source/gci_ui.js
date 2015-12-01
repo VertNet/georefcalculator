@@ -88,7 +88,7 @@ function downloadTests()
 		//created SELECT button
 		e = document.createElement( "SELECT" );
 		//TODO i<8 is bad, but we cant use g_tests.length because it ?no longer global? due to delayed load?
-		for( var i = 0; i< 8; i++ )
+		for( var i = 0; i< 9; i++ )
 		{
 			var option = document.createElement("option");
 			option.text = "Test " + i;
@@ -1238,7 +1238,7 @@ function setVariables( )
 			uiGetSelectedText( "ChoiceModel") ==
 			g_properties.getPropertyLang("loctype.orthodist") )
 		{
-			uiSetLabel("LabelOffset", g_properties.getPropertyLang("label.distns"));
+			uiSetLabelExplicit("LabelOffset", g_properties.getPropertyLang("label.distns"));
 		}
 		
 		if(coordsourceindex >= 0)
