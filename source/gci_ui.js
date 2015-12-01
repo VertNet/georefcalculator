@@ -44,13 +44,13 @@ __version__ = "gc.ui.js 2015-11-23T06:22:55-08:00"
 	var lastdecimaldegrees = 0;
 
 	var formatDec = g_factory.makeFormat("formatDec", "formatDec");
-	var  formatDeg = g_factory.makeFormat("formatDeg", "formatDeg");
-	var  formatMin = g_factory.makeFormat("formatMin", "formatMin");
-	var  formatMinMM = g_factory.makeFormat("formatMinMM", "formatMinMM");
-	var  formatSec = g_factory.makeFormat("formatSec", "formatSec");
-	var  formatCalcError = g_factory.makeFormat("formatCalcError", "formatCalcError");
-	var  formatDistance = g_factory.makeFormat("formatDistance", "formatDistance");
-	var  formatCalcDec = g_factory.makeFormat("formatCalcDec", "formatCalcDec");
+	var formatDeg = g_factory.makeFormat("formatDeg", "formatDeg");
+	var formatMin = g_factory.makeFormat("formatMin", "formatMin");
+	var formatMinMM = g_factory.makeFormat("formatMinMM", "formatMinMM");
+	var formatSec = g_factory.makeFormat("formatSec", "formatSec");
+	var formatCalcError = g_factory.makeFormat("formatCalcError", "formatCalcError");
+	var formatDistance = g_factory.makeFormat("formatDistance", "formatDistance");
+	var formatCalcDec = g_factory.makeFormat("formatCalcDec", "formatCalcDec");
 
 	var g_debug_active = false;
 	var g_debug_loaded = false;
@@ -123,9 +123,8 @@ function GC_init()
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
 	g_appletHeight = 480;  //TODO not needed anymore?
 	g_appletWidth = 620;   //TODO not needed anymore?
-	g_versionNumber = "20151123";
+	g_versionNumber = "20151130";
 
-	
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
 	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
@@ -284,7 +283,6 @@ function setTabOrders()
 	a=setElementOrder("TextFieldScaleToDistance", a);
 	a=setElementOrder("ChoiceScaleToDistUnits", a);
 }
-
 
 function uiElementSetFocus( target, selecttext )
 {
@@ -454,7 +452,6 @@ function uiEmptyTextElement( name )
 	return uiEmptyLabel( name );
 }
 
-
 function uiClearSelect( name )
 {
 	var el = document.getElementById( name );
@@ -470,7 +467,6 @@ function uiClearSelect( name )
 		console.log("ERROR uiClearSelect null element name: " + name)
 	)
 }
-	
 
 function uiClearAndFillSelectCanonical( name, source, initialEmpty )
 {
@@ -530,8 +526,6 @@ function uiSelectAddEmptyItem( name )
 		console.log("ERROR uiSelectAddEmptyItem null element name: " + name )
 	)
 }
-
-
 
 function uiFillLanguageSelect( name, source, initialEmpty )
 {
@@ -635,7 +629,6 @@ function uiFillSelectCanonical( name, source, initialEmpty )
 	)
 }
 
-
 function uiGetTextValue( name )
 {
 	var ti = document.getElementById( name );
@@ -651,7 +644,6 @@ function uiGetTextValue( name )
 	)
 	return val;
 }
-
 
 function setVariables( )
 {
@@ -794,7 +786,6 @@ function setVariables( )
 		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.exact."+language));
 	}	
 	
-	
 	function uiGetSelectedText( name )
 	{
 		var el = document.getElementById( name );
@@ -842,7 +833,6 @@ function setVariables( )
 		)
 		
 		return returnVal;
-	
 	}
 	
 	function uiGetSelectedIndex( name )
@@ -903,8 +893,6 @@ function setVariables( )
 		)
 	}
 	
-	
-	
 	function onCalcTypeSelect()
 	{
 		cleanCalcTypeSlate();
@@ -954,7 +942,6 @@ function setVariables( )
 		newModelChosen( model );
 		clearResults();
 	}
-
 
 	function onDatumSelect()
 	{
@@ -1044,7 +1031,6 @@ function setVariables( )
 		var datumindex, latprecindex, loctypeindex, calctypeindex;
 		var coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
 		var distprecindex, coordsourceindex, directionindex;
-		
 
 		latdirindex=uiGetSelectedIndex( "ChoiceLatDirDMS" );
 		longdirindex=uiGetSelectedIndex( "ChoiceLongDirDMS" );
@@ -1062,11 +1048,9 @@ function setVariables( )
 		distprecindex=uiGetSelectedIndex( "ChoiceDistancePrecision" );
 		directionindex=uiGetSelectedIndex( "ChoiceDirection" );
 
-
 		var num = null;
 		
 		var s = uiGetTextValue("txtT7Lat_MinMM");
-		
 
 		if( s == null || s.length == 0 ){
 			m = 0;
@@ -1119,7 +1103,6 @@ function setVariables( )
 			m = num; //.doubleValue();
 		}
 		extent=m;
-
 	
 		s = uiGetTextValue("TextFieldMeasurementError");
 		m = 0;
@@ -1130,7 +1113,6 @@ function setVariables( )
 			m = num; //.doubleValue();
 		}
 		measurementerror=m;
-
 
 		s = uiGetTextValue("TextFieldOffset");
 		m = 0;
@@ -1161,7 +1143,6 @@ function setVariables( )
 			m = num; //.doubleValue();
 		}
 		heading=m;
-
 
 		var language = g_language;
 		clearResults();
@@ -1206,7 +1187,6 @@ function setVariables( )
 		
 		populateDistancePrecision(uiGetSelectIndexValue("ChoiceDistUnits",distunitsindex));
 
-
 		uiSetTextExplicit("txtT2Dec_Lat", formatDec.checkFormat( decimallatitude ) );
 		uiSetTextExplicit("txtT2Dec_Long", formatDec.checkFormat( decimallongitude ) );
 		uiSetTextExplicit("txtT7Lat_MinMM",formatMinMM.checkFormat( latminmm ) );
@@ -1231,8 +1211,6 @@ function setVariables( )
 		{
 			uiSetSelectedIndex("ChoiceModel",loctypeindex);
 		}
-		
-
 		
 		if( uiGetSelectedIndex("ChoiceModel") != 0 && 
 			uiGetSelectedText( "ChoiceModel") ==
@@ -1293,16 +1271,13 @@ function setVariables( )
 		{
 			uiSetSelectedIndex("ChoiceDirection",directionindex);
 		}
-		
 	}
-
 
 	function onModelSelect( )
 	{
 		var value = uiGetSelectedText("ChoiceModel");
 		newModelChosen(value);
 	}
-	
 
 	//BEGIN Scale and distance converter control selects
 	function onFromDistUnitsSelect()
@@ -1325,7 +1300,6 @@ function setVariables( )
 		convertScale();
 	}
 	
-	
 	function onScaleConvertKeyUp()
 	{
 			convertScale();
@@ -1341,7 +1315,6 @@ function setVariables( )
 		convertScale();
 	}
 	//END Scale and distance converter control selects
-
 	
 	function newModelChosen( value )
 	{	
@@ -1454,7 +1427,6 @@ function setVariables( )
 		clearResults();
 	}
 
-
 	function onCoordSystemSelect( )
 	{
 		var value = uiGetSelectedText("ChoiceCoordSystem");
@@ -1468,7 +1440,6 @@ function setVariables( )
 		translateCoords();
 	}
 
-
 	function cleanCalcTypeSlate(){
 		cleanSlate();
 
@@ -1479,7 +1450,6 @@ function setVariables( )
 		setVisibility("LabelStepZero", false );
 		setVisibility("LabelStepOne", false );
 		setVisibility("LabelStepTwo", false );
-		
 	}
 
 	function cleanSlate()
@@ -1530,8 +1500,6 @@ function setVariables( )
 		uiEmptyTextElement( "TextFieldFullResult" );
 	}
 
-
-
 	function setLabels( ){
 		var language = g_language;
 		var version = g_versionNumber;
@@ -1568,9 +1536,7 @@ function setVariables( )
 		
 		uiSetLabel("LabelDistanceConverter","label.distanceconverter");
 		uiSetLabel("LabelScaleConverter","label.scaleconverter");
-	
 	}
-	
 
 	function getCoordPrecisionError()
 	{
@@ -1707,8 +1673,6 @@ function setVariables( )
 		return error;
 	}
 
-	
-
 function onBodyKeyUp( e  )
 {
 	if( e.keyIdentifier == "Enter" && uiIsVisible("ButtonCalculate") )
@@ -1780,7 +1744,6 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDistancePrecision", g_properties.getPropertyLang("coordprec.dd.exact") );
 		uiSetSelectedValue("ChoiceDistancePrecision", "1 " + units );
 	}
-
 
 	function populateStableControls()
 	{
@@ -1985,7 +1948,6 @@ function onBodyKeyUp( e  )
 		
 		uiSetSelectedValue("ChoiceDatum",g_properties.getPropertyLang("datum.notrecorded"));
 
-
 		// Distance Precision controls
 		populateDistancePrecision("km");
 
@@ -2145,8 +2107,6 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceOffsetEWDir",g_properties.getPropertyLang("headings.e"));
 	}
 
-
-
 	function showCoordinatePrecision( b )
 	{
 		PanelCoordPrecision_SetVisible(b);
@@ -2169,7 +2129,6 @@ function onBodyKeyUp( e  )
 		{
 			console.log( "ERROR setVisibility el is null, name  " + name + " value is X" + v +"X");
 		}
-		
 	}
 	
 	function PanelCoords_SetVisible( v )
@@ -2190,7 +2149,6 @@ function onBodyKeyUp( e  )
 		setVisibility( "LabelLatPrecision", v );
 		setVisibility( "ChoiceLatPrecision", v );
 	}
-	
 
 	function PanelDecLatLong_SetVisible( v )
 	{
@@ -2202,7 +2160,6 @@ function onBodyKeyUp( e  )
 		f_pointer( "txtT2Dec_Lat");
 		f_pointer( "txtT2Dec_Long" );
 	}
-
 
 	function PanelDDMMSS_SetVisible( v )
 	{
@@ -2231,7 +2188,6 @@ function onBodyKeyUp( e  )
 		f_pointer( "Label23" );
 	}
 	
-	
 	function PanelDecMin_SetVisible( v )
 	{
 		var f_pointer = uiHideElement;
@@ -2251,7 +2207,6 @@ function onBodyKeyUp( e  )
 		f_pointer( "Label22111" );
 		f_pointer( "Label21212" );
 		f_pointer( "Label231" );
-	
 	}
 
 	function PanelResults_SetVisible( v )
@@ -2547,7 +2502,6 @@ function onBodyKeyUp( e  )
 			uiHideElement( "TextFieldCalcErrorUnits");
 		}
 	}
-
 	
 	function showNSOffset( b )
 	{
@@ -2571,7 +2525,6 @@ function onBodyKeyUp( e  )
 		uiSetLabel( "LabelOffsetEW", "label.offset" );
 		setVisibility( "LabelOffsetEW", b );
 	}
-
 	
 	function showRelevantCoordinates( )
 	{
@@ -2623,8 +2576,6 @@ function errorDialog( error, title, source, style )
 				e.style.fontWeight = "normal";				
 			}
 }
-	
-	
 
 //BEGIN test* functions
 
@@ -2694,7 +2645,6 @@ function errorDialog( error, title, source, style )
 		var s = null;
 		var num = null;
 		
-		
 		if( uiIsVisible("txtT2Dec_Lat") )
 		{
 			s = uiGetTextValue("txtT2Dec_Lat");
@@ -2735,7 +2685,6 @@ function errorDialog( error, title, source, style )
 				}
 			}
 		}
-
 		
 		if( uiIsVisible("txtT2Dec_Long" ) )
 		{
@@ -2747,7 +2696,7 @@ function errorDialog( error, title, source, style )
 			else
 			{ // test input within limits and valid
 				try
-{
+				{
 					num = formatCalcDec.throwFormatError( s );					
 					//JAVA d = num.doubleValue();
 					d = num;
@@ -2778,8 +2727,6 @@ function errorDialog( error, title, source, style )
 			}
 		}
 
-		
-		
 		if( uiIsVisible("txtT7Lat_DegDMS") )
 		{
 			s = uiGetTextValue("txtT7Lat_DegDMS");
@@ -2822,8 +2769,6 @@ function errorDialog( error, title, source, style )
 			}
 		}
 
-
-		
 		if( uiIsVisible("txtT7Long_DegDMS") )
 		{
 			s = uiGetTextValue("txtT7Long_DegDMS");
@@ -2865,7 +2810,6 @@ function errorDialog( error, title, source, style )
 			}
 		}
 
-				
 		if( uiIsVisible("txtT7Lat_DegMM") )
 		{
 			s = uiGetTextValue("txtT7Lat_DegMM");
@@ -2979,7 +2923,6 @@ function errorDialog( error, title, source, style )
 				}
 			}
 		}
-
 		
 		if( uiIsVisible("txtT7Long_MinDMS") )
 		{
@@ -3146,8 +3089,6 @@ function errorDialog( error, title, source, style )
 		return testpasses;
 	}
 
-
-
 	function testOffsetLimits()
 	{
 //	throws ParseException
@@ -3192,7 +3133,6 @@ function errorDialog( error, title, source, style )
 				uiSetTextExplicit("TextFieldOffset","0");
 			}
 		}
-
 	
 		s = uiGetTextValue("TextFieldOffsetEW");
 		if( s == null || s.length == 0 )
@@ -3286,7 +3226,6 @@ function errorDialog( error, title, source, style )
 		return testpasses;
 	}
 
-
 	function testResultCoordinates()
 	{
 		if( newdecimallatitude > 90.0 )
@@ -3347,8 +3286,6 @@ function errorDialog( error, title, source, style )
 		//clearResults();
 	}
 
-
-
 	function TextFieldHeading_focusGained()
 	{
 		//clearResults();
@@ -3365,8 +3302,6 @@ function errorDialog( error, title, source, style )
 	}
 	
 //END TextX onFocus functions
-
-
 
 //BEGIN txtX onFocus functions
 //FIXME remove these no longer used functions, and references to them in grc.html
@@ -3429,4 +3364,3 @@ function errorDialog( error, title, source, style )
 	{
 		//clearResults();
 	}
-

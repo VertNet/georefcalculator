@@ -50,10 +50,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceCalcType">
-	<SPAN id="MARKER" class="span20">
+	<SPAN id="MARKER" class="span17">
 		<LABEL id="LabelCalcType" >Calculation Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span80" align="right">
+	<SPAN id="MARKER" class="span83" align="right">
 		<SELECT id="ChoiceCalcType" onChange="onCalcTypeSelect()" class="SELECT95">
 			<OPTION>CalcType1 MARKER</OPTION>
 			<OPTION>CalcType2 MARKER</OPTION>
@@ -63,10 +63,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divStep2">
-	<SPAN id="MARKER" class="span20">
+	<SPAN id="MARKER" class="span17">
 		<LABEL id="MARKER" class="LABELMARKER"></LABEL>
 	</SPAN>
-	<SPAN class="span80">
+	<SPAN class="span83">
 		<LABEL id="LabelStepOne" class="LABELSTEP">MARKER Step 2</LABEL>
 	</SPAN>
 	<!-- <SPAN id="MARKER">
@@ -75,10 +75,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 </DIV>
 
 <DIV id="divChoiceModel">
-	<SPAN id="MARKER" class="span20">
+	<SPAN id="MARKER" class="span17">
 		<LABEL id="LabelModel" >Locality Type MARKER</LABEL>
 	</SPAN>
-	<SPAN id="MARKER" class="span80" align="right">
+	<SPAN id="MARKER" class="span83" align="right">
 		<SELECT id="ChoiceModel" onChange="onModelSelect()" class="SELECT95">
 			<OPTION>Loc Type1 MARKER</OPTION>
 			<OPTION>Loc Type2 MARKER</OPTION>
@@ -99,7 +99,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			<SPAN id="MARKER" class="span44" align="left">
 				<LABEL id="LabelCoordSource" >Coordinate SourceBUG</LABEL>
 			</SPAN>
-			<SPAN id="MARKER" class="span56">			
+			<SPAN id="MARKER" class="span56" align="right">			
 				<SELECT id="ChoiceCoordSource" onChange="onCoordSourceSelect()" class="SELECT95">
 					<OPTION>CordSource 1 MARKER</OPTION>
 					<OPTION>CordSource 2 MARKER</OPTION>
@@ -150,7 +150,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			<LABEL id="LabelCoordSystem" >Coordinate SystemBUG</LABEL>
 		</SPAN>	
 		
-		<SPAN id="MARKER" class="span56">
+		<SPAN id="MARKER" class="span56" align="right">
 			<SELECT id="ChoiceCoordSystem" onChange="onCoordSystemSelect()" class="SELECT95">
 				<OPTION>Deg 1 MARKER</OPTION>
 				<OPTION>Deg 2 MARKER</OPTION>
@@ -174,9 +174,6 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV id="divLocality2">
 <!--</DIV id="step3">-->
-
-
-
 
 <DIV id="divPanelCoords">
 <!--</DIV id="divLocality3">-->
@@ -229,9 +226,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 </div>
-	<!--</DIV id="divLocality3">-->
-
-
+<!--</DIV id="divLocality3">-->
 
 <!--<DIV id="divLocality4">-->
 <div>
@@ -280,9 +275,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 </div>
-		<!--</DIV id="divLocality4">-->
-
-
+<!--</DIV id="divLocality4">-->
 
 <DIV id="divLocality5">
 	<SPAN class="span56">
@@ -316,10 +309,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 <DIV id="divLocality6">
 	<SPAN id="MARKER" class="span56" align="left">
-		<SPAN id="MARKER" class="span44" align="left">
+		<SPAN id="MARKER" class="span48" align="left">
 			<LABEL id="LabelLatPrecision" >Coordinate Precision MARKER</LABEL>
 		</SPAN>
-		<SPAN id="MARKER" class="span56" align="right">
+		<SPAN id="MARKER" class="span52" align="right">
 			<SELECT id="ChoiceLatPrecision" onChange="onLatPrecisionSelect()" class="selectCoordPrecision">
 				<OPTION>0 deg MARKER</OPTION>
 				<OPTION>0.1 deg MARKER</OPTION>
@@ -344,41 +337,40 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
-
 <DIV id="ReadOnlyLabels">
-	<SPAN class="span70" align="center"">
-		<SPAN id="MARKER" class="span28">
+	<SPAN class="span72" align="center"">
+		<SPAN id="MARKER" class="span30">
 			<LABEL id="LabelCalcDecLat">Decimal Latitude MARKER</LABEL>
 		</SPAN> 
-		<SPAN id="MARKER" class="span28">
+		<SPAN id="MARKER" class="span30">
 			<LABEL id="LabelCalcDecLong">Decimal Longitude MARKER</LABEL>
 		</SPAN> 
-		<SPAN id="MARKER" class="span44">
+		<SPAN id="MARKER" class="span40">
 			<LABEL id="LabelCalcMaxError">Maximum Error Distance MARKER</LABEL>
 		</SPAN> 
 	</SPAN> 
-	<SPAN class="span30" align="center"">
+	<SPAN class="span29" align="center"">
 		<LABEL></LABEL>
 	</SPAN> 
 </DIV>
 
 <DIV id="ReadOnlyFields1">
-	<SPAN class="span70" >
-		<SPAN id="MARKER" class="span28" align="left">
+	<SPAN class="span72" >
+		<SPAN id="MARKER" class="span30" align="left">
 			<INPUT type="text" id="TextFieldCalcDecLat" class="readOnlyInput" readonly></INPUT>
 		</SPAN> 
-		<SPAN id="MARKER" class="span28" align="center">
+		<SPAN id="MARKER" class="span30" align="center">
 			<INPUT type="text" id="TextFieldCalcDecLong" class="readOnlyInput" readonly></INPUT>
 		</SPAN> 
-		<SPAN id="MARKER" class="span28" align="right">
+		<SPAN id="MARKER" class="span30" align="right">
 			<INPUT type="text" id="TextFieldCalcErrorDist" class="readOnlyInput" readonly></INPUT>
 		</SPAN> 
-		<SPAN id="MARKER" class="span17" align="left">
+		<SPAN id="MARKER" class="span10" align="left">
 			<INPUT type="text"  id="TextFieldCalcErrorUnits" class="readOnlyInput" readonly></INPUT>
 		</SPAN> 
 	</SPAN>
 
-	<SPAN class="span30" align="left">
+	<SPAN class="span29" align="left">
 		<LABEL>&nbsp;</LABEL>
 		<BUTTON id="ButtonCalculate" onclick="ButtonCalculate_afterActionPerformed()" >CalculateMARKER</Button>
 		<LABEL>&nbsp;</LABEL>
@@ -474,12 +466,12 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		<TR>
 			<TD width="60%" valign="MIDDLE">
 				<P>
-					<A href="./docs/GeoreferencingCalculatorManualv2.html" target="_blank"><b>Calculator Manual (English)</b></A>
+					<A href="../docs/GeoreferencingCalculatorManualv2.html" target="_blank"><b>Calculator Manual (English)</b></A>
 				</P>
 			</TD>
 			<TD width="40%" valign="MIDDLE">
 				<P>
-					<A href="./docs/GeorefGuide.html" target="_blank"><b>Georeferencing Guidelines (English)</b></A>
+					<A href="../docs/GeorefGuide.html" target="_blank"><b>Georeferencing Guidelines (English)</b></A>
 				</P>
 			</TD>
 		</TR>
@@ -491,7 +483,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		<TR>
 			<TD width="100%" valign="MIDDLE">
 				<P>
-					<A href="./docs/GeoreferencingQuickReferenceGuide.pdf" target="_blank"><b>Georeferencing Quick Reference Guide (pdf)</b></A>
+					<A href="../docs/GeoreferencingQuickReferenceGuide.pdf" target="_blank"><b>Georeferencing Quick Reference Guide (pdf)</b></A>
 				</P>
 			</TD>
 		</TR>
@@ -533,7 +525,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				<P>John Wieczorek 3 Nov 2001 </P>
 			</TD>
 			<TD width="50%" valign="MIDDLE">
-				<i>Rev. 18 Nov 2015</i>
+				<i>Rev. 30 Nov 2015</i>
 			</TD>
 		</TR>
 	</TBODY>
