@@ -604,93 +604,93 @@ function testMapElementToProperty( name )
   {
 	if( name == "ChoiceScale" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}
 	else if( name == "ChoiceScaleFromDistUnits" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceScaleToDistUnits" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceToDistUnits" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceFromDistUnits" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceDistancePrecision" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceLatPrecision" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceDistUnits" )
 	{
-		returnVal=["static"];
+		returnVal={ d:0, a:["static"] };
 	}  
 	else if( name == "ChoiceLatDirDMS" )
 	{
 		//TODO nw /ew are all included imn heading making it possible to screw up test data
-		returnVal=[ "headings.n", "headings.s" ];
+		returnVal={  d:1, a:[ "headings.n", "headings.s" ];
 	}  
 	else if( name == "ChoiceLongDirDMS" )
 	{
 		//TODO nw /ew are all included imn heading making it possible to screw up test data
-		returnVal=[ "headings.e", "headings.w" ];
+		returnVal={  d:1, a:[ "headings.e", "headings.w" ];
 	}  
 	else if( name == "ChoiceLatDirMM" )
 	{
 		//TODO nw /ew are all included imn heading making it possible to screw up test data
-		returnVal=[ "headings.n", "headings.s" ];
+		returnVal={  d:1, a:[ "headings.n", "headings.s" ];
 	}  
 	else if( name == "ChoiceLongDirMM" )
 	{
 		//TODO nw /ew are all included imn heading making it possible to screw up test data
-		returnVal=[ "headings.e", "headings.w" ];
+		returnVal={  d:1, a:[ "headings.e", "headings.w" ];
 	}  
 	else if( name == "ChoiceOffsetEWDir" )
 	{
 		//TODO nw /ew are all included imn heading making it possible to screw up test data
-		returnVal=[ "headings.e", "headings.w" ];
+		returnVal={  d:1, a:[ "headings.e", "headings.w" ];
 	}  
 	else if( name == "ChoiceCoordSystem" )
 	{
-		returnVal=["coordsys.dd","coordsys.ddm","coordsys.dms"];
+		returnVal={  d:2, a:["coordsys"];
 	}  
 	else if( name == "ChoiceOffsetNSDir" )
 	{
 		//TODO nw /ew are all included imn heading making it possible to screw up test data
-		returnVal=[ "headings.n", "headings.s" ];
+		returnVal={  d:1, a:[ "headings.n", "headings.s" ] };
 	}  
 	else if( name == "ChoiceDatum" )
 	{
-		returnVal=[ "static" ];  //not really rtue, datum not recorded is special cased
+		returnVal={  d:0, a:[ "static" ] };  //not really rtue, datum not recorded is special cased
 	}  
 	else if( name == "ChoiceDirection" )
 	{
-		returnVal=[ "headings"];
+		returnVal={  d:2, a:[ "headings"] };
 	}  
 	else if( name == "ChoiceCoordSource" )
 	{
-		returnVal=[ "coordsource" ];
+		returnVal={  d:2, a:[ "coordsource" ] };
 	}  
 	else if( name == "ChoiceModel" )
 	{
-		returnVal=["loctype"];
+		returnVal={  d:2, a:["loctype"] };
 	}  
 	else if( name == "ChoiceCalcType" )
 	{
-		returnVal=["calctype"];
+		returnVal={  d:2, a:["calctype"] };
 	}  
 	else if( name == "ChoiceLanguage" )
 	{
-		returnVal=["language"];
+		returnVal={  d:0, a:["language"] };
 	}  
   }
   if( !returnVal )
@@ -919,9 +919,18 @@ function runStandardCheckTextElement( tc_base, name, value, callstack, ltf, ltw 
 
 function testGetValuesFromProps( props, ltw)
 {
+	returnArray = null;
+	returnArray = [];
+	for(var p in props )
+	{
+		
+	}
+	
+	
 	return[];
 }
 
+//TODO this should be for check or set choice, OR label, not just check choice
 function runStandardCheckChoiceElement( tc_base, name, value, callstack, ltf, ltw )
 {
 	var fName =  testHelperfName( callstack );
@@ -930,10 +939,12 @@ function runStandardCheckChoiceElement( tc_base, name, value, callstack, ltf, lt
 	var test_extra = "";
 	
 	var versus_val = uiGetSelectedValue( name );
-	var eng_equiv = null;
+	var full_eng_equiv = null;
+	var target_lang_equiv = null;
 	
 	var prop_types = testMapElementToProperty( name )
 	var eng_array_lookup = [];
+	var ltf_array_lookup = [];
 
 
 	//purpose of eng_array
@@ -975,31 +986,53 @@ function runStandardCheckChoiceElement( tc_base, name, value, callstack, ltf, lt
 	//short hand rules find the  value of test data, lower cases, *in* one and only one of all the strings in the array supplied
 	//'dist' matches 4 for of the possible loc type, no bueno. 'distance at' matches one and only one, bueno. 'named', again, bueno.
 	
-	//BEGIN SHORTHAND eng TO FULL VALUE eng LOOK UP
+	//BEGIN SHORTHAND TO FILL possible eng values into array
 	//if static, grab values from text choice boxes, special casing ChoiceDatum and ChoiceCoordSource
-	if( prop_types.length == 1 && prop_types[0]=="static" )
+	if( prop_types.d == 0 && prop_types.a[0]=="static" )
 	{
-			eng_array_lookup = testGetStaticValuesFromChoice(name);
 			if( name == "ChoiceDatum" )
 			{
-				eng_array_lookup.push("datum not recorded");
+					//eng_array_lookup = testGetStaticValuesFromChoice(name);
+					//TODO FIXME look this up lagnuage dependant
+					eng_array_lookup.push(g_properties.getProperty("datum.notrecorded", "en"))
+					eng_array_lookup = testGetStaticValuesFromChoice(name);
 			}
-			if( name == "ChoiceCoordSource" )
+			if( name == "ChoiceDistancePrecision" )
 			{
+				var msmt_types = [ "km","m","mi","yds","ft","nm" ]
+				for( var t in msmt_types )
+				{
+					eng_array_lookup.push( "100 " + t  );
+					eng_array_lookup.push( "10 " + t  );
+					eng_array_lookup.push( "1 " + t  );
+					eng_array_lookup.push( "1/2 " + t  );
+					eng_array_lookup.push( "1/3 " + t  );
+					eng_array_lookup.push( "1/8 " + t  );
+					eng_array_lookup.push( "1/10 " + t  );
+					eng_array_lookup.push( "1/100 " + t  );
+				}
+				eng_array_lookup.push(g_properties.getProperty("oordprec.dd.exact.",'en'));
+
 				eng_array_lookup.push("exact");
 			}
-
+			else
+			{
+				eng_array_lookup = testGetStaticValuesFromChoice(name);
+			}
 	}//if array leng of test data is 1, we lookup up elements data source, and for ex:  for 'coordsys' we grabs from all available, coordssys.dms, coordssys..ddm, *and* coordssys..dd
-	else if( prop_types.length == 1 )//coordssys and such
+	else if( prop_types.d == 1 )//coordssys and such
 	{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
-			eng_array_lookup = testGetValuesFromProps( props[0], ltw);
+		eng_array_lookup = testGetValuesFromProps( props[0], ltw);
 	}//if array leng of test data is 2, we lookup up elements data source, 100% likely [ "headings.n", "headings.s"] or [ "headings.e", "headings.w"]
-	else if( prop_types.length == 2 )//headings
+	else if( prop_types.d == 2 )//headings
 	{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
+		eng_array_lookup.push(testGetValueFromProps( props[0], ltw));
+		eng_array_lookup.push(testGetValueFromProps( props[1], ltw));
 		eng_array_lookup.push(testGetValueFromProps( props[0], ltw));
 		eng_array_lookup.push(testGetValueFromProps( props[1], ltw));
 	}
 
+	//BEGIN SHORTHAND eng vs eng array lookup
 	var num_found=0;
 	var found_at=-1;
 	for( var i=0; i< eng_array_lookup.length; i++ )
@@ -1014,25 +1047,69 @@ function runStandardCheckChoiceElement( tc_base, name, value, callstack, ltf, lt
 
 	if( num_found == 1)
 	{
-		eng_equiv = eng_array_lookup[found_at];
+		//must be an index and value
+		full_eng_quiv = eng_array_lookup[found_at];
 	}
-	
-	if( num_found == 1 )
+		
+
+	if( !full_eng_quiv )
 	{
-		test_extra = "runStandardCheckChoiceElement, bad test data, more than one lookup found, plerase refine v=:" + value + ":";
+		test_extra = "runStandardCheckChoiceElement, bad test data, more than one, or 0 lookups found, please refine v=:" + value + ": number found=:" + num_found+":";
 	}
 	else
 	{
+		if( prop_types.length == 1 && prop_types[0]=="static" )
+		{
+				ltf_array_lookup = testGetStaticValuesFromChoice(name);
+				
+				if( name == "ChoiceDatum" )
+				{
+					ltf_array_lookup = testGetStaticValuesFromChoice(name);
+					//TODO FIXME look this up lagnuage dependant
+					ltf_array_lookup.push(g_properties.getProperty("datum.notrecorded", ltf),)
+					
+				}
+				else if( name == "ChoiceDistancePrecision" )
+				{
+					var msmt_types = [ "km","m","mi","yds","ft","nm" ]
+					for( var t in msmt_types )
+					{
+						ltf_array_lookup.push( "100 " + t  );
+						ltf_array_lookup.push( "10 " + t  );
+						ltf_array_lookup.push( "1 " + t  );
+						ltf_array_lookup.push( "1/2 " + t  );
+						ltf_array_lookup.push( "1/3 " + t  );
+						ltf_array_lookup.push( "1/8 " + t  );
+						ltf_array_lookup.push( "1/10 " + t  );
+						ltf_array_lookup.push( "1/100 " + t  );
+					}
+					ltf_array_lookup.push(g_properties.getProperty("oordprec.dd.exact.",ltf));
+				}
+		}
+		else if( prop_types.length == 1 )//coordssys and such
+		{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
+			ltf_array_lookup = testGetValuesFromProps( props[0], ltf);
+		}//if array leng of test data is 2, we lookup up elements data source, 100% likely [ "headings.n", "headings.s"] or [ "headings.e", "headings.w"]
+		else if( prop_types.length == 2 )//headings
+		{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
+			ltf_array_lookup.push(testGetValueFromProps( props[0], ltf));
+			ltf_array_lookup.push(testGetValueFromProps( props[1], ltf));
+		}
 
-		if( temp == value )
-		{
-			test_result = g_PASS;
-		}
-		else
-		{
-			test_extra = "value :" + value + ": found :" + temp + ": for element :" + name +":";
-		}
+		full_eng_quiv = eng_array_lookup[found_at];
 	}
+
+
+	//BUGBUG, overwritesprevious tes extra values
+	if( temp == value )
+	{
+		test_result = g_PASS;
+	}
+	else
+	{
+		test_extra = "value :" + value + ": found :" + temp + ": for element :" + name +":";
+	}
+
 	
 	log_test_result(tc_base, fName, test_result, test_extra );
 	return test_result;
