@@ -1693,13 +1693,23 @@ function onBodyKeyUp( e  )
 	{
 		if( uiIsVisible("ButtonCalculate" ) && e.keyCode !== 9 )
 		{
-			var src = e.srcElement
-			var id = src.id
+			var src = e.srcElement;
+			var id = src.id;
 			var clear = true;
 			
-			if( id == "TextFieldFromDistance" || id == "TextFieldScaleFromDistance" || src.readOnly )
+			if( id == "TextFieldFromDistance" )
 			{
-				clear = false
+				clear = false;
+				onDistConvertKeyUp();
+			}
+			else if( id == "TextFieldScaleFromDistance" )
+			{
+				clear = false;
+				onScaleConvertKeyUp()
+			}
+			else if( src.readOnly )
+			{
+				clear = false;
 			}
 			
 			if( clear )

@@ -36,6 +36,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		if( s == null || s.length == 0 )
 		{
 			fromdist = 0;
+			uiSetLabelExplicit("TextFieldToDistance","0");
 		}
 		else
 		{
@@ -88,6 +89,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		if( s == null || s.length == 0 )
 		{
 			fromdist = 0;
+			uiSetLabelExplicit("TextFieldScaleToDistance","0");
 		}
 		else
 		{
