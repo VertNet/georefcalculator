@@ -16,6 +16,14 @@ __copyright__ = "Copyright 2015 Regents of the University of California"
 __version__ = "gc.ui.js 2015-11-23T06:22:55-08:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
+
+/*  FROM JAVA
+	private int sign = 1;
+	private int degrees = 0;
+	private int minutes = 0;
+	private double seconds = 0;
+	private double decminutes = 0;
+*/	
 	
 	var sign = 1;
 	var degrees = 0;
@@ -1430,14 +1438,16 @@ function setVariables( )
 	function onCoordSystemSelect( )
 	{
 		var value = uiGetSelectedText("ChoiceCoordSystem");
-		lastcoordsystem = g_canonicalcoordsystems.indexOf( value );
-		lastcoordsystem = lastcoordsystem  + 1;
+		//lastcoordsystem = g_canonicalcoordsystems.indexOf( value );
+		//huh?? not in java lastcoordsystem = lastcoordsystem  + 1;
 		clearResults();
 		showRelevantCoordinates();
 		populateCoordinatePrecision(value);
 		
 		testLatLongLimits();
 		translateCoords();
+		lastcoordsystem = g_canonicalcoordsystems.indexOf( value );
+		lastcoordsystem = lastcoordsystem  + 1;
 	}
 
 	function cleanCalcTypeSlate(){

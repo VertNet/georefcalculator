@@ -411,7 +411,7 @@ function testParameterLimits()
 			{
 				decimallatitude *= -1.0;
 			}
-			uiSetLabelExplicit("txtT2Dec_Lat", formatDeg.checkFormat(decimallatitude )); //Dec.format(decimallatitude) );
+			uiSetLabelExplicit("txtT2Dec_Lat", formatDec.checkFormat(decimallatitude )); //Dec.format(decimallatitude) );
 
 			uiSetLabelExplicit("txtT7Lat_DegMM",formatDeg.checkFormat(degrees)); //Deg.format(degrees) );
 			decminutes = getDecimalMinutesFromMS( minutes, seconds );
@@ -873,13 +873,13 @@ function testParameterLimits()
 			sign = 1;
 		}
 		
-		seconds = sign*dval*3600.0; // 14461.2,  24156
-		var degs = sign*dval; // 40.17, 67.1
+		seconds = sign*Number(dval)*3600.0; // 14461.2,  24156
+		var degs = sign*Number(formatDeg.checkFormat(dval)); // 40.17, 67.1
 		degrees = degs; // 40, 67  
 		seconds -= degrees*3600.0; // 61.2, 36.0
 		var mins = seconds/60.0; // 1.02, 0.6
 		decminutes = mins;
-		minutes = mins; // 1, 0
+		minutes = formatDeg.checkFormat(mins); // 1, 0
 		seconds -= minutes*60.0; // 1.2, 36.0
 		var secsAsInt = getNearestInt( seconds*1000.0 );
 		seconds=secsAsInt/1000.0;
@@ -1375,13 +1375,16 @@ function testParameterLimits()
 	{
 		var dValue = dval;
 		//JAVA var ival = dValue.intValue();
-		var ival = dValue;
-		if( dval-ival <= 0.5 )
+		var ival = Number(formatDeg.checkFormat(dValue));
+		/*if( dval-ival <= 0.5 )
 		{
 			return ival;
 		}
-		
-		else return( ival+1 );
+		else
+		{
+			return( ival+1 );
+		}*/
+			return ival;
 	}
 
 	function getNewCoordinates(){ 
