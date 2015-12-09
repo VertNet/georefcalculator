@@ -1014,14 +1014,14 @@ function setVariables( )
 	{
 		clearResults();
 		var value = uiGetSelectedText("ChoiceLongDirDMS");
-		uiSetSelectedValue("ChoiceLongDirMM",value);
+		uiSetSelectedValue("ChoiceLongDirDMS",value);
 	}
 
 	function onLongDirMMSelect()
 	{
 		clearResults();
 		var value = uiGetSelectedText("ChoiceLongDirMM");
-		uiSetSelectedValue("ChoiceLongDirDMS",value);
+		uiSetSelectedValue("ChoiceLongDirMM",value);
 	}
 
 	function newLanguageChosen( ){
