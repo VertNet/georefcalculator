@@ -131,7 +131,7 @@ function GC_init()
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
 	g_appletHeight = 480;  //TODO not needed anymore?
 	g_appletWidth = 620;   //TODO not needed anymore?
-	g_versionNumber = "20151130";
+	g_versionNumber = "20151210";
 
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
@@ -315,24 +315,34 @@ function uiElementSetFocus( target, selecttext )
 function uiIsVisible( name )
 {
 	var el = document.getElementById( name );
-	returnVal = null;
 	if( el )
 	{
-		var st = el.style.display
-		if( st == "none" )
+		var v = el.visibility;
+		if (typeof v !== 'undefined') {
+		    if( v == "visible" )
+		    {
+		    	return true;
+		    }
+		    else
+		    {
+		    	return false;
+		    }
+		}
+		var st = el.style.display;
+		if( st == "none" || st == "" )
 		{
-			returnVal = false;
+			return false;
 		}
 		else 
 		{
-			returnVal = true;
+			return true;
 		}	
 	}
 	else
 	(
 		console.log("ERROR uiIsVisible null element name:" + name )
 	)
-	return returnVal;
+	return null;
 }
 
 function onLanguageSelect()
@@ -2412,7 +2422,7 @@ function onBodyKeyUp( e  )
 		
 		f_pointer("ChoiceDirection" );
 		f_pointer("LabelDirection" );
-	
+///***	
 		if( b && value == g_properties.getPropertyLang("headings.nearestdegree" ) )
 		{
 			uiShowElement( "TextFieldHeading" );
@@ -2599,34 +2609,107 @@ function errorDialog( error, title, source, style )
 
 //BEGIN test* functions
 
-	function testHeadingLimits()
+	function testExtentLimits()
 	{
-//JAVA original source kept for debugging and reference
-/*
-		boolean testpasses = true;
-		String s = null;
-		double d = 0;
-		Number num = null;
-*/
+		if( !uiIsVisible("TextFieldExtent") )
+		{
+			return "true";
+		}
 		var testpasses = "true";
 		var s = null;
 		var d = 0;
 		var num = null;
-		
-		/*if( !uiIsVisible("TextFieldHeading") )
+		s = uiGetTextValue("TextFieldExtent");
+		if( s == null || s.length == 0 )
 		{
-			return testpasses;
-		}*/
-		
+			uiSetLabelExplicit("TextFieldExtent","0");
+		}
+		else
+		{ // test input within limits and valid
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
+				//JAVA d = num.doubleValue();
+				d = num;
+				if( d < 0 )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.extent.message"),
+						g_properties.getPropertyLang("error.extent.title"), "TextFieldExtent", 0);
+					uiSetTextExplicit("TextFieldExtent","0");
+				}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.extent.message"),
+					g_properties.getPropertyLang("error.extent.title"), "TextFieldExtent", 0);
+				uiSetTextExplicit("TextFieldExtent","0");
+			}
+		}
+		return testpasses;
+	}
+
+	function testMeasurementErrorLimits()
+	{
+		if( !uiIsVisible("TextFieldMeasurementError") )
+		{
+			return "true";
+		}
+		var testpasses = "true";
+		var s = null;
+		var d = 0;
+		var num = null;
+		s = uiGetTextValue("TextFieldMeasurementError");
+		if( s == null || s.length == 0 )
+		{
+			uiSetLabelExplicit("TextFieldMeasurementError","0");
+		}
+		else
+		{ // test input within limits and valid
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
+				//JAVA d = num.doubleValue();
+				d = num;
+				if( d < 0 )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
+						g_properties.getPropertyLang("error.measurementerror.title"), "TextFieldMeasurementError", 0);
+					uiSetTextExplicit("TextFieldMeasurementError","0");
+				}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
+					g_properties.getPropertyLang("error.measurementerror.title"), "TextFieldMeasurementError",0);
+				uiSetTextExplicit("TextFieldMeasurementError","0");
+			}
+		}
+		return testpasses;
+	}
+
+	function testHeadingLimits()
+	{
+		if( !uiIsVisible("TextFieldHeading") )
+		{
+			return "true";
+		}
+		var testpasses = "true";
+		var s = null;
+		var d = 0;
+		var num = null;		
 		s = uiGetTextValue("TextFieldHeading");
-			
 		if( s == null || s.length == 0 )
 		{
 			uiSetLabelExplicit("TextFieldHeading","0");
 		}
 		else
 		{ // test input within limits and valid
-			try{
+			try
+			{
 				num = formatCalcDec.throwFormatError( s );
 				//JAVA d = num.doubleValue();
 				d = num;
@@ -2644,6 +2727,88 @@ function errorDialog( error, title, source, style )
 				errorDialog(g_properties.getPropertyLang("error.heading.message"),
 					g_properties.getPropertyLang("error.heading.title"), "TextFieldHeading", 0);
 				uiSetTextExplicit("TextFieldHeading","0");
+			}
+		}
+		return testpasses;
+	}
+
+	function testOffsetLimits()
+	{
+		if( !uiIsVisible("TextFieldOffset") )
+		{
+			return "true";
+		}
+		var testpasses = true;
+		var s = null;
+		var d = 0;
+		var num = null;
+		s = uiGetTextValue("TextFieldOffset");
+		if( s == null || s.length == 0 )
+		{
+			uiSetLabelExplicit("TextFieldOffset","0");
+		}
+		else
+		{ // test input within limits and valid
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
+				//JAVA d = num.doubleValue();
+				d = num;
+				if( d < 0 )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.offset.message"),
+						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
+					uiSetTextExplicit("TextFieldOffset","0");
+				}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.offset.message"),
+					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
+				uiSetTextExplicit("TextFieldOffset","0");
+			}
+		}
+		return testpasses;
+	}
+	
+	function testOffsetEWLimits()
+	{
+		if( !uiIsVisible("TextFieldOffsetEW") )
+		{
+			return "true";
+		}
+		var testpasses = true;
+		var s = null;
+		var d = 0;
+		var num = null;
+		s = uiGetTextValue("TextFieldOffsetEW");
+		if( s == null || s.length == 0 )
+		{
+			uiSetLabelExplicit("TextFieldOffsetEW","0");
+		}
+		else
+		{
+			try
+			{
+				num = formatCalcDec.throwFormatError( s );
+				//JAVA d = num.doubleValue();
+				d = num;
+				if( d < 0 )
+				{
+					testpasses = false;
+					errorDialog(g_properties.getPropertyLang("error.offset.message"),
+						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetEW", 0);
+					uiSetTextExplicit("TextFieldOffsetEW","0");
+				}
+			}
+			catch( exp )
+			{
+				testpasses = false;
+				errorDialog(g_properties.getPropertyLang("error.offset.message"),
+					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetEW", 0);
+				uiSetTextExplicit("TextFieldOffsetEW","0");
 			}
 		}
 		return testpasses;
@@ -3104,143 +3269,6 @@ function errorDialog( error, title, source, style )
 						g_properties.getPropertyLang("error.sec.title"),"txtT7Long_Sec", 0);
 					uiSetTextExplicit("txtT7Long_Sec","0");
 				}
-			}
-		}
-		return testpasses;
-	}
-
-	function testOffsetLimits()
-	{
-//	throws ParseException
-		//Original JAVA kept for reference and debugging
-		/*
-		boolean testpasses = true;
-		String s = null;
-		double d = 0;
-		Number num = null;
-		*/
-		var testpasses = true;
-		var s = null;
-		var d = 0;
-		var num = null;
-		
-		s = uiGetTextValue("TextFieldOffset");
-		if( s == null || s.length == 0 )
-		{
-			uiSetLabelExplicit("TextFieldOffset","0");
-		}
-		else
-		{
-			try
-			{
-				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
-				
-				d = num;
-				if( d < 0 )
-				{
-					testpasses = false;
-					errorDialog(g_properties.getPropertyLang("error.offset.message"),
-						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
-					uiSetTextExplicit("TextFieldOffset","0");
-				}
-			}
-			catch( exp )
-			{
-				testpasses = false;
-				errorDialog(g_properties.getPropertyLang("error.offset.message"),
-					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
-				uiSetTextExplicit("TextFieldOffset","0");
-			}
-		}
-	
-		s = uiGetTextValue("TextFieldOffsetEW");
-		if( s == null || s.length == 0 )
-		{
-			uiSetLabelExplicit("TextFieldOffsetEW","0");
-		}
-		else
-		{
-			try
-			{
-				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
-				
-				d = num;
-				if( d < 0 )
-				{
-					testpasses = false;
-					errorDialog(g_properties.getPropertyLang("error.offset.message"),
-						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetEW", 0);
-					uiSetTextExplicit("TextFieldOffsetEW","0");
-				}
-			}
-			catch( exp )
-			{
-				testpasses = false;
-				errorDialog(g_properties.getPropertyLang("error.offset.message"),
-					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetEW", 0);
-				uiSetTextExplicit("TextFieldOffsetEW","0");
-			}
-		}
-		
-		s = uiGetTextValue("TextFieldExtent");
-		if( s == null || s.length == 0 )
-		{
-			uiSetLabelExplicit("TextFieldExtent","0");
-		}
-		else
-		{ // test input within limits and valid
-			try
-			{
-				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
-				
-				d = num;
-				if( d < 0 )
-				{
-					testpasses = false;
-					errorDialog(g_properties.getPropertyLang("error.extent.message"),
-						g_properties.getPropertyLang("error.extent.title"), "TextFieldExtent", 0);
-					uiSetTextExplicit("TextFieldExtent","0");
-				}
-			}
-			catch( exp )
-			{
-				testpasses = false;
-				errorDialog(g_properties.getPropertyLang("error.extent.message"),
-					g_properties.getPropertyLang("error.extent.title"), "TextFieldExtent", 0);
-				uiSetTextExplicit("TextFieldExtent","0");
-			}
-		}
-
-		s = uiGetTextValue("TextFieldMeasurementError");
-		
-		if( s == null || s.length == 0 )
-		{
-			uiSetLabelExplicit("TextFieldMeasurementError","0");
-		}
-		else
-		{ // test input within limits and valid
-			try
-			{
-				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
-				d = num;
-				if( d < 0 )
-				{
-					testpasses = false;
-					errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
-						g_properties.getPropertyLang("error.measurementerror.title"), "TextFieldMeasurementError", 0);
-					uiSetTextExplicit("TextFieldMeasurementError","0");
-				}
-			}
-			catch( exp )
-			{
-				testpasses = false;
-				errorDialog(g_properties.getPropertyLang("error.measurementerror.message"),
-					g_properties.getPropertyLang("error.measurementerror.title"), "TextFieldMeasurementError",0);
-				uiSetTextExplicit("TextFieldMeasurementError","0");
 			}
 		}
 		return testpasses;

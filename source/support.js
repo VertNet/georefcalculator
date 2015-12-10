@@ -155,31 +155,40 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 			}
 		}
 	}
-
 	
-	
-function testParameterLimits()
+	function testParameterLimits()
 	{
-		var testspass = testLatLongLimits();
-		if( testspass )
-		{
-			testspass = testHeadingLimits();
-			if( testspass )
-			{
-				testspass = testOffsetLimits();
-				if( testspass == false )
-				{
-					console.log("ERROR: testParameterLimits() failed at testOffsetLimits()");
-				}
-			}
-			
-		}
-		else
+		if( !testLatLongLimits() )
 		{
 			console.log("ERROR: testParameterLimits() failed at testLatLongLimits");
+			return false;
+		}		
+		if( !testHeadingLimits() )
+		{
+			console.log("ERROR: testParameterLimits() failed at testHeadingLimits()");
+			return false;
 		}
-
-		return testspass;
+		if( !testOffsetLimits() )
+		{
+			console.log("ERROR: testParameterLimits() failed at testOffsetLimits()");
+			return false;
+		}
+		if( !testOffsetEWLimits() )
+		{
+			console.log("ERROR: testParameterLimits() failed at testOffsetEWLimits()");
+			return false;
+		}
+		if( !testExtentLimits() )
+		{
+			console.log("ERROR: testParameterLimits() failed at testExtentLimits()");
+			return false;
+		}
+		if ( !testMeasurementErrorLimits() )
+		{
+			console.log("ERROR: testParameterLimits() failed at testMeasurementErrorLimits()");
+			return false;
+		}
+		return true;
 	}
 
 	function calculateResults()
