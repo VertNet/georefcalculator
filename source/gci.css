@@ -13,14 +13,53 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "grc2.css 2015-11-23T20:33:00-07:00"
+__version__ = "grc2.css 2015-12-16T16:36:00-03:00"
 */
 
+.main{
+	width: 666px;
+}
 
+DIV{
+	padding: 2px;
+//	background-color: #009000;
+//	background-color: #C0C0C0;
+}
+
+.divStandard{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.divImage{
+	padding-left: 12px;
+	padding-top: 3px;
+	padding-right: 15px;
+//	padding-bottom: 6px;
+	height: 426px;
+	background-image: url("mappemonde660.jpg");
+	background-repeat:no-repeat;
+//	background-size: 660px 426px;
+	position: relative;
+	min-height: 150px;
+}
+
+.divFooter{
+	margin-left: 6px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.divInfo{
+	padding-left: 6px;
+	padding-right: 8px;
+}
 
 select:focus {
 	border: 2px solid blue;
 }
+
 input:focus {
 	border: 2px solid blue;
 }
@@ -67,10 +106,6 @@ SELECT{
 	ppadding-left:1px;
 	ppadding-right:1px;
 	text-overflow: ellipsis;
-}
-
-.main{
-	width: 640px;
 }
 
 .SELECTDATUM{
@@ -262,7 +297,7 @@ LABEL{
 	font-style: normal;
 	font-size: .75em;
 	color: black;
-	background-color: #C0C0C0;
+//	background-color: #C0C0C0;
 }
 
 .LABELSTEP{
@@ -273,7 +308,7 @@ LABEL{
 	color: black;
 	width: 100%;
 	text-align: center;
-	background-color: #C0C0C0;
+//	background-color: #C0C0C0;
 }
 
 .LABELBUGBUG{
@@ -281,7 +316,7 @@ LABEL{
 	font-style: normal;
 	font-size: .75em;
 	color: red;
-	background-color: #C0C0C0;
+//	background-color: #C0C0C0;
 }
 
 .LABELINFO{
@@ -289,7 +324,7 @@ LABEL{
 	font-style: normal;
 	font-size: 0.55em;
 	color: black;
-	background-color: #C0C0C0;
+//	background-color: #C0C0C0;
 }
 
 .borderedText{
@@ -297,8 +332,6 @@ LABEL{
 	font-style: normal;
 	font-size: .75em;
 	display: inline-block;
-	
-	
 	background-color: #FFFFFF;
 	display:inline-block;
 	border-style: inset;
@@ -374,11 +407,6 @@ BUTTON{
 	background-color: #C0C0C0;
 }
 
-DIV{
-	padding: 3px;
-	background-color: #C0C0C0;
-}
-
 SPAN{
 	display: inline-block;
 	width: 19%;
@@ -411,6 +439,13 @@ SPAN{
 	min-width: 78%;
 	max-width: 78%;
 	width: 78%;
+}
+
+.span78{
+	display: inline-block;
+	min-width: 76%;
+	max-width: 76%;
+	width: 76%;
 }
 
 .span75{
@@ -586,9 +621,4 @@ SPAN{
 	min-width: 10%;
 	max-width: 10%;
 	width: 10%;
-}
-
-.divBreak{
-	padding: 3px;
-	background-color: #C0C0C0;
 }

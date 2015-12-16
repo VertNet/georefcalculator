@@ -20,8 +20,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 -->
 <html>
 <LINK href="gci.css" rel="stylesheet" type="text/css">
-<body onLoad="GC_init()"onkeyup="onBodyKeyUp( event )" class="main">
-
+<body onLoad="GC_init()" onkeyup="onBodyKeyUp( event )" class="main">
 
 <script src="Datumerror.js"></script>
 <script src="properties.js"></script>
@@ -29,11 +28,11 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <script src="gci_ui.js"></script>
 <script src="support.js"></script>
 
-<DIV id="divFiller"  class="divBreak">
-</DIV>
+<!-- Begin Calculator container with background image. -->
+<DIV id="divCalculator" class="divImage">
+
 <DIV id="divLanguage" class="divStandard">
 	<SPAN class="span25">
-
 		<SELECT id="ChoiceLanguage" onChange="onLanguageSelect()" select="none">
 			<Option>inglais MARKER</option>
 			<Option>inglais MARKER</option>
@@ -49,7 +48,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
-<DIV id="divChoiceCalcType">
+<DIV id="divChoiceCalcType" class="divStandard">
 	<SPAN id="MARKER" class="span17">
 		<LABEL id="LabelCalcType" >Calculation Type MARKER</LABEL>
 	</SPAN>
@@ -62,16 +61,13 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
-<DIV id="divStep2">
+<DIV id="divStep2" class="divStandard">
 	<SPAN id="MARKER" class="span17">
 		<LABEL id="MARKER" class="LABELMARKER"></LABEL>
 	</SPAN>
 	<SPAN class="span83">
 		<LABEL id="LabelStepOne" class="LABELSTEP">MARKER Step 2</LABEL>
 	</SPAN>
-	<!-- <SPAN id="MARKER">
-		<LABEL id="MARKER" class="LABELMARKER">CENTER ME!!</LABEL>
-	</SPAN> -->
 </DIV>
 
 <DIV id="divChoiceModel">
@@ -86,7 +82,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
-<DIV id="divStep3">
+<DIV id="divStep3" class="divStandard">
 	<SPAN id="MARKER" class="span25">
 	</SPAN>
 	<SPAN class="span75">
@@ -141,7 +137,6 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				</SELECT>
 			</SPAN>
 		</SPAN>
-	<!--</SPAN>-->
 </DIV id="divLocality1">
 
 <DIV id="divLocality2">
@@ -173,10 +168,8 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 </DIV id="divLocality2">
-<!--</DIV id="step3">-->
 
 <DIV id="divPanelCoords">
-<!--</DIV id="divLocality3">-->
 	<SPAN id="MARKER" class="span56">
 		<SPAN id="MARKER" class="span25" align="left">
 			<LABEL id="lblT2Dec_Lat" >Latitude MARKER</LABEL>
@@ -197,17 +190,14 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 					<OPTION>???</OPTION>
 			</SELECT>
 
-			
 			<!--  DD Control-->
 			<INPUT TYPE="text" id="txtT2Dec_Lat"   onfocus="txtT2Dec_Lat_focusGained()" class="textDecDeg"></INPUT>
-
 			
 			<!--  DDM Controls-->
 			<INPUT TYPE="text" id="txtT7Lat_DegMM"  class="textDegree"  onfocus="txtT7Lat_DegMM_focusGained()"  ></INPUT>
 			<LABEL id="Label21212" class="super">o</LABEL>
 			<INPUT TYPE="text" id="txtT7Lat_MinMM"  class="textSecond"  onfocus="txtT7Lat_MinMM_focusGained()"  ></INPUT><!-- text second is intentional-->
 			<LABEL id="Label2111111" class="super">&#39;</LABEL>
-			
 			<SELECT id="ChoiceLatDirMM" onChange="onLatDirMMSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
@@ -226,9 +216,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 </div>
-<!--</DIV id="divLocality3">-->
 
-<!--<DIV id="divLocality4">-->
 <div>
 	<SPAN id="MARKER" class="span56">
 		<SPAN id="MARKER" class="span25" align="left">
@@ -243,7 +231,6 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			<LABEL id="Label222" class="super">&#39;</LABEL>
 			<INPUT TYPE="text" id="txtT7Long_Sec"  class="textSecond"  onfocus="txtT7Long_Sec_focusGained()" ></INPUT>
 			<LABEL id="Label2211" class="super">&quot;</LABEL>
-			
 			<SELECT id="ChoiceLongDirDMS" onChange="onLongDirDMSSelect()" class="selectDirection">
 					<OPTION>?</OPTION>
 					<OPTION>??</OPTION>
@@ -275,7 +262,6 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 </div>
-<!--</DIV id="divLocality4">-->
 
 <DIV id="divLocality5">
 	<SPAN class="span56">
@@ -386,15 +372,14 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN> 
 </DIV>
 
-<!-- BEGIN/END MARKER the distance converter elements belong here-->
+<DIV id="bottom" class="divFooter">
 <DIV>
-	<SPAN class="span100" id="">
-	</SPAN>
+<!-- BEGIN/END MARKER the distance converter elements belong here-->
 	<SPAN class="span100" id="" align="left">
-		<SPAN class="span20" id="" align="left">		
+		<SPAN class="span22" id="" align="left">		
 				<LABEL id="LabelDistanceConverter"> Distance Converter</LABEL>
 		</SPAN>		
-		<SPAN class="span80" id="">
+		<SPAN class="span78" id="">
 			<SPAN class="span36" id="" align="right">
 				<INPUT TYPE="text" id="TextFieldFromDistance"  class="textConvert"  onfocus="TextFieldFromDistance_focusGained()" onkeyup="onDistConvertKeyUp()" ></INPUT>
 				<SELECT id="ChoiceFromDistUnits"  onChange="onFromDistUnitsSelect()" class="selectUnits">
@@ -415,10 +400,10 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		</SPAN>
 	</SPAN>
 	<SPAN class="span100" id="" >		
-		<SPAN class="span20" id="" align="left">		
+		<SPAN class="span22" id="" align="left">		
 			<LABEL id="LabelScaleConverter"> Scale Converter</LABEL>
 		</SPAN>		
-		<SPAN class="span80" id="" >				
+		<SPAN class="span78" id="" >				
 			<SPAN class="span36" id="" align="right">
 					<INPUT TYPE="text" id="TextFieldScaleFromDistance" onfocus="TextFieldScaleFromDistance_focusGained()" onkeyup="onScaleConvertKeyUp()" class="textConvert" ></INPUT>		
 					<SELECT id="ChoiceScaleFromDistUnits"  onChange="onScaleFromDistUnitsSelect()" class="selectUnits">
@@ -436,7 +421,6 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 
 				<LABEL id="LabelScaleEquals">=</LABEL>
 
-				<!-- <LABEL id="TextFieldScaleToDistance" class="readOnlySmall"></LABEL> -->
 				<INPUT TYPE="text" id="TextFieldScaleToDistance" class="readOnlyInputSmall" readOnly></INPUT>
 
 				<SELECT id="ChoiceScaleToDistUnits"  onChange="onScaleToDistUnitsSelect()" class="selectPrecision">
@@ -449,8 +433,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
-
-<DIV id="divInfo" >
+<DIV id="divInfo" class="divInfo">
 	<SPAN id="MARKER" class="span50">
 		<LABEL id="LabelVersion" class="LABELINFO">MARKER version 1234 Klingon</LABEL>
 	</SPAN>
@@ -458,6 +441,9 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 		<LABEL align="right" id="LabelCopyRight" class="LABELINFO">Copyright 2015 Regents of the University of California</LABEL>
 	</SPAN>
 </DIV>
+</DIV>
+</DIV>
+<!-- End Calculator container with background image. -->
 
 <DIV id="divLinks" style="background-color: #FFFFFF";>
 
@@ -501,7 +487,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <HR>
 
 <P>
-	This application was adapted from an earlier version in Java by John Wieczorek with contributions from Qinghua Guo, Carmen Boureau, and Craig Wieczorek
+	This application was adapted by Craig Wieczorek and John Wieczorek from an earlier version in Java by John Wieczorek with contributions from Qinghua Guo, Carmen Boureau, and Craig Wieczorek.
 </P>
 
 <P>
@@ -509,9 +495,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	Gustavo Iglesias (Espa&ntilde;ol), Jose (Wly) Dos Santos (Portugu&ecirc;s), Tendro Ramaharitra (Fran&ccedil;ais), Robert Hijmans (Nederlands), Peter Desmet (Nederlands)
 </P>
 <P>
-	Wieczorek et al., 2004. Point-radius method for georeferencing locality descriptions and calculating associated uncertainty.
-	<BR>
-	International Journal of Geographical Information Science 18(8):745-767." at <A href="http://manisnet.org/Wieczoreketal2004PointRadius.pdf">http://manisnet.org/Wieczoreketal2004PointRadius.pdf.</a>
+	Wieczorek et al., 2004. Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767 (accessible from <A href="http://manisnet.org/Wieczoreketal2004PointRadius.pdf">http://manisnet.org/Wieczoreketal2004PointRadius.pdf</a>).
 </P>
 
 <TABLE cellspacing="0" border="0" width="624"></TABLE>
@@ -525,7 +509,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 				<P>John Wieczorek 3 Nov 2001 </P>
 			</TD>
 			<TD width="50%" valign="MIDDLE">
-				<i>Rev. 30 Nov 2015</i>
+				<i>Rev. 16 Dec 2015</i>
 			</TD>
 		</TR>
 	</TBODY>
@@ -548,7 +532,8 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <HR>
 
 <A rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png">
+<!--	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png">-->
+	<img alt="Creative Commons License" style="border-width:0" src="./cc-by-sa.png">
 </A>
 <BR>
 Georeferencing Calculator is licensed under a <A HREF="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License.</A>
@@ -558,7 +543,5 @@ Based on a work at <A HREF="https://github.com/VertNet/georefcalculator/">https:
 <BR>
 
 </DIV>
-
-
 </body>
 </html>
