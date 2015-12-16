@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "gc.ui.js 2015-11-23T06:22:55-08:00"
+__version__ = "gc.ui.js 2015-12-16T16:54-03:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 
@@ -95,7 +95,7 @@ function downloadTests()
 		
 		//created SELECT button
 		e = document.createElement( "SELECT" );
-		//TODO i<8 is bad, but we cant use g_tests.length because it ?no longer global? due to delayed load?
+		// TODO: i<8 is bad, but we cant use g_tests.length because it ?no longer global? due to delayed load?
 		for( var i = 0; i< 9; i++ )
 		{
 			var option = document.createElement("option");
@@ -129,9 +129,7 @@ function downloadTests()
 function GC_init()
 {
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
-	g_appletHeight = 480;  //TODO not needed anymore?
-	g_appletWidth = 620;   //TODO not needed anymore?
-	g_versionNumber = "20151210";
+	g_versionNumber = "20151216";
 
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
@@ -142,23 +140,16 @@ function GC_init()
 	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
 	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
 	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
-	
-	//Locale currentLocale = Locale.getDefault();
-	g_currentLocale = "en"; //FIXME TODO getDefaultLocal();
-
-	//NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
-	
-	g_numberFormatter = "en"; //FIXME TODO getNumberInstance(currentLocale); 
-
+	g_currentLocale = "en";
+	g_numberFormatter = "en";
 	g_language = "en";	
 
 	createDatum();
 	var datumErrorInst = datumerror; 
-
 	var language = g_language; 
 	setVariables( language );
-	
-	//TODO the initialization of g_langualist should be its own function
+
+	// Initialize the language list and get the properties
 	g_languagelist.clear();
 	var i = 0;
 	var lang = g_properties.getIndexedProperty( "language.name", i )
@@ -386,7 +377,6 @@ function uiShowElement( name )
 	)
 
 }
-
 
 function uiSetLabel( name, source )
 {
@@ -1166,9 +1156,6 @@ function setVariables( )
 		clearResults();
 		setVariables(language);
 		setLabels();		
-		
-		//TODO add me back in when we start doing formatters
-		//setDecimalFormat();
 		
 		var ci = uiGetSelectedIndex("ChoiceCalcType");
 		var mi = uiGetSelectedIndex("ChoiceModel");
@@ -2470,7 +2457,7 @@ function onBodyKeyUp( e  )
 
 	function showDistanceConverter( b )
 	{
-		//TODO should this ever get used the text and labels sould you show/hihe element funtion instead
+		//TODO: If this ever gets used, the text and labels should use show/hide element function instead.
 		setVisibility( "ChoiceFromDistUnits", b );
 		setVisibility( "ChoiceToDistUnits", b );
 		setVisibility( "LabelEquals", b );
@@ -2481,7 +2468,7 @@ function onBodyKeyUp( e  )
 
 	function showScaleConverter( b )
 	{
-		//TODO should this ever get used the text and labels sould you show/hihe element funtion instead
+		//TODO: If this ever gets used, the text and labels should use show/hide element function instead.
 		setVisibility( "ChoiceScaleFromDistUnits", b );
 		setVisibility( "ChoiceScaleToDistUnits", b );
 		setVisibility( "ChoiceScale", b );
@@ -2582,9 +2569,12 @@ function onBodyKeyUp( e  )
 	}
 
 	
-//TODO this could be improved by using prompt alert type.
-//With a prompt we could display the bad value and the error, and get a replacement value back, plug in and roll with new number
-//NOTE: style is not currently used
+/* 
+TODO: This could be improved by using prompt alert type. With a prompt we could display 
+the bad value and the error, and get a replacement value back, plug in and roll with 
+new number.
+*/
+// NOTE: style is not currently used
 function errorDialog( error, title, source, style )
 {
 			var e = document.getElementById( source );
@@ -2608,7 +2598,6 @@ function errorDialog( error, title, source, style )
 }
 
 //BEGIN test* functions
-
 	function testExtentLimits()
 	{
 		if( !uiIsVisible("TextFieldExtent") )
