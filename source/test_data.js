@@ -272,7 +272,7 @@ g_tests[4] = {
 					ChoiceDatum: "NAD27",
 					ChoiceLatPrecision: "0.1 minutes",
 					TextFieldExtent: "2",
-					TextFieldMeasurementError: "0.032",// mi (0.5 mm on 1:100,000 map)",
+					TextFieldMeasurementError: "0.03107",// mi (0.5 mm on 1:100,000 map)",
 					ChoiceDistUnits: "mi",
 					ChoiceDistancePrecision: "1 mi",
 					ButtonCalculate: "click"
@@ -283,7 +283,7 @@ g_tests[4] = {
 				doit:{
 					TextFieldCalcDecLat: "35.435",
 					TextFieldCalcDecLong: "-118.8016667",
-					TextFieldCalcErrorDist: "2.712",// mi (4365 m)",		
+					TextFieldCalcErrorDist: "2.711",// mi (4365 m)",		
 					TextFieldCalcErrorUnits: "mi"
 				},
 				type:"expect",
@@ -294,7 +294,7 @@ g_tests[4] = {
 		//}
 //	},
 	
-	SKIPUncertaintysources: "0.032 mi (51 m) from printed USGS 1:100,000 map accuracy, 0.148 mi (239 m) from coordinate precision 0.1 minutes, 2 mi (3219 m) from the extent of the named place, 0.032 mi (51 m) from the ability to distinguish 0.5 mm on a printed USGS 1:100,000 map, 0.5 mi (805 m) from the 1 mi distance precision"
+	SKIPUncertaintysources: "0.03107 mi (50 m) from printed USGS 1:100,000 map accuracy, 0.148 mi (239 m) from coordinate precision 0.1 minutes, 2 mi (3219 m) from the extent of the named place, 0.03107 mi (50 m) from the ability to distinguish 0.5 mm on a printed USGS 1:100,000 map, 0.5 mi (805 m) from the 1 mi distance precision"
 };
 
 
