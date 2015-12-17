@@ -885,7 +885,8 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		}
 		
 		seconds = sign*Number(dval)*3600.0; // 14461.2,  24156
-		var degs = sign*Number(formatDeg.checkFormat(dval)); // 40.17, 67.1
+//		var degs = sign*Number(formatDeg.checkFormat(dval)); // 40.17, 67.1
+		var degs = Math.floor(seconds/3600); // 40.17, 67.1
 		degrees = degs; // 40, 67  
 		seconds -= degrees*3600.0; // 61.2, 36.0
 		var mins = seconds/60.0; // 1.02, 0.6
@@ -1358,7 +1359,7 @@ __version__ = "test1.js 2015-11-23T20:33:00-07:00"
 		seconds = dval*60.0;
 		var mins = dval;
 		//JAVA minutes = mins.intValue();
-		minutes = mins;
+		minutes = Math.floor(Number(mins));
 		seconds -= minutes*60.0;
 		var secsAsInt = getNearestInt( seconds*1000.0 );
 		seconds=secsAsInt/1000.0;
