@@ -116,9 +116,9 @@ g_tests[1] = {
 		a:[
 			{
 				doit:{
-				ChoiceCalcType: "Error only - enter Lat/Long for the actual locality",
+				ChoiceCalcType: "Error only",
 				ChoiceModel: "Coordinates only",
-				ChoiceCoordSource: "USGS map: 1:24,000",
+				ChoiceCoordSource: "USGS map: 1:24000",
 				ChoiceCoordSystem: "decimal degrees",
 				//Latitude: "35.37",
 				//Longitude: "-119.02",
@@ -258,7 +258,7 @@ g_tests[4] = {
 				doit:{
 					ChoiceCalcType: "Error only - enter Lat/Long for the actual locality",
 					ChoiceModel: "Distance along path",
-					ChoiceCoordSource: "USGS map: 1:100,000",
+					ChoiceCoordSource: "USGS map: 1:100000",
 					ChoiceCoordSystem: "degrees decimal minutes",
 					//Latitude: "35 degrees 26.1' N"
 					txtT7Lat_DegMM: 35,
@@ -416,7 +416,7 @@ g_tests[7] = {
 				doit:{
 					ChoiceCalcType: "Coordinates and error",
 					ChoiceModel: "Distance at a heading",
-					ChoiceCoordSource: "USGS map: 1:24,000",
+					ChoiceCoordSource: "USGS map: 1:24000",
 					ChoiceCoordSystem: "degrees minutes seconds",
 					//Latitude: "35 degrees 24' 21" N"
 					ChoiceLatDirDMS: "N",
@@ -517,10 +517,10 @@ g_tests[8] = {
 			},
 			{
 				type:"expect",
-				language_test_for: "es",
-				language_test_written: "en",
+				language_test_for: "Esp",
+				language_test_written: "En",
 				doit:{
-					ChoiceLanguage: "es",
+					ChoiceLanguage: "Esp",
 					ChoiceCalcType: "error only",
 					ChoiceModel: "along orthogonal",
 					
