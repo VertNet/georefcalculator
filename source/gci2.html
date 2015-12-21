@@ -15,11 +15,12 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "grc.html 2015-11-23T20:33:00-07:00"
+__version__ = "grc.html 2015-12-21T13:36-03:00"
 */
 -->
 <html>
 <LINK href="gci.css" rel="stylesheet" type="text/css">
+<TITLE>Georeferencing Calculator</TITLE>
 <body onLoad="GC_init()" onkeyup="onBodyKeyUp( event )" class="main">
 
 <script src="Datumerror.js"></script>
@@ -27,9 +28,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <script src="factories.js"></script>
 <script src="gci_ui.js"></script>
 <script src="support.js"></script>
-<!--
 <script src="auto-tests.js"></script>
--->
 
 <DIV id="divFiller"  class="divBreak"></DIV>
 <!-- Begin Calculator container with background image. -->
@@ -221,7 +220,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </div>
 
-<div>
+<DIV id="divLocality4">
 	<SPAN id="MARKER" class="span56">
 		<SPAN id="MARKER" class="span25" align="left">
 			<LABEL id="lblT2Dec_Long" >Longitude MARKER</LABEL>
@@ -265,7 +264,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 			<INPUT TYPE="text" id="TextFieldMeasurementError"   onfocus="TextFieldMeasurementError_focusGained()" class="textSecond" ></INPUT>
 		</SPAN>
 	</SPAN>
-</div>
+</DIV>
 
 <DIV id="divLocality5">
 	<SPAN class="span56">
@@ -327,6 +326,9 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN>
 </DIV>
 
+<!-- Results and converters are positioned from the bottom of the calculator pane. -->
+<DIV id="bottom" class="divFooter">
+<DIV>
 <DIV id="ReadOnlyLabels">
 	<SPAN class="span72" align="center"">
 		<SPAN id="MARKER" class="span30">
@@ -376,8 +378,6 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</SPAN> 
 </DIV>
 
-<DIV id="bottom" class="divFooter">
-<DIV>
 <!-- BEGIN/END MARKER the distance converter elements belong here-->
 	<SPAN class="span100" id="" align="left">
 		<SPAN class="span22" id="" align="left">		
@@ -454,12 +454,12 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 <TABLE cellspacing="0" border="0" width="100%">
 	<TBODY>
 		<TR>
-			<TD width="60%" valign="MIDDLE">
+			<TD width="50%" valign="MIDDLE">
 				<P>
 					<A href="../docs/GeoreferencingCalculatorManualv2.html" target="_blank"><b>Calculator Manual (English)</b></A>
 				</P>
 			</TD>
-			<TD width="40%" valign="MIDDLE">
+			<TD width="50%" valign="MIDDLE" align="RIGHT">
 				<P>
 					<A href="../docs/GeorefGuide.html" target="_blank"><b>Georeferencing Guidelines (English)</b></A>
 				</P>
@@ -468,7 +468,7 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</TBODY>
 </TABLE>
 
-<TABLE cellspacing="0" border="0" width="624">
+<TABLE cellspacing="0" border="0" width="100%">
 	<TBODY>
 		<TR>
 			<TD width="100%" valign="MIDDLE">
@@ -480,71 +480,73 @@ __version__ = "grc.html 2015-11-23T20:33:00-07:00"
 	</TBODY>
 </TABLE>
 
-<!--
-<TABLE cellspacing="0" border="0" width="624">
-<TBODY><TR>
-<TD width="100%" valign="MIDDLE">
-<P><A href="./CoordCalcManual_es.html" target="_blank"><b>Manual para el Uso de la Calculadora (Espa�ol)</b></A> </P></TD>
-</TR>
-</TBODY></TABLE>
--->
 <HR>
 
 <P>
-	This application was adapted by Craig Wieczorek and John Wieczorek from an earlier version in Java by John Wieczorek with contributions from Qinghua Guo, Carmen Boureau, and Craig Wieczorek.
+	This application was adapted by Craig Wieczorek and John Wieczorek from an earlier 
+	version in Java by John Wieczorek with contributions from Qinghua Guo, Carmen 
+	Boureau, and Craig Wieczorek. Interface translations provided by: Gustavo Iglesias 
+	(Espa&ntilde;ol), Jose (Wly) Dos Santos (Portugu&ecirc;s), Tendro Ramaharitra 
+	(Fran&ccedil;ais), Robert Hijmans (Nederlands), Peter Desmet (Nederlands)
 </P>
 
 <P>
-	Interface translations provided by:<BR>
-	Gustavo Iglesias (Espa&ntilde;ol), Jose (Wly) Dos Santos (Portugu&ecirc;s), Tendro Ramaharitra (Fran&ccedil;ais), Robert Hijmans (Nederlands), Peter Desmet (Nederlands)
-</P>
-<P>
-	Wieczorek et al., 2004. Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767 (accessible from <A href="http://manisnet.org/Wieczoreketal2004PointRadius.pdf">http://manisnet.org/Wieczoreketal2004PointRadius.pdf</a>).
+	<b>Preferred citation</b>:
+	<br>Wieczorek C, J Wieczorek (2015) Georeferencing Calculator (version 20151221). Museum of Vertebrate Zoology, University of California, Berkeley. Available: http://manisnet.org/gci2.html. Accessed [yyyy-mm-dd].
 </P>
 
-<TABLE cellspacing="0" border="0" width="624"></TABLE>
+<P>
+	<b>Calculations based on:</b>
+	<br>Wieczorek J (2001) MaNIS/HerpNet/ORNIS Georeferencing Guidelines. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://manisnet.org/docs/GeorefGuide.html">http://manisnet.org/docs/GeorefGuide.html</a>.
+	<br><br>Wieczorek J, Hijmans R, Guo Q (2004) Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767. Available: <A href="http://manisnet.org/Wieczoreketal2004PointRadius.pdf">http://manisnet.org/Wieczoreketal2004PointRadius.pdf</a>
+</P>
+
+<P>
+	<b>Related references:</b>
+	<br>Chapman AD, Wieczorek J (eds.) (2006) Guide to Best Practices for Georeferencing. Copenhagen: Global Biodiversity Information Facility. Available: <a href="http://www.gbif.org/resource/80536">http://www.gbif.org/resource/80536</a>
+	<br><br>Wieczorek J, Bloom D (2011) Georeferencing Calculator Manual v2. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://goo.gl/G5RM9">http://goo.gl/G5RM9</a>
+	<br><br>Wieczorek J, Bloom D, Constable H, Fang J, Koo M, Spencer C, Yamamoto K (2011) Georeferencing Quick Reference Guide. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://manisnet.org/docs/GeoreferencingQuickReferenceGuide.pdf">http://manisnet.org/docs/GeoreferencingQuickReferenceGuide.pdf</a>
+</P>
+
+<P>
+	<b>Source code:</b>
+	<br><A HREF="https://github.com/VertNet/georefcalculator/">https://github.com/VertNet/georefcalculator</A>
+</P>
 
 <HR>
 
-<TABLE cellspacing="0" border="0" width="625">
+<TABLE cellspacing="0" border="0" width="100%">
+	<TBODY>
+		<TR>
+			<TD width="60%" valign="MIDDLE">
+				<FONT size="2"><P align="LEFT">
+					Copyright 2001-2015, The Regents of the University of California
+				</FONT>
+			</TD>
+			<TD width="40%" valign="MIDDLE" align="RIGHT">
+				<A rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+				<img alt="Creative Commons License" style="border-width:0" 
+				src="../docs/images/cc-by-sa.png"></A>
+<!--	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png">-->
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<TABLE cellspacing="0" border="0" width="100%">
 	<TBODY>
 		<TR>
 			<TD width="50%" valign="MIDDLE">
 				<P>John Wieczorek 3 Nov 2001 </P>
 			</TD>
-			<TD width="50%" valign="MIDDLE">
-				<i>Rev. 16 Dec 2015</i>
+			<TD width="50%" valign="MIDDLE" align="RIGHT">
+				<i>Rev. 21 Dec 2015</i>
 			</TD>
 		</TR>
 	</TBODY>
 </TABLE>
-
-<TABLE cellspacing="0" border="0" width="625">
-	<TBODY>
-		<TR>
-			<TD width="100%" valign="MIDDLE">
-				<FONT size="2"><P align="CENTER">
-					University of California, Berkeley, CA 94720, Copyright © 2001-2015, The Regents of the University of California
-				</FONT>
-			</TD>
-		</TR>
-	</TBODY>
-</TABLE>
-
-<P></P>
 
 <HR>
-
-<A rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-<!--	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png">-->
-	<img alt="Creative Commons License" style="border-width:0" src="./cc-by-sa.png">
-</A>
-<BR>
-Georeferencing Calculator is licensed under a <A HREF="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License.</A>
-<BR>
-<BR>
-Based on a work at <A HREF="https://github.com/VertNet/georefcalculator/">https://github.com/VertNet/georefcalculator.</A>
-<BR>
 
 </DIV>
 </body>

@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "auto_tests.js 2015-11-23T20:33:00-07:00"
+__version__ = "auto_tests.js 2015-12-21T13:10-03:00"
 */
 
 //NOT USED
@@ -1028,10 +1028,10 @@ function runStandardCheckChoiceElement( tc_base, name, value, callstack, ltf, lt
 	}//if array leng of test data is 2, we lookup up elements data source, 100% likely [ "headings.n", "headings.s"] or [ "headings.e", "headings.w"]
 	else if( prop_types.d == 2 )//headings
 	{//BUGBUG OT FULLY IMPLEMENTED 11/30/15 23:00 PST
-		eng_array_lookup.push(testGetValueFromProps( props[0], ltw));
-		eng_array_lookup.push(testGetValueFromProps( props[1], ltw));
-		eng_array_lookup.push(testGetValueFromProps( props[0], ltw));
-		eng_array_lookup.push(testGetValueFromProps( props[1], ltw));
+		eng_array_lookup.push(testGetValuesFromProps( props[0], ltw));
+		eng_array_lookup.push(testGetValuesFromProps( props[1], ltw));
+		eng_array_lookup.push(testGetValuesFromProps( props[0], ltw));
+		eng_array_lookup.push(testGetValuesFromProps( props[1], ltw));
 	}
 
 	//BEGIN SHORTHAND eng vs eng array lookup

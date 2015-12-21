@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "grc2.css 2015-12-16T16:36:00-03:00"
+__version__ = "grc2.css 2015-12-21T12:54-03:00"
 */
 
 .main{
@@ -22,7 +22,6 @@ __version__ = "grc2.css 2015-12-16T16:36:00-03:00"
 
 DIV{
 	padding: 2px;
-//	background-color: #009000;
 //	background-color: #C0C0C0;
 }
 
@@ -35,11 +34,9 @@ DIV{
 	padding-left: 12px;
 	padding-top: 3px;
 	padding-right: 15px;
-//	padding-bottom: 6px;
 	height: 426px;
 	background-image: url("mappemonde660.jpg");
 	background-repeat: no-repeat;
-//	background-size: 660px 426px;
 	position: relative;
 	min-height: 150px;
 }

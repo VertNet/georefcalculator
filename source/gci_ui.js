@@ -13,18 +13,9 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "gc.ui.js 2015-12-16T16:54-03:00"
+__version__ = "gc.ui.js 2015-12-21T12:54-03:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
-
-/*  FROM JAVA
-	private int sign = 1;
-	private int degrees = 0;
-	private int minutes = 0;
-	private double seconds = 0;
-	private double decminutes = 0;
-*/	
-	
 	var sign = 1;
 	var degrees = 0;
 	var minutes = 0;
@@ -129,7 +120,7 @@ function downloadTests()
 function GC_init()
 {
 	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
-	g_versionNumber = "20151216";
+	g_versionNumber = "20151221";
 
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
@@ -1716,7 +1707,7 @@ function onBodyKeyUp( e  )
 		}
 	}
 	else if( e.keyIdentifier == "U+0044" && e.shiftKey == true && e.ctrlKey == true && e.altKey == true  )
-	//FIXME    || ( put mac equiv logic in here  )
+	// Mac combination is option control shift d
 	{
 		downloadTests();
 	}

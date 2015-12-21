@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "factories.js 2015-11-23T20:33:00-07:00"
+__version__ = "factories.js 2015-12-21T13:11-03:00"
 */
 
 g_factory = {};
