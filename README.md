@@ -1,6 +1,6 @@
-# georefcalculator
-New generation Javascript-based VertNet Georeferencing Calculator
+# Georeferencing Calculator
 
+New generation Javascript-based VertNet Georeferencing Calculator
 
 The properties.js file is encoded as ANSI for distribution in case the package is downloaded and run locally on Mac or PC. This is fine, but when installing the calculator on a unix system, the file should be re-encoded by doing the following:
 
