@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "support.js 2015-12-21T12:54-03:00"
+__version__ = "support.js 2016-09-29T09:40+02:00"
 */
 
 	function convertDistance()
@@ -1722,8 +1722,10 @@ __version__ = "support.js 2015-12-21T12:54-03:00"
 			maxerrordistance += Number( getDatumError());
 			maxerrordistance += Number( getCoordPrecisionError());
 			maxerrordistance += Number( getMapScaleError());
-			maxerrordistance += Number( getMeasurementError());
-			maxerrordistance += Number( getGPSAccuracy());
+			maxerrordistance += Number( getMeasurementError() );
+			// GPS accuracy and MeasurementError share the same TextField, no need to 
+			// add it a second time.
+			//maxerrordistance += Number( getGPSAccuracy());
 		}
 
 		// Named Place only

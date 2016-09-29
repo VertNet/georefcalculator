@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "gc.ui.js 2015-12-21T12:54-03:00"
+__version__ = "gc.ui.js 2016-09-29T09:40+02:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	var sign = 1;
@@ -119,8 +119,8 @@ function downloadTests()
 	
 function GC_init()
 {
-	g_embeddedCopyright = "Copyright 2015 Regents of the University of California";
-	g_versionNumber = "20151221";
+	g_embeddedCopyright = "Copyright 2016 Regents of the University of California";
+	g_versionNumber = "20160929";
 
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
