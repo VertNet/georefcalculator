@@ -17,9 +17,9 @@ __version__ = "georefcalculator.js 2015-12-10T13:54-07:00"
 */
 
 // Translation help courtesy of:
-// Gustavo Iglesias (EspaÒol)
-// Jose (Wly) Dos Santos (PortuguÍs)
-// Tendro Ramaharitra (FranÁais)
+// Gustavo Iglesias (Espa√±ol)
+// Jose (Wly) Dos Santos (Portugu√™s)
+// Tendro Ramaharitra (Fran√ßais)
 // Robert Hijmans & Peter Desmet (Nederlands)
 //
 // Languages
@@ -60,11 +60,11 @@ language.nl=5;
 //language.code[0] = "en";
 language.name[0] = "English";
 language.code[0] = "en";
-language.name[1] = "EspaÒol";
+language.name[1] = "Espa√±ol";
 language.code[1] = "es";
-language.name[2] = "PortuguÍs";
+language.name[2] = "Portugu√™s";
 language.code[2] = "pt";
-language.name[3] = "FranÁais";
+language.name[3] = "Fran√ßais";
 language.code[3] = "fr";
 language.name[4] = "Nederlands";
 language.code[4] = "nl";
@@ -79,9 +79,9 @@ g_properties.preferredlanguage = "en";
 //Versions
 var version= {};
 version.en = "Version";
-version.es = "VersiÛn";
-version.pt = "VersiÛn";
-version.fr = "VersiÛn";
+version.es = "Versi√≥n";
+version.pt = "Versi√≥n";
+version.fr = "Versi√≥n";
 version.nl = "Versie";
 //version.de = "Version
 
@@ -638,20 +638,20 @@ coordsource.non20000.en = "other map: 1:20000";
 coordsource.non10000.en = "other map: 1:10000";
 
 //##############################
-// EspaÒol
+// Espa√±ol
 //##############################
-// Tipo de C·lculo 
-calctype.erroronly.es = "SÛlo Error - introduzca la Lat/Long para la localidad actual";
+// Tipo de C√°lculo 
+calctype.erroronly.es = "S√≥lo Error - introduzca la Lat/Long para la localidad actual";
 calctype.coordsanderror.es = "Coordenadas y error - introduzca la Lat/Long para el punto de origen o punto de partida";
-calctype.coordsonly.es = "SÛlo Coordenadas -  introduzca la Lat/Long para el punto de origen o punto de partida";
+calctype.coordsonly.es = "S√≥lo Coordenadas -  introduzca la Lat/Long para el punto de origen o punto de partida";
 
 // Tipo de Localidad 
-loctype.coordonly.es = "SÛlo Coordenadas ( p.ej., 27\u00b034'23,4\" S, 61\u00b056'42,3\" O)"  
-loctype.namedplaceonly.es = "SÛlo un Lugar Citado (p.ej., San Marcos)";
-loctype.distanceonly.es = "SÛlo Distancia (p.ej., 5 km de San Marcos)";
+loctype.coordonly.es = "S√≥lo Coordenadas ( p.ej., 27\u00b034'23,4\" S, 61\u00b056'42,3\" O)"  
+loctype.namedplaceonly.es = "S√≥lo un Lugar Citado (p.ej., San Marcos)";
+loctype.distanceonly.es = "S√≥lo Distancia (p.ej., 5 km de San Marcos)";
 loctype.distalongpath.es = "Distancia por ruta (p.ej., 13 km E (por ruta) de San Marcos)";
 loctype.orthodist.es = "Distancia por direcciones ortogonales (p.ej., 2 km E y 3 km N de San Marcos)";
-loctype.distatheading.es = "Distancia en una direcciÛn ( p.ej., 10 km E (por aire) de San Marcos)";
+loctype.distatheading.es = "Distancia en una direcci√≥n ( p.ej., 10 km E (por aire) de San Marcos)";
 
 // Sistema de las Coordenadas
 coordsys.dd.es = "grados decimales";
@@ -691,41 +691,41 @@ headings.wbn.es  = "WbN";
 headings.nwbw.es = "NWbW";
 headings.nwbn.es = "NWbN";
 headings.nbw.es  = "NbW";
-headings.nearestdegree.es = "grado mas prÛximo";
+headings.nearestdegree.es = "grado mas pr√≥ximo";
 
 // Etiquetas
 label.lat.es = "Latitud";
 label.lon.es = "Longitud";
 label.offset.es = "Desplazamiento";
-label.extent.es = "ExtensiÛn de la Entidad";
-label.measurementerror.es = "Error de MediciÛn";
+label.extent.es = "Extensi√≥n de la Entidad";
+label.measurementerror.es = "Error de Medici√≥n";
 label.extent.gps.es = "Exactidud del GPS";
-label.calctype.es = "Tipo de C·lculo";
+label.calctype.es = "Tipo de C√°lculo";
 label.loctype.es = "Tipo de Localidad";
-label.title.es = "Calculadora de GeorreferenciaciÛn";
+label.title.es = "Calculadora de Georreferenciaci√≥n";
 label.coordsource.es = "Fuente de las Coordenadas";
 label.coordsys.es = "Sistema de Coordenadas";
 label.datum.es = "Datum"
-label.coordprec.es = "PrecisiÛn de las Coordenadas";
+label.coordprec.es = "Precisi√≥n de las Coordenadas";
 label.distew.es = "Distancia al Este o Oeste";
 label.distns.es = "Distancia al Norte o Sur";
 label.distunits.es = "Unidades de la Distancia";
-label.distprec.es = "PrecisiÛn de la Distancia";
-label.direction.es = "DirecciÛn";
+label.distprec.es = "Precisi√≥n de la Distancia";
+label.direction.es = "Direcci√≥n";
 label.calculate.es = "Calcular";
 label.promote.es = "Promueva";
 label.declat.es = "Latitud Decimal";
 label.declon.es = "Longitud Decimal";
-label.maxerrdist.es = "Distancia M·xima del Error";
-label.step0.es = "Paso 1) Elija un tipo de c·lculo de la lista abajo.";
+label.maxerrdist.es = "Distancia M√°xima del Error";
+label.step0.es = "Paso 1) Elija un tipo de c√°lculo de la lista abajo.";
 label.step1.es = "Paso 2) Elija un tipo de localidad de la lista abajo.";
-label.step2.es = "Paso 3) Ingrese todos los par·metros para la localidad.";
+label.step2.es = "Paso 3) Ingrese todos los par√°metros para la localidad.";
 label.distanceconverter.es = "Convertidor de Distancias:";
 label.scaleconverter.es = "Convertidor de Escalas:";
 
 // Errores
-error.heading.message.es = "La direcciÛn debe ser un valor entre 0 (Norte) y 360.";
-error.heading.title.es = "Error de la direcciÛn";
+error.heading.message.es = "La direcci√≥n debe ser un valor entre 0 (Norte) y 360.";
+error.heading.title.es = "Error de la direcci√≥n";
 error.lat.message.es = "La latitud debe ser un valor entre -90 (Polo Sur) y 90 (Polo Norte).";
 error.lat.title.es = "Error de las Coordenadas Ingresadas";
 error.lon.message.es = "La longitud debe ser un valor entre -180 y 180.";
@@ -734,17 +734,17 @@ error.min.message.es = "Los minutos deben ser un valor entre 0 y 60.";
 error.min.title.es = "Error de las Coordenadas Ingresadas";
 error.sec.message.es = "Los segundos deben ser un valor entre 0 y 60.";
 error.sec.title.es = "Error de las Coordenadas Ingresadas";
-error.offset.message.es = "El valor de la desplazamiento debe ser m·s que cero.";
+error.offset.message.es = "El valor de la desplazamiento debe ser m√°s que cero.";
 error.offset.title.es = "Error de la Desplazamiento Ingresada";
-error.extent.message.es = "El valor de la extensiÛn debe ser m·s que cero.";
-error.extent.title.es = "Error de la ExtensiÛn Ingresada";
-error.measurementerror.message.es = "El valor de la mediciÛn debe ser m·s que cero.";
-error.measurementerror.title.es = "Error de la MediciÛn Ingresada";
+error.extent.message.es = "El valor de la extensi√≥n debe ser m√°s que cero.";
+error.extent.title.es = "Error de la Extensi√≥n Ingresada";
+error.measurementerror.message.es = "El valor de la medici√≥n debe ser m√°s que cero.";
+error.measurementerror.title.es = "Error de la Medici√≥n Ingresada";
 error.number.message.es = "The format of the number just entered must follow convention of the chosen language.*";
-error.number.title.es = "Error del N˙mero Ingresado";
+error.number.title.es = "Error del N√∫mero Ingresado";
 
 // Precision de las Coordenadas
-coordprec.dd.degree.es = "grado m·s cercano";
+coordprec.dd.degree.es = "grado m√°s cercano";
 coordprec.dd.cp_01.es = "0.1 grados";
 coordprec.dd.cp_001.es = "0.01 grados";
 coordprec.dd.cp_0001.es = "0.001 grados";
@@ -754,24 +754,24 @@ coordprec.dd.half.es = "1/2 grado";
 coordprec.dd.quarter.es = "1/4 grado";
 coordprec.dd.exact.es = "exacto";
 
-coordprec.dms.degree.es = "grado m·s cercano";
+coordprec.dms.degree.es = "grado m√°s cercano";
 coordprec.dms.cp_30m.es = "30 minutos";
 coordprec.dms.cp_10m.es = "10 minutos";
 coordprec.dms.cp_5m.es = "5 minutos";
-coordprec.dms.cp_1m.es = "minuto m·s cercano" 
+coordprec.dms.cp_1m.es = "minuto m√°s cercano" 
 coordprec.dms.cp_30s.es = "30 segundos";
 coordprec.dms.cp_10s.es = "10 segundos";
 coordprec.dms.cp_5s.es = "5 segundos";
-coordprec.dms.cp_1s.es = "segundo m·s cercano";
+coordprec.dms.cp_1s.es = "segundo m√°s cercano";
 coordprec.dms.cp_01s.es = "0.1 segundos";
 coordprec.dms.cp_001s.es = "0.01 segundos";
 coordprec.dms.exact.es = "exacto";
 
-coordprec.ddm.degree.es = "grado m·s cercano";
+coordprec.ddm.degree.es = "grado m√°s cercano";
 coordprec.ddm.cp_30m.es = "30 minutos";
 coordprec.ddm.cp_10m.es = "10 minutos";
 coordprec.ddm.cp_5m.es = "5 minutos";
-coordprec.ddm.cp_1m.es = "minuto m·s cercano";
+coordprec.ddm.cp_1m.es = "minuto m√°s cercano";
 coordprec.ddm.cp_01m.es = "0.1 minutos";
 coordprec.ddm.cp_001m.es = "0.01 minutos";
 coordprec.ddm.cp_0001m.es = "0.001 minutos";
@@ -823,9 +823,9 @@ coordsource.non20000.es = "otro mapa: 1:20000";
 coordsource.non10000.es = "otro mapa: 1:10000";
 
 //##############################
-// PortuguÍs
+// Portugu√™s
 //##############################
-// Tipo de C·lculo
+// Tipo de C√°lculo
 calctype.erroronly.pt = "Erro apenas - insira as Lat/Long para a localidade real";
 calctype.coordsanderror.pt = "Coordenadas e erro - insira as Lat/Long para a localidade denominado ou ponto de partida";
 calctype.coordsonly.pt = "Coordenadas apenas - insira as Lat/Long para a localidade denominado ou ponto de partida";
@@ -833,17 +833,17 @@ calctype.coordsonly.pt = "Coordenadas apenas - insira as Lat/Long para a localid
 // Tipo de Localidade
 loctype.coordonly.pt = "Coordenadas apenas (e.g., 27\u00b034'23,4\" N, 121\u00b056' 42,3\" W)";
 loctype.namedplaceonly.pt = "Nome da localidade apenas (e.g., Manaus)";
-loctype.distanceonly.pt = "Dist‚ncia apenas (e.g., 5 km de Manaus)";
-loctype.distalongpath.pt = "Dist‚ncia por rota (e.g., 13 km E (por estrada) Manaus)";
-loctype.orthodist.pt = "Dist‚ncia por direÁıes ortogonais (e.g., 2 km E e 3 km N de Manaus)";
-loctype.distatheading.pt = "Dist‚ncia a uma direÁ„o (e.g., 10 km E (por ar) Manaus)";
+loctype.distanceonly.pt = "Dist√¢ncia apenas (e.g., 5 km de Manaus)";
+loctype.distalongpath.pt = "Dist√¢ncia por rota (e.g., 13 km E (por estrada) Manaus)";
+loctype.orthodist.pt = "Dist√¢ncia por dire√ß√µes ortogonais (e.g., 2 km E e 3 km N de Manaus)";
+loctype.distatheading.pt = "Dist√¢ncia a uma dire√ß√£o (e.g., 10 km E (por ar) Manaus)";
 
 // Sistema de Coordenadas
 coordsys.dd.pt = "graus decimais";
 coordsys.dms.pt = "graus minutos segundos";
 coordsys.ddm.pt = "graus e minutos decimais";
 
-// AbreviaÁıes das DireÁıes:
+// Abrevia√ß√µes das Dire√ß√µes:
 headings.n.pt = "N";
 headings.e.pt = "L";
 headings.s.pt = "S";
@@ -876,41 +876,41 @@ headings.wbn.pt  = "WbN";
 headings.nwbw.pt = "NWbW";
 headings.nwbn.pt = "NWbN";
 headings.nbw.pt  = "NbW";
-headings.nearestdegree.pt = "grau mais prÛximo";
+headings.nearestdegree.pt = "grau mais pr√≥ximo";
 
 // Etiqueta
 label.lat.pt = "Latitude";
 label.lon.pt = "Longitude";
-label.offset.pt = "Dist‚ncia";
-label.extent.pt = "Extens„o do Local Nomeado";
-label.measurementerror.pt = "Erro de MediÁ„o";
-label.extent.gps.pt = "Precis„o do GPS";
-label.calctype.pt = "Tipo de C·lculo";
+label.offset.pt = "Dist√¢ncia";
+label.extent.pt = "Extens√£o do Local Nomeado";
+label.measurementerror.pt = "Erro de Medi√ß√£o";
+label.extent.gps.pt = "Precis√£o do GPS";
+label.calctype.pt = "Tipo de C√°lculo";
 label.loctype.pt = "Tipo de Localidade";
 label.title.pt = "Calculador de Georeferenciamento";
 label.coordsource.pt = "Fonte das Coordenadas";
 label.coordsys.pt = "Sistema das Coordenadas";
 label.datum.pt = "Datum";
-label.coordprec.pt = "Acur·cia das Coordenadas";
-label.distew.pt = "Dist‚ncia a Leste ou Oeste";
-label.distns.pt = "Dist‚ncia a Norte ou Sul";
-label.distunits.pt = "Unidades da Dist‚ncia";
-label.distprec.pt = "Precis„o da Dist‚ncia";
-label.direction.pt = "DireÁ„o";
+label.coordprec.pt = "Acur√°cia das Coordenadas";
+label.distew.pt = "Dist√¢ncia a Leste ou Oeste";
+label.distns.pt = "Dist√¢ncia a Norte ou Sul";
+label.distunits.pt = "Unidades da Dist√¢ncia";
+label.distprec.pt = "Precis√£o da Dist√¢ncia";
+label.direction.pt = "Dire√ß√£o";
 label.calculate.pt = "Calcular";
 label.promote.pt = "Promova";
 label.declat.pt = "Latitude Decimal";
 label.declon.pt = "Longitude Decimal";
-label.maxerrdist.pt = "Dist‚ncia M·xima do Erro";
-label.step0.pt = "Passo 1) Escolha um tipo de c·lculo da lista abaixo.";
+label.maxerrdist.pt = "Dist√¢ncia M√°xima do Erro";
+label.step0.pt = "Passo 1) Escolha um tipo de c√°lculo da lista abaixo.";
 label.step1.pt = "Passo 2) Escolha um tipo de localidade da lista abaixo.";
-label.step2.pt = "Passo 3) Insira todos os par‚metros para a localidade.";
-label.distanceconverter.pt = "Convertidor da Dist‚ncias:";
+label.step2.pt = "Passo 3) Insira todos os par√¢metros para a localidade.";
+label.distanceconverter.pt = "Convertidor da Dist√¢ncias:";
 label.scaleconverter.pt = "Convertidor da Escalas:";
 
 // Erros
-error.heading.message.pt = "A direÁ„o deve ser um valor entre 0 (Norte) e 360.";
-error.heading.title.pt = "Erro na entrada de dados de direÁ„o ";
+error.heading.message.pt = "A dire√ß√£o deve ser um valor entre 0 (Norte) e 360.";
+error.heading.title.pt = "Erro na entrada de dados de dire√ß√£o ";
 error.lat.message.pt = "A latitude deve ser um valor entre -90 (Polo Sul) e 90 (Polo Norte).";
 error.lat.title.pt = "Erro na entrada de coordenada";
 error.lng.message.pt = "A longitude deve ser um valor entre -180 e 180. error.lng.title.pt = \"Erro na entrada de coordenada\"";
@@ -919,17 +919,17 @@ error.min.message.pt = "Os minutos devem ser valores entre 0 e 60.";
 error.min.title.pt = "Erro na entrada de coordenada";
 error.sec.message.pt = "Os segundos devem ser valores entre 0 e 60.";
 error.sec.title.pt = "Erro na entrada de coordenada";
-error.offset.message.pt = "A perpendicular deve ser um valor n„o negativo.";
+error.offset.message.pt = "A perpendicular deve ser um valor n√£o negativo.";
 error.offset.title.pt = "Erro na entrada de perpendicular";
-error.extent.message.pt = "A extens„o deve ser um valor n„o negativo.";
-error.extent.title.pt = "Erro na entrada de Extens„o";
-error.measurementerror.message.pt = "A mediÁ„o deve ser um valor n„o negativo.";
-error.measurementerror.title.pt = "Erro na entrada de MediÁ„o";
+error.extent.message.pt = "A extens√£o deve ser um valor n√£o negativo.";
+error.extent.title.pt = "Erro na entrada de Extens√£o";
+error.measurementerror.message.pt = "A medi√ß√£o deve ser um valor n√£o negativo.";
+error.measurementerror.title.pt = "Erro na entrada de Medi√ß√£o";
 error.number.message.pt = "The format of the number just entered must follow convention of the chosen language.*";
-error.number.title.pt = "Erro na entrada de n˙mero*";
+error.number.title.pt = "Erro na entrada de n√∫mero*";
 
-// Precis„o das Coordenadas
-coordprec.dd.degree.pt = "grau mais prÛximo";
+// Precis√£o das Coordenadas
+coordprec.dd.degree.pt = "grau mais pr√≥ximo";
 coordprec.dd.cp_01.pt = "0.1 graus";
 coordprec.dd.cp_001.pt = "0.01 graus";
 coordprec.dd.cp_0001.pt = "0.001 graus";
@@ -939,37 +939,37 @@ coordprec.dd.half.pt = "1/2 grau";
 coordprec.dd.quarter.pt = "1/4 grau";
 coordprec.dd.exact.pt = "exato";
 
-coordprec.dms.degree.pt = "grau mais prÛximo";
-coordprec.dms.cp_30m.pt = "30 minutos mais prÛximos";
-coordprec.dms.cp_10m.pt = "10 minutos mais prÛximos";
-coordprec.dms.cp_5m.pt = "5 minutos mais prÛximos";
-coordprec.dms.cp_1m.pt = "minuto mais prÛximo";
-coordprec.dms.cp_30s.pt = "30 segundos mais prÛximos";
-coordprec.dms.cp_10s.pt = "10 segundos mais prÛximos";
-coordprec.dms.cp_5s.pt = "5 segundos mais prÛximos";
-coordprec.dms.cp_1s.pt = "segundo mais prÛximo";
-coordprec.dms.cp_01s.pt = "0.1 segundos mais prÛximos";
-coordprec.dms.cp_001s.pt = "0.01 segundos mais prÛximos";
+coordprec.dms.degree.pt = "grau mais pr√≥ximo";
+coordprec.dms.cp_30m.pt = "30 minutos mais pr√≥ximos";
+coordprec.dms.cp_10m.pt = "10 minutos mais pr√≥ximos";
+coordprec.dms.cp_5m.pt = "5 minutos mais pr√≥ximos";
+coordprec.dms.cp_1m.pt = "minuto mais pr√≥ximo";
+coordprec.dms.cp_30s.pt = "30 segundos mais pr√≥ximos";
+coordprec.dms.cp_10s.pt = "10 segundos mais pr√≥ximos";
+coordprec.dms.cp_5s.pt = "5 segundos mais pr√≥ximos";
+coordprec.dms.cp_1s.pt = "segundo mais pr√≥ximo";
+coordprec.dms.cp_01s.pt = "0.1 segundos mais pr√≥ximos";
+coordprec.dms.cp_001s.pt = "0.01 segundos mais pr√≥ximos";
 coordprec.dms.exact.pt = "exato";
 
-coordprec.ddm.degree.pt = "grau mais prÛximo";
-coordprec.ddm.cp_30m.pt = "30 minutos mais prÛximos";
-coordprec.ddm.cp_10m.pt = "10 minutos mais prÛximos";
-coordprec.ddm.cp_5m.pt = "5 minutos mais prÛximos";
-coordprec.ddm.cp_1m.pt = "minuto mais prÛximo";
-coordprec.ddm.cp_01m.pt = "0.1 minutos mais prÛximos";
-coordprec.ddm.cp_001m.pt = "0.01 minutos mais prÛximos";
-coordprec.ddm.cp_0001m.pt = "0.001 minutos mais prÛximos";
+coordprec.ddm.degree.pt = "grau mais pr√≥ximo";
+coordprec.ddm.cp_30m.pt = "30 minutos mais pr√≥ximos";
+coordprec.ddm.cp_10m.pt = "10 minutos mais pr√≥ximos";
+coordprec.ddm.cp_5m.pt = "5 minutos mais pr√≥ximos";
+coordprec.ddm.cp_1m.pt = "minuto mais pr√≥ximo";
+coordprec.ddm.cp_01m.pt = "0.1 minutos mais pr√≥ximos";
+coordprec.ddm.cp_001m.pt = "0.01 minutos mais pr√≥ximos";
+coordprec.ddm.cp_0001m.pt = "0.001 minutos mais pr√≥ximos";
 coordprec.ddm.exact.pt = "exato";
 
 // Datum
-datum.notrecorded.pt = "datum n„o indicado";
+datum.notrecorded.pt = "datum n√£o indicado";
 
 // Fonte das Coordenadas
-coordsource.gaz.pt = "dicion·rio geogr·fico";
+coordsource.gaz.pt = "dicion√°rio geogr√°fico";
 coordsource.gem.pt = "Google Earth/Maps";
 coordsource.gps.pt = "GPS";
-coordsource.loc.pt = "descriÁ„o da localidade";
+coordsource.loc.pt = "descri√ß√£o da localidade";
 coordsource.usgs250000.pt = "mapa USGS: 1:250000";
 coordsource.usgs100000.pt = "mapa USGS: 1:100000";
 coordsource.usgs63360.pt = "mapa USGS: 1:63360";
@@ -1008,27 +1008,27 @@ coordsource.non20000.pt = "outro mapa: 1:20000";
 coordsource.non10000.pt = "outro mapa: 1:10000";
 
 //##############################
-// FranÁais
+// Fran√ßais
 //##############################
 // Type de Calcul
-calctype.erroronly.fr = "Erreur seulement - Entrez Lat/Long pour la localitÈ rÈelle";
-calctype.coordsanderror.fr = "CoordonnÈes et erreur - Entrez Les Lat/Long pour l'endroit nommÈ ou le point de dÈpart";
-calctype.coordsonly.fr = "CoordonnÈes seulement - Entrez Les Lat/Long pour l'endroit nommÈ ou le point de dÈpart";
+calctype.erroronly.fr = "Erreur seulement - Entrez Lat/Long pour la localit√© r√©elle";
+calctype.coordsanderror.fr = "Coordonn√©es et erreur - Entrez Les Lat/Long pour l'endroit nomm√© ou le point de d√©part";
+calctype.coordsonly.fr = "Coordonn√©es seulement - Entrez Les Lat/Long pour l'endroit nomm√© ou le point de d√©part";
 
-// Type de LocalitÈ
-loctype.coordonly.fr = "CoordonnÈes seulement (e.g., 27\u00b034'23,4\"N, 121\u00b056'42,3\" O)";
-loctype.namedplaceonly.fr = "Endroit nommÈ seulement (e.g., Toliara)";
+// Type de Localit√©
+loctype.coordonly.fr = "Coordonn√©es seulement (e.g., 27\u00b034'23,4\"N, 121\u00b056'42,3\" O)";
+loctype.namedplaceonly.fr = "Endroit nomm√© seulement (e.g., Toliara)";
 loctype.distanceonly.fr = "Distance seulement (e.g., 5 km de Toliara)";
-loctype.distalongpath.fr = "Distance le long de voie d'accËs (e.g., 13 km E (par voie terrestre) de Toliara)";
+loctype.distalongpath.fr = "Distance le long de voie d'acc√®s (e.g., 13 km E (par voie terrestre) de Toliara)";
 loctype.orthodist.fr = "Distance le long des directions orthogonales (e.g., 2 km E et 3 km N de Toliara)";
-loctype.distatheading.fr = "Distance par rapport ‡ la direction (e.g., 10 km E (par avion) de Bakersfield)";
+loctype.distatheading.fr = "Distance par rapport √† la direction (e.g., 10 km E (par avion) de Bakersfield)";
 
-// SystËmes de coordonnÈes
-coordsys.dd.fr = "degrÈs dÈcimales";
-coordsys.dms.fr = "degrÈs minutes seconds";
-coordsys.ddm.fr = "degrÈs dÈcimales minutes";
+// Syst√®mes de coordonn√©es
+coordsys.dd.fr = "degr√©s d√©cimales";
+coordsys.dms.fr = "degr√©s minutes seconds";
+coordsys.ddm.fr = "degr√©s d√©cimales minutes";
 
-// AbrÈviations ‡ l'entÍte
+// Abr√©viations √† l'ent√™te
 headings.n.fr = "N";
 headings.e.fr = "E";
 headings.s.fr = "S";
@@ -1061,100 +1061,100 @@ headings.wbn.fr  = "WbN";
 headings.nwbw.fr = "NWbW";
 headings.nwbn.fr = "NWbN";
 headings.nbw.fr  = "NbW";
-headings.nearestdegree.fr = "degrÈ de prËs";
+headings.nearestdegree.fr = "degr√© de pr√®s";
 
 // Labels
 label.lat.fr = "Latitude";
 label.lon.fr = "Longitude";
 label.offset.fr = "Distance de l'Offset";
-label.extent.fr = "L'Ètendue de la Place NommÈe";
+label.extent.fr = "L'√©tendue de la Place Nomm√©e";
 label.measurementerror.fr = "Erreur de Mesure";
 label.extent.gps.fr = "Exactitude de GPS";
 label.calctype.fr = "Type de Calcul";
-label.loctype.fr = "Type de LocalitÈ";
-label.title.fr = "Calculateur de GÈorÈfÈrence";
-label.coordsource.fr = "Source de CoordonnÈes";
-label.coordsys.fr = "SystËme de CoordonnÈes";
+label.loctype.fr = "Type de Localit√©";
+label.title.fr = "Calculateur de G√©or√©f√©rence";
+label.coordsource.fr = "Source de Coordonn√©es";
+label.coordsys.fr = "Syst√®me de Coordonn√©es";
 label.datum.fr = "Datum"
-label.coordprec.fr = "PrÈcision des CoordonnÈes";
+label.coordprec.fr = "Pr√©cision des Coordonn√©es";
 label.distew.fr = "Dist. de l'Offset Est ou Ouest";
 label.distns.fr = "Dist. de l'Offset Nord ou Sud";
-label.distunits.fr = "UnitÈs de Distance";
-label.distprec.fr = "PrÈcision de Distance";
+label.distunits.fr = "Unit√©s de Distance";
+label.distprec.fr = "Pr√©cision de Distance";
 label.direction.fr = "Direction";
 label.calculate.fr = "Calcul";
 label.promote.fr = "Favorisez"
-label.declat.fr = "Latitude DÈcimale";
-label.declon.fr = "Longitude DÈcimale";
+label.declat.fr = "Latitude D√©cimale";
+label.declon.fr = "Longitude D√©cimale";
 label.maxerrdist.fr = "Erreur Maximum de Distance";
 label.step0.fr = "Etape 1) Choisissez le type de calcul sur la liste ci-dessous.";
-label.step1.fr = "Etape 2) Choisissez le type de localitÈ sur la liste ci-dessous.";
-label.step2.fr = "Etape 3) Entrez tous les paramËtres pour la localitÈ.";
+label.step1.fr = "Etape 2) Choisissez le type de localit√© sur la liste ci-dessous.";
+label.step2.fr = "Etape 3) Entrez tous les param√®tres pour la localit√©.";
 label.distanceconverter.fr = "Converteur de Distance:";
 label.scaleconverter.fr = "Converteur de Scale:";
 
 // Erreurs
-error.heading.message.fr = "L'entÍte doit Ítre une valeur entre 0 (Nord) et 360.";
-error.heading.title.fr = "Erreur de saisie de l'entÍte";
-error.lat.message.fr = "La latitude doit Ítre entre -90 (Pole Sud) et 90 (Pole Nord).";
-error.lat.title.fr = "Erreur de Saisie de CoordonnÈe";
-error.lon.message.fr = "La longitude doit Ítre entre -180 et 180.";
-error.lon.title.fr = "Erreur de Saisie de CoordonnÈe";
-error.min.message.fr = "Les minutes doit Ítre entre 0 et 60.";
-error.min.title.fr = "Erreur de Saisie de CoordonnÈe";
-error.sec.message.fr = "Les seconds doit Ítre entre 0 et 60.";
-error.sec.title.fr = "Erreur de Saisie de CoordonnÈe";
-error.offset.message.fr = "L'Offset ne doit pas avoir une valeur nÈgative.";
+error.heading.message.fr = "L'ent√™te doit √™tre une valeur entre 0 (Nord) et 360.";
+error.heading.title.fr = "Erreur de saisie de l'ent√™te";
+error.lat.message.fr = "La latitude doit √™tre entre -90 (Pole Sud) et 90 (Pole Nord).";
+error.lat.title.fr = "Erreur de Saisie de Coordonn√©e";
+error.lon.message.fr = "La longitude doit √™tre entre -180 et 180.";
+error.lon.title.fr = "Erreur de Saisie de Coordonn√©e";
+error.min.message.fr = "Les minutes doit √™tre entre 0 et 60.";
+error.min.title.fr = "Erreur de Saisie de Coordonn√©e";
+error.sec.message.fr = "Les seconds doit √™tre entre 0 et 60.";
+error.sec.title.fr = "Erreur de Saisie de Coordonn√©e";
+error.offset.message.fr = "L'Offset ne doit pas avoir une valeur n√©gative.";
 error.offset.title.fr = "Erreur de Saisie de valeur de l'Offset";
-error.extent.message.fr = "L'Ètendue ne doit pas avoir une valeur nÈgative.";
-error.extent.title.fr = "Erreur de Saisie de valeur de l'Ètendue";
-error.measurementerror.message.fr = "L'Offset ne doit pas avoir une valeur nÈgative.";
+error.extent.message.fr = "L'√©tendue ne doit pas avoir une valeur n√©gative.";
+error.extent.title.fr = "Erreur de Saisie de valeur de l'√©tendue";
+error.measurementerror.message.fr = "L'Offset ne doit pas avoir une valeur n√©gative.";
 error.measurementerror.title.fr = "Erreur de Saisie de valeur de Measure";
-error.number.message.fr = "Le format du numÈro doit suivre les conventions de la langue choisie.";
-error.number.title.fr = "Erreur de Saisie de N˙mero";
+error.number.message.fr = "Le format du num√©ro doit suivre les conventions de la langue choisie.";
+error.number.title.fr = "Erreur de Saisie de N√∫mero";
 
-// PrÈcision des CoordonnÈes
-coordprec.dd.degree.fr = "degrÈ prËs";
-coordprec.dd.cp_01.fr = "0.1 degrÈs";
-coordprec.dd.cp_001.fr = "0.01 degrÈs";
-coordprec.dd.cp_0001.fr = "0.001 degrÈs";
-coordprec.dd.cp_00001.fr = "0.0001 degrÈs";
-coordprec.dd.cp_000001.fr = "0.00001 degrÈs";
-coordprec.dd.half.fr = "1/2 degrÈ";
-coordprec.dd.quarter.fr = "1/4 degrÈ";
+// Pr√©cision des Coordonn√©es
+coordprec.dd.degree.fr = "degr√© pr√®s";
+coordprec.dd.cp_01.fr = "0.1 degr√©s";
+coordprec.dd.cp_001.fr = "0.01 degr√©s";
+coordprec.dd.cp_0001.fr = "0.001 degr√©s";
+coordprec.dd.cp_00001.fr = "0.0001 degr√©s";
+coordprec.dd.cp_000001.fr = "0.00001 degr√©s";
+coordprec.dd.half.fr = "1/2 degr√©";
+coordprec.dd.quarter.fr = "1/4 degr√©";
 coordprec.dd.exact.fr = "exacte";
 
-coordprec.dms.degree.fr = "degrÈ prËs";
-coordprec.dms.cp_30m.fr = "30 minutes prËs";
-coordprec.dms.cp_10m.fr = "10 minutes prËs";
-coordprec.dms.cp_5m.fr = "5 minutes prËs";
-coordprec.dms.cp_1m.fr = "minute prËs";
-coordprec.dms.cp_30s.fr = "30 seconds prËs";
-coordprec.dms.cp_10s.fr = "10 seconds prËs";
-coordprec.dms.cp_5s.fr = "5 seconds prËs";
-coordprec.dms.cp_1s.fr = "second prËs";
-coordprec.dms.cp_01s.fr = "0.1 seconds prËs";
-coordprec.dms.cp_001s.fr = "0.01 seconds prËs";
+coordprec.dms.degree.fr = "degr√© pr√®s";
+coordprec.dms.cp_30m.fr = "30 minutes pr√®s";
+coordprec.dms.cp_10m.fr = "10 minutes pr√®s";
+coordprec.dms.cp_5m.fr = "5 minutes pr√®s";
+coordprec.dms.cp_1m.fr = "minute pr√®s";
+coordprec.dms.cp_30s.fr = "30 seconds pr√®s";
+coordprec.dms.cp_10s.fr = "10 seconds pr√®s";
+coordprec.dms.cp_5s.fr = "5 seconds pr√®s";
+coordprec.dms.cp_1s.fr = "second pr√®s";
+coordprec.dms.cp_01s.fr = "0.1 seconds pr√®s";
+coordprec.dms.cp_001s.fr = "0.01 seconds pr√®s";
 coordprec.dms.exact.fr = "exacte";
 
-coordprec.ddm.degree.fr = "degrÈ prËs";
-coordprec.ddm.cp_30m.fr = " 30 minutes prËs";
-coordprec.ddm.cp_10m.fr = "10 minutes prËs";
-coordprec.ddm.cp_5m.fr = "5 minutes prËs";
-coordprec.ddm.cp_1m.fr = "minute prËs";
-coordprec.ddm.cp_01m.fr = "0.1 minutes prËs";
-coordprec.ddm.cp_001m.fr = "0.01 minutes prËs";
-coordprec.ddm.cp_0001m.fr = "0.001 minutes prËs";
+coordprec.ddm.degree.fr = "degr√© pr√®s";
+coordprec.ddm.cp_30m.fr = " 30 minutes pr√®s";
+coordprec.ddm.cp_10m.fr = "10 minutes pr√®s";
+coordprec.ddm.cp_5m.fr = "5 minutes pr√®s";
+coordprec.ddm.cp_1m.fr = "minute pr√®s";
+coordprec.ddm.cp_01m.fr = "0.1 minutes pr√®s";
+coordprec.ddm.cp_001m.fr = "0.01 minutes pr√®s";
+coordprec.ddm.cp_0001m.fr = "0.001 minutes pr√®s";
 coordprec.ddm.exact.fr = "exacte";
 
 // Datum (Informations)
-datum.notrecorded.fr = "Informations (datum) non enregistrÈs";
+datum.notrecorded.fr = "Informations (datum) non enregistr√©s";
 
-// Source de CoordonnÈes
-coordsource.gaz.fr = "rÈpertoire de localitÈ (gazetteer)";
+// Source de Coordonn√©es
+coordsource.gaz.fr = "r√©pertoire de localit√© (gazetteer)";
 coordsource.gem.fr = "Google Earth/Maps";
 coordsource.gps.fr = "GPS";
-coordsource.loc.fr = "description de la localitÈ";
+coordsource.loc.fr = "description de la localit√©";
 coordsource.usgs250000.fr = "Carte USGS: 1:250000";
 coordsource.usgs100000.fr = "Carte USGS: 1:100000";
 coordsource.usgs63360.fr = "Carte USGS: 1:63360";
