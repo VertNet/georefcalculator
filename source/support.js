@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "support.js 2016-09-29T09:40+02:00"
+__version__ = "support.js 2018-06-20T16:29+12:00"
 */
 
 	function convertDistance()
@@ -1638,8 +1638,8 @@ __version__ = "support.js 2016-09-29T09:40+02:00"
 	
 	function readDatumError(){
 		var error = 1000; // 1 km error if file can't be read properly
-		var col = Math.round( 5*(decimallongitude+179.48) );
-		var row = Math.round( 5*(84.69-decimallatitude) );
+		var col = Math.round( 5*(Number(decimallongitude)+179.48) );
+		var row = Math.round( 5*(84.69-Number(decimallatitude)) );
 
 		error = datumerror[col][row];
 		return error;
