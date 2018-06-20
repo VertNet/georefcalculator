@@ -13,7 +13,7 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek, John Wieczorek"
 __copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "gc.ui.js 2018-06-20T16:36+12:00"
+__version__ = "gc_ui.js 2018-06-20T16:36+12:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	var sign = 1;
