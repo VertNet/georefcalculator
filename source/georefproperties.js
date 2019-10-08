@@ -11,22 +11,22 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-__author__ = "Craig Wieczorek, John Wieczorek"
-__copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "georefcalculator.js 2015-12-10T13:54-07:00"
+__author__ = "Craig Wieczorek"
+__author__ = "John Wieczorek"
+__contributor__ = Gustavo Iglesias
+__contributor__ = Jose (Wly) Dos Santos
+__contributor__ = Tendro Ramaharitra
+__contributor__ = Robert Hijmans
+__contributor__ = Peter Desmet
+__copyright__ = "Copyright 2019 Rauthiflor LLC"
+__version__ = "georefproperties.js 2019-10-07T20:25-03:00"
 */
 
-// Translation help courtesy of:
+// Translations courtesy of:
 // Gustavo Iglesias (Español)
 // Jose (Wly) Dos Santos (Português)
 // Tendro Ramaharitra (Français)
 // Robert Hijmans & Peter Desmet (Nederlands)
-//
-// Languages
-
-
-
-//TODO maybe rename this georefproperties.js for clarity. is used to be called .properties
 
 function test_getSource( lang )
 {
@@ -181,7 +181,7 @@ headings.ssw.nl = "ZZW";
 headings.wsw.nl = "WZW";
 headings.wnw.nl = "WNW";
 headings.nnw.nl = "NNW";
-headings.nearestdegree.nl = "dichtsbijzijnde graad";
+headings.nearestdegree.nl = "graden vanuit het N";
 headings.nbe.nl  = "NbE";
 headings.nebn.nl = "NEbN";
 headings.nebe.nl = "NEbE";
@@ -506,7 +506,7 @@ headings.wbn.en  = "WbN";
 headings.nwbw.en = "NWbW";
 headings.nwbn.en = "NWbN";
 headings.nbw.en  = "NbW";
-headings.nearestdegree.en = "nearest degree";
+headings.nearestdegree.en = "degrees from N";
 
 // Labels
 label.lat.en = "Latitude";
@@ -691,7 +691,7 @@ headings.wbn.es  = "WbN";
 headings.nwbw.es = "NWbW";
 headings.nwbn.es = "NWbN";
 headings.nbw.es  = "NbW";
-headings.nearestdegree.es = "grado mas próximo";
+headings.nearestdegree.es = "grados desde N";
 
 // Etiquetas
 label.lat.es = "Latitud";
@@ -876,7 +876,7 @@ headings.wbn.pt  = "WbN";
 headings.nwbw.pt = "NWbW";
 headings.nwbn.pt = "NWbN";
 headings.nbw.pt  = "NbW";
-headings.nearestdegree.pt = "grau mais próximo";
+headings.nearestdegree.pt = "graus do N";
 
 // Etiqueta
 label.lat.pt = "Latitude";
@@ -1061,7 +1061,7 @@ headings.wbn.fr  = "WbN";
 headings.nwbw.fr = "NWbW";
 headings.nwbn.fr = "NWbN";
 headings.nbw.fr  = "NbW";
-headings.nearestdegree.fr = "degré de près";
+headings.nearestdegree.fr = "degrés du N";
 
 // Labels
 label.lat.fr = "Latitude";
@@ -1202,57 +1202,6 @@ units.mile = "mi";
 units.yard = "yds";
 units.kilometer = "km";
 
-// Heading Abbreviations:
-// Canonical (don't change these!)
-//FIXME I think these are old and deprecated.
-//I have to comment them out or it breaks things in javascript
-/*
-var heading = {};
-headings.n = "N";
-headings.e = "E";
-headings.s = "S";
-headings.w = "W";
-headings.ne = "NE";
-headings.se = "SE";
-headings.sw = "SW";
-headings.nw = "NW";
-headings.nne = "NNE";
-headings.ene = "ENE";
-headings.ese = "ESE";
-headings.sse = "SSE";
-headings.ssw = "SSW";
-headings.wsw = "WSW";
-headings.wnw = "WNW";
-headings.nnw = "NNW";
-headings.nbe  = "NbE";
-headings.nebn = "NEbN";
-headings.nebe = "NEbE";
-headings.ebn  = "EbN";
-headings.ebs  = "EbS";
-headings.sebe = "SEbE";
-headings.sebs = "SEbS";
-headings.sbe  = "SbE";
-headings.sbw  = "SbW";
-headings.swbs = "SWbS";
-headings.swbw = "SWbW";
-headings.wbs  = "WbS";
-headings.wbn  = "WbN";
-headings.nwbw = "NWbW";
-headings.nwbn = "NWbN";
-headings.nbw  = "NbW";
-headings.nearestdegree = "nearest degree";
-*/
-
-// Coordinate Systems
-// Canonical (don't change these!)
-/*
-FIXME I think these are old and deprecated.
-I dont see them used in java, always used with +language.
-I have to comment them out or it breaks things in java script
-coordsys.dd = "decimal degrees";
-coordsys.dms = "degrees minutes seconds";
-coordsys.ddm = "degrees decimal minutes";
-*/
 //tie the above object arrays into a single global properties object
 g_properties.language = language;
 g_properties.version = version;

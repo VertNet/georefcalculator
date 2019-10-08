@@ -11,9 +11,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-__author__ = "Craig Wieczorek, John Wieczorek"
-__copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "gc_ui.js 2018-06-20T16:36+12:00"
+__author__ = "Craig Wieczorek"
+__author__ = "John Wieczorek"
+__copyright__ = "Copyright 2019 Rauthiflor LLC"
+__version__ = "gc_ui.js 2019-10-07T22:37-3:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	var sign = 1;
@@ -119,8 +120,8 @@ function downloadTests()
 	
 function GC_init()
 {
-	g_embeddedCopyright = "Copyright 2016 Regents of the University of California";
-	g_versionNumber = "20180620";
+	g_embeddedCopyright = "Copyright 2016 Rauthiflor LLC";
+	g_versionNumber = "20191007";
 
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
@@ -1787,17 +1788,18 @@ function onBodyKeyUp( e  )
 
 		uiSelectAddExplicitItem("ChoiceDatum","(WGS84) World Geodetic System 1984");
 		uiSelectAddExplicitItem("ChoiceDatum","(NAD83) North American 1983");
-		uiSelectAddExplicitItem("ChoiceDatum","(NAD27) North American 1927");
-
+		uiSelectAddExplicitItem("ChoiceDatum","(NAD27) North American 1927 mean");
 		uiSelectAddExplicitItem("ChoiceDatum","Adindan");
 		uiSelectAddExplicitItem("ChoiceDatum","Afgooye");
 		uiSelectAddExplicitItem("ChoiceDatum","Ain el Abd 1970");
 		uiSelectAddExplicitItem("ChoiceDatum","Airy 1830 ellipsoid");
+		uiSelectAddExplicitItem("ChoiceDatum","Alaska (NAD-27)");
+		uiSelectAddExplicitItem("ChoiceDatum","Alaska/Canada NAD-27");
 		uiSelectAddExplicitItem("ChoiceDatum","American Samoa 1962");
 		uiSelectAddExplicitItem("ChoiceDatum","Anna 1 Astro 1965");
 		uiSelectAddExplicitItem("ChoiceDatum","Antigua Island Astro 1943");
-		uiSelectAddExplicitItem("ChoiceDatum","Arc 1950");
-		uiSelectAddExplicitItem("ChoiceDatum","Arc 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","Arc 1950 mean");
+		uiSelectAddExplicitItem("ChoiceDatum","Arc 1960 mean");
 		uiSelectAddExplicitItem("ChoiceDatum","Ascension Island 1958");
 		uiSelectAddExplicitItem("ChoiceDatum","Astro Beacon 'E' 1945");
 		uiSelectAddExplicitItem("ChoiceDatum","Astro DOS 71/4");
@@ -1810,6 +1812,7 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","(AGD84) Australian Geodetic 1984");
 		uiSelectAddExplicitItem("ChoiceDatum","Australian National ellipsoid");
 		uiSelectAddExplicitItem("ChoiceDatum","Ayabelle Lighthouse");
+		uiSelectAddExplicitItem("ChoiceDatum","Bahamas (NAD-27)");
 		uiSelectAddExplicitItem("ChoiceDatum","Bekaa Valley 1920 (IGN)");
 		uiSelectAddExplicitItem("ChoiceDatum","Bellevue (IGN)");
 		uiSelectAddExplicitItem("ChoiceDatum","Bermuda 1957");
@@ -1818,11 +1821,16 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","Bissau");
 		uiSelectAddExplicitItem("ChoiceDatum","Bogota Observatory");
 		uiSelectAddExplicitItem("ChoiceDatum","Bukit Rimpah");
+		uiSelectAddExplicitItem("ChoiceDatum","Camp Area Astro");
 		uiSelectAddExplicitItem("ChoiceDatum","Campo Inchauspe");
+		uiSelectAddExplicitItem("ChoiceDatum","Canada Mean (NAD27)");
+		uiSelectAddExplicitItem("ChoiceDatum","Canal Zone (NAD27)");
 		uiSelectAddExplicitItem("ChoiceDatum","Canton Astro 1966");
 		uiSelectAddExplicitItem("ChoiceDatum","Cape");
-		uiSelectAddExplicitItem("ChoiceDatum","Cape Canaveral");
+		uiSelectAddExplicitItem("ChoiceDatum","Cape Canaveral mean");
+		uiSelectAddExplicitItem("ChoiceDatum","Caribbean (NAD27)");
 		uiSelectAddExplicitItem("ChoiceDatum","Carthage");
+		uiSelectAddExplicitItem("ChoiceDatum","Central America (NAD27)");
 		uiSelectAddExplicitItem("ChoiceDatum","Chatham Island Astro 1971");
 		uiSelectAddExplicitItem("ChoiceDatum","Chua Astro");
 		uiSelectAddExplicitItem("ChoiceDatum","Clarke 1858 ellipsoid");
@@ -1830,50 +1838,51 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","Clarke 1880 ellipsoid");
 		uiSelectAddExplicitItem("ChoiceDatum","Co-Ordinate System 1937 of Estonia");
 		uiSelectAddExplicitItem("ChoiceDatum","Corrego Alegre");
+		uiSelectAddExplicitItem("ChoiceDatum","Corrego Alegre (Provisional)");
+		uiSelectAddExplicitItem("ChoiceDatum","Cuba (NAD27)");
+		uiSelectAddExplicitItem("ChoiceDatum","Cyprus");
 		uiSelectAddExplicitItem("ChoiceDatum","Dabola");
 		uiSelectAddExplicitItem("ChoiceDatum","Deception Island");
 		uiSelectAddExplicitItem("ChoiceDatum","Djakarta (Batavia)");
 		uiSelectAddExplicitItem("ChoiceDatum","DOS 1968");
 		uiSelectAddExplicitItem("ChoiceDatum","Easter Island 1967");
-
+		uiSelectAddExplicitItem("ChoiceDatum","Egypt");
 		uiSelectAddExplicitItem("ChoiceDatum","European 1950");
-		uiSelectAddExplicitItem("ChoiceDatum","European 1979");
-
+		uiSelectAddExplicitItem("ChoiceDatum","European 1950 mean");
+		uiSelectAddExplicitItem("ChoiceDatum","European 1979 mean");
 		uiSelectAddExplicitItem("ChoiceDatum","Everest ellipsoid (Brunei, Sabah, Sarawak)");
 		uiSelectAddExplicitItem("ChoiceDatum","Everest India 1830 ellipsoid");
 		uiSelectAddExplicitItem("ChoiceDatum","Everest India 1856 ellipsoid");
 		uiSelectAddExplicitItem("ChoiceDatum","Everest Pakistan ellipsoid");
 		uiSelectAddExplicitItem("ChoiceDatum","Everest ellipsoid (W. Malaysia, Singapore 1948)");
 		uiSelectAddExplicitItem("ChoiceDatum","Everest W. Malaysia 1969 ellipsoid");
-
+		uiSelectAddExplicitItem("ChoiceDatum","Finnish Nautical Chart");
 		uiSelectAddExplicitItem("ChoiceDatum","Fort Thomas 1955");
 		uiSelectAddExplicitItem("ChoiceDatum","Gan 1970");
+		uiSelectAddExplicitItem("ChoiceDatum","Gandajika Base");
+		uiSelectAddExplicitItem("ChoiceDatum","Ghana");
 		uiSelectAddExplicitItem("ChoiceDatum","Geodetic Datum 1949");
 		uiSelectAddExplicitItem("ChoiceDatum","Graciosa Base SW 1948");
-
+		uiSelectAddExplicitItem("ChoiceDatum","Greenland (NAD27)");
 		uiSelectAddExplicitItem("ChoiceDatum","GRS80 ellipsoid");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Guam 1963");
 		uiSelectAddExplicitItem("ChoiceDatum","Gunung Segara");
+		uiSelectAddExplicitItem("ChoiceDatum","Gunung Serindung 1962");
 		uiSelectAddExplicitItem("ChoiceDatum","GUX 1 Astro");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Helmert 1906 ellipsoid");
-
+		uiSelectAddExplicitItem("ChoiceDatum","Herat North");
 		uiSelectAddExplicitItem("ChoiceDatum","Hito XVIII 1963");
 		uiSelectAddExplicitItem("ChoiceDatum","Hjorsey 1955");
 		uiSelectAddExplicitItem("ChoiceDatum","Hong Kong 1963");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Hough 1960 ellipsoid");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Hu-Tzu-Shan");
 		uiSelectAddExplicitItem("ChoiceDatum","Indian");
 		uiSelectAddExplicitItem("ChoiceDatum","Indian 1954");
 		uiSelectAddExplicitItem("ChoiceDatum","Indian 1960");
 		uiSelectAddExplicitItem("ChoiceDatum","Indian 1975");
 		uiSelectAddExplicitItem("ChoiceDatum","Indonesian 1974");
-
 		uiSelectAddExplicitItem("ChoiceDatum","International 1924 ellipsoid");
-
+		uiSelectAddExplicitItem("ChoiceDatum","Iran");
 		uiSelectAddExplicitItem("ChoiceDatum","Ireland 1965");
 		uiSelectAddExplicitItem("ChoiceDatum","ISTS 061 Astro 1968");
 		uiSelectAddExplicitItem("ChoiceDatum","ISTS 073 Astro 1969");
@@ -1884,35 +1893,40 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","Kerguelen Island 1949");
 		uiSelectAddExplicitItem("ChoiceDatum","Kertau 1948");
 		uiSelectAddExplicitItem("ChoiceDatum","Korean Geodetic System 1995");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Krassovsky 1940 ellipsoid");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Kusaie Astro 1951");
 		uiSelectAddExplicitItem("ChoiceDatum","L.C. 5 Astro 1961");
+		uiSelectAddExplicitItem("ChoiceDatum","La Reunion");
 		uiSelectAddExplicitItem("ChoiceDatum","Leigon");
 		uiSelectAddExplicitItem("ChoiceDatum","Lemuta");
 		uiSelectAddExplicitItem("ChoiceDatum","Liberia 1964");
 		uiSelectAddExplicitItem("ChoiceDatum","Luzon");
 		uiSelectAddExplicitItem("ChoiceDatum","Mahe 1971");
+		uiSelectAddExplicitItem("ChoiceDatum","Marco Astro");
+		uiSelectAddExplicitItem("ChoiceDatum","Masirah Is. (Nahrwan)");
 		uiSelectAddExplicitItem("ChoiceDatum","Massawa");
 		uiSelectAddExplicitItem("ChoiceDatum","Merchich");
+		uiSelectAddExplicitItem("ChoiceDatum","Mexico (NAD27)");
 		uiSelectAddExplicitItem("ChoiceDatum","Midway Astro 1961");
+		uiSelectAddExplicitItem("ChoiceDatum","Mindanao");
 		uiSelectAddExplicitItem("ChoiceDatum","Minna");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Modified Airy ellipsoid");
 		uiSelectAddExplicitItem("ChoiceDatum","Modified Fischer 1960 ellipsoid");
-
+		uiSelectAddExplicitItem("ChoiceDatum","Montjong Lowe");
 		uiSelectAddExplicitItem("ChoiceDatum","Montserrat Island Astro 1958");
 		uiSelectAddExplicitItem("ChoiceDatum","M'Poraloko");
 		uiSelectAddExplicitItem("ChoiceDatum","Nahrwan");
 		uiSelectAddExplicitItem("ChoiceDatum","Naparima, BWI");
 		uiSelectAddExplicitItem("ChoiceDatum","Naparima 1972");
 		uiSelectAddExplicitItem("ChoiceDatum","North Sahara 1959");
+		uiSelectAddExplicitItem("ChoiceDatum","Observatorio 1966");
 		uiSelectAddExplicitItem("ChoiceDatum","Observatorio Meteorologico 1939");
 		uiSelectAddExplicitItem("ChoiceDatum","Ocotepeque 1935");
 		uiSelectAddExplicitItem("ChoiceDatum","Old Egyptian 1907");
-		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian, Clarke 1866");
-		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian, International 1924");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian mean");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian Kauai");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian Maui");
+		uiSelectAddExplicitItem("ChoiceDatum","Old Hawaiian Oahu");
 		uiSelectAddExplicitItem("ChoiceDatum","Old Trinidad 1903");
 		uiSelectAddExplicitItem("ChoiceDatum","Oman");
 		uiSelectAddExplicitItem("ChoiceDatum","Ordnance Survey of Great Britain 1936");
@@ -1921,25 +1935,29 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","Point 58");
 		uiSelectAddExplicitItem("ChoiceDatum","Point Noire 1958");
 		uiSelectAddExplicitItem("ChoiceDatum","Porto Santo 1936");
+		uiSelectAddExplicitItem("ChoiceDatum","Potsdam Rauenberg DHDN");
 		uiSelectAddExplicitItem("ChoiceDatum","Provisional South American 1956");
 		uiSelectAddExplicitItem("ChoiceDatum","Provisional South Chilean 1963");
 		uiSelectAddExplicitItem("ChoiceDatum","Puerto Rico");
+		uiSelectAddExplicitItem("ChoiceDatum","Pulkovo 1942");
 		uiSelectAddExplicitItem("ChoiceDatum","Qatar National");
 		uiSelectAddExplicitItem("ChoiceDatum","Qornoq");
 		uiSelectAddExplicitItem("ChoiceDatum","Reunion");
 		uiSelectAddExplicitItem("ChoiceDatum","Rome 1940");
-		uiSelectAddExplicitItem("ChoiceDatum","S-42 (Pulkovo 1942)");
+		uiSelectAddExplicitItem("ChoiceDatum","S-42");
 		uiSelectAddExplicitItem("ChoiceDatum","S-JTSK");
 		uiSelectAddExplicitItem("ChoiceDatum","Santo (DOS) 1965");
 		uiSelectAddExplicitItem("ChoiceDatum","Sao Braz");
 		uiSelectAddExplicitItem("ChoiceDatum","Sapper Hill 1943");
-
 		uiSelectAddExplicitItem("ChoiceDatum","Schwarzeck");
 		uiSelectAddExplicitItem("ChoiceDatum","Selvagem Grande 1938");
+		uiSelectAddExplicitItem("ChoiceDatum","Sicily");
 		uiSelectAddExplicitItem("ChoiceDatum","Sierra Leone 1960");
-		uiSelectAddExplicitItem("ChoiceDatum","South American 1969");
+		uiSelectAddExplicitItem("ChoiceDatum","South American Datum 1969");
 		uiSelectAddExplicitItem("ChoiceDatum","SIRGAS - South American Geocentric Reference System");
 		uiSelectAddExplicitItem("ChoiceDatum","South Asia");
+		uiSelectAddExplicitItem("ChoiceDatum","Southeast Base");
+		uiSelectAddExplicitItem("ChoiceDatum","Southwest Base");
 		uiSelectAddExplicitItem("ChoiceDatum","Tananarive Observatory 1925");
 		uiSelectAddExplicitItem("ChoiceDatum","Timbalai 1948");
 		uiSelectAddExplicitItem("ChoiceDatum","Tokyo");
@@ -1947,6 +1965,7 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","Viti Levu 1916");
 		uiSelectAddExplicitItem("ChoiceDatum","Voirol 1874");
 		uiSelectAddExplicitItem("ChoiceDatum","Voirol 1960");
+		uiSelectAddExplicitItem("ChoiceDatum","United Arab Emirates (Nahrwan");
 		uiSelectAddExplicitItem("ChoiceDatum","Wake-Eniwetok 1960");
 		uiSelectAddExplicitItem("ChoiceDatum","Wake Island Astro 1952");
 		uiSelectAddExplicitItem("ChoiceDatum","(WGS66) World Geodetic System 1966");
@@ -2242,121 +2261,6 @@ function onBodyKeyUp( e  )
 		}
 	}
 	
-/*Note: for reference only Java	 UI Layout, I am using it for hidden attribute setting as it does not translate well from Java pane to HTML div/span
-//NOTE: I strongly suspect we do not need this reference any more.
-	pane
-		ChoiceLanguage
-		LabelVersion
-		LabelCopyright
-		LabelCalcType
-		ChoiceCalcType
-		LabelStepZero
-		LabelTitle
-		LabelModel
-		ChoiceModel
-		LabelStepOne
-		LabelStepTwo
-		LabelCoordSource
-		ChoiceCoordSource
-		LabelCoordSystem
-		ChoiceCoordSystem
-		+	PanelCoords
-		+	PanelCoordPrecision
-		LabelDirection
-		ChoiceDirection
-		TextFieldHeading
-		TextFieldOffset
-		ChoiceOffsetNSDir
-		LabelOffsetEW
-		TextFieldOffsetEW
-		ChoiceOffsetEWDir
-		LabelOffset
-		LabelExtent
-		TextFieldExtent
-		LabelMeasurementError
-		TextFieldMeasurementError
-		LabelDistUnits
-		ChoiceDistUnits
-		LabelDistancePrecision
-		ChoiceDistancePrecision
-		ButtonCalculate
-		ButtonPromote
-		+	PanelResults
-		LabelDistanceConverter
-		TextFieldFromDistance
-		ChoiceFromDistUnits
-		LabelEquals
-		TextFieldToDistance
-		ChoiceToDistUnits
-		LabelScaleConverter
-		TextFieldScaleFromDistance
-		ChoiceScaleFromDistUnits
-		ChoiceScale
-		LabelScaleEquals
-		TextFieldScaleToDistance
-		ChoiceScaleToDistUnits
-	
-	PanelCoords
-		lblT2Dec_Lat
-		lblT2Dec_Long
-		+	PanelDecLatLong
-		+	PanelDDMMSS
-		+	PanelDecMin
-		LabelDatum
-		ChoiceDatum
-	
-	PanelCoordPrecision
-		LabelLatPrecision
-		ChoiceLatPrecision
-	
-	PanelDecLatLong
-		txtT2Dec_Lat
-		txtT2Dec_Long
-		
-	PanelDDMMSS
-		txtT7Lat_DegDMS
-		txtT7Lat_MinDMS
-		txtT7Lat_Sec
-		ChoiceLatDirDMS
-		
-		txtT7Long_DegDMS
-		txtT7Long_MinDMS
-		txtT7Long_Sec
-		ChoiceLongDirDMS
-		
-		Label211111
-		Label2211
-		Label21121
-		Label222
-		Label2123
-		Label23
-		
-		
-	PanelDecMin
-		txtT7Lat_DegMM
-		txtT7Lat_MinMM
-		ChoiceLatDirMM
-		
-		txtT7Long_DegMM
-		txtT7Long_MinMM
-		ChoiceLongDirMM
-		
-		Label2111111
-		Label22111
-		Label21212
-		Label231
-		
-	PanelResults
-		LabelCalcDecLat
-		TextFieldCalcDecLat
-		LabelCalcDecLong
-		TextFieldCalcDecLong
-		LabelCalcMaxError
-		TextFieldCalcErrorDist
-		TextFieldCalcErrorUnits
-		TextFieldFullResult
-	*/
-	
 	function showCoordinates( b )
 	{
 		PanelCoords_SetVisible( b )
@@ -2400,7 +2304,7 @@ function onBodyKeyUp( e  )
 		
 		f_pointer("ChoiceDirection" );
 		f_pointer("LabelDirection" );
-///***	
+
 		if( b && value == g_properties.getPropertyLang("headings.nearestdegree" ) )
 		{
 			uiShowElement( "TextFieldHeading" );
@@ -2559,7 +2463,6 @@ function onBodyKeyUp( e  )
 		PanelResults_SetVisible( b );
 	}
 
-	
 /* 
 TODO: This could be improved by using prompt alert type. With a prompt we could display 
 the bad value and the error, and get a replacement value back, plug in and roll with 
