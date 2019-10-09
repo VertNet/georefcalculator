@@ -19,7 +19,7 @@ __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "georefproperties.js 2019-10-07T20:25-03:00"
+__version__ = "georefproperties.js 2019-10-09T00:04-03:00"
 */
 
 // Translations courtesy of:
@@ -370,7 +370,8 @@ var datum = { 'notrecorded' : { 'nl' : "datum onbekend" } };
 // Coordinate Source
 var coordsource = {
 'gaz' : { },
-'gem' : { },
+'gem2008' : { },
+'gem2018' : { },
 'gps' : { },
 'loc' : { },
 'non3000000' : { },
@@ -411,7 +412,8 @@ var coordsource = {
 'ntsc50000' : { }
 };
 coordsource.gaz.nl = "plaatsnamenlijst (gazetteer)";
-coordsource.gem.nl = "Google Earth/Maps";
+coordsource.gem2008.nl = "Google Earth/Maps 2008";
+coordsource.gem2018.nl = "Google Earth/Maps 2018";
 coordsource.gps.nl = "GPS";
 coordsource.loc.nl = "locatiebeschrijving";
 coordsource.non3000000.nl = "andere kaart: 1:3000000";
@@ -597,7 +599,8 @@ datum.notrecorded.en = "datum not recorded";
 
 // Coordinate Source
 coordsource.gaz.en = "gazetteer";
-coordsource.gem.en = "Google Earth/Maps";
+coordsource.gem2008.en = "Google Earth/Maps 2008";
+coordsource.gem2018.en = "Google Earth/Maps 2018";
 coordsource.gps.en = "GPS";
 coordsource.loc.en = "locality description";
 coordsource.usgs250000.en = "USGS map: 1:250000";
@@ -782,7 +785,8 @@ datum.notrecorded.es = "datum no indicado";
 
 // Fuentes de las Coordenadas
 coordsource.gaz.es = "gacetero";
-coordsource.gem.es = "Google Earth/Maps";
+coordsource.gem2008.es = "Google Earth/Maps 2008";
+coordsource.gem2018.es = "Google Earth/Maps 2018";
 coordsource.gps.es = "GPS";
 coordsource.loc.es = "localidad textual";
 coordsource.usgs250000.es = "mapa USGS: 1:250000";
@@ -967,7 +971,8 @@ datum.notrecorded.pt = "datum não indicado";
 
 // Fonte das Coordenadas
 coordsource.gaz.pt = "dicionário geográfico";
-coordsource.gem.pt = "Google Earth/Maps";
+coordsource.gem2008.pt = "Google Earth/Maps 2008";
+coordsource.gem2018.pt = "Google Earth/Maps 2018";
 coordsource.gps.pt = "GPS";
 coordsource.loc.pt = "descrição da localidade";
 coordsource.usgs250000.pt = "mapa USGS: 1:250000";
@@ -1152,7 +1157,8 @@ datum.notrecorded.fr = "Informations (datum) non enregistrés";
 
 // Source de Coordonnées
 coordsource.gaz.fr = "répertoire de localité (gazetteer)";
-coordsource.gem.fr = "Google Earth/Maps";
+coordsource.gem2008.fr = "Google Earth/Maps 2008";
+coordsource.gem2018.fr = "Google Earth/Maps 2018";
 coordsource.gps.fr = "GPS";
 coordsource.loc.fr = "description de la localité";
 coordsource.usgs250000.fr = "Carte USGS: 1:250000";

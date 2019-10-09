@@ -14,8 +14,9 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2019-10-08T22:43-3:00"
+__version__ = "gc_ui.js 2019-10-09T00:13-3:00"
 */
+	var g_versionNumber = "20191009";
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	var sign = 1;
 	var degrees = 0;
@@ -55,6 +56,65 @@ __version__ = "gc_ui.js 2019-10-08T22:43-3:00"
 	var g_debug_active = false;
 	var g_debug_loaded = false;
 
+function GC_init()
+{
+	g_embeddedCopyright = "Copyright 2019 Rauthiflor LLC";
+	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
+	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
+	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
+	g_canonicalcalctypes = g_factory.makeArrayList("g_canonicalcalctypes","calctypes...");
+	g_canonicalddprec = g_factory.makeArrayList("g_canonicalddprec","ddprec");
+	g_canonicaldmsprec = g_factory.makeArrayList("g_canonicaldmsprec","dmsprec");
+	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
+	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
+	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
+	g_currentLocale = "en";
+	g_numberFormatter = "en";
+	g_language = "en";	
+
+	createDatum();
+	var datumErrorInst = datumerror; 
+	var language = g_language; 
+	setVariables( language );
+
+	// Initialize the language list and get the properties
+	g_languagelist.clear();
+	var i = 0;
+	var lang = g_properties.getIndexedProperty( "language.name", i )
+	var code = g_properties.getIndexedProperty( "language.code", i )
+	var nObj = { 'name' : lang, 'value' : code };
+	while( lang )
+	{
+		g_languagelist.add( nObj );
+		i++;
+		lang = g_properties.getIndexedProperty( "language.name", i );
+		code = g_properties.getIndexedProperty( "language.code", i );
+		nObj = { 'name' : lang, 'value' : code };
+	}
+	
+	uiShowElement( "LabelCopyright" );
+	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
+	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
+	uiShowElement( "LabelStepZero" );
+	uiHideElement( "LabelTitle" );
+	cleanSlate();
+	uiSetSelectedIndex("ChoiceLanguage", 0 )
+	onLanguageSelect();		
+
+	uiClearSelect( "ChoiceCalcType" );
+	uiSelectAddEmptyItem("ChoiceCalcType");
+	uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
+	uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
+	uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
+	uiSetSelectedIndex("ChoiceCalcType",0);
+	
+	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
+	showScaleConverter(true);
+	showDistanceConverter(true);
+	setTabOrders();
+	setLanguageFocused();
+	
+} 
 
 function downloadTests()
 {
@@ -117,67 +177,6 @@ function downloadTests()
 		}
 	}
 }
-	
-function GC_init()
-{
-	g_embeddedCopyright = "Copyright 2019 Rauthiflor LLC";
-	g_versionNumber = "20191008";
-	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
-	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
-	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
-	g_canonicalcalctypes = g_factory.makeArrayList("g_canonicalcalctypes","calctypes...");
-	g_canonicalddprec = g_factory.makeArrayList("g_canonicalddprec","ddprec");
-	g_canonicaldmsprec = g_factory.makeArrayList("g_canonicaldmsprec","dmsprec");
-	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
-	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
-	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
-	g_currentLocale = "en";
-	g_numberFormatter = "en";
-	g_language = "en";	
-
-	createDatum();
-	var datumErrorInst = datumerror; 
-	var language = g_language; 
-	setVariables( language );
-
-	// Initialize the language list and get the properties
-	g_languagelist.clear();
-	var i = 0;
-	var lang = g_properties.getIndexedProperty( "language.name", i )
-	var code = g_properties.getIndexedProperty( "language.code", i )
-	var nObj = { 'name' : lang, 'value' : code };
-	while( lang )
-	{
-		g_languagelist.add( nObj );
-		i++;
-		lang = g_properties.getIndexedProperty( "language.name", i );
-		code = g_properties.getIndexedProperty( "language.code", i );
-		nObj = { 'name' : lang, 'value' : code };
-	}
-	
-	uiShowElement( "LabelCopyright" );
-	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
-	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
-	uiShowElement( "LabelStepZero" );
-	uiHideElement( "LabelTitle" );
-	cleanSlate();
-	uiSetSelectedIndex("ChoiceLanguage", 0 )
-	onLanguageSelect();		
-
-	uiClearSelect( "ChoiceCalcType" );
-	uiSelectAddEmptyItem("ChoiceCalcType");
-	uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
-	uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
-	uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
-	uiSetSelectedIndex("ChoiceCalcType",0);
-	
-	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
-	showScaleConverter(true);
-	showDistanceConverter(true);
-	setTabOrders();
-	setLanguageFocused();
-	
-} 
 
 function setLanguageFocused()
 {
@@ -708,7 +707,8 @@ function setVariables( )
 		// Do not change the following, the order is important
 		g_canonicalsources.clear();
 		g_canonicalsources.add(g_properties.getProperty("coordsource.gaz."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.gem."+language));
+		g_canonicalsources.add(g_properties.getProperty("coordsource.gem2008."+language));
+		g_canonicalsources.add(g_properties.getProperty("coordsource.gem2018."+language));
 		g_canonicalsources.add(g_properties.getProperty("coordsource.gps."+language));
 		g_canonicalsources.add(g_properties.getProperty("coordsource.loc."+language));
 		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs250000."+language));
@@ -1364,7 +1364,7 @@ function setVariables( )
 		var csource = uiGetSelectedText("ChoiceCoordSource");
 
 		var cindex = g_canonicalsources.indexOf(csource);
-		if( cindex==2 ){ // GPS
+		if( cindex==3 ){ // GPS
 			uiSetLabel("LabelMeasurementError","label.extent.gps");
 		} else {
 			uiSetLabel("LabelMeasurementError","label.measurementerror");
@@ -1796,7 +1796,6 @@ function onBodyKeyUp( e  )
 
 		uiSetSelectedIndex("ChoiceCoordSource", csi );
 
-
 		// Datum controls
 		uiClearSelect("ChoiceDatum");
 		uiSelectAddItem("ChoiceDatum","datum.notrecorded");
@@ -1874,6 +1873,7 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDatum","Finnish Nautical Chart");
 		uiSelectAddExplicitItem("ChoiceDatum","Fort Thomas 1955");
 		uiSelectAddExplicitItem("ChoiceDatum","Gan 1970");
+		uiSelectAddExplicitItem("ChoiceDatum","GDA 2020");
 		uiSelectAddExplicitItem("ChoiceDatum","Gandajika Base");
 		uiSelectAddExplicitItem("ChoiceDatum","Ghana");
 		uiSelectAddExplicitItem("ChoiceDatum","Geodetic Datum 1949");
