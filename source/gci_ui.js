@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2019-10-07T22:37-3:00"
+__version__ = "gc_ui.js 2019-10-08T22:43-3:00"
 */
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
 	var sign = 1;
@@ -120,9 +120,8 @@ function downloadTests()
 	
 function GC_init()
 {
-	g_embeddedCopyright = "Copyright 2016 Rauthiflor LLC";
-	g_versionNumber = "20191007";
-
+	g_embeddedCopyright = "Copyright 2019 Rauthiflor LLC";
+	g_versionNumber = "20191008";
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
 	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
@@ -156,6 +155,7 @@ function GC_init()
 		nObj = { 'name' : lang, 'value' : code };
 	}
 	
+	uiShowElement( "LabelCopyright" );
 	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
 	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
 	uiShowElement( "LabelStepZero" );
@@ -244,7 +244,7 @@ function setTabOrders()
 	a=setElementOrder("TextFieldHeading", a);
 
 	//loc model dist along
-	a=setElementOrder("TextFieldOffset", a);
+	a=setElementOrder("TextFieldOffsetNS", a);
 	a=setElementOrder("ChoiceOffsetNSDir", a);
 	
 	a=setElementOrder("TextFieldOffsetEW", a);
@@ -688,7 +688,6 @@ function setVariables( )
 		g_canonicalcoordsystems.clear();
 		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dd."+language));
 		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dms."+language));
-		//g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dd."+language));
 		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.ddm."+language));
 
 		// Do not change the following, the order is important
@@ -1026,7 +1025,7 @@ function setVariables( )
 		//int coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
 		//int distprecindex, coordsourceindex, directionindex;		
 		var m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
-		var offset, offsetew, heading;
+		var offset, offsetns, offsetew, heading;
 		var latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
 		var datumindex, latprecindex, loctypeindex, calctypeindex;
 		var coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
@@ -1114,7 +1113,7 @@ function setVariables( )
 		}
 		measurementerror=m;
 
-		s = uiGetTextValue("TextFieldOffset");
+		s = uiGetTextValue("TextFieldOffsetNS");
 		m = 0;
 		if( s == null || s.length == 0 ){
 			m = 0;
@@ -1122,7 +1121,7 @@ function setVariables( )
 			num = formatCalcError.checkFormat(s); 
 			m = num; //.doubleValue();
 		}
-		offset=m;
+		offsetns=m;
 
 		s = uiGetTextValue("TextFieldOffsetEW");;
 		m = 0;
@@ -1133,6 +1132,7 @@ function setVariables( )
 			m = num; //.doubleValue();
 		}
 		offsetew=m;
+		offset=m;
 
 		s = uiGetTextValue("TextFieldHeading");;
 		m = 0;
@@ -1196,7 +1196,7 @@ function setVariables( )
 		uiSetTextExplicit("TextFieldToDistance",formatDistance.checkFormat( todistance ) );
 		uiSetTextExplicit("TextFieldScaleFromDistance",formatDistance.checkFormat( scalefromdistance ) );
 		uiSetTextExplicit("TextFieldScaleToDistance",formatDistance.checkFormat( scaletodistance ) );
-		uiSetTextExplicit("TextFieldOffset",formatCalcError.checkFormat( offset ) );
+		uiSetTextExplicit("TextFieldOffsetNS",formatCalcError.checkFormat( offset ) );
 		uiSetTextExplicit("TextFieldOffsetEW",formatCalcError.checkFormat( offsetew ) );
 		uiSetTextExplicit("TextFieldHeading",formatCalcError.checkFormat( heading ) );
 
@@ -1213,7 +1213,14 @@ function setVariables( )
 			uiGetSelectedText( "ChoiceModel") ==
 			g_properties.getPropertyLang("loctype.orthodist") )
 		{
-			uiSetLabelExplicit("LabelOffset", g_properties.getPropertyLang("label.distns"));
+			uiSetLabelExplicit("LabelOffsetNS", g_properties.getPropertyLang("label.distns"));
+		}
+		
+		if( uiGetSelectedIndex("ChoiceModel") != 0 && 
+			uiGetSelectedText( "ChoiceModel") ==
+			g_properties.getPropertyLang("loctype.orthodist") )
+		{
+			uiSetLabelExplicit("LabelOffsetNS", g_properties.getPropertyLang("label.distns"));
 		}
 		
 		if(coordsourceindex >= 0)
@@ -1325,7 +1332,6 @@ function setVariables( )
 
 		showResults(false);
 		clearResults();
-		showOffset(false);
 		
 		uiHideElement("LabelStepOne");
 		uiShowElement("LabelStepTwo");
@@ -1335,6 +1341,7 @@ function setVariables( )
 		setVisibility("ButtonCalculate",false);
 		setVisibility("ButtonPromote",false);
 		
+		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
 		
@@ -1349,7 +1356,7 @@ function setVariables( )
 		showErrors(true);
 		showRelevantCoordinates();
 		
-		uiSetLabel("LabelOffset","label.offset");
+		uiSetLabel("LabelOffsetEW","label.offset");
 		uiSetLabel("LabelExtent","label.extent");
 		uiSetLabel("LabelMeasurementError","label.measurementerror");
 		var value = uiGetSelectedText("ChoiceModel");
@@ -1476,6 +1483,7 @@ function setVariables( )
 		uiHideElement("ChoiceOffsetNSDir");
 		uiHideElement("TextFieldHeading");
 		setVisibility("LabelOffsetEW", false);
+		setVisibility("LabelOffsetNS", false);
 		
 		setVisibility("ButtonCalculate", false);
 		setVisibility("ButtonPromote", false);
@@ -1501,9 +1509,11 @@ function setVariables( )
 
 	function setLabels( ){
 		var language = g_language;
+		var loctypeindex=uiGetSelectedIndex( "ChoiceModel" );
 		var version = g_versionNumber;
 		var v = g_properties.getPropertyLang("version")+" " + version + language;
 		uiSetLabelExplicit("LabelVersion", v);
+		uiSetLabelExplicit("LabelCopyright", g_embeddedCopyright);
 		
 		uiSetLabel("LabelCalcType", "label.calctype");
 		uiSetLabel("LabelStepZero","label.step0");
@@ -1518,7 +1528,12 @@ function setVariables( )
 		uiSetLabel("LabelDatum","label.datum");
 		uiSetLabel("LabelLatPrecision","label.coordprec");
 		uiSetLabel("LabelOffsetEW","label.distew");
-		uiSetLabel("LabelOffset","label.offset");
+
+		if( loctypeindex==4 ){ // Distance in orthogonal directions
+		    uiSetLabel("LabelOffsetEW","label.distew");
+		} else {
+		    uiSetLabel("LabelOffsetEW","label.offset");
+		}
 		uiSetLabel("LabelExtent","label.extent");
 		uiSetLabel("LabelMeasurementError","label.measurementerror");
 		uiSetLabel("LabelDistUnits","label.distunits");
@@ -2378,14 +2393,6 @@ function onBodyKeyUp( e  )
 		PanelDDMMSS_SetVisible( b );
 	}
 
-	function showEWOffset( b )
-	{
-		setVisibility( "TextFieldOffsetEW", b );
-		uiSetLabel( "LabelOffsetEW", "label.distew" );
-		setVisibility( "LabelOffsetEW", b );
-		setVisibility( "ChoiceOffsetEWDir", b );
-	}
-
 	function showExtents( b )
 	{
 		setVisibility( "LabelExtent", b );
@@ -2415,6 +2422,22 @@ function onBodyKeyUp( e  )
 		}
 	}
 	
+	// re-use OffsetEW controls for regular offset also
+	function showOffset( b )
+	{
+		setVisibility( "TextFieldOffsetEW", b );
+		uiSetLabel( "LabelOffsetEW", "label.offset" );
+		setVisibility( "LabelOffsetEW", b );
+	}
+
+		function showEWOffset( b )
+	{
+		setVisibility( "TextFieldOffsetEW", b );
+		uiSetLabel( "LabelOffsetEW", "label.distew" );
+		setVisibility( "LabelOffsetEW", b );
+		setVisibility( "ChoiceOffsetEWDir", b );
+	}
+
 	function showNSOffset( b )
 	{
 		var f_pointer=uiHideElement;
@@ -2422,22 +2445,12 @@ function onBodyKeyUp( e  )
 		{
 			f_pointer=uiShowElement;
 		}
-		
-		f_pointer( "TextFieldOffset" );
-
-		uiSetLabel( "LabelOffset", "label.distns" );
-
-		f_pointer( "LabelOffset" );
+		f_pointer( "TextFieldOffsetNS" );
+		uiSetLabel( "LabelOffsetNS", "label.distns" );
 		f_pointer( "ChoiceOffsetNSDir" );
+		setVisibility( "LabelOffsetNS", b );
 	}
 
-	function showOffset( b )
-	{
-		setVisibility( "TextFieldOffsetEW", b );
-		uiSetLabel( "LabelOffsetEW", "label.offset" );
-		setVisibility( "LabelOffsetEW", b );
-	}
-	
 	function showRelevantCoordinates( )
 	{
 		var value = uiGetSelectedText( "ChoiceCoordSystem");  
@@ -2617,7 +2630,7 @@ function errorDialog( error, title, source, style )
 
 	function testOffsetLimits()
 	{
-		if( !uiIsVisible("TextFieldOffset") )
+		if( !uiIsVisible("TextFieldOffsetNS") )
 		{
 			return "true";
 		}
@@ -2625,10 +2638,10 @@ function errorDialog( error, title, source, style )
 		var s = null;
 		var d = 0;
 		var num = null;
-		s = uiGetTextValue("TextFieldOffset");
+		s = uiGetTextValue("TextFieldOffsetNS");
 		if( s == null || s.length == 0 )
 		{
-			uiSetLabelExplicit("TextFieldOffset","0");
+			uiSetLabelExplicit("TextFieldOffsetNS","0");
 		}
 		else
 		{ // test input within limits and valid
@@ -2641,16 +2654,16 @@ function errorDialog( error, title, source, style )
 				{
 					testpasses = false;
 					errorDialog(g_properties.getPropertyLang("error.offset.message"),
-						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
-					uiSetTextExplicit("TextFieldOffset","0");
+						g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetNS",0);
+					uiSetTextExplicit("TextFieldOffsetNS","0");
 				}
 			}
 			catch( exp )
 			{
 				testpasses = false;
 				errorDialog(g_properties.getPropertyLang("error.offset.message"),
-					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffset",0);
-				uiSetTextExplicit("TextFieldOffset","0");
+					g_properties.getPropertyLang("error.offset.title"), "TextFieldOffsetNS",0);
+				uiSetTextExplicit("TextFieldOffsetNS","0");
 			}
 		}
 		return testpasses;
@@ -3222,7 +3235,7 @@ function errorDialog( error, title, source, style )
 		//clearResults();
 	}
 
-	function TextFieldOffset_focusGained()
+	function TextFieldOffsetNS_focusGained()
 	{
 		//clearResults();
 	}

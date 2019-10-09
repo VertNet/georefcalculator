@@ -11,9 +11,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-__author__ = "Craig Wieczorek, John Wieczorek"
-__copyright__ = "Copyright 2015 Regents of the University of California"
-__version__ = "factories.js 2015-12-21T13:11-03:00"
+__author__ = "Craig Wieczorek"
+__author__ = "John Wieczorek"
+__copyright__ = "Copyright 2019 Rauthiflor LLC"
+__version__ = "factories.js 2019-10-08T22:19-03:00"
 */
 
 g_factory = {};
@@ -75,21 +76,6 @@ g_factory.makeArrayList = function( name, source )
 		
 		return al;
 };
-
-
-
-
-//JAVA numberFormatter = NumberFormat.getNumberInstance(currentLocale); 
-/*
-		var formatDec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatDeg = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatMin = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatMinMM = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatSec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatCalcError = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatDistance = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-		var formatCalcDec = (DecimalFormat)NumberFormat.getNumberInstance(currentLocale);
-*/
 
 g_factory.makeFormat = function( name, type )
 {
