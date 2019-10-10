@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "support.js 2019-10-09T00:13-3:00"
+__version__ = "support.js 2019-10-09T22:09-3:00"
 */
 
     function convertDistance(){
@@ -817,18 +817,25 @@ __version__ = "support.js 2019-10-09T00:13-3:00"
     }
 
     function getEllipsoidCode( datumstr ){
-        if( datumstr == "(WGS84) World Geodetic System 1984")return "WE";
-        if( datumstr == "(NAD83) North American 1983") return "RF";
-        if( datumstr == "(NAD27) North American 1927 mean") return "CC";
+        if( datumstr == "(WGS84) World Geodetic System 1984") return "WE";
+        if( datumstr == "Abidjan 1987") return "CD";
+        if( datumstr == "Accra") return "WO";
+        if( datumstr == "Aden 1925") return "CD";
         if( datumstr == "Adindan") return "CD";
         if( datumstr == "Afgooye") return "KA";
         if( datumstr == "Ain el Abd 1970") return "IN";
         if( datumstr == "Airy 1830 ellipsoid") return "AA";
-        if( datumstr == "Alaska (NAD-27)") return "CC";
-        if( datumstr == "Alaska/Canada NAD-27") return "CC";
+        if( datumstr == "Airy Modified 1849 ellipsoid") return "AM";
+        if( datumstr == "Alaska (NAD27)") return "CC";
+        if( datumstr == "Alaska/Canada (NAD27)") return "CC";
+        if( datumstr == "Albanian 1987") return "KA";
         if( datumstr == "American Samoa 1962") return "CC";
+        if( datumstr == "Amersfoort") return "BR";
+        if( datumstr == "Ammassalik 1958") return "IN";
+        if( datumstr == "Anguilla 1957") return "CD";
         if( datumstr == "Anna 1 Astro 1965") return "AN";
         if( datumstr == "Antigua Island Astro 1943") return "CD";
+        if( datumstr == "Aratu") return "IN";
         if( datumstr == "Arc 1950 mean") return "CD";
         if( datumstr == "Arc 1960 mean") return "CD";
         if( datumstr == "Ascension Island 1958") return "IN";
@@ -839,19 +846,38 @@ __version__ = "support.js 2019-10-09T00:13-3:00"
         if( datumstr == "Astronomic Station No. 2 1951, Truk Island") return "IN";
         if( datumstr == "Astronomic Station Ponape 1951") return "IN";
         if( datumstr == "Astronomical Station 1952") return "IN";
+        if( datumstr == "Australian Antarctic Datum 1998") return "RF";
         if( datumstr == "(AGD66) Australian Geodetic Datum 1966") return "AN";
-        if( datumstr == "(AGD84) Australian Geodetic 1984") return "AN";
+        if( datumstr == "(AGD84) Australian Geodetic Datum 1984") return "AN";
         if( datumstr == "Australian National ellipsoid") return "AN";
+        if( datumstr == "Autonomous Regions of Portugal 2008") return "RF";
+        if( datumstr == "Average Terrestrial System 1977 ellipsoid") return "AV";
         if( datumstr == "Ayabelle Lighthouse") return "CD";
-        if( datumstr == "Bahamas (NAD-27)") return "CC";
+        if( datumstr == "Azores Central Islands 1948") return "IN";
+        if( datumstr == "Azores Central Islands 1995") return "IN";
+        if( datumstr == "Azores Occidental Islands 1939") return "IN";
+        if( datumstr == "Azores Oriental Islands 1940") return "IN";
+        if( datumstr == "Azores Oriental Islands 1995") return "IN";
+        if( datumstr == "Bahamas (NAD27)") return "CC";
+        if( datumstr == "Barbados 1938") return "CD";
+        if( datumstr == "Batavia") return "BR";
+        if( datumstr == "Beduaram") return "CD";
+        if( datumstr == "Beijing 1954") return "KA";
         if( datumstr == "Bekaa Valley 1920 (IGN)") return "CD";
         if( datumstr == "Bellevue (IGN)") return "IN";
         if( datumstr == "Bermuda 1957") return "CC";
+        if( datumstr == "Bermuda 2000") return "WE";
         if( datumstr == "Bessel 1841 ellipsoid (Namibia)") return "BN";
         if( datumstr == "Bessel 1841 ellipsoid (non-Namibia)") return "BR";
+        if( datumstr == "Bessel Modified ellipsoid") return "BM";
+        if( datumstr == "Bhutan National Geodetic Datum") return "RF";
+        if( datumstr == "Bioko") return "IN";
         if( datumstr == "Bissau") return "IN";
-        if( datumstr == "Bogota Observatory") return "IN";
+        if( datumstr == "Bogota 1975") return "IN";
         if( datumstr == "Bukit Rimpah") return "BN";
+        if( datumstr == "Bulgaria Geodetic System 2005") return "RF";
+        if( datumstr == "Cadastre 1997") return "IN";
+        if( datumstr == "Camacupa") return "CD";
         if( datumstr == "Camp Area Astro") return "IN";
         if( datumstr == "Campo Inchauspe") return "IN";
         if( datumstr == "Canada Mean (NAD27)") return "CC";
@@ -861,99 +887,238 @@ __version__ = "support.js 2019-10-09T00:13-3:00"
         if( datumstr == "Cape Canaveral mean") return "CC";
         if( datumstr == "Caribbean (NAD27)") return "CC";
         if( datumstr == "Carthage") return "CD";
+        if( datumstr == "Cayman Islands Geodetic Datum 2011") return "RF";
         if( datumstr == "Central America (NAD27)") return "CC";
+        if( datumstr == "Centre Spatial Guyanais 1967") return "IN";
+        if( datumstr == "CH1903") return "BR";
+        if( datumstr == "CH1903+") return "BR";
         if( datumstr == "Chatham Island Astro 1971") return "IN";
+        if( datumstr == "Chatham Islands Datum 1979") return "IN";
         if( datumstr == "Chua Astro") return "IN";
         if( datumstr == "Clarke 1858 ellipsoid") return "CE";
         if( datumstr == "Clarke 1866 ellipsoid") return "CC";
         if( datumstr == "Clarke 1880 ellipsoid") return "CD";
+        if( datumstr == "Clarke 1880 (Benoit) ellipsoid") return "CB";
+        if( datumstr == "Clarke 1880 (international foot) ellipsoid") return "CI";
         if( datumstr == "Co-Ordinate System 1937 of Estonia") return "BR";
-        if( datumstr == "Corrego Alegre") return "IN";
-        if( datumstr == "Corrego Alegre (Provisional)") return "IN";
+        if( datumstr == "Cocos Islands 1965") return "AF";
+        if( datumstr == "Combani 1950") return "IN";
+        if( datumstr == "Conakry 1905") return "CD";
+        if( datumstr == "Congo 1960 Pointe Noire") return "CD";
+        if( datumstr == "Corrego Alegre 1961") return "IN";
+        if( datumstr == "Corrego Alegre 1970-72") return "IN";
+        if( datumstr == "Costa Rica 2005") return "WE";
         if( datumstr == "Cuba (NAD27)") return "CC";
+        if( datumstr == "Croatian Terrestrial Reference System") return "RF";
         if( datumstr == "Cyprus") return "IN";
-        if( datumstr == "Dabola") return "CD";
+        if( datumstr == "Cyprus Geodetic Reference System 1993") return "WE";
+        if( datumstr == "Dabola 1981") return "CD";
+        if( datumstr == "Danish 1876") return "DN";
+        if( datumstr == "Datum 73") return "IN";
+        if( datumstr == "Datum Geodesi Nasional 1995") return "WE";
+        if( datumstr == "Dealul Piscului 1930") return "IN";
         if( datumstr == "Deception Island") return "CD";
+        if( datumstr == "Deir ez Zor") return "CD";
+        if( datumstr == "Deutsches Hauptdreiecksnetz") return "BR";
+        if( datumstr == "Diego Garcia 1969") return "IN";
         if( datumstr == "Djakarta (Batavia)") return "BR";
         if( datumstr == "DOS 1968") return "IN";
+        if( datumstr == "Dominica 1945") return "CD";
+        if( datumstr == "Douala 1948") return "IN";
         if( datumstr == "Easter Island 1967") return "IN"; 
-        if( datumstr == "Egypt") return "IN";
+        if( datumstr == "Egypt 1907") return "HE";
+        if( datumstr == "Egypt Gulf of Suez S-650 TL") return "HE";
+        if( datumstr == "Estonia 1992") return "RF";
+        if( datumstr == "Estonia 1997") return "RF";
         if( datumstr == "European 1950") return "IN";
         if( datumstr == "European 1950 mean") return "IN";
+        if( datumstr == "European Datum 1950(1977)") return "IN";
         if( datumstr == "European 1979 mean") return "IN";
-
+        if( datumstr == "European Datum 1987") return "IN";
+        if( datumstr == "European Libyan Datum 1979") return "IN";
+        if( datumstr == "European Terrestrial Reference System 1989") return "RF";
         if( datumstr == "Everest ellipsoid (Brunei, Sabah, Sarawak)") return "EB";
-        if( datumstr == "Everest India 1830 ellipsoid") return "EA";
-        if( datumstr == "Everest India 1856 ellipsoid") return "EC";
-        if( datumstr == "Everest Pakistan ellipsoid") return "EF";
         if( datumstr == "Everest ellipsoid (W. Malaysia, Singapore 1948)") return "EE";
+        if( datumstr == "Everest 1830 (1937 Adjustment) ellipsoid India") return "EA";
+        if( datumstr == "Everest India 1856 ellipsoid") return "EC";
+        if( datumstr == "Everest 1830 (1962 Definition) ellipsoid India") return "EG";
+        if( datumstr == "Everest 1830 (1975 Definition) ellipsoid India") return "EH";
+        if( datumstr == "Everest Pakistan ellipsoid") return "EF";
         if( datumstr == "Everest W. Malaysia 1969 ellipsoid") return "ED";
-
+        if( datumstr == "Fahud") return "CD";
+        if( datumstr == "Fatu Iva 72") return "IN";
+        if( datumstr == "Fehmarnbelt Datum 2010") return "RF";
+        if( datumstr == "Fiji 1956") return "IN";
+        if( datumstr == "Fiji Geodetic Datum 1986") return "WD";
+        if( datumstr == "Final Datum 1958") return "CD";
         if( datumstr == "Finnish Nautical Chart") return "IN";
+        if( datumstr == "Fort Marigot") return "IN";
         if( datumstr == "Fort Thomas 1955") return "CD";
+        if( datumstr == "Gambia") return "CD";
         if( datumstr == "Gan 1970") return "IN";
         if( datumstr == "Gandajika Base") return "IN";
         if( datumstr == "Gan 1970") return "IN";
-        if( datumstr == "GDA 2020") return "RF";
+        if( datumstr == "Geocentric Datum Brunei Darussalam 2009") return "RF";
+        if( datumstr == "Geocentric Datum of Australia 1994") return "RF";
+        if( datumstr == "Geocentric Datum of Australia 2020") return "RF";
+        if( datumstr == "Geocentric Datum of Korea") return "RF";
+        if( datumstr == "Geodetic Datum of 1965") return "AM";
         if( datumstr == "Geodetic Datum 1949") return "IN";
+        if( datumstr == "Geodetic Reference System 1967 ellipsoid") return "RE";
+        if( datumstr == "Geodetic Reference System 1967 Modified ellipsoid") return "RD";
+        if( datumstr == "Geodetic Reference System 1980 ellipsoid") return "RF";
         if( datumstr == "Ghana") return "WE";
         if( datumstr == "Graciosa Base SW 1948") return "IN";
+        if( datumstr == "Grand Cayman Geodetic Datum 1959") return "CC";
+        if( datumstr == "Grand Comoros") return "IN";
+        if( datumstr == "Greek Geodetic Reference System 1987") return "RF";
         if( datumstr == "Greenland (NAD27)") return "CC";
-        if( datumstr == "GRS80 ellipsoid") return "RF";
+        if( datumstr == "Greenland 1996") return "RF";
+        if( datumstr == "Grenada 1953") return "CD";
+        if( datumstr == "Guadeloupe 1948") return "IN";
         if( datumstr == "Guam 1963") return "CC";
+        if( datumstr == "Gulshan 303") return "EA";
         if( datumstr == "Gunung Segara") return "BN";
         if( datumstr == "Gunung Serindung 1962") return "WE";
         if( datumstr == "GUX 1 Astro") return "IN";
+        if( datumstr == "Hanoi 1972") return "KA";
+        if( datumstr == "Hartebeesthoek94") return "WE";
+        if( datumstr == "Helle 1954") return "IN";
         if( datumstr == "Helmert 1906 ellipsoid") return "HE";
         if( datumstr == "Herat North") return "IN";
         if( datumstr == "Hito XVIII 1963") return "IN";
         if( datumstr == "Hjorsey 1955") return "IN";
-        if( datumstr == "Hong Kong 1963") return "IN";
+        if( datumstr == "Hong Kong 1963(67)") return "IN";
+        if( datumstr == "Hong Kong 1980") return "IN";
+        if( datumstr == "Hong Kong Geodetic") return "RF";
         if( datumstr == "Hough 1960 ellipsoid") return "HO";
-        if( datumstr == "Hu-Tzu-Shan") return "IN";
+        if( datumstr == "Hu-Tzu-Shan 1950") return "IN";
+        if( datumstr == "Hungarian Datum 1909") return "BR";
+        if( datumstr == "Hungarian Datum 1972") return "RE";
+        if( datumstr == "IGN 1962 Kerguelen") return "IN";
+        if( datumstr == "IGN53 Mare") return "IN";
+        if( datumstr == "IGN56 Lifou") return "IN";
+        if( datumstr == "IGN63 Hiva Oa") return "IN";
+        if( datumstr == "IGN72 Grande Terre") return "IN";
+        if( datumstr == "IGN72 Nuku Hiva") return "IN";
         if( datumstr == "Indian") return "EC";
         if( datumstr == "Indian 1954") return "EA";
         if( datumstr == "Indian 1960") return "EA";
         if( datumstr == "Indian 1975") return "EA";
-        if( datumstr == "Indonesian 1974") return "ID";
+        if( datumstr == "Indonesian 1974 ellipsoid") return "ID";
+        if( datumstr == "Indonesian Datum 1974") return "ID";
+        if( datumstr == "Institut Geographique du Congo Belge 1955") return "CD";
         if( datumstr == "International 1924 ellipsoid") return "IN";
         if( datumstr == "Iran") return "IN";
+        if( datumstr == "Iraqi Geospatial Reference System") return "RF";
+        if( datumstr == "Iraq-Kuwait Boundary Datum 1992") return "WE";
         if( datumstr == "Ireland 1965") return "AM";
+        if( datumstr == "IRENET95") return "RF";
+        if( datumstr == "Islands Net 1993") return "RF";
+        if( datumstr == "Islands Net 2004") return "RF";
+        if( datumstr == "Israel 1993") return "RF";
+        if( datumstr == "Istituto Geografico Militaire 1995") return "WE";
         if( datumstr == "ISTS 061 Astro 1968") return "IN";
         if( datumstr == "ISTS 073 Astro 1969") return "IN";
+        if( datumstr == "Iwo Jima 1945") return "IN";
+        if( datumstr == "Jamaica 1969") return "CC";
+        if( datumstr == "Jamaica 2001") return "WE";
         if( datumstr == "Japanese Geodetic Datum 2000") return "RF";
         if( datumstr == "Johnston Island 1961") return "IN";
+        if( datumstr == "Jouik 1961") return "CD";
+        if( datumstr == "Kalianpur 1937") return "EA";
+        if( datumstr == "Kalianpur 1962") return "EG";
+        if( datumstr == "Kalianpur 1975") return "EH";
         if( datumstr == "Kandawala") return "EA";
         if( datumstr == "Kapingamarangi Astronomic Station No. 3 1951") return "IN";
+        if( datumstr == "Karbala 1979") return "CD";
+        if( datumstr == "Kartastokoordinaattijarjestelma (1966)") return "IN";
+        if( datumstr == "Katanga 1955") return "CC";
         if( datumstr == "Kerguelen Island 1949") return "IN";
         if( datumstr == "Kertau 1948") return "EE";
+        if( datumstr == "Kertau 1968") return "EE";
+        if( datumstr == "Korean Datum 1985") return "BR";
         if( datumstr == "Korean Geodetic System 1995") return "WE";
-        if( datumstr == "Krassovsky 1940 ellipsoid") return "KA";
+        if( datumstr == "Kosovo Reference System 2001") return "RF";
+        if( datumstr == "Krassowsky 1940 ellipsoid") return "KA";
         if( datumstr == "Kusaie Astro 1951") return "IN";
+        if( datumstr == "Kuwait Oil Company") return "CD";
+        if( datumstr == "Kuwait Utility") return "RF";
         if( datumstr == "L.C. 5 Astro 1961") return "CC";
+        if( datumstr == "La Canoa") return "IN";
         if( datumstr == "La Reunion") return "IN";
+        if( datumstr == "Lao National Datum 1997") return "KA";
+        if( datumstr == "Latvia 1992") return "RF";
+        if( datumstr == "Le Pouce 1934") return "CD";
         if( datumstr == "Leigon") return "CD";
         if( datumstr == "Lemuta") return "IN";
         if( datumstr == "Liberia 1964") return "CD";
-        if( datumstr == "Luzon") return "CC";
+        if( datumstr == "Libyan Geodetic Datum 2006") return "IN";
+        if( datumstr == "Lisbon 1890") return "BR";
+        if( datumstr == "Lisbon 1937") return "IN";
+        if( datumstr == "Lithuania 1994 (ETRS89)") return "RF";
+        if( datumstr == "Locodjo 1965") return "CD";
+        if( datumstr == "Luxembourg 1930") return "IN";
+        if( datumstr == "Luzon 1911") return "CC";
+        if( datumstr == "Macao 1920") return "IN";
+        if( datumstr == "Macao Geodetic Datum 2008") return "RF";
         if( datumstr == "Mahe 1971") return "CD";
+        if( datumstr == "Makassar") return "BR";
+        if( datumstr == "Malongo 1987") return "IN";
+        if( datumstr == "Manoca 1962") return "CD";
         if( datumstr == "Marco Astro") return "IN";
+        if( datumstr == "Marco Geocentrico Nacional de Referencia") return "RF";
+        if( datumstr == "Marco Geodesico Nacional de Bolivia") return "RF";
+        if( datumstr == "Marcus Island 1952") return "IN";
+        if( datumstr == "Marshall Islands 1960") return "HO";
+        if( datumstr == "Martinique 1938") return "IN";
         if( datumstr == "Masirah Is. (Nahrwan)") return "CD";
         if( datumstr == "Massawa") return "BR";
+        if( datumstr == "Maupiti 83") return "IN";
+        if( datumstr == "Mauritania 1999") return "RF";
         if( datumstr == "Merchich") return "CD";
         if( datumstr == "Mexico (NAD27)") return "CC";
+        if( datumstr == "Mexico ITRF2008") return "RF";
+        if( datumstr == "Mexico ITRF92") return "RF";
+        if( datumstr == "MGI 1901") return "BR";
         if( datumstr == "Midway Astro 1961") return "IN";
+        if( datumstr == "Militar-Geographische Institut") return "BR";
         if( datumstr == "Mindanao") return "CC";
         if( datumstr == "Minna") return "CD"; 
-        if( datumstr == "Modified Airy ellipsoid") return "AM";
         if( datumstr == "Modified Fischer 1960 ellipsoid") return "FA";
+        if( datumstr == "MOLDREF99") return "RF";
+        if( datumstr == "MOMRA Terrestrial Reference Frame 2000") return "RF";
+        if( datumstr == "Monte Mario") return "IN";
         if( datumstr == "Montjong Lowe") return "WE";
         if( datumstr == "Montserrat Island Astro 1958") return "CD";
+        if( datumstr == "Moorea 87") return "IN";
+        if( datumstr == "MOP78") return "IN";
+        if( datumstr == "Moznet (ITRF94)") return "WE";
         if( datumstr == "M'Poraloko") return "CD";
         if( datumstr == "Nahrwan") return "CD";
-        if( datumstr == "Naparima, BWI") return "IN";
+        if( datumstr == "Nahrwan 1934") return "CD";
+        if( datumstr == "Nahrwan 1967") return "CD";
+        if( datumstr == "Nakhl-e Ghanem") return "WE";
+        if( datumstr == "Naparima 1955") return "IN";
         if( datumstr == "Naparima 1972") return "IN";
-        if( datumstr == "North Sahara 1959") return "CD";
+        if( datumstr == "Naparima, BWI") return "IN";
+        if( datumstr == "National Geodetic Network") return "WE";
+        if( datumstr == "NEA74 Noumea") return "IN";
+        if( datumstr == "Nepal 1981") return "EA";
+        if( datumstr == "New Zealand Geodetic Datum 1949") return "IN";
+        if( datumstr == "New Zealand Geodetic Datum 2000") return "RF";
+        if( datumstr == "NGO 1948") return "BM";
+        if( datumstr == "(NAD83) North American Datum 1983") return "RF";
+        if( datumstr == "NAD83 (High Accuracy Reference Network)") return "RF";
+        if( datumstr == "NAD83 (National Spatial Reference System 2007)") return "RF";
+        if( datumstr == "NAD83 Canadian Spatial Reference System") return "RF";
+        if( datumstr == "(NAD27) North American 1927 mean") return "CC";
+        if( datumstr == "North American Datum 1927") return "CC";
+        if( datumstr == "North American Datum 1927 (1976)") return "CC";
+        if( datumstr == "North American Datum 1927 (CGQ77)") return "CC";
+        if( datumstr == "Nord Sahara 1959") return "CD";
+        if( datumstr == "Nouakchott 1965") return "CD";
+        if( datumstr == "Nouvelle Triangulation Francaise") return "CD";
         if( datumstr == "Observatorio Meteorologico 1939") return "IN";
         if( datumstr == "Observatorio 1966") return "IN";
         if( datumstr == "Ocotepeque 1935") return "CC";
@@ -964,110 +1129,227 @@ __version__ = "support.js 2019-10-09T00:13-3:00"
         if( datumstr == "Old Hawaiian Oahu") return "CC";
         if( datumstr == "Old Trinidad 1903") return "CE";
         if( datumstr == "Oman") return "CD";
+        if( datumstr == "Oman National Geodetic Datum 2014") return "RF";
         if( datumstr == "Ordnance Survey of Great Britain 1936") return "AA";
-        if( datumstr == "Pico de las Nieves") return "IN";
+        if( datumstr == "Ordnance Survey of Northern Ireland 1952") return "AA";
+        if( datumstr == "Padang 1884") return "BR";
+        if( datumstr == "Palestine 1923") return "CB";
+        if( datumstr == "Pampa del Castillo") return "IN";
+        if( datumstr == "Papua New Guinea Geodetic Datum 1994") return "RF";
+        if( datumstr == "Parametry Zemli 1990") return "PZ";
+        if( datumstr == "PDO Survey Datum 1993") return "CD";
+        if( datumstr == "Peru96") return "RF";
+        if( datumstr == "Petrels 1972") return "IN";
+        if( datumstr == "Philippine Reference System 1992") return "CC";
+        if( datumstr == "Phoenix Islands 1966") return "IN";
+        if( datumstr == "Pico de las Nieves 1984") return "IN";
+        if( datumstr == "Pitcairn 2006") return "WE";
         if( datumstr == "Pitcairn Astro 1967") return "IN";
         if( datumstr == "Point 58") return "CD";
         if( datumstr == "Point Noire 1958") return "CD";
+        if( datumstr == "Pointe Geologie Perroud 1950") return "IN";
         if( datumstr == "Porto Santo 1936") return "IN";
+        if( datumstr == "Porto Santo 1995") return "IN";
+        if( datumstr == "Posiciones Geodesicas Argentinas 1994") return "WE";
+        if( datumstr == "Posiciones Geodesicas Argentinas 1998") return "RF";
+        if( datumstr == "Posiciones Geodesicas Argentinas 2007") return "RF";
+        if( datumstr == "Potsdam Datum/83") return "BR";
         if( datumstr == "Potsdam Rauenberg DHDN") return "BN";
         if( datumstr == "Provisional South American 1956") return "IN";
         if( datumstr == "Provisional South Chilean 1963") return "IN";
         if( datumstr == "Puerto Rico") return "CC";
         if( datumstr == "Pulkovo 1942") return "KA";
-        if( datumstr == "Qatar National") return "IN";
-        if( datumstr == "Qornoq") return "IN";
-        if( datumstr == "Reunion") return "IN";
+        if( datumstr == "Pulkovo 1942(58)") return "KA";
+        if( datumstr == "Pulkovo 1942(83)") return "KA";
+        if( datumstr == "Pulkovo 1995") return "KA";
+        if( datumstr == "PZ-90") return "PZ";
+        if( datumstr == "Qatar 1974") return "IN";
+        if( datumstr == "Qatar National Datum 1995") return "IN";
+        if( datumstr == "Qornoq 1927") return "IN";
+        if( datumstr == "Rassadiran") return "IN";
+        if( datumstr == "Rauenberg Datum/83") return "BR";
+        if( datumstr == "Red Geodesica de Canarias 1995") return "RF";
+        if( datumstr == "Red Geodesica Venezolana") return "RF";
+        if( datumstr == "Reseau de Reference des Antilles Francaises 1991") return "RF";
+        if( datumstr == "Reseau Geodesique de la Polynesie Francaise") return "RF";
+        if( datumstr == "Reseau Geodesique de la RDC 2005") return "RF";
+        if( datumstr == "Reseau Geodesique de la Reunion 1992") return "RF";
+        if( datumstr == "Reseau Geodesique de Mayotte 2004") return "RF";
+        if( datumstr == "Reseau Geodesique de Nouvelle Caledonie 91-93") return "RF";
+        if( datumstr == "Reseau Geodesique de Saint Pierre et Miquelon 2006") return "RF";
+        if( datumstr == "Reseau Geodesique des Antilles Francaises 2009") return "RF";
+        if( datumstr == "Reseau Geodesique Francais 1993") return "RF";
+        if( datumstr == "Reseau Geodesique Francais Guyane 1995") return "RF";
+        if( datumstr == "Reseau National Belge 1972") return "IN";
+        if( datumstr == "Rete Dinamica Nazionale 2008") return "RF";
+        if( datumstr == "Reunion 1947") return "IN";
+        if( datumstr == "Reykjavik 1900") return "DN";
+        if( datumstr == "Rikets koordinatsystem 1990") return "BR";
         if( datumstr == "Rome 1940") return "IN";
+        if( datumstr == "Ross Sea Region Geodetic Datum 2000") return "RF";
         if( datumstr == "S-42") return "KA";
         if( datumstr == "S-JTSK") return "BR";
+        if( datumstr == "Saint Pierre et Miquelon 1950") return "CC";
         if( datumstr == "Santo (DOS) 1965") return "IN";
         if( datumstr == "Sao Braz") return "IN";
         if( datumstr == "Sapper Hill 1943") return "IN";
         if( datumstr == "Schwarzeck") return "BN";
+        if( datumstr == "Scoresbysund 1952") return "IN";
         if( datumstr == "Selvagem Grande 1938") return "IN";
+        if( datumstr == "Serbian Reference Network 1998") return "RF";
+        if( datumstr == "Serbian Spatial Reference System 2000") return "RF";
         if( datumstr == "Sicily") return "IN";
         if( datumstr == "Sierra Leone 1960") return "CD";
+        if( datumstr == "Sierra Leone 1968") return "CD";
+        if( datumstr == "SIRGAS_ES2007.8") return "RF";
+        if( datumstr == "SIRGAS-Chile") return "RF";
+        if( datumstr == "SIRGAS-ROU98") return "WE";
+        if( datumstr == "Sistema de Referencia Geocentrico para America del Sur 1995") return "RF";
+        if( datumstr == "Sistema de Referencia Geocentrico para las Americas 2000") return "RF";
+        if( datumstr == "Sistema Geodesico Nacional de Panama MACARIO SOLIS") return "RF";
+        if( datumstr == "Sister Islands Geodetic Datum 1961") return "CC";
+        if( datumstr == "Slovenia Geodetic Datum 1996") return "RF";
+        if( datumstr == "Solomon 1968") return "IN";
+        if( datumstr == "South American 1969 ellipsoid") return "SA";
         if( datumstr == "South American Datum 1969") return "SA";
-        if( datumstr == "SIRGAS - South American Geocentric Reference System") return "RF";
+        if( datumstr == "South American Datum 1969(96)") return "RD";
         if( datumstr == "South Asia") return "FA";
+        if( datumstr == "South East Island 1943") return "CD";
+        if( datumstr == "South Georgia 1968") return "IN";
+        if( datumstr == "South Yemen") return "KA";
         if( datumstr == "Southeast Base") return "IN";
-        if( datumstr == "Southwest Base") return "IN";
+        if( datumstr == "Sri Lanka Datum 1999") return "EA";
+        if( datumstr == "St. George Island") return "CC";
+        if( datumstr == "St. Helena Geodetic Datum 2015") return "RF";
+        if( datumstr == "St. Helena Tritan") return "WE";
+        if( datumstr == "St. Kitts 1955") return "CD";
+        if( datumstr == "St. Lawrence Island") return "CC";
+        if( datumstr == "St. Lucia 1955") return "CD";
+        if( datumstr == "St. Paul Island") return "CC";
+        if( datumstr == "St. Vincent 1945") return "CD";
+        if( datumstr == "ST71 Belep") return "IN";
+        if( datumstr == "ST84 Ile des Pins") return "IN";
+        if( datumstr == "ST87 Ouvea") return "WE";
+        if( datumstr == "SVY21") return "WE";
+        if( datumstr == "SWEREF99") return "RF";
+        if( datumstr == "Swiss Terrestrial Reference Frame 1995") return "RF";
+        if( datumstr == "System of the Unified Trigonometrical Cadastral Ne") return "BR";
+        if( datumstr == "Tahaa 54") return "IN";
+        if( datumstr == "Tahiti 52") return "IN";
+        if( datumstr == "Tahiti 79") return "IN";
+        if( datumstr == "Taiwan Datum 1997") return "RF";
         if( datumstr == "Tananarive Observatory 1925") return "IN";
+        if( datumstr == "Tern Island 1961") return "IN";
+        if( datumstr == "Tete") return "CC";
         if( datumstr == "Timbalai 1948") return "EB";
+        if( datumstr == "TM65") return "AM";
         if( datumstr == "Tokyo") return "BR";
+        if( datumstr == "Trinidad 1903") return "CE";
         if( datumstr == "Tristan Astro 1968") return "IN";
+        if( datumstr == "Turkish National Reference Frame") return "RF";
+        if( datumstr == "Ukraine 2000") return "KA";
         if( datumstr == "United Arab Emirates (Nahrwan") return "CD";
+        if( datumstr == "Vanua Levu 1915") return "CI";
+        if( datumstr == "Vietnam 2000") return "WE";
+        if( datumstr == "Viti Levu 1912") return "CI";
         if( datumstr == "Viti Levu 1916") return "CD";
         if( datumstr == "Voirol 1874") return "CD";
+        if( datumstr == "Voirol 1875") return "CD";
         if( datumstr == "Voirol 1960") return "CD";
-        if( datumstr == "Wake-Eniwetok 1960") return "HO";
-        if( datumstr == "Wake Island Astro 1952") return "IN";
         if( datumstr == "(WGS66) World Geodetic System 1966") return "WC";
+        if( datumstr == "(WGS66) World Geodetic System 1966 ellipsoid") return "WC";
         if( datumstr == "(WGS72) World Geodetic System 1972") return "WD";
+        if( datumstr == "(WGS72) World Geodetic System 1972 ellipsoid") return "WD";
+        if( datumstr == "(WGS72) Transit Broadcast Ephemeris") return "WD";
+        if( datumstr == "Wake Island Astro 1952") return "IN";
+        if( datumstr == "Wake-Eniwetok 1960") return "HO";
+        if( datumstr == "War Office ellipsoid") return "WO";
         if( datumstr == "Yacare") return "IN";
+        if( datumstr == "Yemen National Geodetic Network 1996") return "WE";
+        if( datumstr == "Yoff") return "CD";
         if( datumstr == "Zanderij") return "IN";
-
         return "WE";
     }
 
     function getFlattening( ellipsoidIDCode ){
         // Data from NIMA TR8350.2
-        if( ellipsoidIDCode == "WE") return 1/298.257223563; // WGS84
-        if( ellipsoidIDCode == "RF") return 1/298.257222101; // GRS80 (NAD83)
-        if( ellipsoidIDCode == "CC") return 1/294.9786982;   // Clarke 1866 (NAD27)
         if( ellipsoidIDCode == "AA") return 1/299.3249646;   // Airy 1830
+        if( ellipsoidIDCode == "AM") return 1/299.3249646;   // Airy Modified 1849
         if( ellipsoidIDCode == "AN") return 1/298.25;        // Australian National
+        if( ellipsoidIDCode == "AV") return 1/298.257;       // Average Terrestrial System 1977
         if( ellipsoidIDCode == "BR") return 1/299.1528128;   // Bessel 1841 Ethiopia, Indonesia, Japan, and Korea
         if( ellipsoidIDCode == "BN") return 1/299.1528128;   // Bessel 1841 Namibia
-        if( ellipsoidIDCode == "CD") return 1/293.465;       // Clarke 1880
+        if( ellipsoidIDCode == "BM") return 1/299.1528128;   // Bessel Modified
         if( ellipsoidIDCode == "CE") return 1/294.26;        // Clarke 1858
+        if( ellipsoidIDCode == "CC") return 1/294.9786982;   // Clarke 1866
+        if( ellipsoidIDCode == "CD") return 1/293.465;       // Clarke 1880
+        if( ellipsoidIDCode == "CB") return 1/293.46631554;  // Clarke 1880 (Benoit)
+        if( ellipsoidIDCode == "CI") return 1/293.4663077;   // Clarke 1880 (international foot)
+        if( ellipsoidIDCode == "DN") return 1/300.0;         // Danish 1876
         if( ellipsoidIDCode == "EB") return 1/300.8017;      // Everest Brunei and E. Malaysia (Sabah and Sarawak)
-        if( ellipsoidIDCode == "EA") return 1/300.8017;      // Everest India 1830
+        if( ellipsoidIDCode == "EA") return 1/300.8017;      // Everest 1830 (1937 Adjustment) India
         if( ellipsoidIDCode == "EC") return 1/300.8017;      // Everest India 1956
+        if( ellipsoidIDCode == "EG") return 1/300.8017;      // Everest 1830 (1962 Definition) India
+        if( ellipsoidIDCode == "EH") return 1/300.8017255;   // Everest 1830 (1975 Definition) India
         if( ellipsoidIDCode == "EF") return 1/300.8017;      // Everest Pakistan
         if( ellipsoidIDCode == "EE") return 1/300.8017;      // Everest W. Malaysia and Singapore 1948
         if( ellipsoidIDCode == "ED") return 1/300.8017;      // Everest W. Malaysia 1969
+        if( ellipsoidIDCode == "RE") return 1/298.247167427; // Geodetic Reference System 1967
+        if( ellipsoidIDCode == "RD") return 1/298.25;        // Geodetic Reference System 1967 Modified
+        if( ellipsoidIDCode == "RF") return 1/298.257222101; // Geodetic Reference System 1980
         if( ellipsoidIDCode == "HE") return 1/298.3;         // Helmert 1906
         if( ellipsoidIDCode == "HO") return 1/297.0;         // Hough 1960
         if( ellipsoidIDCode == "ID") return 1/298.247;       // Indonesian 1974
         if( ellipsoidIDCode == "IN") return 1/297.0;         // International 1924
-        if( ellipsoidIDCode == "KA") return 1/298.3;         // Krassovsky 1940
-        if( ellipsoidIDCode == "AM") return 1/299.3249646;   // Modified Airy
+        if( ellipsoidIDCode == "KA") return 1/298.3;         // Krassowsky 1940
+        if( ellipsoidIDCode == "PZ") return 1/298.257839303; // PZ-90
         if( ellipsoidIDCode == "FA") return 1/298.3;         // Modified Fischer 1960
         if( ellipsoidIDCode == "SA") return 1/298.25;        // South American 1969
+        if( ellipsoidIDCode == "WO") return 1/296.0;         // War Office
         if( ellipsoidIDCode == "WC") return 1/298.25;        // WGS 1966
         if( ellipsoidIDCode == "WD") return 1/298.26;        // WGS 1972
+        if( ellipsoidIDCode == "WE") return 1/298.257223563; // WGS84
         return 1/298.257223563;
     }
 
     function getSemiMajorAxis( ellipsoidIDCode ){
         // Data from NIMA TR8350.2
-        if( ellipsoidIDCode == "WE") return 6378137.0;   // WGS84
-        if( ellipsoidIDCode == "RF") return 6378137.0;   // GRS80 (NAD83)
-        if( ellipsoidIDCode == "CC") return 6378206.4;   // Clarke 1866 (NAD27)
         if( ellipsoidIDCode == "AA") return 6377563.396; // Airy 1830
-        if( ellipsoidIDCode == "AN") return 6378160.0;   // Australian National
+        if( ellipsoidIDCode == "AM") return 6377340.189; // Airy Modified 1849
+        if( ellipsoidIDCode == "AN") return 6378160.0;   // Australian National Spheroid
+        if( ellipsoidIDCode == "AV") return 6378135.0;   // Average Terrestrial System 1977
         if( ellipsoidIDCode == "BR") return 6377397.155; // Bessel 1841 Ethiopia, Indonesia, Japan, and Korea
         if( ellipsoidIDCode == "BN") return 6377483.865; // Bessel 1841 Namibia
-        if( ellipsoidIDCode == "CD") return 6378249.145; // Clarke 1880
+        if( ellipsoidIDCode == "BM") return 6377492.018; // Bessel Modified
         if( ellipsoidIDCode == "CE") return 6378293.6;   // Clarke 1858
+        if( ellipsoidIDCode == "CC") return 6378206.4;   // Clarke 1866
+        if( ellipsoidIDCode == "CD") return 6378249.145; // Clarke 1880
+        if( ellipsoidIDCode == "CB") return 6378300.789; // Clarke 1880 (Benoit)
+        if( ellipsoidIDCode == "CI") return 6378306.370; // Clarke 1880 (international foot)
+        if( ellipsoidIDCode == "DN") return 6377019.27;  // Danish 1876
         if( ellipsoidIDCode == "EB") return 6377298.556; // Everest Brunei and E. Malaysia (Sabah and Sarawak)
-        if( ellipsoidIDCode == "EA") return 6377276.345; // Everest India 1830
-        if( ellipsoidIDCode == "EC") return 6377301.243; // Everest India 1956
+        if( ellipsoidIDCode == "EA") return 6377276.345; // Everest 1830 (1937 Adjustment) India
+        if( ellipsoidIDCode == "EG") return 6377301.243; // Everest India 1956
+        if( ellipsoidIDCode == "EC") return 6377301.243; // Everest 1830 (1962 Definition)
+        if( ellipsoidIDCode == "EH") return 6377299.151; // Everest 1830 (1975 Definition)
         if( ellipsoidIDCode == "EF") return 6377309.613; // Everest Pakistan
         if( ellipsoidIDCode == "EE") return 6377304.063; // Everest W. Malaysia and Singapore 1948
         if( ellipsoidIDCode == "ED") return 6377295.664; // Everest W. Malaysia 1969
+        if( ellipsoidIDCode == "RE") return 6378160.0;   // Geodetic Reference System 1967
+        if( ellipsoidIDCode == "RD") return 6378160.0;   // Geodetic Reference System 1967 Modified
+        if( ellipsoidIDCode == "RF") return 6378137.0;   // Geodetic Reference System 1980
         if( ellipsoidIDCode == "HE") return 6378200.0;   // Helmert 1906
         if( ellipsoidIDCode == "HO") return 6378270.0;   // Hough 1960
         if( ellipsoidIDCode == "ID") return 6378160.0;   // Indonesian 1974
         if( ellipsoidIDCode == "IN") return 6378388.0;   // International 1924
-        if( ellipsoidIDCode == "KA") return 6378245.0;   // Krassovsky 1940
-        if( ellipsoidIDCode == "AM") return 6377340.189; // Modified Airy
+        if( ellipsoidIDCode == "KA") return 6378245.0;   // Krassowsky 1940
         if( ellipsoidIDCode == "FA") return 6378155.0;   // Modified Fischer 1960
+        if( ellipsoidIDCode == "PZ") return 6378136.0;   // PZ-90
         if( ellipsoidIDCode == "SA") return 6378160.0;   // South American 1969
         if( ellipsoidIDCode == "WC") return 6378145.0;   // WGS 1966
+        if( ellipsoidIDCode == "WO") return 6378300.0;   // War Office
         if( ellipsoidIDCode == "WD") return 6378135.0;   // WGS 1972
+        if( ellipsoidIDCode == "WE") return 6378137.0;   // WGS84
         return 6378137.0;
     }
 
