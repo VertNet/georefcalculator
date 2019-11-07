@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!--
+	/*
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	
+	__author__ = "Craig Wieczorek"
+	__author__ = "John Wieczorek"
+	__copyright__ = "Copyright 2019 Rauthiflor LLC"
+	__version__ = "gci3.html 2019-11-07T19:05-3:00"
+	*/
+	-->
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	</head>
+	<LINK href="gci.css" rel="stylesheet" type="text/css">
+	<TITLE>Georeferencing Calculator</TITLE>
+	<body onLoad="GC_init()" onkeyup="onBodyKeyUp( event )" class="main">
+		<script src="datumerrordata.js"></script>
+		<script src="georefproperties.js"></script>
+		<script src="factories.js"></script>
+		<script src="gci_ui.js"></script>
+		<script src="support.js"></script>
+		<script src="auto-tests.js"></script>
+		<DIV id="divFiller"	class="divBreak"></DIV>
+		<!-- Begin Calculator container with background image. -->
+		<DIV id="divCalculator" class="divImage">
+		<DIV id="divWorkspace" class="divWorkspace">
+		<DIV id="divLanguage" class="divStandard">
+			<SPAN class="span105">
+				<SELECT id="ChoiceLanguage" onChange="onLanguageSelect()" select="none">
+					<OPTION></OPTION>
+				</SELECT>
+			</SPAN>
+			<SPAN class="span525">
+			<LABEL id="LabelTitle" class="LABELSTEP" hidden="true"></LABEL>
+			</SPAN>
+		</DIV>
+		<DIV id="divChoiceModel">
+			<SPAN id="MARKER" class="span120p">
+			<LABEL id="LabelModel" ></LABEL>
+			</SPAN>
+			<SPAN id="MARKER" class="span515" align="right">
+				<SELECT id="ChoiceModel" onChange="onModelSelect()" class="SELECT95">
+				</SELECT>
+			</SPAN>
+		</DIV>
+		<DIV id="divLocality1">
+		<SPAN class="span362" align="left">
+			<SPAN id="MARKER" class="span155" align="left">
+			<LABEL id="LabelCoordSource" ></LABEL>
+			</SPAN>
+			<SPAN id="MARKER" class="span200" align="right">
+				<SELECT id="ChoiceCoordSource" onChange="onCoordSourceSelect()" class="SELECT95">
+				</SELECT>
+			</SPAN>
+		</SPAN>
+		<SPAN class="span275" >
+			<SPAN id="MARKER" class="span180" align="right">
+				<LABEL id="LabelOffsetNS"></LABEL>
+				<LABEL id="LabelDirection"></LABEL>
+				<SELECT id="ChoiceDirection" onchange="onDirectionSelect()" class="selectPrecision">
+					<OPTION></OPTION>
+				</SELECT>
+			</SPAN>
+			<SPAN id="MARKER" class="span90" align="left">
+				<INPUT TYPE="text" id="TextFieldHeading"	onfocus="TextFieldHeading_focusGained()"class="textOffset" ></INPUT>
+				<INPUT TYPE="text" id="TextFieldOffsetNS"	 onfocus="TextFieldOffsetNS_focusGained()" class="textOffset"></INPUT>
+				<SELECT id="ChoiceOffsetNSDir" onchange="onOffsetNSDirSelect()" class="selectDirection">
+					<OPTION></OPTION>
+				</SELECT>
+			</SPAN>
+		</SPAN>
+		</DIV id="divLocality1">
+		<DIV id="divLocality2">
+			<SPAN class="span362">
+				<SPAN id="MARKER" class="span155" align="left">
+				<LABEL id="LabelCoordSystem" ></LABEL>
+				</SPAN> 
+				<SPAN id="MARKER" class="span200" align="right">
+					<SELECT id="ChoiceCoordSystem" onChange="onCoordSystemSelect()" class="SELECT95">
+						<OPTION></OPTION>
+					</SELECT>
+				</SPAN>
+			</SPAN>
+			<SPAN class="span275">
+				<SPAN id="MARKER" class="span180" align="right">
+				<LABEL id="LabelOffsetEW" align="left"></LABEL>
+				</SPAN>
+				<SPAN id="MARKER" class="span90" align="lef">
+					<INPUT TYPE="text" id="TextFieldOffsetEW"	 onfocus="TextFieldOffsetEW_focusGained()" class="textOffset" ></INPUT>
+					<SELECT id="ChoiceOffsetEWDir" onChange="onOffsetEWDirSelect()" class="selectDirection">
+						<OPTION></OPTION>
+					</SELECT>
+				</SPAN>
+			</SPAN>
+			</DIV id="divLocality2">
+			<DIV id="divLocality3">
+				<SPAN id="MARKER" class="span362">
+					<SPAN id="MARKER" class="span155" align="left">
+					<LABEL id="lblT2Dec_Lat" ></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span200" align="right">
+						<!--	DMS Controls-->
+						<INPUT TYPE="text" id="txtT7Lat_DegDMS" class="textDegree" onfocus="txtT7Lat_DegDMS_focusGained()" ></INPUT>
+						<LABEL id="Label2123" class="super"></LABEL>
+						<INPUT TYPE="text" id="txtT7Lat_MinDMS" class="textMinute"	 onfocus="txtT7Lat_MinDMS_focusGained()" ></INPUT>
+						<LABEL id="Label21121" class="super"></LABEL>
+						<INPUT TYPE="text" id="txtT7Lat_Sec" class="textSecond" onfocus="txtT7Lat_Sec_focusGained()" ></INPUT>
+						<LABEL id="Label211111" class="super"></LABEL>
+						<SELECT id="ChoiceLatDirDMS" onChange="onLatDirDMSSelect()" class="selectDirection">
+							<OPTION></OPTION>
+						</SELECT>
+						<!--	DD Control-->
+						<INPUT TYPE="text" id="txtT2Dec_Lat"	onfocus="txtT2Dec_Lat_focusGained()" class="textDecDeg"></INPUT>
+						<!--	DDM Controls-->
+						<INPUT TYPE="text" id="txtT7Lat_DegMM"	 class="textDegree"	onfocus="txtT7Lat_DegMM_focusGained()"	 ></INPUT>
+						<LABEL id="Label21212" class="super"></LABEL>
+						<INPUT TYPE="text" id="txtT7Lat_MinMM"	 class="textSecond"	onfocus="txtT7Lat_MinMM_focusGained()"	 ></INPUT><!-- text second is intentional-->
+						<LABEL id="Label2111111" class="super"></LABEL>
+						<SELECT id="ChoiceLatDirMM" onChange="onLatDirMMSelect()" class="selectDirection">
+							<OPTION></OPTION>
+							<OPTION></OPTION>
+							<OPTION></OPTION>
+						</SELECT>
+					</SPAN>
+				</SPAN>
+				<SPAN id="MARKER" class="span275">
+				<SPAN id="MARKER" class="span180" align="right">
+				<LABEL id="LabelExtent"></LABEL>
+				</SPAN>
+				<SPAN id="MARKER" class="span90" align="left">
+				<INPUT TYPE="text" id="TextFieldExtent"	onfocus="TextFieldExtent_focusGained()" class="textOffset" ></INPUT>
+				</SPAN>
+				</SPAN>
+			</DIV id="divLocality3">
+			<DIV id="divLocality4">
+				<SPAN id="MARKER" class="span362">
+					<SPAN id="MARKER" class="span155" align="left">
+					<LABEL id="lblT2Dec_Long" ></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span200" align="right">
+						<!--	DM SControls-->	 
+						<INPUT TYPE="text" id="txtT7Long_DegDMS"	class="textDegree" onfocus="txtT7Long_DegDMS_focusGained()" ></INPUT>
+						<LABEL id="Label23" class="super" ></LABEL>
+						<INPUT TYPE="text" id="txtT7Long_MinDMS"	class="textMinute" onfocus="txtT7Long_MinDMS_focusGained()" ></INPUT>
+						<LABEL id="Label222" class="super"></LABEL>
+						<INPUT TYPE="text" id="txtT7Long_Sec"	class="textSecond" onfocus="txtT7Long_Sec_focusGained()" ></INPUT>
+						<LABEL id="Label2211" class="super"></LABEL>
+						<SELECT id="ChoiceLongDirDMS" onChange="onLongDirDMSSelect()" class="selectDirection">
+							<OPTION></OPTION>
+							<OPTION></OPTION>
+							<OPTION></OPTION>
+						</SELECT>
+						<!--	DD Control-->
+						<INPUT TYPE="text" id="txtT2Dec_Long"	onfocus="txtT2Dec_Long_focusGained()" class="textDecDeg"></INPUT>
+						<!--	DDM Controls-->	 
+						<INPUT TYPE="text" id="txtT7Long_DegMM" class="textDegree"	 onfocus="txtT7Long_DegMM_focusGained()" ></INPUT>
+						<LABEL id="Label231" class="super"></LABEL>
+						<INPUT TYPE="text" id="txtT7Long_MinMM" class="textSecond"	 onfocus="txtT7Long_MinMM_focusGained()" ></INPUT><!-- text sedcond is intentional-->
+						<LABEL id="Label22111" class="super"></LABEL>
+						<SELECT id="ChoiceLongDirMM" onChange="onLongDirMMSelect()" class="selectDirection">
+							<OPTION></OPTION>
+							<OPTION></OPTION>
+							<OPTION></OPTION>
+						</SELECT>
+					</SPAN>
+				</SPAN>
+				<SPAN id="MARKER" class="span275">
+				<SPAN id="MARKER" class="span180" align="right">
+				<LABEL id="LabelMeasurementError"></LABEL>
+				</SPAN>
+				<SPAN id="MARKER" class="span90" align="left">
+				<INPUT TYPE="text" id="TextFieldMeasurementError"	 onfocus="TextFieldMeasurementError_focusGained()" class="textOffset" ></INPUT>
+				</SPAN>
+				</SPAN>
+			</DIV id="divLocality4">
+			<DIV id="divLocality5">
+				<SPAN class="span362">
+					<SPAN id="MARKER" class="span40" align="left">
+					<LABEL id="LabelDatum" ></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span315" align="right">
+						<SELECT id="ChoiceDatum" onChange="onDatumSelect()" class="selectDatum">
+							<OPTION></OPTION>
+						</SELECT>
+						<LABEL id="MARKER"> </LABEL>
+					</SPAN>
+				</SPAN>
+				<SPAN class="span275">
+					<SPAN id="MARKER" class="span180" align="right">
+					<LABEL id="LabelDistUnits"></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span90" align="left">
+						<SELECT id="ChoiceDistUnits" onChange="onDistUnitsSelect()" class="selectUnits">
+							<OPTION></OPTION>
+						</SELECT>
+					</SPAN>
+				</SPAN>
+			</DIV>
+			<DIV id="divLocality6">
+				<SPAN id="MARKER" class="span362" align="left">
+					<SPAN id="MARKER" class="span175" align="left">
+					<LABEL id="LabelLatPrecision" ></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span180" align="right">
+						<SELECT id="ChoiceLatPrecision" onChange="onLatPrecisionSelect()" class="selectCoordPrecision">
+							<OPTION></OPTION>
+						</SELECT>
+						<LABEL id="MARKER" > </LABEL>
+					</SPAN>
+				</SPAN>
+				<SPAN id="MARKER" class="span275" align="right">
+					<SPAN id="MARKER" class="span180" align="right">
+					<LABEL id="LabelDistancePrecision"></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span90" align="left">
+						<SELECT id="ChoiceDistancePrecision" onChange="onDistancePrecisionSelect()" class="selectPrecision">
+							<OPTION></OPTION>
+						</SELECT>
+					</SPAN>
+				</SPAN>
+			</DIV>
+			<DIV id="Buttons" class="divButtons">
+				<SPAN class="span640" align="left"">
+					<SPAN id="MARKER" class="span358" align="left">
+						<INPUT type="text" id="TextFieldFullResult" class="readOnlyInput296" readonly ></INPUT>
+					</SPAN> 
+					<SPAN id="MARKER" class="span90" align="left">
+						<BUTTON id="ButtonCalculate" onclick="ButtonCalculate_afterActionPerformed()" class="button4"></BUTTON>
+					</SPAN> 
+					<SPAN id="MARKER" class="span90" align="left">
+						<BUTTON id="ButtonCopy" onclick="ButtonCopy_afterActionPerformed()" class="button4"></BUTTON>
+					</SPAN> 
+					<SPAN id="MARKER" class="span90" align="left">
+						<BUTTON id="ButtonPromote" onclick="ButtonPromote_afterActionPerformed()" class="button4"></BUTTON>
+					</SPAN> 
+				</SPAN> 
+			</DIV>
+			<DIV id="ResultLabels1" class="divResult">
+				<SPAN class="span640" align="left"">
+					<SPAN id="MARKER" class="span110c">
+						<LABEL id="LabelCalcDecLat"></LABEL>
+					</SPAN> 
+					<SPAN id="MARKER" class="span110c">
+						<LABEL id="LabelCalcDecLong"></LABEL>
+						</SPAN> 
+					<SPAN id="MARKER" class="span110c">
+						<LABEL id="LabelCalcMaxError"></LABEL>
+					</SPAN> 
+					<SPAN id="MARKER" class="span296c">
+						<LABEL id="LabelCalcDatum"></LABEL>
+					</SPAN> 
+				</SPAN> 
+			</DIV>
+			<DIV id="ResultFields1" class="divResult">
+				<SPAN class="span640" align="left"">
+					<SPAN id="MARKER" class="span110" align="left">
+						<INPUT type="text" id="TextFieldCalcDecLat" class="readOnlyInput110" readonly></INPUT>
+					</SPAN> 
+					<SPAN id="MARKER" class="span110" align="left">
+						<INPUT type="text" id="TextFieldCalcDecLong" class="readOnlyInput110" readonly></INPUT>
+					</SPAN>
+					<SPAN id="MARKER" class="span110" align="left">
+						<INPUT type="text" id="TextFieldCalcErrorDist" class="readOnlyInput110" readonly></INPUT>
+					</SPAN>
+					<SPAN id="MARKER" class="span296" align="left">
+						<INPUT type="text" id="TextFieldCalcDatum" class="readOnlyInput296" readonly></INPUT>
+					</SPAN>
+				</SPAN> 
+			</DIV>
+			<DIV id="ResultLabels2" class="divResult">
+				<SPAN class="span640" align="left"">
+					<SPAN id="MARKER" class="span110c">
+						<LABEL id="LabelCalcPrecision"></LABEL>
+					</SPAN> 
+					<SPAN id="MARKER" class="span110c">
+						<LABEL id="LabelCalcDate"></LABEL>
+					</SPAN> 
+					<SPAN id="MARKER" class="span140c">
+						<LABEL id="LabelCalcGeoreferencer"></LABEL>
+					</SPAN> 
+					<SPAN id="MARKER" class="span266c">
+						<LABEL id="LabelCalcProtocol"></LABEL>
+					</SPAN> 
+				</SPAN> 
+			</DIV>
+			<DIV id="ResultFields2" class="divResult">
+				<SPAN class="span640" align="left"">
+					<SPAN id="MARKER" class="span110" align="left">
+						<INPUT type="text" id="TextFieldCalcPrecision" class="readOnlyInput110" readonly></INPUT>
+					</SPAN> 
+					<SPAN id="MARKER" class="span110" align="left">
+						<INPUT type="text" id="TextFieldCalcDate" class="readOnlyInput110" readonly></INPUT>
+					</SPAN>
+					<SPAN id="MARKER" class="span140" align="left">
+						<INPUT type="text" id="TextFieldCalcGeoreferencer" class="textGeoreferencer"></INPUT>
+					</SPAN>
+					<SPAN id="MARKER" class="span266" align="right">
+						<SELECT id="ChoiceProtocol" onChange="onProtocolSelect()" class="selectProtocol">
+							<OPTION></OPTION>
+						</SELECT>
+					</SPAN>
+				</SPAN> 
+			</DIV>
+			<!-- Results and converters are positioned from the bottom of the calculator pane. -->
+			<DIV id="bottom" class="divFooter">
+				<DIV id="converters">
+					<!-- BEGIN/END MARKER the distance converter elements belong here-->
+					<SPAN class="span640" id="" align="left">
+						<SPAN class="span155pr" id="" align="left">	 
+						<LABEL id="LabelDistanceConverter"></LABEL>
+						</SPAN>	 
+						<SPAN class="span475" id="">
+							<SPAN class="span155" id="" align="right">
+								<INPUT TYPE="text" id="TextFieldFromDistance" class="textConvert" onfocus="TextFieldFromDistance_focusGained()" onkeyup="onDistConvertKeyUp()" ></INPUT>
+								<SELECT id="ChoiceFromDistUnits" onChange="onFromDistUnitsSelect()" class="selectUnits">
+									<OPTION></OPTION>
+								</SELECT>
+							</SPAN>
+							<SPAN class="span315" id="" align="left">
+								<SPAN class="span83" id="" align="left"></SPAN>
+								<LABEL id="LabelEquals">=</LABEL>
+								<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall" readOnly></INPUT>
+								<SELECT id="ChoiceToDistUnits" onChange="onToDistUnitsSelect()" class="selectPrecision">
+									<OPTION></OPTION>
+								</SELECT>
+							</SPAN>
+						</SPAN>
+					</SPAN>
+					<SPAN class="span640" id="" >
+						<SPAN class="span155pr" id="" align="left">	 
+						<LABEL id="LabelScaleConverter"></LABEL>
+						</SPAN>
+						<SPAN class="span475" id="" >
+							<SPAN class="span155" id="" align="right">
+								<INPUT TYPE="text" id="TextFieldScaleFromDistance" onfocus="TextFieldScaleFromDistance_focusGained()" onkeyup="onScaleConvertKeyUp()" class="textConvert" ></INPUT>	 
+								<SELECT id="ChoiceScaleFromDistUnits"	onChange="onScaleFromDistUnitsSelect()" class="selectUnits">
+									<OPTION></OPTION>
+								</SELECT>
+							</SPAN>
+							<SPAN class="span315" id="" align="left">
+								<SELECT id="ChoiceScale" onChange="onScaleSelect()" class="selectPrecision">
+									<OPTION></OPTION>
+								</SELECT>
+								<LABEL id="LabelScaleEquals">=</LABEL>
+								<INPUT TYPE="text" id="TextFieldScaleToDistance" class="readOnlyInputSmall" readOnly></INPUT>
+								<SELECT id="ChoiceScaleToDistUnits"	 onChange="onScaleToDistUnitsSelect()" class="selectPrecision">
+									<OPTION></OPTION>
+								</SELECT>
+							</SPAN>
+						</SPAN>
+					</SPAN>
+				</DIV>
+				<DIV id="divInfo" class="divInfo">
+					<SPAN id="MARKER" class="span50">
+					<LABEL id="LabelVersion" class="LABELINFO"></LABEL>
+					</SPAN>
+					<SPAN id="MARKER" class="span50" align="right">
+					<LABEL align="right" id="LabelCopyright" class="LABELINFO"></LABEL>
+					</SPAN>
+				</DIV>
+			</DIV>
+			</DIV> <!-- end divWorkspace -->
+		</DIV>
+		<!-- End Calculator container with background image. -->
+		<DIV id="divLinks" style="background-color: #FFFFFF";>
+			<TABLE cellspacing="0" border="0" width="100%">
+				<TBODY>
+					<TR>
+						<TD width="50%" valign="MIDDLE">
+							<P>
+								<A href="../docs/GeoreferencingCalculatorManualv2.html" target="_blank"><b>Calculator Manual (English)</b></A>
+							</P>
+						</TD>
+						<TD width="50%" valign="MIDDLE" align="RIGHT">
+							<P>
+								<A href="../docs/GeorefGuide.html" target="_blank"><b>Georeferencing Guidelines (English)</b></A>
+							</P>
+						</TD>
+					</TR>
+				</TBODY>
+			</TABLE>
+			<TABLE cellspacing="0" border="0" width="100%">
+				<TBODY>
+					<TR>
+						<TD width="100%" valign="MIDDLE">
+							<P>
+								<A href="../docs/GeoreferencingQuickReferenceGuide.pdf" target="_blank"><b>Georeferencing Quick Reference Guide (pdf)</b></A>
+							</P>
+						</TD>
+					</TR>
+				</TBODY>
+			</TABLE>
+			<HR>
+			<P>
+				This application was adapted by Craig Wieczorek and John Wieczorek from an earlier 
+				version in Java by John Wieczorek with contributions from Qinghua Guo, Carmen 
+				Boureau, and Craig Wieczorek. Interface translations provided by: Gustavo Iglesias 
+				(Espa&ntilde;ol), Jose (Wly) Dos Santos (Portugu&ecirc;s), Tendro Ramaharitra 
+				(Fran&ccedil;ais), Robert Hijmans (Nederlands), Peter Desmet (Nederlands)
+			</P>
+			<P>
+				<b>Preferred citation</b>:
+				<br>Wieczorek C, J Wieczorek (2019) Georeferencing Calculator (version 20191107). Available: http://georeferencing.org/georefcalculator/source/gci3.html. Accessed [yyyy-mm-dd].
+			</P>
+			<P>
+				<b>Calculations based on:</b>
+				<br>Wieczorek J (2001) MaNIS/HerpNet/ORNIS Georeferencing Guidelines. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://georeferencing.org/georefcalculator/docs/GeorefGuide.html">http://georeferencing.org/georefcalculator/docs/GeorefGuide.html</a>.
+				<br><br>Wieczorek J, Hijmans R, Guo Q (2004) Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767. Available: <A href="http://georeferencing.org/georefcalculator/docs/Wieczoreketal2004PointRadius.pdf">http://georeferencing.org/georefcalculator/docs/Wieczoreketal2004PointRadius.pdf</a>
+			</P>
+			<P>
+				<b>Related references:</b>
+				<br>Chapman AD, Wieczorek J (eds.) (2006) Guide to Best Practices for Georeferencing. Copenhagen: Global Biodiversity Information Facility. Available: <a href="http://www.gbif.org/resource/80536">http://www.gbif.org/resource/80536</a>
+				<br><br>Wieczorek J, Bloom D, Constable H, Fang J, Koo M, Spencer C, Yamamoto K (2011) Georeferencing Quick Reference Guide. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://georeferencing.org/georefcalculator/docs/GeoreferencingQuickReferenceGuide.pdf">http://georeferencing.org/georefcalculator/docs/GeoreferencingQuickReferenceGuide.pdf</a>
+			</P>
+			<P>
+				<b>Source code:</b>
+				<br><A HREF="https://github.com/VertNet/georefcalculator/">https://github.com/VertNet/georefcalculator</A>
+			</P>
+			<P>
+				<b>Desktop version:</b>
+				<br><A HREF="https://github.com/VertNet/georefcalculator/releases">https://github.com/VertNet/georefcalculator/releases</A>
+			</P>
+			<HR>
+			<TABLE cellspacing="0" border="0" width="100%">
+				<TBODY>
+					<TR>
+						<TD width="60%" valign="MIDDLE">
+							<FONT size="2">
+								<P align="LEFT">
+									Copyright 2019, Rauthiflor LLC
+							</FONT>
+						</TD>
+						<TD width="40%" valign="MIDDLE" align="RIGHT">
+							<A rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+							<img alt="Creative Commons License" style="border-width:0" 
+								src="../docs/images/cc-by-sa.png"></A>
+							<!--	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png">-->
+						</TD>
+					</TR>
+				</TBODY>
+			</TABLE>
+			<TABLE cellspacing="0" border="0" width="100%">
+				<TBODY>
+					<TR>
+						<TD width="50%" valign="MIDDLE">
+							<P>John Wieczorek 3 Nov 2001 </P>
+						</TD>
+						<TD width="50%" valign="MIDDLE" align="RIGHT">
+							<i>Rev. 7 Nov 2019</i>
+						</TD>
+					</TR>
+				</TBODY>
+			</TABLE>
+			<HR>
+		</DIV>
+	</body>
+</html>

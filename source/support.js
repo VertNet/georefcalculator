@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "support.js 2019-10-09T22:09-3:00"
+__version__ = "support.js 2019-11-07T19:04-3:00"
 */
 
     function convertDistance(){
@@ -171,15 +171,18 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         calculateMaxErrorDistance();
 
         var errstr = maxerrordistance;
-        uiSetLabelExplicit("TextFieldCalcErrorDist", errstr );
+//        uiSetLabelExplicit("TextFieldCalcErrorDist", errstr );
         var distunits = uiGetSelectedText("ChoiceDistUnits");
         
-        uiSetLabelExplicit("TextFieldCalcErrorUnits", distunits );
-
         var datumstr = uiGetSelectedText("ChoiceDatum");
         var coordsysstr = uiGetSelectedText("ChoiceCoordSystem");
         var coordprecisionstr = uiGetSelectedText("ChoiceLatPrecision");
+        var georeferencerstr = uiGetTextValue("TextFieldCalcGeoreferencer");
+ 		var currentDate = new Date();
+        var datestr = currentDate.toISOString()
+        var protocolstr = uiGetSelectedText("ChoiceProtocol");
         var distanceprecisionstr = null;
+        var resultprecisionstr = "0.0000001"
 
         if( uiIsVisible("ChoiceDistancePrecision") )
         {
@@ -213,8 +216,8 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         { // if there are floating point residuals in the calculation
             declongstr = declongstr.substring(0,10);
         }
-        
-        errstr = uiGetTextValue("TextFieldCalcErrorDist");
+
+//        errstr = uiGetTextValue("TextFieldCalcErrorDist");
         var errorinmeters = Math.round(
                                 convertLengthFromTo( maxerrordistance,
                                     uiGetSelectedText("ChoiceDistUnits"), "m" )
@@ -222,7 +225,11 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
 
         uiSetLabelExplicit("TextFieldCalcDecLat", formatCalcDec.checkFormat( newdecimallatitude ) );
         uiSetLabelExplicit("TextFieldCalcDecLong",formatCalcDec.checkFormat( newdecimallongitude) );
-        uiSetLabelExplicit("TextFieldCalcErrorDist", formatCalcError.checkFormat( maxerrordistance ) );
+//        uiSetLabelExplicit("TextFieldCalcErrorDist", formatCalcError.checkFormat( maxerrordistance ) );
+        uiSetLabelExplicit("TextFieldCalcErrorDist", formatCalcError.checkFormat( errorinmeters ) );
+        uiSetLabelExplicit("TextFieldCalcDatum", datumstr);
+        uiSetLabelExplicit("TextFieldCalcPrecision", resultprecisionstr);
+        uiSetLabelExplicit("TextFieldCalcDate", datestr);
         /***
             Output meant to have tab-delimited output in the full result text box.
             This can then be copied and pasted into a spreadsheet from the application.
@@ -234,6 +241,7 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
             not match the meaning of the Darwin Core term coordinatePrecision.
         ***/
 
+/*
         var resultstr = formatCalcDec.checkFormat( newdecimallatitude ) + '\u0009' +
                         formatCalcDec.checkFormat( newdecimallongitude ) + '\u0009' +
                         formatCalcDec.checkFormat( errorinmeters ) + '\u0009' +
@@ -244,11 +252,19 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
                         distunits + '\u0009' + 
                         distanceprecisionstr + '\u0009' +
                         coordprecisionstr;
+*/
+        var resultstr = formatCalcDec.checkFormat( newdecimallatitude ) + '\u0009' +
+                        formatCalcDec.checkFormat( newdecimallongitude ) + '\u0009' +
+                        datumstr + '\u0009' + 
+                        formatCalcDec.checkFormat( errorinmeters ) + '\u0009' +
+                        resultprecisionstr + '\u0009' + 
+                        georeferencerstr + '\u0009' + 
+                        datestr + '\u0009' + 
+                        protocolstr;
 
         uiSetLabelExplicit("TextFieldFullResult",resultstr);
         return true;
     }
-
 
     function translateCoords(){
         var ddeclat = 0;
@@ -666,23 +682,12 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         {
             return 0.0;
         }
-        
         var error = 0.0;
-        if( decimallatitude >= 13.79 && decimallatitude <= 84.69
-                && decimallongitude >= -179.48 && decimallongitude <= -51.48 )
-        {
-            // Coordinates are in North America region
-            error = 1.0*readDatumError();
-        }
-        else
-        {
-            // Outside North America, an unknown datum is taken to contribute
-            // up to a kilometer of error. The worst case scenario 3.552 km would be extremely rare.
-            // The mean difference between any datum and WGS84 is 0.653 km.
-            error = 1000.0;
-        }
-        var distunitsstr = uiGetSelectedText("ChoiceDistUnits");
-        error = convertFromMetersTo( error, distunitsstr );
+        var latcells = 180/GRIDDEGREES;
+        var i = Math.round((Number(decimallatitude)+90)/GRIDDEGREES);
+        var j = Math.round((Number(decimallongitude)+180)/GRIDDEGREES);
+        var n = j*latcells + i;
+        error = datumerror[n];
         return error;
     }
 
@@ -1602,12 +1607,6 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         newdecimallatitude=Number( decimallatitude );
         newdecimallongitude=Number(decimallongitude );
 
-        var SCalcType = uiGetSelectedText("ChoiceCalcType");
-        var cindex = g_canonicalcalctypes.indexOf(SCalcType);
-        if( cindex==0 )
-        { // Error only
-            return;
-        }
         var s = null;
         var d = 0;
         var meterseast = 0;
@@ -1620,7 +1619,7 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         var SBoxModel = uiGetSelectedText("ChoiceModel");
         if( SBoxModel == g_properties.getPropertyLang("loctype.orthodist"))
         {
-            s = uiGetTextValue("TextFieldOffset");
+            s = uiGetTextValue("TextFieldOffsetNS");
             if( s == null || s.length == 0 )
             {
                 metersnorth = 0;
@@ -1812,6 +1811,7 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         return d;
     }
     
+/*
     function readDatumError(){
         var error = 1000; // 1 km error if file can't be read properly
         var col = Math.round( 5*(Number(decimallongitude)+179.48) );
@@ -1820,6 +1820,7 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         error = datumerror[col][row];
         return error;
     }
+*/
 
     function calculateMaxErrorDistance(){
         maxerrordistance=0.0;
@@ -1968,16 +1969,29 @@ __version__ = "support.js 2019-10-09T22:09-3:00"
         clearResults();
         var r = calculateResults();
         showResults(true);
+/*
         if(r)
         {
             uiElementSetFocus("TextFieldFullResult", true);
         }
+*/
+    }
+
+    function ButtonCopy_afterActionPerformed(){
+        clearResults();
+    	calculateResults();
+    	showResults(true);
+		var copyText = document.getElementById("TextFieldFullResult");
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+		document.execCommand("copy");
+		s = g_properties.getPropertyLang("label.copied")
+		alert(s+": " + copyText.value);		
     }
 
     function ButtonPromote_afterActionPerformed(){
-        lastcoordsystem = 1;
-        
-        uiSetLabelExplicit("txtT2Dec_Lat",formatCalcDec.checkFormat( newdecimallatitude));//JAVA format.setText(formatCalcDec.format(newdecimallatitude));
-        uiSetLabelExplicit("txtT2Dec_Long",formatCalcDec.checkFormat(  newdecimallongitude));//JAVA format formatCalcDec.format(newdecimallongitude));
-            onCoordSystemSelect();
+        lastcoordsystem = 1;        
+        uiSetLabelExplicit("txtT2Dec_Lat",formatCalcDec.checkFormat( newdecimallatitude));
+        uiSetLabelExplicit("txtT2Dec_Long",formatCalcDec.checkFormat(  newdecimallongitude));
+        onCoordSystemSelect();
     }

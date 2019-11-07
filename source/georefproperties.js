@@ -19,7 +19,7 @@ __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "georefproperties.js 2019-10-09T00:04-03:00"
+__version__ = "georefproperties.js 2019-10-14T08:55-03:00"
 */
 
 // Translations courtesy of:
@@ -28,12 +28,13 @@ __version__ = "georefproperties.js 2019-10-09T00:04-03:00"
 // Tendro Ramaharitra (Français)
 // Robert Hijmans & Peter Desmet (Nederlands)
 
+/*
 function test_getSource( lang )
 {
 	var x = language[lang];
 	return g_properties.calctype.erroronly[lang];
 }
-
+*/
 var test_props = {
 	'get_props' : function(x){return x;},
 	'get_Props2' : function(x){return x*2;},
@@ -56,8 +57,6 @@ language.es=2;
 language.pt=3;
 language.fr=4;
 language.nl=5;
-//language.name[0] = "English (local)";
-//language.code[0] = "en";
 language.name[0] = "English";
 language.code[0] = "en";
 language.name[1] = "Español";
@@ -68,9 +67,6 @@ language.name[3] = "Français";
 language.code[3] = "fr";
 language.name[4] = "Nederlands";
 language.code[4] = "nl";
-
-//language.de = Deutsch
-
 
 // Preferred Language
 // Must be one of the codes from the Languages list above
@@ -90,16 +86,6 @@ version.nl = "Versie";
 // Nederlands
 
 //##############################
-
-// Calculation Type
-var calctype = {
-			'erroronly' : {},
-			'coordsanderror' : {},
-			'coordsonly' : {}
-			};
-calctype.erroronly.nl = "Enkel de onzekerheid - Vul de lengte - en breedtegraad in voor de locatie";
-calctype.coordsanderror.nl = "Coordinaten en onzekerheid - Vul de lengte - en breedtegraad in voor de locatie of het beginpunt";
-calctype.coordsonly.nl = "Enkel de coordinaten - Vul de lengte - en breedtegraad in voor de locatie of het beginpunt";
 
 // Locality Type
 var loctype = {
@@ -206,26 +192,27 @@ var label = {
 		'offset' : {},
 		'extent' : { 'gps' : {} },
 		'measurementerror' : {},
-		'calctype' : {},
 		'loctype' : {},
 		'title' : {},
 		'coordsource' : {},
 		'coordsys' : {},
 		'datum' : {},
 		'coordprec' : {},
+		'georeferencer' : {},
+		'date' : {},
+		'protocol' : {},		
 		'distew' : {},
 		'distns' : {},
 		'distunits' : {},
 		'distprec' : {},
 		'direction' : {},
 		'calculate' : {},
+		'copy' : {},
+		'copied' : {},
 		'promote' : {},
 		'declat' : {},
 		'declon' : {},
 		'maxerrdist' : {},
-		'step0' : {},
-		'step1' : {},
-		'step2' : {},
 		'distanceconverter' : {},
 		'scaleconverter' : {}
 };
@@ -236,26 +223,27 @@ label.offset.nl = "Afstand";
 label.extent.nl = "Grootte van de plaats";
 label.measurementerror.nl = "Meetfout";
 label.extent.gps.nl = "GPS Accuraatheid";
-label.calctype.nl = "Berekeningsklasse";
 label.loctype.nl = "Locatieklasse";
 label.title.nl = "Rekenmachine voor coordinatenbepaling";
 label.coordsource.nl = "Coordinatenbron";
 label.coordsys.nl = "Coordinatensysteem";
 label.datum.nl = "Datum";
 label.coordprec.nl = "Coordinatenprecisie";
+label.georeferencer.nl = "Georeferentie door"
+label.date.nl = "Datum vandaag"
+label.protocol.nl = "Protocol"
 label.distew.nl = "Afstand Oost of West";
 label.distns.nl = "Afstand Noord of Zuid";
 label.distunits.nl = "Afstandseenheden";
 label.distprec.nl = "Afstandsprecisie";
 label.direction.nl = "Richting";
 label.calculate.nl = "Bereken";
-label.promote.nl = "Start hiermee";
-label.declat.nl = "Decimale breedtegraad";
-label.declon.nl = "Decimale lengtegraad";
-label.maxerrdist.nl = "Maximale onzekerheid";
-label.step0.nl = "Stap 1) Kies een berekeningsklasse uit de lijst hieronder.";
-label.step1.nl = "Stap 2) Kies een locatieklasse uit de lijst hieronder.";
-label.step2.nl = "Stap 3) Vul alle parameters in voor de locatie.";
+label.copy.nl = "Kopiëren";
+label.copied.nl = "Gekopieerd";
+label.promote.nl = "Ga daarheen";
+label.declat.nl = "Breedtegraad";
+label.declon.nl = "Lengtegraad";
+label.maxerrdist.nl = "Onzekerheid (m)";
 label.distanceconverter.nl = "Aftandsomvormer:";
 label.scaleconverter.nl = "Schaalomvormer:";
 
@@ -367,6 +355,15 @@ coordprec.ddm.exact.nl = "exact";
 // Datum
 var datum = { 'notrecorded' : { 'nl' : "datum onbekend" } };
 
+// Protocol
+var protocol = { 
+'notrecorded' : { },
+'qrg' : { }
+};
+
+protocol.notrecorded.nl = "protocol onbekend";
+protocol.qrg.nl = "Georeferencing Quick Reference Guide. 2019.";
+
 // Coordinate Source
 var coordsource = {
 'gaz' : { },
@@ -456,12 +453,6 @@ coordsource.ntsc50000.nl = "NTS kaart (C): 1:50000";
 //##############################
 // English
 //##############################
-// Calculation Type
-
-calctype.erroronly.en = "Error only - enter Lat/Long for the actual locality";
-calctype.coordsanderror.en = "Coordinates and error - enter the Lat/Long for the named place or starting point";
-calctype.coordsonly.en = "Coordinates only - enter the Lat/Long for the named place or starting point";
-
 // Locality Type
 loctype.coordonly.en = "Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)";
 loctype.namedplaceonly.en = "Named place only (e.g., Bakersfield)";
@@ -514,29 +505,31 @@ headings.nearestdegree.en = "degrees from N";
 label.lat.en = "Latitude";
 label.lon.en = "Longitude";
 label.offset.en = "Offset Distance";
-label.extent.en = "Extent of Named Place";
+label.extent.en = "Radial of Named Place";
 label.measurementerror.en = "Measurement Error";
 label.extent.gps.en = "GPS Accuracy";
-label.calctype.en = "Calculation Type";
 label.loctype.en = "Locality Type";
 label.title.en = "Georeferencing Calculator";
 label.coordsource.en = "Coordinate Source";
 label.coordsys.en = "Coordinate System";
 label.datum.en = "Datum";
-label.coordprec.en = "Coordinate Precision";
+label.coordprec.en = "Precision";
+//label.coordprec.en = "Coordinate Precision";
+label.georeferencer.en = "Georeferenced by"
+label.date.en = "Date"
+label.protocol.en = "Protocol"
 label.distew.en = "East or West Offset Distance";
 label.distns.en = "North or South Offset Distance";
 label.distunits.en = "Distance Units";
-label.distprec.en = "Distance Precision";
+label.distprec.en = "Precision";
 label.direction.en = "Direction";
 label.calculate.en = "Calculate";
-label.promote.en = "Promote";
-label.declat.en = "Decimal Latitude";
-label.declon.en = "Decimal Longitude";
-label.maxerrdist.en = "Maximum Error Distance";
-label.step0.en = "Step 1) Choose a calculation type from the list below.";
-label.step1.en = "Step 2) Choose a locality type from the list below.";
-label.step2.en = "Step 3) Enter all of the parameters for the locality.";
+label.copy.en = "Copy";
+label.copied.en = "Copied";
+label.promote.en = "Go here";
+label.declat.en = "Latitude";
+label.declon.en = "Longitude";
+label.maxerrdist.en = "Uncertainty (m)";
 label.distanceconverter.en = "Distance Converter:";
 label.scaleconverter.en = "Scale Converter:";
 
@@ -553,8 +546,8 @@ error.sec.message.en = "The seconds must be a value between 0 and 60.";
 error.sec.title.en = "Coordinate Input Error";
 error.offset.message.en = "The offset must be a non-negative value.";
 error.offset.title.en = "Offset Input Error";
-error.extent.message.en = "The extent must be a non-negative value.";
-error.extent.title.en = "Extent Input Error";
+error.extent.message.en = "The radial must be a non-negative value.";
+error.extent.title.en = "Radial Input Error";
 error.measurementerror.message.en = "The measurement error must be a non-negative value.";
 error.measurementerror.title.en = "Measurement Error Input Error";
 error.number.message.en = "The format of the number just entered must follow convention of the chosen language.";
@@ -596,6 +589,10 @@ coordprec.ddm.exact.en = "exact";
 
 // Datum
 datum.notrecorded.en = "datum not recorded";
+
+// Protocol
+protocol.notrecorded.en = "protocol not recorded";
+protocol.qrg.en = "Georeferencing Quick Reference Guide. 2019.";
 
 // Coordinate Source
 coordsource.gaz.en = "gazetteer";
@@ -643,11 +640,6 @@ coordsource.non10000.en = "other map: 1:10000";
 //##############################
 // Español
 //##############################
-// Tipo de Cálculo 
-calctype.erroronly.es = "Sólo Error - introduzca la Lat/Long para la localidad actual";
-calctype.coordsanderror.es = "Coordenadas y error - introduzca la Lat/Long para el punto de origen o punto de partida";
-calctype.coordsonly.es = "Sólo Coordenadas -  introduzca la Lat/Long para el punto de origen o punto de partida";
-
 // Tipo de Localidad 
 loctype.coordonly.es = "Sólo Coordenadas ( p.ej., 27\u00b034'23,4\" S, 61\u00b056'42,3\" O)"  
 loctype.namedplaceonly.es = "Sólo un Lugar Citado (p.ej., San Marcos)";
@@ -700,29 +692,30 @@ headings.nearestdegree.es = "grados desde N";
 label.lat.es = "Latitud";
 label.lon.es = "Longitud";
 label.offset.es = "Desplazamiento";
-label.extent.es = "Extensión de la Entidad";
+label.extent.es = "Radial de la Entidad";
 label.measurementerror.es = "Error de Medición";
 label.extent.gps.es = "Exactidud del GPS";
-label.calctype.es = "Tipo de Cálculo";
 label.loctype.es = "Tipo de Localidad";
 label.title.es = "Calculadora de Georreferenciación";
 label.coordsource.es = "Fuente de las Coordenadas";
 label.coordsys.es = "Sistema de Coordenadas";
 label.datum.es = "Datum"
-label.coordprec.es = "Precisión de las Coordenadas";
+label.coordprec.es = "Precisión";
+label.georeferencer.es = "Georreferenciado por"
+label.date.es = "Fecha"
+label.protocol.es = "Protocolo"
 label.distew.es = "Distancia al Este o Oeste";
 label.distns.es = "Distancia al Norte o Sur";
 label.distunits.es = "Unidades de la Distancia";
 label.distprec.es = "Precisión de la Distancia";
 label.direction.es = "Dirección";
 label.calculate.es = "Calcular";
-label.promote.es = "Promueva";
-label.declat.es = "Latitud Decimal";
-label.declon.es = "Longitud Decimal";
-label.maxerrdist.es = "Distancia Máxima del Error";
-label.step0.es = "Paso 1) Elija un tipo de cálculo de la lista abajo.";
-label.step1.es = "Paso 2) Elija un tipo de localidad de la lista abajo.";
-label.step2.es = "Paso 3) Ingrese todos los parámetros para la localidad.";
+label.copy.es = "Copiar";
+label.copied.es = "Copiado";
+label.promote.es = "Ir allí";
+label.declat.es = "Latitud";
+label.declon.es = "Longitud";
+label.maxerrdist.es = "Incertidumbre (m)";
 label.distanceconverter.es = "Convertidor de Distancias:";
 label.scaleconverter.es = "Convertidor de Escalas:";
 
@@ -739,8 +732,8 @@ error.sec.message.es = "Los segundos deben ser un valor entre 0 y 60.";
 error.sec.title.es = "Error de las Coordenadas Ingresadas";
 error.offset.message.es = "El valor de la desplazamiento debe ser más que cero.";
 error.offset.title.es = "Error de la Desplazamiento Ingresada";
-error.extent.message.es = "El valor de la extensión debe ser más que cero.";
-error.extent.title.es = "Error de la Extensión Ingresada";
+error.extent.message.es = "El valor del radial debe ser más que cero.";
+error.extent.title.es = "Error del Radial Ingresada";
 error.measurementerror.message.es = "El valor de la medición debe ser más que cero.";
 error.measurementerror.title.es = "Error de la Medición Ingresada";
 error.number.message.es = "The format of the number just entered must follow convention of the chosen language.*";
@@ -782,6 +775,10 @@ coordprec.ddm.exact.es = "exacto";
 
 // Datum
 datum.notrecorded.es = "datum no indicado";
+
+// Protocol
+protocol.notrecorded.es = "protocol no indicado";
+protocol.qrg.es = "Georeferencing Quick Reference Guide. 2019.";
 
 // Fuentes de las Coordenadas
 coordsource.gaz.es = "gacetero";
@@ -829,11 +826,6 @@ coordsource.non10000.es = "otro mapa: 1:10000";
 //##############################
 // Português
 //##############################
-// Tipo de Cálculo
-calctype.erroronly.pt = "Erro apenas - insira as Lat/Long para a localidade real";
-calctype.coordsanderror.pt = "Coordenadas e erro - insira as Lat/Long para a localidade denominado ou ponto de partida";
-calctype.coordsonly.pt = "Coordenadas apenas - insira as Lat/Long para a localidade denominado ou ponto de partida";
-
 // Tipo de Localidade
 loctype.coordonly.pt = "Coordenadas apenas (e.g., 27\u00b034'23,4\" N, 121\u00b056' 42,3\" W)";
 loctype.namedplaceonly.pt = "Nome da localidade apenas (e.g., Manaus)";
@@ -886,29 +878,30 @@ headings.nearestdegree.pt = "graus do N";
 label.lat.pt = "Latitude";
 label.lon.pt = "Longitude";
 label.offset.pt = "Distância";
-label.extent.pt = "Extensão do Local Nomeado";
+label.extent.pt = "Radial do Local Nomeado";
 label.measurementerror.pt = "Erro de Medição";
 label.extent.gps.pt = "Precisão do GPS";
-label.calctype.pt = "Tipo de Cálculo";
 label.loctype.pt = "Tipo de Localidade";
 label.title.pt = "Calculador de Georeferenciamento";
 label.coordsource.pt = "Fonte das Coordenadas";
 label.coordsys.pt = "Sistema das Coordenadas";
 label.datum.pt = "Datum";
-label.coordprec.pt = "Acurácia das Coordenadas";
+label.coordprec.pt = "Precisão";
+label.georeferencer.pt = "Georreferenciado por"
+label.date.pt = "Data"
+label.protocol.pt = "Protocolo"
 label.distew.pt = "Distância a Leste ou Oeste";
 label.distns.pt = "Distância a Norte ou Sul";
 label.distunits.pt = "Unidades da Distância";
 label.distprec.pt = "Precisão da Distância";
 label.direction.pt = "Direção";
 label.calculate.pt = "Calcular";
-label.promote.pt = "Promova";
-label.declat.pt = "Latitude Decimal";
-label.declon.pt = "Longitude Decimal";
-label.maxerrdist.pt = "Distância Máxima do Erro";
-label.step0.pt = "Passo 1) Escolha um tipo de cálculo da lista abaixo.";
-label.step1.pt = "Passo 2) Escolha um tipo de localidade da lista abaixo.";
-label.step2.pt = "Passo 3) Insira todos os parâmetros para a localidade.";
+label.copy.pt = "Copiar";
+label.copied.pt = "Copiado";
+label.promote.pt = "Ir ali";
+label.declat.pt = "Latitude";
+label.declon.pt = "Longitude";
+label.maxerrdist.pt = "Incerteza (m)";
 label.distanceconverter.pt = "Convertidor da Distâncias:";
 label.scaleconverter.pt = "Convertidor da Escalas:";
 
@@ -925,8 +918,8 @@ error.sec.message.pt = "Os segundos devem ser valores entre 0 e 60.";
 error.sec.title.pt = "Erro na entrada de coordenada";
 error.offset.message.pt = "A perpendicular deve ser um valor não negativo.";
 error.offset.title.pt = "Erro na entrada de perpendicular";
-error.extent.message.pt = "A extensão deve ser um valor não negativo.";
-error.extent.title.pt = "Erro na entrada de Extensão";
+error.extent.message.pt = "O radial deve ser um valor não negativo.";
+error.extent.title.pt = "Erro na entrada de Radial";
 error.measurementerror.message.pt = "A medição deve ser um valor não negativo.";
 error.measurementerror.title.pt = "Erro na entrada de Medição";
 error.number.message.pt = "The format of the number just entered must follow convention of the chosen language.*";
@@ -968,6 +961,10 @@ coordprec.ddm.exact.pt = "exato";
 
 // Datum
 datum.notrecorded.pt = "datum não indicado";
+
+// Protocol
+protocol.notrecorded.pt = "protocol não indicado";
+protocol.qrg.pt = "Georeferencing Quick Reference Guide. 2019.";
 
 // Fonte das Coordenadas
 coordsource.gaz.pt = "dicionário geográfico";
@@ -1015,18 +1012,13 @@ coordsource.non10000.pt = "outro mapa: 1:10000";
 //##############################
 // Français
 //##############################
-// Type de Calcul
-calctype.erroronly.fr = "Erreur seulement - Entrez Lat/Long pour la localité réelle";
-calctype.coordsanderror.fr = "Coordonnées et erreur - Entrez Les Lat/Long pour l'endroit nommé ou le point de départ";
-calctype.coordsonly.fr = "Coordonnées seulement - Entrez Les Lat/Long pour l'endroit nommé ou le point de départ";
-
 // Type de Localité
 loctype.coordonly.fr = "Coordonnées seulement (e.g., 27\u00b034'23,4\"N, 121\u00b056'42,3\" O)";
 loctype.namedplaceonly.fr = "Endroit nommé seulement (e.g., Toliara)";
 loctype.distanceonly.fr = "Distance seulement (e.g., 5 km de Toliara)";
 loctype.distalongpath.fr = "Distance le long de voie d'accès (e.g., 13 km E (par voie terrestre) de Toliara)";
 loctype.orthodist.fr = "Distance le long des directions orthogonales (e.g., 2 km E et 3 km N de Toliara)";
-loctype.distatheading.fr = "Distance par rapport à la direction (e.g., 10 km E (par avion) de Bakersfield)";
+loctype.distatheading.fr = "Distance par rapport à la direction (e.g., 10 km E (par avion) de Toliara)";
 
 // Systèmes de coordonnées
 coordsys.dd.fr = "degrés décimales";
@@ -1072,29 +1064,30 @@ headings.nearestdegree.fr = "degrés du N";
 label.lat.fr = "Latitude";
 label.lon.fr = "Longitude";
 label.offset.fr = "Distance de l'Offset";
-label.extent.fr = "L'étendue de la Place Nommée";
+label.extent.fr = "Le radial de la Place Nommée";
 label.measurementerror.fr = "Erreur de Mesure";
 label.extent.gps.fr = "Exactitude de GPS";
-label.calctype.fr = "Type de Calcul";
 label.loctype.fr = "Type de Localité";
 label.title.fr = "Calculateur de Géoréférence";
 label.coordsource.fr = "Source de Coordonnées";
 label.coordsys.fr = "Système de Coordonnées";
 label.datum.fr = "Datum"
-label.coordprec.fr = "Précision des Coordonnées";
+label.coordprec.fr = "Précision";
+label.georeferencer.fr = "Géoréférencé par"
+label.date.fr = "Date"
+label.protocol.fr = "Protocole"
 label.distew.fr = "Dist. de l'Offset Est ou Ouest";
 label.distns.fr = "Dist. de l'Offset Nord ou Sud";
 label.distunits.fr = "Unités de Distance";
 label.distprec.fr = "Précision de Distance";
 label.direction.fr = "Direction";
 label.calculate.fr = "Calcul";
-label.promote.fr = "Favorisez"
-label.declat.fr = "Latitude Décimale";
-label.declon.fr = "Longitude Décimale";
-label.maxerrdist.fr = "Erreur Maximum de Distance";
-label.step0.fr = "Etape 1) Choisissez le type de calcul sur la liste ci-dessous.";
-label.step1.fr = "Etape 2) Choisissez le type de localité sur la liste ci-dessous.";
-label.step2.fr = "Etape 3) Entrez tous les paramètres pour la localité.";
+label.copy.fr = "Copier";
+label.copied.fr = "Copié";
+label.promote.fr = "Va là-bas"
+label.declat.fr = "Latitude";
+label.declon.fr = "Longitude";
+label.maxerrdist.fr = "Incertitude (m)";
 label.distanceconverter.fr = "Converteur de Distance:";
 label.scaleconverter.fr = "Converteur de Scale:";
 
@@ -1111,8 +1104,8 @@ error.sec.message.fr = "Les seconds doit être entre 0 et 60.";
 error.sec.title.fr = "Erreur de Saisie de Coordonnée";
 error.offset.message.fr = "L'Offset ne doit pas avoir une valeur négative.";
 error.offset.title.fr = "Erreur de Saisie de valeur de l'Offset";
-error.extent.message.fr = "L'étendue ne doit pas avoir une valeur négative.";
-error.extent.title.fr = "Erreur de Saisie de valeur de l'étendue";
+error.extent.message.fr = "Le radial ne doit pas avoir une valeur négative.";
+error.extent.title.fr = "Erreur de Saisie de valeur de le radial";
 error.measurementerror.message.fr = "L'Offset ne doit pas avoir une valeur négative.";
 error.measurementerror.title.fr = "Erreur de Saisie de valeur de Measure";
 error.number.message.fr = "Le format du numéro doit suivre les conventions de la langue choisie.";
@@ -1153,7 +1146,11 @@ coordprec.ddm.cp_0001m.fr = "0.001 minutes près";
 coordprec.ddm.exact.fr = "exacte";
 
 // Datum (Informations)
-datum.notrecorded.fr = "Informations (datum) non enregistrés";
+datum.notrecorded.fr = "informations (datum) non enregistrés";
+
+// Protocol
+protocol.notrecorded.fr = "protocol non enregistrés";
+protocol.qrg.fr = "Georeferencing Quick Reference Guide. 2019.";
 
 // Source de Coordonnées
 coordsource.gaz.fr = "répertoire de localité (gazetteer)";
@@ -1211,7 +1208,6 @@ units.kilometer = "km";
 //tie the above object arrays into a single global properties object
 g_properties.language = language;
 g_properties.version = version;
-g_properties.calctype = calctype;
 g_properties.loctype = loctype;
 g_properties.coordsys = coordsys;
 g_properties.headings = headings;
@@ -1220,9 +1216,9 @@ g_properties.error = error;
 g_properties.coordprec = coordprec;
 g_properties.datum = datum;
 g_properties.coordsource = coordsource;
+g_properties.protocol = protocol;
 
 //TODO Needed wanted for garbage collection???
-calctype = null;
 loctype = null;
 coordsys = null;
 headings = null;
@@ -1230,6 +1226,8 @@ label = null;
 error = null;
 coordprec = null;
 datum = null;
+protocol = null;
+date = null;
 coordsource = null;
 version = null;
 language = null;  
@@ -1241,15 +1239,13 @@ g_properties.getPropertyLang = function( name )
 	return prop;
 }
 
-//TODO rename to the more proper getPropertyByName???
-g_properties.getProperty = function( name )
+g_properties.getPropertyByName = function( name )
 {
 	var prop = eval( "g_properties." + name );
 	return prop;
 }
 
-//TODO rename to the more proper getPropertyByIndex... maybe???
-g_properties.getIndexedProperty = function( name, index )
+g_properties.getPropertyByIndex = function( name, index )
 {
 	var prop = eval( "g_properties." + name );
 	var prop2 = prop[index];

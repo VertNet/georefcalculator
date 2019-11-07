@@ -14,35 +14,48 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2019-10-09T22:09-3:00"
+__version__ = "gc_ui.js 2019-11-07T19:06-3:00"
 */
-	var g_versionNumber = "20191009";
+	// Base version, full version includes language code suffix
+	var g_versionNumber = "20191107";
+
+	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
+	// most recently chosen decimal minutes
+	var lastdecimalminutes = 0;
+	// most recently chosen decimal degrees
+	var lastdecimaldegrees = 0;
+
 	var sign = 1;
 	var degrees = 0;
 	var minutes = 0;
 	var seconds = 0;
 	var decminutes = 0;
 
-	var decimallatitude = 0; // holds the decimal latitude of the starting point
-	var decimallongitude = 0; // holds the decimal longitude of the starting point
+	// decimal latitude of the starting point
+	var decimallatitude = 0;
+	// decimal longitude of the starting point
+	var decimallongitude = 0;
+	// decimal latitude of the end point
+	var newdecimallatitude = 0;
+	// decimal longitude of the end point
+	var newdecimallongitude = 0;
+	// number of meters per degree of latitude for the current calculation
+	var latmetersperdegree = 0;
+	// number of meters per degree of longitude for the current calculation
+	var longmetersperdegree = 0;
+	// calculated maximum error distance
+	var maxerrordistance = 0;
 
-	var latmetersperdegree = 0; // holds number of meters per degree of latitude for the current coordinate and error calculation
-	var longmetersperdegree = 0; // holds number of meters per degree of longitude for the current coordinate and error calculation
-
-	var newdecimallatitude = 0; // holds the decimal latitude of the end point
-	var newdecimallongitude = 0; // holds the decimal longitude of the end point
-
-	var maxerrordistance = 0; // calculated max error distance
-
-	var fromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
-	var todistance = 0;    // holds the value of the right-hand side of the distance conversion equation
-	var scalefromdistance = 0;  // holds the value of the left-hand side of the distance conversion equation
-	var scaletodistance = 0;    // holds the value of the right-hand side of the distance conversion equation
-	var scalefactor = 1; // holds the decimal latitude of the end point
-
-	var lastdecimalminutes = 0;
-	var lastdecimaldegrees = 0;
+	// value of the left-hand side of the distance conversion equation
+	var fromdistance = 0;
+	// value of the right-hand side of the distance conversion equation
+	var todistance = 0;
+	// value of the left-hand side of the scale conversion equation
+	var scalefromdistance = 0;
+	// value of the right-hand side of the scale conversion equation
+	var scaletodistance = 0;
+	var scalefactor = 1; // distance unit conversion factor
 
 	var formatDec = g_factory.makeFormat("formatDec", "formatDec");
 	var formatDeg = g_factory.makeFormat("formatDeg", "formatDeg");
@@ -62,58 +75,46 @@ function GC_init()
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
 	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");
-	g_canonicalcalctypes = g_factory.makeArrayList("g_canonicalcalctypes","calctypes...");
 	g_canonicalddprec = g_factory.makeArrayList("g_canonicalddprec","ddprec");
 	g_canonicaldmsprec = g_factory.makeArrayList("g_canonicaldmsprec","dmsprec");
 	g_canonicalddmprec = g_factory.makeArrayList("g_canonicalddmprec","ddmprec");
 	g_canonicalsources = g_factory.makeArrayList("g_canonicalsources","dunno");
 	g_languagelist = g_factory.makeArrayList("g_languagelist", "languages");
-	g_currentLocale = "en";
 	g_numberFormatter = "en";
 	g_language = "en";	
 
-	createDatum();
-	var datumErrorInst = datumerror; 
 	var language = g_language; 
 	setVariables( language );
 
 	// Initialize the language list and get the properties
 	g_languagelist.clear();
 	var i = 0;
-	var lang = g_properties.getIndexedProperty( "language.name", i )
-	var code = g_properties.getIndexedProperty( "language.code", i )
+	var lang = g_properties.getPropertyByIndex( "language.name", i )
+	var code = g_properties.getPropertyByIndex( "language.code", i )
 	var nObj = { 'name' : lang, 'value' : code };
 	while( lang )
 	{
 		g_languagelist.add( nObj );
 		i++;
-		lang = g_properties.getIndexedProperty( "language.name", i );
-		code = g_properties.getIndexedProperty( "language.code", i );
+		lang = g_properties.getPropertyByIndex( "language.name", i );
+		code = g_properties.getPropertyByIndex( "language.code", i );
 		nObj = { 'name' : lang, 'value' : code };
 	}
 	
+	uiShowElement( "LabelTitle" );
 	uiShowElement( "LabelCopyright" );
 	uiClearSelect( "ChoiceLanguage", "g_languagelist" );
 	uiFillLanguageSelect( "ChoiceLanguage", "g_languagelist", false );
-	uiShowElement( "LabelStepZero" );
-	uiHideElement( "LabelTitle" );
+
 	cleanSlate();
 	uiSetSelectedIndex("ChoiceLanguage", 0 )
 	onLanguageSelect();		
 
-	uiClearSelect( "ChoiceCalcType" );
-	uiSelectAddEmptyItem("ChoiceCalcType");
-	uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
-	uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
-	uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
-	uiSetSelectedIndex("ChoiceCalcType",0);
-	
 	populateCoordinatePrecision( g_properties.getPropertyLang("coordsys.dd") );
 	showScaleConverter(true);
 	showDistanceConverter(true);
 	setTabOrders();
 	setLanguageFocused();
-	
 } 
 
 function downloadTests()
@@ -204,9 +205,6 @@ function setTabOrders()
 
 	a=setElementOrder("ChoiceLanguage", a);
 	
-	a=setElementOrder("ChoiceCalcType", a);
-	a=setElementOrder("ChoiceModel", a);
-	
 	a=setElementOrder("ChoiceCoordSource", a);
 	a=setElementOrder("ChoiceCoordSystem", a);
 
@@ -256,8 +254,16 @@ function setTabOrders()
 	a=setElementOrder("ChoiceDistancePrecision", a);	
 
 	a=setElementOrder("ButtonCalculate", a);
+	a=setElementOrder("ButtonCopy", a);
 
-	a=setElementOrder("TextFieldFullResult", a);
+	a=setElementOrder("TextFieldCalcDecLat", a);
+	a=setElementOrder("TextFieldCalcDecLong", a);
+	a=setElementOrder("TextFieldCalcDatum", a);
+	a=setElementOrder("TextFieldCalcErrorDist", a);
+	a=setElementOrder("TextFieldCalcPrecision", a);
+	a=setElementOrder("TextFieldCalcGeoreferencer", a);
+	a=setElementOrder("TextFieldCalcDate", a);
+	a=setElementOrder("ChoiceProtocol", a);
 
 	a=setElementOrder("ButtonPromote", a);
 
@@ -291,7 +297,6 @@ function uiElementSetFocus( target, selecttext )
 	(
 		console.log("ERROR uiElementSetFocus element name not found" + target )
 	)
-
 }
 
 function uiIsVisible( name )
@@ -300,7 +305,8 @@ function uiIsVisible( name )
 	if( el )
 	{
 		var v = el.visibility;
-		if (typeof v !== 'undefined') {
+		if (typeof v !== 'undefined') 
+		{
 		    if( v == "visible" )
 		    {
 		    	return true;
@@ -330,14 +336,9 @@ function uiIsVisible( name )
 function onLanguageSelect()
 {
 	var el = document.getElementById( 'ChoiceLanguage' );
-
 	g_language = el.options[el.selectedIndex].value;
-	
 	setVariables( );
 	newLanguageChosen();
-	
-	uiSetLabel( "LabelStepZero", "label.step0" );
-	uiSetLabel( "ChoiceCalcType", "calctype" );
 }
 
 function uiHideElement( name )
@@ -404,7 +405,6 @@ function uiSetTextExplicit( name, value )
 	)
 }
 
-
 function uiSetLabelExplicit( name, value )
 {
 	var el = document.getElementById( name );
@@ -424,7 +424,6 @@ function uiSetLabelExplicit( name, value )
 	)
 }
 
-
 function uiEmptyLabel( name )
 {
 	var el = document.getElementById( name );
@@ -442,8 +441,7 @@ function uiEmptyLabel( name )
 	else
 	(
 		console.log("ERROR uiEmptyLabel null element name: " + name)
-	)
-	
+	)	
 }
 
 function uiEmptyTextElement( name )
@@ -507,7 +505,6 @@ function uiSelectAddExplicitItem( name, value )
 	(
 		console.log("ERROR uiSelectAddExplicitItem null element name: " + name +" source: "+ value )
 	)
-
 }
 
 function uiSelectAddEmptyItem( name )
@@ -556,44 +553,7 @@ function uiFillLanguageSelect( name, source, initialEmpty )
 	(
 		console.log("ERROR uiFillLanguageSelect null element name: " + name )
 	)
-	
 }
-
-//FIXME unused?
-/*
-function uiFillSelect( name, source, initialEmpty )
-{
-	var el = document.getElementById( name );
-	var c = eval( "g_properties." + source + "." +g_language );
-
-	
-	if( el )
-	{
-		var option;
-		if( initialEmpty )
-		{
-			option = document.createElement("option");
-			option.text = " ";
-			option.value= " ";
-			el.add( option );
-		}
-	
-		var l = 0
-		while( l < c.length )
-		{
-			option = document.createElement("option");
-			option.text = c[l].name;
-			option.value= c[l].value;
-			el.add( option );
-			l++;
-		}
-	}
-	else
-	(
-		console.log("ERROR uiFillSelect null element name: " + name + " source: " + source )
-	)
-}
-*/
 
 function uiFillSelectCanonical( name, source, initialEmpty )
 {
@@ -649,140 +609,134 @@ function setVariables( )
 		var language = g_language;
 		// Do not change the following, the order is important
 		g_canonicalheadings.clear();
-		g_canonicalheadings.add(g_properties.getProperty("headings.n."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.e."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.s."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.w."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.ne."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.se."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.sw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nne."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.ene."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.ese."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.sse."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.ssw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.wsw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.wnw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nnw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nbe."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nebn."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nebe."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.ebn."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.ebs."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.sebe."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.sebs."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.sbe."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.sbw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.swbs."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.swbw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.wbs."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.wbn."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nwbw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nwbn."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nbw."+language));
-		g_canonicalheadings.add(g_properties.getProperty("headings.nearestdegree."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.n."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.e."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.s."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.w."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.ne."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.se."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.sw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nne."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.ene."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.ese."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.sse."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.ssw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.wsw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.wnw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nnw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nbe."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nebn."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nebe."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.ebn."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.ebs."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.sebe."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.sebs."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.sbe."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.sbw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.swbs."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.swbw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.wbs."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.wbn."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nwbw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nwbn."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nbw."+language));
+		g_canonicalheadings.add(g_properties.getPropertyByName("headings.nearestdegree."+language));
 
 		// Do not change the following, the order is important
 		g_canonicalcoordsystems.clear();
-		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dd."+language));
-		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.dms."+language));
-		g_canonicalcoordsystems.add(g_properties.getProperty("coordsys.ddm."+language));
+		g_canonicalcoordsystems.add(g_properties.getPropertyByName("coordsys.dd."+language));
+		g_canonicalcoordsystems.add(g_properties.getPropertyByName("coordsys.dms."+language));
+		g_canonicalcoordsystems.add(g_properties.getPropertyByName("coordsys.ddm."+language));
 
 		// Do not change the following, the order is important
 		g_canonicalloctypes.clear();
-		g_canonicalloctypes.add(g_properties.getProperty("loctype.coordonly."+language));
-		g_canonicalloctypes.add(g_properties.getProperty("loctype.namedplaceonly."+language));
-		g_canonicalloctypes.add(g_properties.getProperty("loctype.distanceonly."+language));
-		g_canonicalloctypes.add(g_properties.getProperty("loctype.distalongpath."+language));
-		g_canonicalloctypes.add(g_properties.getProperty("loctype.orthodist."+language));
-		g_canonicalloctypes.add(g_properties.getProperty("loctype.distatheading."+language));
-
-		// Do not change the following, the order is important
-		g_canonicalcalctypes.clear();
-		g_canonicalcalctypes.add(g_properties.getProperty("calctype.erroronly."+language));
-		g_canonicalcalctypes.add(g_properties.getProperty("calctype.coordsanderror."+language));
-		g_canonicalcalctypes.add(g_properties.getProperty("calctype.coordsonly."+language));
+		g_canonicalloctypes.add(g_properties.getPropertyByName("loctype.coordonly."+language));
+		g_canonicalloctypes.add(g_properties.getPropertyByName("loctype.namedplaceonly."+language));
+		g_canonicalloctypes.add(g_properties.getPropertyByName("loctype.distanceonly."+language));
+		g_canonicalloctypes.add(g_properties.getPropertyByName("loctype.distalongpath."+language));
+		g_canonicalloctypes.add(g_properties.getPropertyByName("loctype.orthodist."+language));
+		g_canonicalloctypes.add(g_properties.getPropertyByName("loctype.distatheading."+language));
 
 		// Do not change the following, the order is important
 		g_canonicalsources.clear();
-		g_canonicalsources.add(g_properties.getProperty("coordsource.gaz."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.gem2008."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.gem2018."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.gps."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.loc."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs250000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs100000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs63360."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs62500."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs25000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs24000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs12000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs10000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs4800."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs2400."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.usgs1200."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.ntsa250000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.ntsb250000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.ntsc250000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.ntsa50000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.ntsb50000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.ntsc50000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non3000000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non2500000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non1000000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non500000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non250000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non200000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non180000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non150000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non125000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non100000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non80000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non62500."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non60000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non50000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non40000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non32500."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non25000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non20000."+language));
-		g_canonicalsources.add(g_properties.getProperty("coordsource.non10000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.gaz."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.gem2008."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.gem2018."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.gps."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.loc."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs250000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs100000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs63360."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs62500."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs25000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs24000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs12000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs10000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs4800."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs2400."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.usgs1200."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.ntsa250000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.ntsb250000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.ntsc250000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.ntsa50000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.ntsb50000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.ntsc50000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non3000000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non2500000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non1000000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non500000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non250000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non200000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non180000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non150000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non125000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non100000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non80000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non62500."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non60000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non50000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non40000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non32500."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non25000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non20000."+language));
+		g_canonicalsources.add(g_properties.getPropertyByName("coordsource.non10000."+language));
 
 		g_canonicalddprec.clear();
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.degree."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.cp_01."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.cp_001."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.cp_0001."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.cp_00001."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.cp_000001."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.half."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.quarter."+language));
-		g_canonicalddprec.add(g_properties.getProperty("coordprec.dd.exact."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.degree."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.cp_01."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.cp_001."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.cp_0001."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.cp_00001."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.cp_000001."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.half."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.quarter."+language));
+		g_canonicalddprec.add(g_properties.getPropertyByName("coordprec.dd.exact."+language));
 
 		g_canonicaldmsprec.clear();
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.degree."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_30m."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_10m."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_5m."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_1m."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_30s."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_10s."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_5s."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_1s."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_01s."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.cp_001s."+language));
-		g_canonicaldmsprec.add(g_properties.getProperty("coordprec.dms.exact."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.degree."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_30m."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_10m."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_5m."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_1m."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_30s."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_10s."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_5s."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_1s."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_01s."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.cp_001s."+language));
+		g_canonicaldmsprec.add(g_properties.getPropertyByName("coordprec.dms.exact."+language));
 
 		g_canonicalddmprec.clear();
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.degree."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_30m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_10m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_5m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_1m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_01m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_001m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.cp_0001m."+language));
-		g_canonicalddmprec.add(g_properties.getProperty("coordprec.ddm.exact."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.degree."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_30m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_10m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_5m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_1m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_01m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_001m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.cp_0001m."+language));
+		g_canonicalddmprec.add(g_properties.getPropertyByName("coordprec.ddm.exact."+language));
 	}	
 	
 	function uiGetSelectedText( name )
@@ -891,49 +845,6 @@ function setVariables( )
 			console.log("ERROR uiSetSelectedIndex null element name: " + name  )
 		)
 	}
-	
-	function onCalcTypeSelect()
-	{
-		cleanCalcTypeSlate();
-		var value = uiGetSelectedText( "ChoiceCalcType" );
-		if( value == "" )
-		{
-			uiShowElement( "LabelStepZero" );
-			uiHideElement( "LabelTitle" );
-			setVisibility( "ChoiceModel", false );
-			setVisibility( "LabelModel", false );
-			
-			uiHideElement( "LabelStepOne" );
-			return;
-		}
-		else
-		{
-			uiHideElement( "LabelStepZero" );
-			uiShowElement( "LabelTitle" );
-			uiShowElement( "LabelStepOne" );
-			
-			setVisibility( "ChoiceModel", true );
-			setVisibility( "LabelModel", true );	
-		}
-
-		uiClearSelect( "ChoiceModel" );
-		uiSelectAddEmptyItem("ChoiceModel");
-
-		var index = g_canonicalcalctypes.indexOf( value );
-		
-		if( index==0 )
-		{
-			uiSelectAddItem("ChoiceModel", "loctype.coordonly");
-			uiSelectAddItem("ChoiceModel", "loctype.namedplaceonly");
-			uiSelectAddItem("ChoiceModel", "loctype.distanceonly");
-			uiSelectAddItem("ChoiceModel", "loctype.distalongpath");
-			uiSetLabel("lblT2Dec_Lat","label.lat");
-			uiSetLabel("lblT2Dec_Long","label.lon");
-		}
-		uiSelectAddItem("ChoiceModel", "loctype.orthodist" );
-		uiSelectAddItem("ChoiceModel", "loctype.distatheading" );
-		uiSetSelectedIndex("ChoiceModel", 0 );
-	}
 
 	function onCoordSourceSelect()
 	{
@@ -941,6 +852,7 @@ function setVariables( )
 		newModelChosen( model );
 		clearResults();
 	}
+
 
 	function onDatumSelect()
 	{
@@ -950,24 +862,7 @@ function setVariables( )
 	function onDirectionSelect()
 	{
 		clearResults();
-		var value = uiGetSelectedText("ChoiceCalcType");
-		
-		if( value == "" )
-		{
-			var do_nothing=true;
-		}
-		else
-		{
-			var index = g_canonicalcalctypes.indexOf(value);
-			if( index==0 )  //Error Only
-			{
-				showDirectionPrecision(true);
-			}
-			else
-			{
-				showDirection(true);
-			}
-		}
+		showDirectionPrecision(true);
 	}
 
 	function onDistancePrecisionSelect()
@@ -1016,20 +911,12 @@ function setVariables( )
 	}
 
 	function newLanguageChosen( ){
-
-		//NOTE: original Java data types, for reference and debugging
-		//double m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
-		//double offset, offsetew, heading;
-		//int latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
-		//int datumindex, latprecindex, loctypeindex, calctypeindex;
-		//int coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
-		//int distprecindex, coordsourceindex, directionindex;		
 		var m, latminmm, longminmm, extent, measurementerror, latsec, longsec;
 		var offset, offsetns, offsetew, heading;
 		var latdirindex, longdirindex, offsetdirnsindex, offsetdirewindex;
-		var datumindex, latprecindex, loctypeindex, calctypeindex;
+		var datumindex, latprecindex, loctypeindex;
 		var coordsystemindex, latdirmmindex, longdirmmindex, distunitsindex;
-		var distprecindex, coordsourceindex, directionindex;
+		var distprecindex, coordsourceindex, directionindex, protocolindex;
 
 		latdirindex=uiGetSelectedIndex( "ChoiceLatDirDMS" );
 		longdirindex=uiGetSelectedIndex( "ChoiceLongDirDMS" );
@@ -1039,13 +926,13 @@ function setVariables( )
 		offsetdirewindex=uiGetSelectedIndex( "ChoiceOffsetEWDir" );
 		latprecindex=uiGetSelectedIndex( "ChoiceLatPrecision" );
 		datumindex=uiGetSelectedIndex( "ChoiceDatum" );
-		calctypeindex=uiGetSelectedIndex( "ChoiceCalcType" );
 		loctypeindex=uiGetSelectedIndex( "ChoiceModel" );
 		coordsourceindex=uiGetSelectedIndex( "ChoiceCoordSource" );
 		coordsystemindex=uiGetSelectedIndex( "ChoiceCoordSystem" );
 		distunitsindex=uiGetSelectedIndex( "ChoiceDistUnits" );
 		distprecindex=uiGetSelectedIndex( "ChoiceDistancePrecision" );
 		directionindex=uiGetSelectedIndex( "ChoiceDirection" );
+		protocolindex=uiGetSelectedIndex( "ChoiceProtocol" );
 
 		var num = null;
 		
@@ -1057,7 +944,7 @@ function setVariables( )
 		else
 		{
 			num = formatMinMM.checkFormat(s);  
-			m = num; //.doubleValue();
+			m = num;
 		}
 		latminmm=m;
 
@@ -1069,7 +956,7 @@ function setVariables( )
 		else
 		{
 			num = formatMinMM.checkFormat(s);  
-			m = num; //.doubleValue();
+			m = num;
 		}
 		longminmm=m;
 
@@ -1079,7 +966,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatSec.checkFormat(s);  
-			m = num; //.doubleValue();
+			m = num;
 		}
 		latsec=m;
 
@@ -1089,7 +976,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatSec.checkFormat(s);  
-			m = num; //.doubleValue();
+			m = num;
 		}
 		longsec=m;
 
@@ -1099,7 +986,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatCalcError.checkFormat(s);;  
-			m = num; //.doubleValue();
+			m = num;
 		}
 		extent=m;
 	
@@ -1109,7 +996,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatCalcError.checkFormat(s);  
-			m = num; //.doubleValue();
+			m = num;
 		}
 		measurementerror=m;
 
@@ -1119,7 +1006,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatCalcError.checkFormat(s); 
-			m = num; //.doubleValue();
+			m = num;
 		}
 		offsetns=m;
 
@@ -1129,7 +1016,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatCalcError.checkFormat(s); 
-			m = num; //.doubleValue();
+			m = num;
 		}
 		offsetew=m;
 		offset=m;
@@ -1140,7 +1027,7 @@ function setVariables( )
 			m = 0;
 		} else {
 			num = formatCalcError.checkFormat(s);   
-			m = num; //.doubleValue();
+			m = num;
 		}
 		heading=m;
 
@@ -1149,29 +1036,21 @@ function setVariables( )
 		setVariables(language);
 		setLabels();		
 		
-		var ci = uiGetSelectedIndex("ChoiceCalcType");
 		var mi = uiGetSelectedIndex("ChoiceModel");
 		populateStableControls();
-		uiSetSelectedIndex("ChoiceCalcType", ci);
 
 		uiClearSelect("ChoiceModel");
 		uiSelectAddEmptyItem("ChoiceModel");
-	
-		if( calctypeindex>0 )
-		{
-			if( calctypeindex==2 ){
-				uiSelectAddItem("ChoiceModel","loctype.coordonly");
-				uiSelectAddItem("ChoiceModel","loctype.namedplaceonly");
-				uiSelectAddItem("ChoiceModel","loctype.distanceonly");
-				uiSelectAddItem("ChoiceModel","loctype.distalongpath");
+		uiSelectAddItem("ChoiceModel","loctype.coordonly");
+		uiSelectAddItem("ChoiceModel","loctype.namedplaceonly");
+		uiSelectAddItem("ChoiceModel","loctype.distanceonly");
+		uiSelectAddItem("ChoiceModel","loctype.distalongpath");
 				
-				uiSetLabel( "lblT2Dec_Lat","label.lat");
-				uiSetLabel( "lblT2Dec_Long","label.lon");
-				
-			}
-			uiSelectAddItem("ChoiceModel","loctype.orthodist");
-			uiSelectAddItem("ChoiceModel","loctype.distatheading");
-		}
+		uiSetLabel( "lblT2Dec_Lat","label.lat");
+		uiSetLabel( "lblT2Dec_Long","label.lon");
+
+		uiSelectAddItem("ChoiceModel","loctype.orthodist");
+		uiSelectAddItem("ChoiceModel","loctype.distatheading");
 		uiSetSelectedIndex("ChoiceModel", mi);
 		
 		if(coordsystemindex==2){
@@ -1181,7 +1060,7 @@ function setVariables( )
 		} else {
 			populateCoordinatePrecision(g_properties.getPropertyLang("coordsys.ddm"));
 		}
-		
+
 		populateDistancePrecision(uiGetSelectIndexValue("ChoiceDistUnits",distunitsindex));
 
 		uiSetTextExplicit("txtT2Dec_Lat", formatDec.checkFormat( decimallatitude ) );
@@ -1200,29 +1079,16 @@ function setVariables( )
 		uiSetTextExplicit("TextFieldOffsetEW",formatCalcError.checkFormat( offsetew ) );
 		uiSetTextExplicit("TextFieldHeading",formatCalcError.checkFormat( heading ) );
 
-		if(calctypeindex >= 0)
+		if(loctypeindex >= 0) // a loctype has been chosen
 		{
-			uiSetSelectedIndex("ChoiceCalcType", calctypeindex );
-		}
-		if(loctypeindex >= 0)
-		{
+			if(uiGetSelectedText( "ChoiceModel") ==
+			g_properties.getPropertyLang("loctype.orthodist"))
+			{
+				uiSetLabelExplicit("LabelOffsetNS", g_properties.getPropertyLang("label.distns"));
+			}
 			uiSetSelectedIndex("ChoiceModel",loctypeindex);
 		}
-		
-		if( uiGetSelectedIndex("ChoiceModel") != 0 && 
-			uiGetSelectedText( "ChoiceModel") ==
-			g_properties.getPropertyLang("loctype.orthodist") )
-		{
-			uiSetLabelExplicit("LabelOffsetNS", g_properties.getPropertyLang("label.distns"));
-		}
-		
-		if( uiGetSelectedIndex("ChoiceModel") != 0 && 
-			uiGetSelectedText( "ChoiceModel") ==
-			g_properties.getPropertyLang("loctype.orthodist") )
-		{
-			uiSetLabelExplicit("LabelOffsetNS", g_properties.getPropertyLang("label.distns"));
-		}
-		
+
 		if(coordsourceindex >= 0)
 		{
 			uiSetSelectedIndex("ChoiceCoordSource",coordsourceindex);
@@ -1275,6 +1141,10 @@ function setVariables( )
 		{
 			uiSetSelectedIndex("ChoiceDirection",directionindex);
 		}
+		if(protocolindex >= 0)
+		{
+			uiSetSelectedIndex("ChoiceProtocol",protocolindex);
+		}
 	}
 
 	function onModelSelect( )
@@ -1325,27 +1195,23 @@ function setVariables( )
 		if( value == "" )
 		{
 			cleanSlate();
-			uiShowElement("LabelTitle");
-			uiHideElement("LabelStepZero");
 			return;
 		}
 
 		showResults(false);
 		clearResults();
 		
-		uiHideElement("LabelStepOne");
-		uiShowElement("LabelStepTwo");
-		
 		showDistancePrecision(false);
 		showDirectionPrecision(false);
 		setVisibility("ButtonCalculate",false);
+		setVisibility("ButtonCopy",false);
 		setVisibility("ButtonPromote",false);
 		
 		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
 		
-		uiHideElement( "TextFieldHeading" );
+		uiHideElement("TextFieldHeading");
 		
 		showCoordinateSystem(true);
 		showCoordinateSource(true);
@@ -1378,45 +1244,19 @@ function setVariables( )
 		} else if( index==3 ){ // Distance along path
 			showDistancePrecision(true);
 		} else if( index==4 ){ // Distance along orthogonal directions
-			var SCalcType = uiGetSelectedText("ChoiceCalcType");
-			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
-			
-			if( calcindex==0 ){ // Error only
-				showNSOffset(true);
-				showEWOffset(true);
-				showDistancePrecision(true);
-			}else if( calcindex==1 ){ // Coordinates and error
-				showNSOffset(true);
-				showEWOffset(true);
-				showDistancePrecision(true);
-			} else if ( calcindex == 2 ){ // Coordinates only Calculation Type
-				showNSOffset(true);
-				showEWOffset(true);
-				showDistancePrecision(false);
-				showCoordinatePrecision(false);
-				showDirectionPrecision(false);
-				showExtents(false);
-				showMeasurementError(false);
-				showErrors(false);
-			}
+			showNSOffset(true);
+			showEWOffset(true);
+			showDistancePrecision(true);
 		} else if( index==5 ){ // Distance at a heading
 			showOffset(true);
-			var SCalcType = uiGetSelectedText("ChoiceCalcType");
-			var calcindex = g_canonicalcalctypes.indexOf(SCalcType);
-			if( calcindex==1 ){ // Coordinates and error
-				showDistancePrecision(true);
-				showDirection(true);
-			} else if( calcindex==0 ){ // Error only
-				showDistancePrecision(true);
-				showDirectionPrecision(true);
-			} else if ( calcindex == 2){ // Coordinates only
-				showDirection(true);
-			}
+			showDistancePrecision(true);
+			showDirectionPrecision(true);
 		}
 		setVisibility( "LabelDatum", true );
 		setVisibility( "ChoiceDatum", true );
 
 		setVisibility("ButtonCalculate",true);
+		setVisibility("ButtonCopy",true);
 		setVisibility("ButtonPromote",true);
 		showResults(true);
 	}
@@ -1434,8 +1274,6 @@ function setVariables( )
 	function onCoordSystemSelect( )
 	{
 		var value = uiGetSelectedText("ChoiceCoordSystem");
-		//lastcoordsystem = g_canonicalcoordsystems.indexOf( value );
-		//huh?? not in java lastcoordsystem = lastcoordsystem  + 1;
 		clearResults();
 		showRelevantCoordinates();
 		populateCoordinatePrecision(value);
@@ -1444,18 +1282,6 @@ function setVariables( )
 		translateCoords();
 		lastcoordsystem = g_canonicalcoordsystems.indexOf( value );
 		lastcoordsystem = lastcoordsystem  + 1;
-	}
-
-	function cleanCalcTypeSlate(){
-		cleanSlate();
-
-		setVisibility("ChoiceModel", false );
-		setVisibility("LabelModel", false );
-		setVisibility("LabelTitle", false );
-		//
-		setVisibility("LabelStepZero", false );
-		setVisibility("LabelStepOne", false );
-		setVisibility("LabelStepTwo", false );
 	}
 
 	function cleanSlate()
@@ -1471,9 +1297,6 @@ function setVariables( )
 		showExtents(false);
 		showMeasurementError(false);
 		
-		//showDistanceConverter(false);
-		//showScaleConverter(false);
-		
 		showOffset(false);
 		showNSOffset(false);
 		showEWOffset(false);
@@ -1486,16 +1309,11 @@ function setVariables( )
 		setVisibility("LabelOffsetNS", false);
 		
 		setVisibility("ButtonCalculate", false);
+		setVisibility("ButtonCopy", false);
 		setVisibility("ButtonPromote", false);
 		
-		uiHideElement("LabelTitle" );
-		uiShowElement("LabelStepZero" );
-	
-		uiHideElement("LabelStepTwo");
-		uiHideElement("LabelStepOne");
-		
-		setVisibility("LabelModel", false);
-		setVisibility("ChoiceModel", false);		
+		setVisibility("LabelModel", true);
+		setVisibility("ChoiceModel", true);		
 	}
 
 	function clearResults()
@@ -1503,7 +1321,8 @@ function setVariables( )
 		uiEmptyTextElement( "TextFieldCalcDecLat" );
 		uiEmptyTextElement( "TextFieldCalcDecLong" );
 		uiEmptyTextElement( "TextFieldCalcErrorDist" );
-		uiEmptyTextElement( "TextFieldCalcErrorUnits" );
+		uiEmptyTextElement( "TextFieldCalcDatum" );
+		uiEmptyTextElement( "TextFieldCalcPrecision" );
 		uiEmptyTextElement( "TextFieldFullResult" );
 	}
 
@@ -1515,12 +1334,8 @@ function setVariables( )
 		uiSetLabelExplicit("LabelVersion", v);
 		uiSetLabelExplicit("LabelCopyright", g_embeddedCopyright);
 		
-		uiSetLabel("LabelCalcType", "label.calctype");
-		uiSetLabel("LabelStepZero","label.step0");
 		uiSetLabel("LabelTitle","label.title");
 		uiSetLabel("LabelModel","label.loctype");
-		uiSetLabel("LabelStepOne","label.step1");
-		uiSetLabel("LabelStepTwo","label.step2");
 		uiSetLabel("LabelCoordSource","label.coordsource");
 		uiSetLabel("LabelCoordSystem","label.coordsys");
 		uiSetLabel("lblT2Dec_Lat","label.lat");
@@ -1529,7 +1344,7 @@ function setVariables( )
 		uiSetLabel("LabelLatPrecision","label.coordprec");
 		uiSetLabel("LabelOffsetEW","label.distew");
 
-		if( loctypeindex==4 ){ // Distance in orthogonal directions
+		if( loctypeindex==5 ){ // Distance in orthogonal directions
 		    uiSetLabel("LabelOffsetEW","label.distew");
 		} else {
 		    uiSetLabel("LabelOffsetEW","label.offset");
@@ -1543,11 +1358,16 @@ function setVariables( )
 		uiSetLabel("LabelCalcDecLat","label.declat");
 		uiSetLabel("LabelCalcDecLong","label.declon");
 		uiSetLabel("LabelCalcMaxError","label.maxerrdist");
+		uiSetLabel("LabelCalcDatum","label.datum");
+		uiSetLabel("LabelCalcPrecision","label.coordprec");
+		uiSetLabel("LabelCalcGeoreferencer","label.georeferencer");
+		uiSetLabel("LabelCalcDate","label.date");
+		uiSetLabel("LabelCalcProtocol","label.protocol");
 
 		uiSetLabelExplicit("ButtonCalculate",g_properties.getPropertyLang("label.calculate"));
+		uiSetLabelExplicit("ButtonCopy",g_properties.getPropertyLang("label.copy"));
 		uiSetLabelExplicit("ButtonPromote",g_properties.getPropertyLang("label.promote"));
-		
-		
+
 		uiSetLabel("LabelDistanceConverter","label.distanceconverter");
 		uiSetLabel("LabelScaleConverter","label.scaleconverter");
 	}
@@ -1700,7 +1520,7 @@ function onBodyKeyUp( e  )
 			var src = e.srcElement;
 			var id = src.id;
 			var clear = true;
-			
+
 			if( id == "TextFieldFromDistance" )
 			{
 				clear = false;
@@ -1711,6 +1531,11 @@ function onBodyKeyUp( e  )
 				clear = false;
 				onScaleConvertKeyUp()
 			}
+			else if( id == "TextFieldCalcGeoreferencer" )
+			{
+				clear = false;
+			}
+			
 			else if( src.readOnly )
 			{
 				clear = false;
@@ -1771,13 +1596,6 @@ function onBodyKeyUp( e  )
 
 	function populateStableControls()
 	{
-		uiClearSelect( "ChoiceCalcType" );
-		uiSelectAddEmptyItem("ChoiceCalcType");
-		uiSelectAddItem("ChoiceCalcType", "calctype.coordsanderror");
-		uiSelectAddItem("ChoiceCalcType", "calctype.erroronly");
-		uiSelectAddItem("ChoiceCalcType","calctype.coordsonly");
-		uiSetSelectedIndex("ChoiceCalcType",0);
-
 		// Coordinate System controls
 		//order is important
 		uiClearSelect( "ChoiceCoordSystem");
@@ -1787,6 +1605,7 @@ function onBodyKeyUp( e  )
 		
 		uiSetSelectedValue("ChoiceCoordSystem", g_properties.getPropertyLang("coordsys.dd" ));
 		uiSetSelectedIndex("ChoiceCoordSystem",1);
+
 		// Coordinate Source controls
 		var csi = uiSetSelectedIndex("ChoiceCoordSource")
 		uiClearSelect("ChoiceCoordSource");
@@ -1795,6 +1614,12 @@ function onBodyKeyUp( e  )
 		}
 
 		uiSetSelectedIndex("ChoiceCoordSource", csi );
+
+		// Protocol controls
+		uiClearSelect("ChoiceProtocol");
+		uiSelectAddItem("ChoiceProtocol","protocol.notrecorded");
+
+        uiSelectAddExplicitItem("ChoiceProtocol","Georeferencing Quick Reference Guide. 2019");
 
 		// Datum controls
 		uiClearSelect("ChoiceDatum");
@@ -2305,10 +2130,16 @@ function onBodyKeyUp( e  )
 		uiSelectAddExplicitItem("ChoiceDistUnits","yds");
 		uiSelectAddExplicitItem("ChoiceDistUnits","ft");
 		uiSelectAddExplicitItem("ChoiceDistUnits","nm");
-		
+
 		uiSetSelectedValue("ChoiceDistUnits","km");
 		uiClearSelect("ChoiceFromDistUnits");
-		
+
+/*
+		uiSetSelectedValue("ChoiceProtocol","protocol not recorded");
+		uiClearSelect("ChoiceProtocol");
+		uiSelectAddExplicitItem("ChoiceProtocol","protocol not recorded");
+		uiSelectAddExplicitItem("ChoiceProtocol","Georeferencing Quick Reference Guide. 2019.");
+*/
 		uiSelectAddExplicitItem("ChoiceFromDistUnits","km");
 		uiSelectAddExplicitItem("ChoiceFromDistUnits","m");
 		uiSelectAddExplicitItem("ChoiceFromDistUnits","mi");
@@ -2520,14 +2351,23 @@ function onBodyKeyUp( e  )
 		setVisibility( "LabelCalcDecLat", v);
 		setVisibility( "LabelCalcDecLong", v);
 		setVisibility( "LabelCalcMaxError", v);
+		setVisibility( "LabelCalcDatum", v);
+		setVisibility( "LabelCalcPrecision", v);
+		setVisibility( "LabelCalcDatum", v);
+		setVisibility( "LabelCalcGeoreferencer", v);
+		setVisibility( "LabelCalcDate", v);
+		setVisibility( "LabelCalcProtocol", v);
 		if( v )
 		{
-			uiShowElement( "TextFieldFullResult" );
+//			uiShowElement( "TextFieldFullResult" );
 			uiShowElement( "TextFieldCalcDecLat");
 			uiShowElement( "TextFieldCalcDecLong");
 			uiShowElement( "TextFieldCalcErrorDist");
-			uiShowElement( "TextFieldCalcErrorUnits");
-
+			uiShowElement( "TextFieldCalcPrecision");
+			uiShowElement( "TextFieldCalcDatum");
+			uiShowElement( "TextFieldCalcGeoreferencer");
+			uiShowElement( "TextFieldCalcDate");
+			uiShowElement( "ChoiceProtocol");
 		}
 		else
 		{
@@ -2535,8 +2375,11 @@ function onBodyKeyUp( e  )
 			uiHideElement( "TextFieldCalcDecLat");
 			uiHideElement( "TextFieldCalcDecLong");
 			uiHideElement( "TextFieldCalcErrorDist");
-			uiHideElement( "TextFieldCalcErrorUnits");
-			uiHideElement( "TextFieldFullResult" );
+			uiHideElement( "TextFieldCalcPrecision");
+			uiHideElement( "TextFieldCalcDatum");
+			uiHideElement( "TextFieldCalcGeoreferencer");
+			uiHideElement( "TextFieldCalcDate");
+			uiHideElement( "ChoiceProtocol");
 		}
 	}
 	
@@ -2672,17 +2515,30 @@ function onBodyKeyUp( e  )
 	function showErrors( b )
 	{
 		setVisibility( "LabelCalcMaxError", b );
+		setVisibility( "LabelCalcDatum", b );
+		setVisibility( "LabelCalcPrecision", b );
+		setVisibility( "LabelCalcGeoreferencer", b );
+		setVisibility( "LabelCalcDate", b );
+		setVisibility( "LabelCalcProtocol", b );
 		if( b )
 		{
-			uiShowElement( "TextFieldFullResult" );
+//			uiShowElement( "TextFieldFullResult" );
 			uiShowElement( "TextFieldCalcErrorDist");
-			uiShowElement( "TextFieldCalcErrorUnits");
+			uiShowElement( "TextFieldCalcDatum");
+			uiShowElement( "TextFieldCalcPrecision");
+			uiShowElement( "TextFieldCalcGeoreferencer");
+			uiShowElement( "TextFieldCalcDate");
+			uiShowElement( "ChoiceProtocol");
 		}
 		else
 		{
 			uiHideElement( "TextFieldFullResult", b );
 			uiHideElement( "TextFieldCalcErrorDist");
-			uiHideElement( "TextFieldCalcErrorUnits");
+			uiHideElement( "TextFieldCalcDatum");
+			uiHideElement( "TextFieldCalcPrecision");
+			uiHideElement( "TextFieldCalcGeoreferencer");
+			uiHideElement( "TextFieldCalcDate");
+			uiHideElement( "ChoiceProtocol");
 		}
 	}
 	
@@ -2694,7 +2550,7 @@ function onBodyKeyUp( e  )
 		setVisibility( "LabelOffsetEW", b );
 	}
 
-		function showEWOffset( b )
+	function showEWOffset( b )
 	{
 		setVisibility( "TextFieldOffsetEW", b );
 		uiSetLabel( "LabelOffsetEW", "label.distew" );
@@ -2789,7 +2645,6 @@ function errorDialog( error, title, source, style )
 			try
 			{
 				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
 				d = num;
 				if( d < 0 )
 				{
@@ -2830,7 +2685,6 @@ function errorDialog( error, title, source, style )
 			try
 			{
 				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
 				d = num;
 				if( d < 0 )
 				{
@@ -2871,7 +2725,6 @@ function errorDialog( error, title, source, style )
 			try
 			{
 				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
 				d = num;
 				if( d < 0 || d >= 360 )
 				{
@@ -2912,7 +2765,6 @@ function errorDialog( error, title, source, style )
 			try
 			{
 				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
 				d = num;
 				if( d < 0 )
 				{
@@ -2953,7 +2805,6 @@ function errorDialog( error, title, source, style )
 			try
 			{
 				num = formatCalcDec.throwFormatError( s );
-				//JAVA d = num.doubleValue();
 				d = num;
 				if( d < 0 )
 				{
@@ -2976,14 +2827,6 @@ function errorDialog( error, title, source, style )
 
 	function testLatLongLimits( )
 	{
-//JAVA original source kept for debugging and reference
-/*
-		boolean testpasses = true;
-		double d = 0;
-		int i = 0;
-		String s = null;
-		Number num = null;
-*/
 		var testpasses = true;
 		var d = 0;
 		var i = 0;
@@ -3043,7 +2886,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );					
-					//JAVA d = num.doubleValue();
 					d = num;
 					if( d < -180 )
 					{
@@ -3084,7 +2926,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );					
-//					JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
 					{
@@ -3126,7 +2967,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
 					{
@@ -3167,7 +3007,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
 					{
@@ -3207,7 +3046,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-//					JAVA i = num.intValue();
 					i = num;
 					if( i < 0 )
 					{
@@ -3247,7 +3085,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA i = num.intValue();
 					num =s;
 					i = num;
 					if( i < 0 || i >= 60 )
@@ -3281,8 +3118,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA i = num.intValue();
-					
 					i = num;
 					if( i < 0 || i >= 60 )
 					{
@@ -3316,7 +3151,6 @@ function errorDialog( error, title, source, style )
 			{ // test input within limits and valid
 				try{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA d = num.doubleValue();					
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
@@ -3349,7 +3183,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA d = num.doubleValue();				
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
@@ -3382,7 +3215,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA d = num.doubleValue()
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
@@ -3413,8 +3245,6 @@ function errorDialog( error, title, source, style )
 				try
 				{
 					num = formatCalcDec.throwFormatError( s );
-					//JAVA d = num.doubleValue();
-					
 					d = num;
 					if( d < 0 || d >= 60 )
 					{
