@@ -19,7 +19,7 @@ __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "georefproperties.js 2019-10-14T08:55-03:00"
+__version__ = "georefproperties.js 2019-11-08T17:51-03:00"
 */
 
 // Translations courtesy of:
@@ -97,7 +97,7 @@ var loctype = {
 		'distatheading' : {}
 	}
 loctype.coordonly.nl = "Enkel coordinaten (b.v.: 27\u00b034'23,4\" N, 121\u00b056'42,3\" W)";
-loctype.namedplaceonly.nl = "Enkel een plaatsnaam (b.v.: Gent)";
+loctype.namedplaceonly.nl = "Enkel een geografische entiteit (b.v.: Gent)";
 loctype.distanceonly.nl = "Plaatsnaam en afstand (b.v.: 5 km van Gent)";
 loctype.distalongpath.nl = "Afstand langs een route (b.v.: 13 km W (via de weg) van Gent)";
 loctype.orthodist.nl = "Afstand in orthogonale richtingen (b.v.: 2 km ten Oosten en 3 km ten Noorden van Gent)";
@@ -220,7 +220,7 @@ var label = {
 label.lat.nl = "Breedtegraad";
 label.lon.nl = "Lengtegraad";
 label.offset.nl = "Afstand";
-label.extent.nl = "Grootte van de plaats";
+label.extent.nl = "Grootte van de entiteit";
 label.measurementerror.nl = "Meetfout";
 label.extent.gps.nl = "GPS Accuraatheid";
 label.loctype.nl = "Locatieklasse";
@@ -455,7 +455,7 @@ coordsource.ntsc50000.nl = "NTS kaart (C): 1:50000";
 //##############################
 // Locality Type
 loctype.coordonly.en = "Coordinates only (e.g., 27\u00b034'23.4\" N, 121\u00b056'42.3\" W)";
-loctype.namedplaceonly.en = "Named place only (e.g., Bakersfield)";
+loctype.namedplaceonly.en = "Geographic feature only (e.g., Bakersfield)";
 loctype.distanceonly.en = "Distance only (e.g., 5 mi from Bakersfield)";
 loctype.distalongpath.en = "Distance along path (e.g., 13 mi E (by road) Bakersfield)";
 loctype.orthodist.en = "Distance along orthogonal directions (e.g., 2 mi E and 3 mi N of Bakersfield)";
@@ -505,7 +505,7 @@ headings.nearestdegree.en = "degrees from N";
 label.lat.en = "Latitude";
 label.lon.en = "Longitude";
 label.offset.en = "Offset Distance";
-label.extent.en = "Radial of Named Place";
+label.extent.en = "Radial of Feature";
 label.measurementerror.en = "Measurement Error";
 label.extent.gps.en = "GPS Accuracy";
 label.loctype.en = "Locality Type";
@@ -642,7 +642,7 @@ coordsource.non10000.en = "other map: 1:10000";
 //##############################
 // Tipo de Localidad 
 loctype.coordonly.es = "Sólo Coordenadas ( p.ej., 27\u00b034'23,4\" S, 61\u00b056'42,3\" O)"  
-loctype.namedplaceonly.es = "Sólo un Lugar Citado (p.ej., San Marcos)";
+loctype.namedplaceonly.es = "Sólo un Entidad Geográfico (p.ej., San Marcos)";
 loctype.distanceonly.es = "Sólo Distancia (p.ej., 5 km de San Marcos)";
 loctype.distalongpath.es = "Distancia por ruta (p.ej., 13 km E (por ruta) de San Marcos)";
 loctype.orthodist.es = "Distancia por direcciones ortogonales (p.ej., 2 km E y 3 km N de San Marcos)";
@@ -828,7 +828,7 @@ coordsource.non10000.es = "otro mapa: 1:10000";
 //##############################
 // Tipo de Localidade
 loctype.coordonly.pt = "Coordenadas apenas (e.g., 27\u00b034'23,4\" N, 121\u00b056' 42,3\" W)";
-loctype.namedplaceonly.pt = "Nome da localidade apenas (e.g., Manaus)";
+loctype.namedplaceonly.pt = "Entidade geográfica apenas (e.g., Manaus)";
 loctype.distanceonly.pt = "Distância apenas (e.g., 5 km de Manaus)";
 loctype.distalongpath.pt = "Distância por rota (e.g., 13 km E (por estrada) Manaus)";
 loctype.orthodist.pt = "Distância por direções ortogonais (e.g., 2 km E e 3 km N de Manaus)";
@@ -878,7 +878,7 @@ headings.nearestdegree.pt = "graus do N";
 label.lat.pt = "Latitude";
 label.lon.pt = "Longitude";
 label.offset.pt = "Distância";
-label.extent.pt = "Radial do Local Nomeado";
+label.extent.pt = "Radial do Entidade";
 label.measurementerror.pt = "Erro de Medição";
 label.extent.gps.pt = "Precisão do GPS";
 label.loctype.pt = "Tipo de Localidade";
@@ -1014,7 +1014,7 @@ coordsource.non10000.pt = "outro mapa: 1:10000";
 //##############################
 // Type de Localité
 loctype.coordonly.fr = "Coordonnées seulement (e.g., 27\u00b034'23,4\"N, 121\u00b056'42,3\" O)";
-loctype.namedplaceonly.fr = "Endroit nommé seulement (e.g., Toliara)";
+loctype.namedplaceonly.fr = "Entité géographique seulement (e.g., Toliara)";
 loctype.distanceonly.fr = "Distance seulement (e.g., 5 km de Toliara)";
 loctype.distalongpath.fr = "Distance le long de voie d'accès (e.g., 13 km E (par voie terrestre) de Toliara)";
 loctype.orthodist.fr = "Distance le long des directions orthogonales (e.g., 2 km E et 3 km N de Toliara)";
@@ -1064,7 +1064,7 @@ headings.nearestdegree.fr = "degrés du N";
 label.lat.fr = "Latitude";
 label.lon.fr = "Longitude";
 label.offset.fr = "Distance de l'Offset";
-label.extent.fr = "Le radial de la Place Nommée";
+label.extent.fr = "Le radial de la Entité";
 label.measurementerror.fr = "Erreur de Mesure";
 label.extent.gps.fr = "Exactitude de GPS";
 label.loctype.fr = "Type de Localité";
