@@ -250,8 +250,8 @@ SELECT{
 	border-style: inset;
 	border-width: 2px;
 	min-width: 1em;
-	max-width: 6em;
-	width: 3em;
+	max-width: 8em;
+	width: 5em;
 }
 
 .textDecDeg{

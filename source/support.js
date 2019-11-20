@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "support.js 2019-11-07T19:04-3:00"
+__version__ = "support.js 2019-11-20T12:56-3:00"
 */
 
     function convertDistance(){
@@ -1969,12 +1969,6 @@ __version__ = "support.js 2019-11-07T19:04-3:00"
         clearResults();
         var r = calculateResults();
         showResults(true);
-/*
-        if(r)
-        {
-            uiElementSetFocus("TextFieldFullResult", true);
-        }
-*/
     }
 
     function ButtonCopy_afterActionPerformed(){
@@ -1982,12 +1976,30 @@ __version__ = "support.js 2019-11-07T19:04-3:00"
     	calculateResults();
     	showResults(true);
 		var copyText = document.getElementById("TextFieldFullResult");
+		copyText.focus();
 		copyText.select();
-		copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-		document.execCommand("copy");
 		s = g_properties.getPropertyLang("label.copied")
-		alert(s+": " + copyText.value);		
+		var v = copyText.value
+		copyStringToClipboard(v)
+		alert(s+": " + v);		
     }
+
+	function copyStringToClipboard (str) {
+		// Create new element
+		var el = document.createElement('textarea');
+		// Set value (string to be copied)
+		el.value = str;
+		// Set non-editable to avoid focus and move outside of view
+		el.setAttribute('readonly', '');
+		el.style = {position: 'absolute', left: '-9999px'};
+		document.body.appendChild(el);
+		// Select text inside element
+		el.select();
+		// Copy text to clipboard
+		document.execCommand('copy');
+		// Remove temporary element
+		document.body.removeChild(el);
+	}
 
     function ButtonPromote_afterActionPerformed(){
         lastcoordsystem = 1;        

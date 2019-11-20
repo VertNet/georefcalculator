@@ -1,0 +1,6 @@
+EllipsoidCode,DatumCode,DatumName,dX,dY,dZ,EllipsoidName,Flattening,SemiMajorAxis
+AUSTRALIAN_NATIONAL,AGD66,Australian Geodetic Datum 1966,-133,-48,148,Australian National,298.25,6378160.0
+AUSTRALIAN_NATIONAL,AGD84,Australian Geodetic Datum 1984,-134,-48,149,Australian National,298.25,6378160.0
+CLARKE_1880,ADINDAN,Adindan,-118,-14,218,Clarke 1880,293.465,6378249.145
+INTERNATIONAL_1924,AIN_EL_ABD_1970,Ain el Abd 1970,-150,-250,-1,International 1924,297.0,6378388.0
+KRASSOVSKY_1940,AFGOOYE,Afgooye,-43,-163,45,Krassovsky 1940,298.3,6378245.0
