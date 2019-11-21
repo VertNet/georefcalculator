@@ -254,6 +254,15 @@ SELECT{
 	width: 5em;
 }
 
+.textOffsetNS{
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	min-width: 1em;
+	max-width: 5em;
+	width: 3em;
+}
+
 .textDecDeg{
 	border: 1px solid grey;
 	border-style: inset;

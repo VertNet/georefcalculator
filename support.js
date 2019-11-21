@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "support.js 2019-11-20T12:56-3:00"
+__version__ = "support.js 2019-11-21T20:22-3:00"
 */
 
     function convertDistance(){
@@ -1406,13 +1406,13 @@ __version__ = "support.js 2019-11-20T12:56-3:00"
         {
             error = 0.0;
         }
-        else if( index==1 /*sourcestr.equals("Google Maps/Earth 2008")*/ )
+        else if( index==1 /*sourcestr.equals("Google Maps/Earth <=2008")*/ )
         {
-            error = 167.0;
+            error = 131; // 89.7m RMS combination of GE and Landsat. Potere 2008.
         }
-        else if( index==2 /*sourcestr.equals("Google Maps/Earth 2018")*/ )
+        else if( index==2 /*sourcestr.equals("Google Maps/Earth >=2008")*/ )
         {
-            error = 26.0;
+            error = 26.0; // 7.8m 95% confidence interval Paredes-Hernández et al. 2013
         }
         else if( index==3 /*sourcestr.equals("GPS")*/ )
         {

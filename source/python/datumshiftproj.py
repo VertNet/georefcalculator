@@ -26,7 +26,7 @@ from pyproj import CRS
 from pyproj import Transformer
 from pyproj.enums import PJType
 
-GRIDDEGREES=40
+GRIDDEGREES=5
 LNGMIN=-180
 LNGMAX=180
 LATMIN=-90

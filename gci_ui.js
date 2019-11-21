@@ -17,7 +17,7 @@ __copyright__ = "Copyright 2019 Rauthiflor LLC"
 __version__ = "gc_ui.js 2019-11-20T12:57-3:00"
 */
 	// Base version, full version includes language code suffix
-	var g_versionNumber = "20191120";
+	var g_versionNumber = "20191121";
 
 	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
