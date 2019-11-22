@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "support.js 2019-11-21T20:22-3:00"
+__version__ = "support.js 2019-11-21T22:32-3:00"
 */
 
     function convertDistance(){
@@ -687,7 +687,10 @@ __version__ = "support.js 2019-11-21T20:22-3:00"
         var i = Math.round((Number(decimallatitude)+90)/GRIDDEGREES);
         var j = Math.round((Number(decimallongitude)+180)/GRIDDEGREES);
         var n = j*latcells + i;
-        error = datumerror[n];
+        error_in_m = datumerror[n];
+        // convert to current distance units
+		var distunitsstr = uiGetSelectedText("ChoiceDistUnits");
+		error = convertFromMetersTo( error_in_m, distunitsstr );
         return error;
     }
 

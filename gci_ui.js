@@ -14,10 +14,10 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2019-11-20T12:57-3:00"
+__version__ = "gc_ui.js 2019-11-22T12:34-3:00"
 */
 	// Base version, full version includes language code suffix
-	var g_versionNumber = "20191121";
+	var g_versionNumber = "20191122";
 
 	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
@@ -1387,10 +1387,8 @@ function setVariables( )
 		// and longitude.
 		calculateLatLongMetersPerDegree();
 		
-		//double error = Math.sqrt( Math.pow(latmetersperdegree,2.0) + Math.pow(longmetersperdegree,2.0) );
 		var error = Math.sqrt( Math.pow(latmetersperdegree,2.0) + Math.pow(longmetersperdegree,2.0) );
 
-		//String distunitsstr = (String)ChoiceDistUnits.getSelectedItem();
 		var distunitsstr = uiGetSelectedText("ChoiceDistUnits");
 		error = convertFromMetersTo( error, distunitsstr );
 
@@ -1619,7 +1617,7 @@ function onBodyKeyUp( e  )
 		uiClearSelect("ChoiceProtocol");
 		uiSelectAddItem("ChoiceProtocol","protocol.notrecorded");
 
-        uiSelectAddExplicitItem("ChoiceProtocol","Georeferencing Quick Reference Guide. 2019");
+        uiSelectAddExplicitItem("ChoiceProtocol","Georeferencing Best Practices. 2019");
 
 		// Datum controls
 		uiClearSelect("ChoiceDatum");

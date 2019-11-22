@@ -19,7 +19,7 @@ __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "georefproperties.js 2019-11-21T20:21-03:00"
+__version__ = "georefproperties.js 2019-11-22T12:39-03:00"
 */
 
 // Translations courtesy of:
@@ -96,7 +96,7 @@ var loctype = {
 		'orthodist' : {},
 		'distatheading' : {}
 	}
-loctype.coordonly.nl = "Enkel coordinaten (b.v.: 27\u00b034'23,4\" N, 121\u00b056'42,3\" W)";
+loctype.coordonly.nl = "Enkel coördinaten (b.v.: 27\u00b034'23,4\" N, 121\u00b056'42,3\" W)";
 loctype.namedplaceonly.nl = "Enkel een geografische entiteit (b.v.: Gent)";
 loctype.distanceonly.nl = "Plaatsnaam en afstand (b.v.: 5 km van Gent)";
 loctype.distalongpath.nl = "Afstand langs een route (b.v.: 13 km W (via de weg) van Gent)";
@@ -217,18 +217,18 @@ var label = {
 		'scaleconverter' : {}
 };
 
-label.lat.nl = "Breedtegraad";
-label.lon.nl = "Lengtegraad";
+label.lat.nl = "Invoerbreedtegraad";
+label.lon.nl = "Invoerlengtegraad";
 label.offset.nl = "Afstand";
 label.extent.nl = "Grootte van de entiteit";
 label.measurementerror.nl = "Meetfout";
 label.extent.gps.nl = "GPS Accuraatheid";
 label.loctype.nl = "Locatieklasse";
-label.title.nl = "Rekenmachine voor coordinatenbepaling";
-label.coordsource.nl = "Coordinatenbron";
-label.coordsys.nl = "Coordinatensysteem";
+label.title.nl = "Rekenmachine voor coördinatenbepaling";
+label.coordsource.nl = "Coördinatenbron";
+label.coordsys.nl = "Coördinaten formaat";
 label.datum.nl = "Datum";
-label.coordprec.nl = "Coordinatenprecisie";
+label.coordprec.nl = "Coördinatenprecisie";
 label.georeferencer.nl = "Georeferentie door"
 label.date.nl = "Datum vandaag"
 label.protocol.nl = "Protocol"
@@ -263,13 +263,13 @@ var error = {
 error.heading.message.nl = "De windrichting moet een waarde hebben tussen 0 (Noord) en 360.";
 error.heading.title.nl = "Windrichting invoer fout";
 error.lat.message.nl = "De breedtegraad moet een waarde hebben tussen de -90 (Zuidpool) en 90 (Noordpool).";
-error.lat.title.nl = "Coordinaat invoer fout";
+error.lat.title.nl = "Coördinaat invoer fout";
 error.lon.message.nl = "De lengtegraad moet een waarde hebben tussen -180 en 180.";
-error.lon.title.nl = "Coordinaat invoer fout";
+error.lon.title.nl = "Coördinaat invoer fout";
 error.min.message.nl = "De minuten moeten een waarde hebben tussen 0 en 60.";
-error.min.title.nl = "Coordinaat invoer fout";
+error.min.title.nl = "Coördinaat invoer fout";
 error.sec.message.nl = "De seconden moeten een waarde hebben tussen 0 en 60.";
-error.sec.title.nl = "Coordinaat invoer fout";
+error.sec.title.nl = "Coördinaat invoer fout";
 error.offset.message.nl = "De afstand moet een positief getal zijn.";
 error.offset.title.nl = "Afstand invoer fout";
 error.extent.message.nl = "De Grootte moet een positief getal zijn.";
@@ -362,7 +362,7 @@ var protocol = {
 };
 
 protocol.notrecorded.nl = "protocol onbekend";
-protocol.qrg.nl = "Georeferencing Quick Reference Guide. 2019.";
+protocol.qrg.nl = "Georeferencing Best Practices. 2019";
 
 // Coordinate Source
 var coordsource = {
@@ -502,8 +502,8 @@ headings.nbw.en  = "NbW";
 headings.nearestdegree.en = "degrees from N";
 
 // Labels
-label.lat.en = "Latitude";
-label.lon.en = "Longitude";
+label.lat.en = "Input Latitude";
+label.lon.en = "Input Longitude";
 label.offset.en = "Offset Distance";
 label.extent.en = "Radial of Feature";
 label.measurementerror.en = "Measurement Error";
@@ -511,7 +511,7 @@ label.extent.gps.en = "GPS Accuracy";
 label.loctype.en = "Locality Type";
 label.title.en = "Georeferencing Calculator";
 label.coordsource.en = "Coordinate Source";
-label.coordsys.en = "Coordinate System";
+label.coordsys.en = "Coordinate Format";
 label.datum.en = "Datum";
 label.coordprec.en = "Precision";
 //label.coordprec.en = "Coordinate Precision";
@@ -592,7 +592,7 @@ datum.notrecorded.en = "datum not recorded";
 
 // Protocol
 protocol.notrecorded.en = "protocol not recorded";
-protocol.qrg.en = "Georeferencing Quick Reference Guide. 2019.";
+protocol.qrg.en = "Georeferencing Best Practices. 2019";
 
 // Coordinate Source
 coordsource.gaz.en = "gazetteer";
@@ -689,8 +689,8 @@ headings.nbw.es  = "NbW";
 headings.nearestdegree.es = "grados desde N";
 
 // Etiquetas
-label.lat.es = "Latitud";
-label.lon.es = "Longitud";
+label.lat.es = "Latitud de entrada";
+label.lon.es = "Longitud de entrada";
 label.offset.es = "Desplazamiento";
 label.extent.es = "Radial de la Entidad";
 label.measurementerror.es = "Error de Medición";
@@ -698,7 +698,7 @@ label.extent.gps.es = "Exactidud del GPS";
 label.loctype.es = "Tipo de Localidad";
 label.title.es = "Calculadora de Georreferenciación";
 label.coordsource.es = "Fuente de las Coordenadas";
-label.coordsys.es = "Sistema de Coordenadas";
+label.coordsys.es = "Formato de Coordenadas";
 label.datum.es = "Datum"
 label.coordprec.es = "Precisión";
 label.georeferencer.es = "Georreferenciado por"
@@ -778,7 +778,7 @@ datum.notrecorded.es = "datum no indicado";
 
 // Protocol
 protocol.notrecorded.es = "protocol no indicado";
-protocol.qrg.es = "Georeferencing Quick Reference Guide. 2019.";
+protocol.qrg.es = "Georeferencing Best Practices. 2019";
 
 // Fuentes de las Coordenadas
 coordsource.gaz.es = "gacetero";
@@ -875,8 +875,8 @@ headings.nbw.pt  = "NbW";
 headings.nearestdegree.pt = "graus do N";
 
 // Etiqueta
-label.lat.pt = "Latitude";
-label.lon.pt = "Longitude";
+label.lat.pt = "Latitude de entrada";
+label.lon.pt = "Longitude de entrada";
 label.offset.pt = "Distância";
 label.extent.pt = "Radial do Entidade";
 label.measurementerror.pt = "Erro de Medição";
@@ -884,7 +884,7 @@ label.extent.gps.pt = "Precisão do GPS";
 label.loctype.pt = "Tipo de Localidade";
 label.title.pt = "Calculador de Georeferenciamento";
 label.coordsource.pt = "Fonte das Coordenadas";
-label.coordsys.pt = "Sistema das Coordenadas";
+label.coordsys.pt = "Formato das Coordenadas";
 label.datum.pt = "Datum";
 label.coordprec.pt = "Precisão";
 label.georeferencer.pt = "Georreferenciado por"
@@ -964,7 +964,7 @@ datum.notrecorded.pt = "datum não indicado";
 
 // Protocol
 protocol.notrecorded.pt = "protocol não indicado";
-protocol.qrg.pt = "Georeferencing Quick Reference Guide. 2019.";
+protocol.qrg.pt = "Georeferencing Best Practices. 2019";
 
 // Fonte das Coordenadas
 coordsource.gaz.pt = "dicionário geográfico";
@@ -1061,8 +1061,8 @@ headings.nbw.fr  = "NbW";
 headings.nearestdegree.fr = "degrés du N";
 
 // Labels
-label.lat.fr = "Latitude";
-label.lon.fr = "Longitude";
+label.lat.fr = "Latitude d'entrée";
+label.lon.fr = "Longitude d'entrée";
 label.offset.fr = "Distance de l'Offset";
 label.extent.fr = "Le radial de la Entité";
 label.measurementerror.fr = "Erreur de Mesure";
@@ -1070,7 +1070,7 @@ label.extent.gps.fr = "Exactitude de GPS";
 label.loctype.fr = "Type de Localité";
 label.title.fr = "Calculateur de Géoréférence";
 label.coordsource.fr = "Source de Coordonnées";
-label.coordsys.fr = "Système de Coordonnées";
+label.coordsys.fr = "Format de Coordonnées";
 label.datum.fr = "Datum"
 label.coordprec.fr = "Précision";
 label.georeferencer.fr = "Géoréférencé par"
@@ -1150,7 +1150,7 @@ datum.notrecorded.fr = "informations (datum) non enregistrés";
 
 // Protocol
 protocol.notrecorded.fr = "protocol non enregistrés";
-protocol.qrg.fr = "Georeferencing Quick Reference Guide. 2019.";
+protocol.qrg.fr = "Georeferencing Best Practices. 2019";
 
 // Source de Coordonnées
 coordsource.gaz.fr = "répertoire de localité (gazetteer)";
