@@ -19,7 +19,7 @@ __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "georefproperties.js 2019-11-22T12:39-03:00"
+__version__ = "georefproperties.js 2019-11-29T09:30-03:00"
 */
 
 // Translations courtesy of:
@@ -642,7 +642,7 @@ coordsource.non10000.en = "other map: 1:10000";
 //##############################
 // Tipo de Localidad 
 loctype.coordonly.es = "Sólo Coordenadas ( p.ej., 27\u00b034'23,4\" S, 61\u00b056'42,3\" O)"  
-loctype.namedplaceonly.es = "Sólo un Entidad Geográfico (p.ej., San Marcos)";
+loctype.namedplaceonly.es = "Sólo una Entidad Geográfica (p.ej., San Marcos)";
 loctype.distanceonly.es = "Sólo Distancia (p.ej., 5 km de San Marcos)";
 loctype.distalongpath.es = "Distancia por ruta (p.ej., 13 km E (por ruta) de San Marcos)";
 loctype.orthodist.es = "Distancia por direcciones ortogonales (p.ej., 2 km E y 3 km N de San Marcos)";
