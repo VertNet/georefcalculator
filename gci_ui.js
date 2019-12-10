@@ -14,10 +14,10 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2019-11-29T09:30-3:00"
+__version__ = "gc_ui.js 2019-12-10T04:40-3:00"
 */
 	// Base version, full version includes language code suffix
-	var g_versionNumber = "20191129";
+	var g_versionNumber = "20191210";
 
 	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
