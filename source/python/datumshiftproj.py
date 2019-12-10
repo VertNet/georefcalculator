@@ -16,6 +16,7 @@
 __author__ = "John Wieczorek"
 __copyright__ = "Rauthiflor LLC"
 __version__ = "datumshiftproj.py 2019-11-20T15:22-03:00"
+__title__ = "Global estimates of worst-case datum shifts from WGS84"
 
 # Use the Point class to determine haversine distances between coordinates
 from point import *
