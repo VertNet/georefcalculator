@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "grc2.css 2019-10-18T17:41-03:00"
+__version__ = "grc2.css 2019-12-10T04:35-03:00"
 */
 
 .main{
@@ -22,9 +22,9 @@ __version__ = "grc2.css 2019-10-18T17:41-03:00"
 }
 
 DIV{
-	margin-top: 6px;
+	margin-top: 4px;
 	margin-bottom: 0px;
-	padding: 0px;
+	padding-top: 0px;
 }
 
 .divStandard{
@@ -249,18 +249,24 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
+/*
 	min-width: 1em;
 	max-width: 8em;
 	width: 5em;
+*/
+	width: 39px;
 }
 
 .textOffsetNS{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
+/*
 	min-width: 1em;
 	max-width: 5em;
 	width: 3em;
+*/
+	width: 33px;
 }
 
 .textDecDeg{
@@ -285,9 +291,11 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	min-width: 2em;
+/*	min-width: 2em;
 	max-width: 10em;
 	width: 7.5em;
+*/
+	width: 83px;
 }
 
 .textMinute{
