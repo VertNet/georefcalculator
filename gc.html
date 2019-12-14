@@ -16,7 +16,7 @@
 	__author__ = "John Wieczorek"
 	__author__ = "Craig Wieczorek"
 	__copyright__ = "Copyright 2019 Rauthiflor LLC"
-	__version__ = "gc.html 2019-12-10T03:21-3:00"
+	__version__ = "gc.html 2019-12-14T16:21-3:00"
 	*/
 	-->
 <html>
@@ -47,7 +47,7 @@
 			</SPAN>
 		</DIV>
 		<DIV id="divChoiceModel">
-			<SPAN id="MARKER" class="span120p">
+			<SPAN id="MARKER" class="span120">
 			<LABEL id="LabelModel" ></LABEL>
 			</SPAN>
 			<SPAN id="MARKER" class="span515" align="right">
@@ -69,7 +69,7 @@
 			<SPAN id="MARKER" class="span180" align="right">
 				<LABEL id="LabelOffsetNS"></LABEL>
 				<LABEL id="LabelDirection"></LABEL>
-				<SELECT id="ChoiceDirection" onchange="onDirectionSelect()" class="selectPrecision">
+				<SELECT id="ChoiceDirection" onchange="onDirectionSelect()" class="selectOneDirection">
 					<OPTION></OPTION>
 				</SELECT>
 			</SPAN>
@@ -332,7 +332,7 @@
 								<SPAN class="span83" id="" align="left"></SPAN>
 								<LABEL id="LabelEquals">=</LABEL>
 								<INPUT TYPE="text" id="TextFieldToDistance" class="readOnlyInputSmall" readOnly></INPUT>
-								<SELECT id="ChoiceToDistUnits" onChange="onToDistUnitsSelect()" class="selectPrecision">
+								<SELECT id="ChoiceToDistUnits" onChange="onToDistUnitsSelect()" class="selectUnits">
 									<OPTION></OPTION>
 								</SELECT>
 							</SPAN>
@@ -350,12 +350,12 @@
 								</SELECT>
 							</SPAN>
 							<SPAN class="span315" id="" align="left">
-								<SELECT id="ChoiceScale" onChange="onScaleSelect()" class="selectPrecision">
+								<SELECT id="ChoiceScale" onChange="onScaleSelect()" class="selectScale">
 									<OPTION></OPTION>
 								</SELECT>
 								<LABEL id="LabelScaleEquals">=</LABEL>
 								<INPUT TYPE="text" id="TextFieldScaleToDistance" class="readOnlyInputSmall" readOnly></INPUT>
-								<SELECT id="ChoiceScaleToDistUnits"	 onChange="onScaleToDistUnitsSelect()" class="selectPrecision">
+								<SELECT id="ChoiceScaleToDistUnits"	 onChange="onScaleToDistUnitsSelect()" class="selectUnits">
 									<OPTION></OPTION>
 								</SELECT>
 							</SPAN>

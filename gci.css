@@ -14,7 +14,7 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "grc2.css 2019-12-10T04:35-03:00"
+__version__ = "gci.css 2019-12-14T16:22-03:00"
 */
 
 .main{
@@ -120,7 +120,7 @@ SELECT{
 	font-size: .75em;
 	color: black;
 	background-color: white;
-	width: 26em;
+	width: 306px;
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -137,9 +137,7 @@ SELECT{
 	font-size: .75em;
 	color: blue;
 	background-color: white;
-	min-width: 2em;
-	max-width: 23em;
-	width: 22em;
+	width: 258px;
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -156,9 +154,7 @@ SELECT{
 	font-size: .75em;
 	color: black;
 	background-color: white;
-	min-width: 2em;
-	max-width: 6em;
-	width: 3.75em;
+	width: 39px;
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -175,28 +171,7 @@ SELECT{
 	font-size: .75em;
 	color: black;
 	background-color: white;
-	min-width: 2em;
-	max-width: 6em;
-	width: 5em;
-	border: 1px solid grey;
-	border-style: inset;
-	border-width: 2px;
-	ppadding-top:1px;
-	ppadding-bottom:1px;
-	ppadding-left:1px;
-	ppadding-right:1px;
-	text-overflow: ellipsis;
-}
-
-.selectUnitsParts{
-	font-family: "Helvetica", Ariel, Sans-serif;
-	font-style: normal;
-	font-size: .75em;
-	color: black;
-	background-color: white;
-	min-width: 4em;
-	max-width: 14em;
-	width: 7em;
+	wirdth: 54px;
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -213,9 +188,41 @@ SELECT{
 	font-size: .75em;
 	color: black;
 	background-color: white;
-	min-width: 2em;
-	max-width: 10Em;
-	width: 10m;
+	width: 70px;
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
+	text-overflow: ellipsis;
+}
+
+.selectOneDirection{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .75em;
+	color: black;
+	background-color: white;
+	width: 115px;
+	border: 1px solid grey;
+	border-style: inset;
+	border-width: 2px;
+	ppadding-top:1px;
+	ppadding-bottom:1px;
+	ppadding-left:1px;
+	ppadding-right:1px;
+	text-overflow: ellipsis;
+}
+
+.selectScale{
+	font-family: "Helvetica", Ariel, Sans-serif;
+	font-style: normal;
+	font-size: .75em;
+	color: black;
+	background-color: white;
+	width: 83px;
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -232,9 +239,7 @@ SELECT{
 	font-size: .75em;
 	color: black;
 	background-color: white;
-	min-width: 2em;
-	max-width: 15Em;
-	width: 13em;
+	width: 150px;
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
@@ -249,11 +254,6 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-/*
-	min-width: 1em;
-	max-width: 8em;
-	width: 5em;
-*/
 	width: 39px;
 }
 
@@ -261,11 +261,6 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-/*
-	min-width: 1em;
-	max-width: 5em;
-	width: 3em;
-*/
 	width: 33px;
 }
 
@@ -273,28 +268,20 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	min-width: 2em;
-	max-width: 10em;
-	width: 8em;
+	width: 88px;
 }
 
 .textDegree{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	min-width: 2em;
-	max-width: 10em;
-	width: 2.5em;
+	width: 28px;
 }
 
 .textConvert{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-/*	min-width: 2em;
-	max-width: 10em;
-	width: 7.5em;
-*/
 	width: 83px;
 }
 
@@ -302,18 +289,14 @@ SELECT{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	min-width: 1em;
-	max-width: 10em;
-	width: 2.5em;
+	width: 28px;
 }
 
 .textSecond{
 	border: 1px solid grey;
 	border-style: inset;
 	border-width: 2px;
-	min-width: 5em;
-	max-width: 15em;
-	width: 3em;
+	width: 55px;
 }
 
 LABEL{
@@ -424,9 +407,7 @@ INPUT{
 	font-size: .75em;
 	color: blue;
 	display: inline-block;
-	min-width:4em%;
-	max-width: 14em%;
-	width: 6em%;
+	width: 133px;
 	background-color: #C0C0C0;
 	display:inline-block;
 	border-style: inset;
@@ -512,12 +493,6 @@ SPAN{
 	width: 296px;
 }
 
-.span296c{
-	display: inline-block;
-	width: 296px;
-	text-align: center;
-}
-
 .span275{
 	display: inline-block;
 	width: 275px;
@@ -526,12 +501,6 @@ SPAN{
 .span266{
 	display: inline-block;
 	width: 266px;
-}
-
-.span266c{
-	display: inline-block;
-	width: 266px;
-	text-align: center;
 }
 
 .span200{
@@ -576,20 +545,8 @@ SPAN{
 
 .span120{
 	display: inline-block;
-	width: 120px;
-}
-
-.span120p{
-	display: inline-block;
 	width: 118px;
 	padding-left: 2px;
-}
-
-.span120c{
-	display: inline-block;
-	width: 118px;
-	padding-left: 2px;
-	text-align: center;
 }
 
 .span110{
@@ -619,14 +576,14 @@ SPAN{
 	width: 83px;
 }
 
-.span40{
-	display: inline-block;
-	width: 40px;
-}
-
 .span50{
 	display: inline-block;
 	min-width: 49%;
 	max-width: 49%;
 	width: 49%;
+}
+
+.span40{
+	display: inline-block;
+	width: 40px;
 }

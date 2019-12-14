@@ -1,3 +1,23 @@
+<!--
+	/*
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	
+	__author__ = "John Wieczorek"
+	__author__ = "Craig Wieczorek"
+	__copyright__ = "Copyright 2019 Rauthiflor LLC"
+	__version__ = "GeorefGuide.html 2019-12-14T13:41-3:00"
+	*/
+	-->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MaNIS/HerpNet/ORNIS Georeferencing Guidelines</title>
 </head>
@@ -1355,6 +1375,7 @@ less than or equal to 90, while those south are negative numbers greater
 or equal to -90.&nbsp;
 <br><u>Example</u>: -42.5100 degrees (which is roughly the same as 42d
 30' 36" S).&nbsp;
+
 <p><b>DecimalLongitude</b> - the longitude coordinate (in decimal degrees) at
 the center of a circle encompassing the whole of a specific locality. Decimal
 longitudes west of the Greenwich Meridian are considered negative and must
@@ -1364,14 +1385,9 @@ and less than or equal to 180.&nbsp;
 29' 24" W).&nbsp;
 </p>
 
-<p><b>Maximum_Error_Distance</b> - the upper limit of the distance from the given
+<p><b>Uncertainty (m)</b> - the upper limit of the distance from the given
 latitude and longitude describing a circle within which the whole of the described
-locality must lie.
-</p>
-
-<p><b>Maximum_Error_Units</b> - the units of length in which the maximum error
-is recorded (e.g., mi, km, m, and ft). Express maximum error distance in
-the same units as the distance measurements in the locality description.&nbsp;
+locality must lie, in meters.&nbsp;
 </p>
 
 <p><b>GeodeticDatum</b> - the geometric description of a geodetic surface model (e.g.,
@@ -1392,7 +1408,11 @@ are different from decimal degrees.&nbsp;
 or software) used to determine the coordinates. Such information should
 provide enough detail so that anyone can locate the actual reference that
 was used (e.g., name, edition or version, year). Map scales should be recorded
-in the reference as well (e.g., USGS Gosford Quad map 1:24000, 1973).
+in the reference as well (e.g., USGS Gosford Quad map 1:24000, 1973).&nbsp;
+</p>
+
+<p><b>GeoreferenceProtocol</b> - a citation of a publicly available document describing
+the methods of georeferencing that were followed.&nbsp;
 </p>
 
 <p><b>GeoreferencedBy</b> - the person or organization making the coordinate
@@ -1405,78 +1425,73 @@ made.&nbsp;
 
 <p><b>GeoreferenceRemarks</b> - comments on methods and assumptions used in determining 
 coordinates or errors when those methods or assumptions differ from or expand upon
-the accepted guidelines.</p></dir>
+the accepted guidelines.&nbsp;</p></dir>
 
 <a name="calculation_examples"><b>Calculation Examples</b></a>
-<br>Following are detailed examples of maximum error calculations, which
-illustrate the concepts presented in this document. Use the 
-<a href="../source/gci2.html">Georeferencing Calculator</a> to make these calculations 
-easy.
+<br>Following are detailed examples of uncertainty calculations, which
+illustrate the concepts presented in this document, with labels updated to match the
+latest version of the Georeferencing Calculator 
+<a href="../gc.html">Georeferencing Calculator</a>, which is designed to make these 
+calculations easy.
 
 <p><a name="coordinates_only"></a>
 <b>Coordinates Only</b>
 <br><b>Example 1</b>: 35 degrees 22' 24" N, 119 degrees 1' 4" W
-<br>Calculation Type: Error only (because we already know the coordinates of the final 
-location)
 <br>Locality Type: Coordinates only
 <br>Coordinate Source: locality description
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 22' 24" N
-<br>Longitude: 119 degrees 1' 4" W
+<br>Coordinate Format: degrees minutes seconds
+<br>Latitude (input): 35 degrees 22' 24" N
+<br>Longitude (input): 119 degrees 1' 4" W
 <br>Datum: not recorded 
 <br>Coordinate Precision: nearest second
 <br>Measurement Error: 0
 <br>Distance Units: km, m, mi, yds, or ft
 <br>Decimal Latitude: 35.3733333
 <br>Decimal Longitude: -119.0177778
-<br>Maximum Error Distance: 119 m, 0.119 km, 0.074 mi, 130 yds, 390
-ft, or 0.064 nm
-<br>Uncertainty sources: 79 m from unknown datum, 40 m from coordinate precision nearest 
+<br>Uncertainty (m): 3085 m (3.085 km, 1.91693 mi, 33373.8 yds, 10121
+ft, or 1.66578 nm)
+<br>Uncertainty sources: 3045 m from unknown datum at that location, 40 m from coordinate precision nearest 
 second
 </p>
 
 <p><b>Example 2</b>: 35.37, -119.02, NAD27, Digital USGS Gosford Quad 1:24000 map
-<br>Calculation Type: Error only (because we already know the coordinates of the final 
-location)
 <br>Locality Type: Coordinates only
 <br>Coordinate Source: Digital USGS map: 1:24,000
-<br>Coordinate System: decimal degrees
-<br>Latitude: 35.37
-<br>Longitude: -119.02
+<br>Coordinate Format: decimal degrees
+<br>Latitude (input): 35.37
+<br>Longitude (input): -119.02
 <br>Datum: NAD27
 <br>Coordinate Precision: 0.01 degrees
-<br>Measurement Error: 0 (digital map - no measurement error)
+<br>Measurement Error: 0 (digital map - no measurement)
 <br>Distance Units: km, m, mi, yds, or ft
 <br>Decimal Latitude: 35.37
 <br>Decimal Longitude: -119.02
-<br>Maximum Error Distance: 1446 m, 1.446 km, 0.899 mi, 1582 yds, 4745
-ft, or 0.781 nm
+<br>Uncertainty (m): 1446 m (1.446 km, 0.899 mi, 1582 yds, 4745
+ft, or 0.781 nm)
 <br>Uncertainty sources: 12 m from coordinate source USGS 1:24,000 map, 1434 m from 
 coordinate precision 0.02 degrees
 </p>
 
 <p><a name="named_place_only"></a>
-<b>Named Place Only</b>
+<b>Geographic feature only</b>
 <br><b>Example</b>: Bakersfield
 <br>Suppose the coordinates for Bakersfield came from the GNIS database
 (a gazetteer) and the distance from the center of Bakersfield to the furthest
 city limit is 3 km.
-<br>Calculation Type: Error only (because we already know the coordinates of the final 
-location)
 <br>Locality Type: Named place only
 <br>Coordinate Source: gazetteer
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 22' 24" N
-<br>Longitude: 119 degrees 1' 4" W
+<br>Coordinate Format: degrees minutes seconds
+<br>Latitude (input): 35 degrees 22' 24" N
+<br>Longitude (input): 119 degrees 1' 4" W
 <br>Datum: not recorded
 <br>Coordinate Precision: nearest second
 <br>Measurement Error: 0
-<br>Extent of Named Place: 3 km
+<br>Radial of Feature: 3 km
 <br>Distance Units: km
 <br>Decimal Latitude: 35.3733333
 <br>Decimal Longitude: -119.0177778
-<br>Maximum Error Distance: 3.119 km (3119 m)
-<br>Uncertainty sources: 79 m from unknown datum, 40 m from coordinate precision nearest 
+<br>Uncertainty (m): 6085 m
+<br>Uncertainty sources: 3045 m from unknown datum, 40 m from coordinate precision nearest 
 second, 3000 m from the extent of the named place
 </p>
 
@@ -1487,26 +1502,24 @@ second, 3000 m from the extent of the named place
 all map coordinates have been reprojected in NAD27. Suppose also that the
 distance from the center of Bakersfield to the furthest city limit is 2
 mi.
-<br>Calculation Type: Error only (because we already know the coordinates of the final 
-location)
 <br>Locality Type: Distance only
 <br>Coordinate Source: gazetteer
-<br>Coordinate System: decimal degrees
-<br>Latitude: 35.373
-<br>Longitude: -119.018
+<br>Coordinate Format: decimal degrees
+<br>Latitude (input): 35.373
+<br>Longitude (input): -119.018
 <br>Datum: NAD27
-<br>Coordinate Precision: 0.001 degrees
+<br>Coordinate Precision: 0.001	 degrees
 <br>Offset Distance: 5 mi
-<br>Extent of Named Place: 2 mi
+<br>Radial of Feature: 2 mi
 <br>Measurement Error: 0
 <br>Distance Units: mi
 <br>Distance Precision: 1 mi
 <br>Decimal Latitude: 35.373
 <br>Decimal Longitude: -119.018
-<br>Maximum Error Distance: 7.589 mi (12213 m)
-<br>Uncertainty sources: 0.089 mi (143 m) from coordinate precision 0.001 degrees, 2 mi 
-(3219 m) from the extent of the named place, 5 mi (8047 m) from the offset distance, 0.5 
-mi (805 m) from the 1 mi distance precision
+<br>Uncertainty (m): 12213 m (7.589 mi)
+<br>Uncertainty sources: 143 m (0.089 mi) from coordinate precision 0.001 degrees, 3219 m 
+(2 mi) from the extent of the named place, 8047 m (5 mi) from the offset distance, 805 m 
+(0.5 mi) from the 1 mi distance precision
 </p>
 
 <p><a name="distance_along_a_path"></a>
@@ -1516,25 +1529,24 @@ mi (805 m) from the 1 mi distance precision
 1/10th minute from the printed USGS Taft 1:100,000 Quad map and the
 distance from the center of Bakersfield to the furthest city limit is 2
 mi.
-<br>Calculation Type: Error only
 <br>Locality Type: Distance along path
 <br>Coordinate Source: USGS map: 1:100,000
-<br>Coordinate System: degrees decimal minutes
-<br>Latitude: 35 degrees 26.1' N
-<br>Longitude: 118 degrees 48.1' W
+<br>Coordinate Format: degrees decimal minutes
+<br>Latitude (input): 35 degrees 26.1' N
+<br>Longitude (input): 118 degrees 48.1' W
 <br>Datum: NAD27
 <br>Coordinate Precision: 0.1 minutes
-<br>Extent of Named Place: 2 mi
+<br>Radial of Feature: 2 mi
 <br>Measurement Error: 0.03107 mi (0.5 mm on 1:100,000 map)
 <br>Distance Units: mi
 <br>Distance Precision: 1 mi
 <br>Decimal Latitude: 35.435
 <br>Decimal Longitude: -118.8016667
-<br>Maximum Error Distance: 2.711 mi (4363 m)
-<br>Uncertainty sources: 0.03107 mi (50 m) from printed USGS 1:100,000 map accuracy, 0.148 
-mi (239 m) from coordinate precision 0.1 minutes, 2 mi (3219 m) from the extent of the 
-named place, 0.03107 mi (50 m) from the ability to distinguish 0.5 mm on a printed USGS 
-1:100,000 map, 0.5 mi (805 m) from the 1 mi distance precision
+<br>Uncertainty (m): 4363 m (2.711 mi)
+<br>Uncertainty sources:  50 m (0.03107 mi) from printed USGS 1:100,000 map accuracy, 
+239 m (0.148 mi) from coordinate precision 0.1 minutes, 3219 m (2 mi) from the extent of 
+the named place, 50 m (0.03107 mi) from the ability to distinguish 0.5 mm on a printed USGS 
+1:100,000 map, 805 m (0.5 mi) from the 1 mi distance precision
 </p>
 
 <p><a name="distance_along_orthogonal_directions"></a>
@@ -1544,28 +1556,27 @@ named place, 0.03107 mi (50 m) from the ability to distinguish 0.5 mm on a print
 (a gazetteer), the coordinates of the locality were calculated to the nearest second,
 and the distance from the center of Bakersfield to
 the furthest city limit is 2 mi.
-<br>Calculation Type: Coordinates and error
 <br>Locality Type: Distance along orthogonal directions
 <br>Coordinate Source: gazetteer
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 25' 4" N
-<br>Longitude: 118 degrees 58' 54" W
+<br>Coordinate Format: degrees minutes seconds
+<br>Latitude (input): 35 degrees 25' 4" N
+<br>Longitude (input): 118 degrees 58' 54" W
 <br>Datum: not recorded
 <br>Coordinate Precision: nearest second
 <br>North or South Offset Distance: 3 mi
 <br>North or South Offset Direction: N
 <br>East or West Offset Distance: 2 mi
 <br>East or West Offset Direction: E
-<br>Extent of Named Place: 2 mi
+<br>Radial of Feature: 2 mi
 <br>Measurement Error: 0
 <br>Distance Units: mi
 <br>Distance Precision: 1 mi
 <br>Decimal Latitude: 35.4612939
 <br>Decimal Longitude: -118.946227
-<br>Maximum Error Distance: 2.781 mi (4475 m)
-<br>Uncertainty sources: 0.049 mi (79 m) from unknown datum, 0.025 mi (40 m) from 
-coordinate precision nearest second, 2 mi (3219 m) from the extent of the named place, 
-0.707 mi (1138 m) from the 1 mi distance precision in two dimensions (the diagonal of a 
+<br>Uncertainty (m): 7441 m (4.624 mi)
+<br>Uncertainty sources: 3045 m (0.049 mi) from unknown datum, 40 m (0.025 mi) from 
+coordinate precision nearest second, 3219 m (2 mi) from the extent of the named place, 
+1138 m (0.707 mi) from the 1 mi distance precision in two dimensions (the diagonal of a 
 0.5 mi by 0.5 mi square)
 </p>
 
@@ -1576,22 +1587,21 @@ coordinate precision nearest second, 2 mi (3219 m) from the extent of the named 
 (a gazetteer), the coordinates of the locality were calculated to the nearest second,
  and the distance from the center of Bakersfield to the furthest
 city limit is 2 mi.
-<br>Calculation Type: Coordinates and error
 <br>Locality Type: Distance at a heading
 <br>Coordinate Source: gazetteer
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 22' 24" N
-<br>Longitude: 118 degrees 50' 56 W
+<br>Coordinate Format: degrees minutes seconds
+<br>Latitude( input): 35 degrees 22' 24" N
+<br>Longitude(input): 118 degrees 50' 56 W
 <br>Datum: not recorded
 <br>Coordinate Precision: nearest second
 <br>Offset Distance: 10 mi
-<br>Extent of Named Place: 2 mi
+<br>Radial of Feature: 2 mi
 <br>Measurement Error: 0
 <br>Distance Units: mi
 <br>Distance Precision: 10 mi
 <br>Decimal Latitude: 35.3733333
 <br>Decimal Longitude: -118.6717880
-<br>Maximum Error Distance: 12.254 mi (19721 m)
+<br>Uncertainty (m): 22208 m (13.8 mi)
 <br>Direction Precision: 45 degrees (between NE and SE, each 45 degrees from E)
 <br>Uncertainty sources: complicated combination of unknown datum, coordinate precision 
 nearest second, extent of the named place, distance precision, and direction precision
@@ -1602,35 +1612,32 @@ nearest second, extent of the named place, distance precision, and direction pre
 second from the USGS Gosford 1:24,000 Quad map on which you can distinguish
 between millimeters and the distance from the center of Bakersfield to the furthest city 
 limit is 2 mi.
-<br>Calculation Type: Coordinates and error
 <br>Locality Type: Distance at a heading
 <br>Coordinate Source: USGS map: 1:24,000
-<br>Coordinate System: degrees minutes seconds
-<br>Latitude: 35 degrees 24' 21" N
-<br>Longitude: 118 degrees 51' 25" W
+<br>Coordinate Format: degrees minutes seconds
+<br>Latitude (input): 35 degrees 24' 21" N
+<br>Longitude (input): 118 degrees 51' 25" W
 <br>Datum: NAD27
 <br>Coordinate Precision: nearest second
 <br>Offset Distance: 10 mi
-<br>Extent of Named Place: 2 mi
+<br>Radial of Feature: 2 mi
 <br>Measurement Error: 0.007 mi (0.5 mm on 1:24,000 map)
 <br>Distance Units: mi
 <br>Distance Precision: 10 mi
 <br>Decimal Latitude: 35.4613445
 <br>Decimal Longitude: -118.6932627
-<br>Maximum Error Distance: 7.491 mi (12055 m)
+<br>Uncertainty (m): 12055 m (7.491 mi)
 <br>Direction Precision: 11.25 degrees either side of ENE
 <br>Uncertainty sources: complicated combination of map accuracy, unknown datum, 
 coordinate precision nearest second, extent of the named place, measurement accuracy 
 (0.5 mm at 1:24,000), distance precision, and direction precision
 </p>
 
-<P>
-	<b>Preferred citation</b>:
-	<br>Wieczorek J (2001) MaNIS/HerpNet/ORNIS Georeferencing Guidelines. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://manisnet.org/docs/GeorefGuide.html">http://manisnet.org/docs/GeorefGuide.html</a>.
-</P>
+<b>Preferred citation</b>:
+	<br>Wieczorek J (2001) MaNIS/HerpNet/ORNIS Georeferencing Guidelines. Museum of 
+	Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://georeferencing.org/docs/GeorefGuide.html">http://georeferencing.org/docs/GeorefGuide.html</a>
 
-<p><b><a name="references">References</a></b>:
-</p>
+<p><a name="references"><font size="+1"><b>References</b></font></a>:
 
 <p>1. NIMA, 2000. Department of Defense World Geodetic System 1984. Its
 Definition and relationships with local geodetic systems. TR8350.2, Third
@@ -1653,15 +1660,21 @@ http://www.nauticalcharts.noaa.gov/nsd/DGPSchart.html</a></blockquote>
 4. The results of this work were published as the point-radius method in the following 
 manuscripts:
 <p>
-<dir>Wieczorek J, Hijmans R, Guo Q (2004) Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767. Available: <A href="http://manisnet.org/Wieczoreketal2004PointRadius.pdf">http://manisnet.org/Wieczoreketal2004PointRadius.pdf</a>
+<dir>Wieczorek J, Hijmans R, Guo Q (2004) Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767. Available: <A href="http://georeferencing.org/docs/Wieczoreketal2004PointRadius.pdf">http://georeferencing.org/docs/Wieczoreketal2004PointRadius.pdf</a>
 <br><br>Chapman AD, Wieczorek J (eds.) (2006) Guide to Best Practices for Georeferencing. Copenhagen: Global Biodiversity Information Facility. Available: <a href="http://www.gbif.org/resource/80536">http://www.gbif.org/resource/80536</a>
 </dir>
 </p>
 
-<p><b>Georeferencing Calculator</b>:</p>
-<dir>Wieczorek C, J Wieczorek (2015) Georeferencing Calculator (version 20151221). Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://manisnet.org/gci2.html">http://manisnet.org/gci2.html</a>
-</dir>
+<p>
+<dir>Zermoglio PF, Chapman AD, Wieczorek JR, Luna MC, Bloom DA 2020. Georeferencing Quick Reference Guide Available: <A href="../GeoreferencingQuickReferenceGuide.pdf">http://georeferencing.org/docs/GeoreferencingQuickReferenceGuide.pdf</a>
 
+<br><br>Chapman AD, Wieczorek J (eds.) (2020) Georeferencing Best Practices. Copenhagen: Global Biodiversity Information Facility. Available: <a href="http://www.gbif.org/resource/80536">http://www.gbif.org/resource/80536</a>
+</dir>
+</p>
+
+<p><b>Georeferencing Calculator</b>:</p>
+<dir>Wieczorek C, J Wieczorek (2019) Georeferencing Calculator. Rauthiflor LLC. Available: <a href="http://georeferencing.org/georefcalculator/gc.html">http://georeferencing.org/georefcalculator/gc.html</a>
+</dir>
 
 <p><b>Map Accuracy Standards</b>:</p>
 <dir>
@@ -1707,7 +1720,7 @@ the National Science Foundation (NSF). Thanks to Gordon Jarrell for useful updat
 		<TR>
 			<TD width="60%" valign="MIDDLE">
 				<FONT size="2"><P align="LEFT">
-					Copyright 2001-2015, The Regents of the University of California
+					Copyright 2001-2019, The Regents of the University of California
 				</FONT>
 			</TD>
 			<TD width="40%" valign="MIDDLE" align="RIGHT">
@@ -1727,12 +1740,10 @@ the National Science Foundation (NSF). Thanks to Gordon Jarrell for useful updat
 				<P>John Wieczorek 24 Sep 2001 </P>
 			</TD>
 			<TD width="50%" valign="MIDDLE" align="RIGHT">
-				<i>Rev. 21 Dec 2015</i>
+				<i>Rev. 14 Dec 2019</i>
 			</TD>
 		</TR>
 	</TBODY>
 </TABLE>
-
 <HR>
-
 </body></html>
