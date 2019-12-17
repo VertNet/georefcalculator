@@ -14,10 +14,10 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2019-12-14T16:26-3:00"
+__version__ = "gc_ui.js 2019-12-17T11:41-3:00"
 */
 	// Base version, full version includes language code suffix
-	var g_versionNumber = "20191214";
+	var g_versionNumber = "20191217";
 
 	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
@@ -1616,8 +1616,8 @@ function onBodyKeyUp( e  )
 		// Protocol controls
 		uiClearSelect("ChoiceProtocol");
 		uiSelectAddItem("ChoiceProtocol","protocol.notrecorded");
-
-        uiSelectAddExplicitItem("ChoiceProtocol","Georeferencing Best Practices. 2019");
+		uiSelectAddItem("ChoiceProtocol","protocol.qrg2012");
+		uiSelectAddItem("ChoiceProtocol","protocol.qrg2019");
 
 		// Datum controls
 		uiClearSelect("ChoiceDatum");
