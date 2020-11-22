@@ -13,11 +13,11 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
-__copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "gc_ui.js 2020-01-31T20:51-3:00"
+__copyright__ = "Copyright 2020 Rauthiflor LLC"
+__version__ = "gc_ui.js 2020-11-22T10:39-3:00"
 */
 	// Base version, full version includes language code suffix
-	var g_versionNumber = "20200131";
+	var g_versionNumber = "20201122";
 
 	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
@@ -71,7 +71,7 @@ __version__ = "gc_ui.js 2020-01-31T20:51-3:00"
 
 function GC_init()
 {
-	g_embeddedCopyright = "Copyright 2019 Rauthiflor LLC";
+	g_embeddedCopyright = "Copyright 2020 Rauthiflor LLC";
 	g_canonicalheadings = g_factory.makeArrayList("g_canonicalheadings", "headings");
 	g_canonicalcoordsystems = g_factory.makeArrayList("g_canonicalcoordsystems","coordsystem...");
 	g_canonicalloctypes = g_factory.makeArrayList("g_canonicalloctypes","loctype...");

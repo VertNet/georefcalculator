@@ -15,16 +15,16 @@
 	
 	__author__ = "John Wieczorek"
 	__author__ = "Craig Wieczorek"
-	__copyright__ = "Copyright 2019 Rauthiflor LLC"
-	__version__ = "gc.html 2020-01-31T20:53-3:00"
+	__copyright__ = "Copyright 2020 Rauthiflor LLC"
+	__version__ = "gc.html 2020-10-24T11:24-3:00"
 	*/
 	-->
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<LINK href="gci.css" rel="stylesheet" type="text/css">
+		<TITLE>Georeferencing Calculator</TITLE>
 	</head>
-	<LINK href="gci.css" rel="stylesheet" type="text/css">
-	<TITLE>Georeferencing Calculator</TITLE>
 	<body onLoad="GC_init()" onkeyup="onBodyKeyUp( event )" class="main">
 		<script src="datumerrordata.js"></script>
 		<script src="georefproperties.js"></script>
@@ -380,12 +380,12 @@
 					<TR>
 						<TD width="50%" valign="MIDDLE">
 							<P>
-								<A href="./docs/GeoreferencingCalculatorManual.pdf" target="_blank"><b>Georeferencing Calculator Manual (English)</b></A>
+								<A href="https://docs.gbif-uat.org/georeferencing-calculator-manual/1.0/" target="_blank"><b>Georeferencing Calculator Manual</b></A>
 							</P>
 						</TD>
 						<TD width="50%" valign="MIDDLE" align="RIGHT">
 							<P>
-								<A href="./docs/GeorefGuide.html" target="_blank"><b>Georeferencing Guidelines (English)</b></A>
+								<A href="https://docs.gbif-uat.org/georeferencing-best-practices/1.0/" target="_blank"><b>Georeferencing Best Practices</b></A>
 							</P>
 						</TD>
 					</TR>
@@ -394,9 +394,14 @@
 			<TABLE cellspacing="0" border="0" width="100%">
 				<TBODY>
 					<TR>
-						<TD width="100%" valign="MIDDLE">
+						<TD width="50%" valign="MIDDLE">
 							<P>
-								<A href="./docs/GeoreferencingQuickReferenceGuide.pdf" target="_blank"><b>Georeferencing Quick Reference Guide (English)</b></A>
+								<A href="https://docs.gbif-uat.org/georeferencing-quick-reference-guide/1.0/" target="_blank"><b>Georeferencing Quick Reference Guide</b></A>
+							</P>
+						</TD>
+						<TD width="50%" valign="MIDDLE" align="RIGHT">
+							<P>
+								<A href="https://docs.google.com/spreadsheets/d/14wZmL2JQdpjaQIh_xMZlbSrJeMOm_06Ysw6yfqkqy6I/edit?usp=sharing" target="_blank"><b>Georeferencing Resources</b></A>
 							</P>
 						</TD>
 					</TR>
@@ -404,7 +409,8 @@
 			</TABLE>
 			<HR>
 			<P>
-				This application was adapted by Craig Wieczorek and John Wieczorek from an earlier 
+				<b>Attribution</b>:
+				<br>This application was adapted by Craig Wieczorek and John Wieczorek from an earlier 
 				version in Java by John Wieczorek with contributions from Qinghua Guo, Carmen 
 				Boureau, and Craig Wieczorek. Interface translations provided by: Gustavo Iglesias 
 				(Espa&ntilde;ol), Jose (Wly) Dos Santos (Portugu&ecirc;s), Tendro Ramaharitra 
@@ -412,17 +418,12 @@
 			</P>
 			<P>
 				<b>Preferred citation</b>:
-				<br>Wieczorek C, J Wieczorek (2019) Georeferencing Calculator. Available: http://georeferencing.org/georefcalculator/gc.html. Accessed [yyyy-mm-dd].
+				<br>Wieczorek C, J Wieczorek (2020) Georeferencing Calculator. Available: http://georeferencing.org/georefcalculator/gc.html. Accessed [yyyy-mm-dd].
 			</P>
 			<P>
-				<b>Calculations adapted from on:</b>
-				<br>Wieczorek J (2001) MaNIS/HerpNet/ORNIS Georeferencing Guidelines. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://georeferencing.org/georefcalculator/docs/GeorefGuide.html">http://georeferencing.org/georefcalculator/docs/GeorefGuide.html</a>.
+				<b>Calculations adapted from:</b>
+				<br>Wieczorek J (2001) MaNIS/HerpNet/ORNIS Georeferencing Guidelines. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="./docs/GeorefGuide.html">http://georeferencing.org/georefcalculator/docs/GeorefGuide.html</a>.
 				<br><br>Wieczorek J, Hijmans R, Guo Q (2004) Point-radius method for georeferencing locality descriptions and calculating associated uncertainty. International Journal of Geographical Information Science 18(8):745-767. Available: <A href="http://georeferencing.org/georefcalculator/docs/Wieczoreketal2004PointRadius.pdf">http://georeferencing.org/georefcalculator/docs/Wieczoreketal2004PointRadius.pdf</a>
-			</P>
-			<P>
-				<b>Related references:</b>
-				<br>Chapman AD, Wieczorek J (eds.) (2006) Guide to Best Practices for Georeferencing. Copenhagen: Global Biodiversity Information Facility. Available: <a href="http://www.gbif.org/resource/80536">http://www.gbif.org/resource/80536</a>
-				<br><br>Wieczorek J, Bloom D, Constable H, Fang J, Koo M, Spencer C, Yamamoto K (2011) Georeferencing Quick Reference Guide. Museum of Vertebrate Zoology, University of California, Berkeley. Available: <a href="http://georeferencing.org/georefcalculator/docs/GeoreferencingQuickReferenceGuide.pdf">http://georeferencing.org/georefcalculator/docs/GeoreferencingQuickReferenceGuide.pdf</a>
 			</P>
 			<P>
 				<b>Source code:</b>
@@ -439,7 +440,7 @@
 						<TD width="60%" valign="MIDDLE">
 							<FONT size="2">
 								<P align="LEFT">
-									Copyright 2019, Rauthiflor LLC
+									Copyright 2020, Rauthiflor LLC
 							</FONT>
 						</TD>
 						<TD width="40%" valign="MIDDLE" align="RIGHT">
@@ -451,7 +452,8 @@
 					</TR>
 				</TBODY>
 			</TABLE>
-<iframe width="100%" height="300px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTRfHPphVPJhHGMIotzHEUfNUB1PWyBldGp6p2e7deNfYaj4IvKhaKIwm1go5tGmhHdBAc_n5nfX72S/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+<!--			<iframe width="100%" height="300px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTRfHPphVPJhHGMIotzHEUfNUB1PWyBldGp6p2e7deNfYaj4IvKhaKIwm1go5tGmhHdBAc_n5nfX72S/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+-->
 			<TABLE cellspacing="0" border="0" width="100%">
 				<TBODY>
 					<TR>
@@ -459,7 +461,7 @@
 							<P>John Wieczorek 3 Nov 2001 </P>
 						</TD>
 						<TD width="50%" valign="MIDDLE" align="RIGHT">
-							<i>Rev. 31 Jan 2020</i>
+							<i>Rev. 22 Nov 2020</i>
 						</TD>
 					</TR>
 				</TBODY>

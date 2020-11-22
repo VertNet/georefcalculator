@@ -18,8 +18,8 @@ __contributor__ = Jose (Wly) Dos Santos
 __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
-__copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "georefproperties.js 2019-12-17T11:32-03:00"
+__copyright__ = "Copyright 2020 Rauthiflor LLC"
+__version__ = "georefproperties.js 2020-11-22T10:22-03:00"
 */
 
 // Translations courtesy of:
@@ -359,12 +359,12 @@ var datum = { 'notrecorded' : { 'nl' : "datum onbekend" } };
 var protocol = { 
 'notrecorded' : { },
 'qrg2012' : { },
-'qrg2019' : { }
+'qrg2020' : { }
 };
 
 protocol.notrecorded.nl = "protocol onbekend";
 protocol.qrg2012.nl = "Georeferencing Quick Reference Guide. 2012";
-protocol.qrg2019.nl = "Georeferencing Quick Reference Guide. 2019";
+protocol.qrg2020.nl = "Georeferencing Quick Reference Guide. 2020";
 
 // Coordinate Source
 var coordsource = {
@@ -595,7 +595,7 @@ datum.notrecorded.en = "datum not recorded";
 // Protocol
 protocol.notrecorded.en = "protocol not recorded";
 protocol.qrg2012.en = "Georeferencing Quick Reference Guide. 2012";
-protocol.qrg2019.en = "Georeferencing Quick Reference Guide. 2019";
+protocol.qrg2020.en = "Georeferencing Quick Reference Guide. 2020";
 
 // Coordinate Source
 coordsource.gaz.en = "gazetteer";
@@ -782,7 +782,7 @@ datum.notrecorded.es = "datum no indicado";
 // Protocol
 protocol.notrecorded.es = "protocol no indicado";
 protocol.qrg2012.es = "Georeferencing Quick Reference Guide. 2012";
-protocol.qrg2019.es = "Georeferencing Quick Reference Guide. 2019";
+protocol.qrg2020.es = "Georeferencing Quick Reference Guide. 2020";
 
 // Fuentes de las Coordenadas
 coordsource.gaz.es = "gacetero";
@@ -969,7 +969,7 @@ datum.notrecorded.pt = "datum não indicado";
 // Protocol
 protocol.notrecorded.pt = "protocol não indicado";
 protocol.qrg2012.pt = "Georeferencing Quick Reference Guide. 2012";
-protocol.qrg2019.pt = "Georeferencing Quick Reference Guide. 2019";
+protocol.qrg2020.pt = "Georeferencing Quick Reference Guide. 2020";
 
 // Fonte das Coordenadas
 coordsource.gaz.pt = "dicionário geográfico";
@@ -1156,7 +1156,7 @@ datum.notrecorded.fr = "informations (datum) non enregistrés";
 // Protocol
 protocol.notrecorded.fr = "protocol non enregistrés";
 protocol.qrg2012.fr = "Georeferencing Quick Reference Guide. 2012";
-protocol.qrg2019.fr = "Georeferencing Quick Reference Guide. 2019";
+protocol.qrg2020.fr = "Georeferencing Quick Reference Guide. 2020";
 
 // Source de Coordonnées
 coordsource.gaz.fr = "répertoire de localité (gazetteer)";
