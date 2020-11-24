@@ -14,10 +14,10 @@ limitations under the License.
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
 __copyright__ = "Copyright 2020 Rauthiflor LLC"
-__version__ = "gc_ui.js 2020-11-22T10:39-3:00"
+__version__ = "gc_ui.js 2020-11-24T15:40-3:00"
 */
 	// Base version, full version includes language code suffix
-	var g_versionNumber = "20201122";
+	var g_versionNumber = "20201124";
 
 	// most recently chosen coordinate format
 	var lastcoordsystem = 1; // 1=dd.ddddd, 2=ddmmss.ss, 3=ddmm.mmmm
@@ -1617,7 +1617,7 @@ function onBodyKeyUp( e  )
 		uiClearSelect("ChoiceProtocol");
 		uiSelectAddItem("ChoiceProtocol","protocol.notrecorded");
 		uiSelectAddItem("ChoiceProtocol","protocol.qrg2012");
-		uiSelectAddItem("ChoiceProtocol","protocol.qrg2019");
+		uiSelectAddItem("ChoiceProtocol","protocol.qrg2020");
 
 		// Datum controls
 		uiClearSelect("ChoiceDatum");
@@ -2132,12 +2132,6 @@ function onBodyKeyUp( e  )
 		uiSetSelectedValue("ChoiceDistUnits","km");
 		uiClearSelect("ChoiceFromDistUnits");
 
-/*
-		uiSetSelectedValue("ChoiceProtocol","protocol not recorded");
-		uiClearSelect("ChoiceProtocol");
-		uiSelectAddExplicitItem("ChoiceProtocol","protocol not recorded");
-		uiSelectAddExplicitItem("ChoiceProtocol","Georeferencing Quick Reference Guide. 2019.");
-*/
 		uiSelectAddExplicitItem("ChoiceFromDistUnits","km");
 		uiSelectAddExplicitItem("ChoiceFromDistUnits","m");
 		uiSelectAddExplicitItem("ChoiceFromDistUnits","mi");
