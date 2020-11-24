@@ -19,7 +19,7 @@ __contributor__ = Tendro Ramaharitra
 __contributor__ = Robert Hijmans
 __contributor__ = Peter Desmet
 __copyright__ = "Copyright 2020 Rauthiflor LLC"
-__version__ = "georefproperties.js 2020-11-22T10:22-03:00"
+__version__ = "georefproperties.js 2020-11-24T15:42-03:00"
 */
 
 // Translations courtesy of:
