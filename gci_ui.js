@@ -2054,7 +2054,7 @@ function onBodyKeyUp( e  )
         uiSelectAddExplicitItem("ChoiceDatum","Tristan Astro 1968");
         uiSelectAddExplicitItem("ChoiceDatum","Turkish National Reference Frame");
         uiSelectAddExplicitItem("ChoiceDatum","Ukraine 2000");
-        uiSelectAddExplicitItem("ChoiceDatum","United Arab Emirates (Nahrwan");
+        uiSelectAddExplicitItem("ChoiceDatum","United Arab Emirates (Nahrwan)");
         uiSelectAddExplicitItem("ChoiceDatum","Vanua Levu 1915");
         uiSelectAddExplicitItem("ChoiceDatum","Vietnam 2000");
         uiSelectAddExplicitItem("ChoiceDatum","Viti Levu 1912");
