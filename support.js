@@ -13,8 +13,9 @@ limitations under the License.
 
 __author__ = "Craig Wieczorek"
 __author__ = "John Wieczorek"
-__copyright__ = "Copyright 2019 Rauthiflor LLC"
-__version__ = "support.js 2020-01-31T20:51-3:00"
+__contributor__ = "Marcelo Oyaneder Labarca"
+__copyright__ = "Copyright 2021 Rauthiflor LLC"
+__version__ = "support.js 2021-01-27T13:12-3:00"
 */
 
     function convertDistance(){
