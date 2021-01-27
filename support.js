@@ -1256,7 +1256,7 @@ __version__ = "support.js 2020-01-31T20:51-3:00"
         if( datumstr == "Tristan Astro 1968") return "IN";
         if( datumstr == "Turkish National Reference Frame") return "RF";
         if( datumstr == "Ukraine 2000") return "KA";
-        if( datumstr == "United Arab Emirates (Nahrwan") return "CD";
+        if( datumstr == "United Arab Emirates (Nahrwan)") return "CD";
         if( datumstr == "Vanua Levu 1915") return "CI";
         if( datumstr == "Vietnam 2000") return "WE";
         if( datumstr == "Viti Levu 1912") return "CI";
